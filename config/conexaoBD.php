@@ -1,6 +1,5 @@
 <?php
-
-    require_once __DIR__ . '../vendor/autoload.php';
+    require_once __DIR__ . '/../vendor/autoload.php';
 
     // Estabelecendo a conexão
     $client = new MongoDB\Client('mongodb://localhost:27017/');
@@ -16,12 +15,20 @@
 
         $database->command(['ping' => 1]); // Manda um comando de ping para o servidor onde esta o bd
 
+        echo "conexao estabelecida com sucesso";
+
+        // TEstes
+        // $inserindoDados = $colecaoUsuarios -> insertOne([
+        //     "Nome" => "teste",
+        //     "Email" => "testando",
+        //     "Telefone" => "testando",
+        //     "Senha" => "testando"
+        // ]);
+
     } catch (\Throwable $th) {
 
         echo "Infelizmente Ocorreu um erro :( \n erro: $th";
 
     }
-
-    $teste = "Deu Certo";
-
+    
 ?>

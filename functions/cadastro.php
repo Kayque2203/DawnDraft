@@ -3,7 +3,8 @@
 // Falta testar, Estudar uma biblioteca de criptografia para criptografar as senhas antes de mandar para o banco de dados
 // para testar é preciso mover a pasta do repositório para a pasta htdocs do xampp, mas tbm é presiso instalar a extenção do mongodb no xampp antes se não da erro *OBS é um role instalar essa extenção dps explico como faz
 
-    require "../config/conexaoBD.php";
+    require_once __DIR__ . '/../vendor/autoload.php';
+    include "../config/conexaoBD.php";
 
     class AdicionandoUsuarios{
 
@@ -12,11 +13,14 @@
         private $email;
         private $telefone;
         private $senha;
+        public $inserindoDados;
 
         // constrututor
-        function __construct($nomeUsuario, $sobrenomeUsuario){
+        function __construct($nomeUsuario, $emailUsuario, $telefoneUsuario, $senhaUsuario){
             $this -> setNome($nomeUsuario);
-            $this -> setSobrenome($sobrenomeUsuario);
+            $this -> setEmail($emailUsuario);
+            $this -> setTelefone($telefoneUsuario);
+            $this -> setSenha($senhaUsuario);
         }
 
         // Setter para o atributo nome
@@ -45,13 +49,13 @@
         }
 
         // Metodos da classe
-        public function adicionandoUsuario(){
+        public function adicionaUsuario() {
         
             try {
 
                 $inserindoDados = $colecaoUsuarios -> insertOne([
                     "Nome" => $this -> nome,
-                    "Email" => $this -> Email,
+                    "Email" => $this -> email,
                     "Telefone" => $this -> telefone,
                     "Senha" => $this -> senha
                 ]);

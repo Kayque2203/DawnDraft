@@ -1,0 +1,5 @@
+Tela de Login e cadastro
+    -> Adicionar a funcionalidade de fazer login com o google
+        Site da documentação da api: https://developers.google.com/identity/sign-in/web/sign-in?hl=pt-br;
+
+    -> 
