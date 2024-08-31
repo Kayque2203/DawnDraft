@@ -1,13 +1,6 @@
 <?php // Arquivo de cadastro de usuarios
-
-// Falta testar, Estudar uma biblioteca de criptografia para criptografar as senhas antes de mandar para o banco de dados
-// para testar é preciso mover a pasta do repositório para a pasta htdocs do xampp, mas tbm é presiso instalar a extenção do mongodb no xampp antes se não da erro *OBS é um role instalar essa extenção dps explico como faz
-
-    require_once __DIR__ . '/../vendor/autoload.php';
     
-    include "../config/conexaoBD.php";
-
-    $novaConexaoBd = new ConexaoBd();
+    include "../config/conexaoBD.php"; // Importando a classe de conexão com o banco de dados 
 
     class AdicionandoUsuarios {
 
@@ -16,7 +9,9 @@
         private $email;
         private $telefone;
         private $senha;
-        public $inserindoDados;
+        private $novaConexaoBd; // Propiedade que tera o comando de conexao com o bd
+
+        public $inserindoDados; // Vai nos retornar algumas infos dos usuarios cadastrados, pode ser que seja ultil mais para frente se não for podemos retirala ou deixa-la private
 
         // constrututor
         function __construct($nomeUsuario, $emailUsuario, $telefoneUsuario, $senhaUsuario){
@@ -24,6 +19,7 @@
             $this -> setEmail($emailUsuario);
             $this -> setTelefone($telefoneUsuario);
             $this -> setSenha($senhaUsuario);
+            $this -> novaConexaoBd = new ConexaoBd();
         }
 
         // Setter para o atributo nome
@@ -33,39 +29,43 @@
 
         }
 
+        // Setter para o atributo email
         public function setEmail($setandoEmail){
 
             $this -> email = $setandoEmail;
 
         }
 
+        // Setter para o atributo Telefone
         public function setTelefone($setandoTelefone){
 
             $this -> telefone = $setandoTelefone;
 
         }
 
+        // Setter para o atributo Senha Falta adicionar a criptografia a senha
         public function setSenha($setandoSenha){
 
             $this -> senha = $setandoSenha;
 
         }
 
-        // Metodos da classe
+        // Metodos Para inserir os usuarios no banco de dados 
         public function adicionaUsuario() {
-        
+            // Tratamento de exeções para adionar usuarios.
             try {
-                // $this -> inserindoDados =  $novaConexaoBd -> colecaoUsuario -> insertOne([
-                //     "Nome" => $this -> nome,
-                //     "Email" => $this -> email,
-                //     "Telefone" => $this -> telefone,
-                //     "Senha" => $this -> senha
-                // ]);
-
-                echo $novaConexaoBd -> database;
+                // esse metodo adiciona novos usuarios ao banco de dados, pode parecer confuso com esse tanto de $this e ->, mas fazer oq é o php :(
+                $this -> inserindoDados =  $this -> novaConexaoBd -> getCollections() -> insertOne([
+                    "Nome" => $this -> nome,
+                    "Email" => $this -> email,
+                    "Telefone" => $this -> telefone,
+                    "Senha" => $this -> senha
+                ]);
 
             } catch (Exception $e) {
+                // Caso aconteça algum erro Ele emitira essa mensagem juntamente com o erro
                 echo "Infelizmente um erro inesperado aconteceu :( .\n Erro: { $e }";
+
             }
 
         }

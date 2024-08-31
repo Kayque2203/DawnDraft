@@ -1,23 +1,22 @@
 <?php
 
-    require_once __DIR__ . '/../vendor/autoload.php';
+    require_once __DIR__ . '/../vendor/autoload.php'; // Importando o arquivo autoload do composer não sei bem ao certo oq ele faz
 
+    // Nessa eu tive que pedir ajuda
     class ConexaoBD {
         private $client;
-        public $database;
         private $colecaoUsuarios;
     
-        function __construct($url = 'mongodb://localhost:27017/', $databaseName = 'DawnDraft', $tt = "eee"  ){
+        function __construct( $url = 'mongodb://localhost:27017/', $databaseName = 'DawnDraft' ){
             $this -> client = new MongoDB\Client($url);
             $this -> colecaoUsuarios = $this-> client -> selectCollection($databaseName, 'Usuarios');
-            $this -> database = $tt;
         }
 
         // Getters
 
-        public function getCollections($colecao){
+        public function getCollections(){
 
-            return $this -> $colecaoUsuarios;
+            return $this -> colecaoUsuarios;
 
         }
 

@@ -2,4 +2,10 @@ Tela de Login e cadastro
     -> Adicionar a funcionalidade de fazer login com o google
         Site da documentação da api: https://developers.google.com/identity/sign-in/web/sign-in?hl=pt-br;
 
-    -> 
+    -> Estudar uma biblioteca de criptografia para criptografar as senhas antes de mandar para o banco de dados;
+
+    -> Adicionar a funcionalidade para os usuarios que esqueceram sua senha;
+
+    -> Adicionar Máscaras nos campos, Validar e Sanitizar os dados colocados nos inputs ( Podemos ultilizar Jquery e Regex );
+
+    -> Arrumar o texto da tela de login ta meio confuso;

@@ -8,20 +8,23 @@
 <body>
 
     <?php
-        require "../functions/cadastro.php";
 
+        require "../functions/cadastro.php"; // Importando a classe para cadastrar novos usuarios no banco de dados.
+
+        // Pegando as informações dos inputs do formulario.
         $nome = $_POST['nome'] ?? "Não Pode ser nulo";
         $email = $_POST['email'] ?? "Não Pode ser nulo";
         $telefone = $_POST['celular'] ?? "Não Pode ser nulo";
         $senha = $_POST['senha'] ?? "Não Pode ser nulo";
 
-        // $novoUsuario = new AdicionandoUsuarios($nome, $email, $telefone, $senha);
+        // Instanciando a calse para adicionar novos usuarios 
+        $novoUsuario = new AdicionandoUsuarios($nome, $email, $telefone, $senha);
 
-        $novoUsuario = new AdicionandoUsuarios("Teste", "teste@teste.com", "11 3333333", "123");
-
+        // Chamando o metodo da classe que adiciona novos usuarios
         $novoUsuario -> adicionaUsuario();
 
-
+        // 
+        echo("<h1> Cadastro realizado com sucesso!!! </h1> \n <h2> AGORA CLIQUE NO LINK PARA FAZER LOGIN E APROVEITAR O SITE!!! </h2> \n <a href='./cadastro_e_login.html'>Logar</a>");
     ?>
     
 </body>
