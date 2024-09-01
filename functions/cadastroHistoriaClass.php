@@ -16,32 +16,33 @@ class ADicionaHistoria {
     private $historia2;
     private $historia3;
 
-    private $cenarioHistoria1;
-    private $cenarioHistoria2;
-    private $cenarioHistoria3;
+    private $cenario1;
+    private $cenario2;
+    private $cenario3;
 
     private $Dialogo1;
     private $Dialogo2;
     private $Dialogo3;
 
     function __construct($Personagem1, $Personagem2, $Personagem3, $Historia1, $Historia2, $Historia3, $CenarioHistoria1, $CenarioHistoria2, $CenarioHistoria3, $dialogo1, $dialogo2 ,$dialogo3){
-       $this ->  novaConexaoBd = new conexaoBD();
 
-       $this -> personagem1  = $Personagem1;
-       $this -> personagem2  = $Personagem2;
-       $this -> personagem3  = $Personagem3;
+       $this -> setpersonagem1($Personagem1);
+       $this -> setpersonagem2($Personagem2);
+       $this -> setpersonagem3($Personagem3);
 
-       $this -> historia1 = $Historia1;
-       $this -> historia2 = $Historia2;
-       $this -> historia3 = $Historia3;
+       $this -> sethistoria1($Historia1);
+       $this -> sethistoria2($Historia2);
+       $this -> sethistoria3($Historia3);
 
-       $this -> cenarioHistoria1 = $CenarioHistoria1; 
-       $this -> cenarioHistoria2 = $CenarioHistoria2; 
-       $this -> cenarioHistoria3 = $CenarioHistoria3; 
+       $this -> setcenarioHistoria1($CenarioHistoria1); 
+       $this -> setcenarioHistoria2($CenarioHistoria2); 
+       $this -> setcenarioHistoria3($CenarioHistoria3); 
 
-       $this ->  Dialogo1 = $dialogo1;
-       $this ->  Dialogo2 = $dialogo2;
-       $this ->  Dialogo3 = $dialogo3;
+       $this -> setDialogo1($dialogo1);
+       $this -> setDialogo2($dialogo2);
+       $this -> setDialogo3($dialogo3);
+
+       $this -> novaConexaoBd = new conexaoBD('Historias');
 
     }
 
@@ -98,19 +99,19 @@ class ADicionaHistoria {
     // 
     public function setCenarioHistoria1($setandoCenarioHistoria1){
 
-        $this ->  cenarioHistoria1 = $setandoCenarioHistoria1;
+        $this ->  cenario1 = $setandoCenarioHistoria1;
 
     }
 
     public function setCenarioHistoria2($setandoCenarioHistoria2){
 
-        $this -> cenarioHistoria2 = $setandoCenarioHistoria2;
+        $this -> cenario2 = $setandoCenarioHistoria2;
 
     }
 
     public function setCenarioHistoria3($setandoCenarioHistoria3){
 
-        $this -> cenarioHistoria3 = $setandoCenarioHistoria3;
+        $this -> cenario3 = $setandoCenarioHistoria3;
 
     }
     
@@ -136,11 +137,11 @@ class ADicionaHistoria {
 
     // Metodo adicionar
 
-    public function adicionaUsuario() {
+    public function adicionandoHistoria() {
         // Tratamento de exeções para adionar usuarios.
         try {
             // esse metodo adiciona novos usuarios ao banco de dados, pode parecer confuso com esse tanto de $this e ->, mas fazer oq é o php :(
-            $this -> inserindoDados =  $this -> novaConexaoBd ->  getCollectionHistoria() -> insertOne([
+            $this -> inserindoDados =  $this -> novaConexaoBd -> getCollections() -> insertOne([
                 "Usuario" => "1",
 
                 "Personagem1" => $this -> personagem1,
@@ -151,9 +152,9 @@ class ADicionaHistoria {
                 "Historia2" => $this -> historia2,
                 "Historia3" => $this -> historia3,
 
-                "Cenarios1" => $this -> cenarios1,
-                "Cenarios2" => $this -> cenarios2,
-                "Cenarios3" => $this -> cenarios3,
+                "Cenarios1" => $this -> cenario1,
+                "Cenarios2" => $this -> cenario2,
+                "Cenarios3" => $this -> cenario3,
 
                 "Dialogos1" => $this -> Dialogo1,
                 "Dialogos2" => $this -> Dialogo2,
@@ -168,6 +169,8 @@ class ADicionaHistoria {
         }
 
     }
-
-
 }
+
+$teste = new ADicionaHistoria("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12");
+
+$teste -> adicionandoHistoria();

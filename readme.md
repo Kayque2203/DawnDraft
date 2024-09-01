@@ -5,7 +5,7 @@
 # Anotações
 
 [!IMPORTANT]
->Se vc esta acessando esse projeto do github antes de tentar rodar ele no xampp é necessario executar o comando: { php composer.phar update ou php composer.phar install}  esse comando fará o dowload de todas as dependencias listadas no arquivo composer.json ( caso não funcione fale com o Enzo )
+>Se vc esta acessando esse projeto do github antes de tentar rodar ele no xampp é necessario executar o comando: { composer install --ignore-platform-reqs }  esse comando fará o dowload de todas as dependencias listadas no arquivo composer.json ( caso não funcione fale com o Enzo )
 
 >*OBS o composer é um gerenciador de pacotes do php, como se fosse o npm do nodeJS, nele vc pode instalar bibliotecas do php
 

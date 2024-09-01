@@ -19,7 +19,7 @@
             $this -> setEmail($emailUsuario);
             $this -> setTelefone($telefoneUsuario);
             $this -> setSenha($senhaUsuario);
-            $this -> novaConexaoBd = new ConexaoBd();
+            $this -> novaConexaoBd = new ConexaoBd('Usuarios');
         }
 
         // Setter para o atributo nome

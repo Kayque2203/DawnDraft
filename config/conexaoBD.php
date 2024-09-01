@@ -5,33 +5,25 @@
     // Nessa eu tive que pedir ajuda
     class ConexaoBD {
         private $client;
-        private $colecaoUsuarios;
-        private $colecaoHistorias;
+        private $colecoes;
     
-        function __construct( $url = 'mongodb://localhost:27017/', $databaseName = 'DawnDraft' ){
+        function __construct( $nomeColecao ,$url = 'mongodb://localhost:27017/', $databaseName = 'DawnDraft' ){
             $this -> client = new MongoDB\Client($url);
-            $this -> colecaoUsuarios = $this -> client -> selectCollection($databaseName, 'Usuarios');
-            $this -> colecaoHistorias = $this -> client -> selectCollection($databaseName, 'Historias');
+            $this -> setColecoes($nomeColecao, $databaseName);
         }
 
         // Getters
-
         public function getCollections(){
-
-            return $this -> colecaoUsuarios;
-
-        }
-
-        public function getCollectionHistoria(){
-
-            return $this -> $colecaoHistorias;
-
+            return $this -> colecoes;
         }
 
         public function getClient(){
-
             return $this -> client;
+        }
 
+        //Setters
+        public function setColecoes($setColecao , $nomeBD){
+            $this -> colecoes = $this -> client -> selectCollection($nomeBD, $setColecao);
         }
     }
 
