@@ -6,10 +6,12 @@
     class ConexaoBD {
         private $client;
         private $colecaoUsuarios;
+        private $colecaoHistorias;
     
         function __construct( $url = 'mongodb://localhost:27017/', $databaseName = 'DawnDraft' ){
             $this -> client = new MongoDB\Client($url);
-            $this -> colecaoUsuarios = $this-> client -> selectCollection($databaseName, 'Usuarios');
+            $this -> colecaoUsuarios = $this -> client -> selectCollection($databaseName, 'Usuarios');
+            $this -> colecaoHistorias = $this -> client -> selectCollection($databaseName, 'Historias');
         }
 
         // Getters
@@ -17,6 +19,12 @@
         public function getCollections(){
 
             return $this -> colecaoUsuarios;
+
+        }
+
+        public function getCollectionHistoria(){
+
+            return $this -> $colecaoHistorias;
 
         }
 

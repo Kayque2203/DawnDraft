@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table,th,thead{
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        section{
+            display: flex;
+            justify-content: center;
+        }
+        div{
+            margin-top: 5px;
+            width: 100%;
+        }
+        button{
+            width: 100%;
+            border: 1px solid black;
+            background-color: aqua;
+            cursor: pointer;
+            border-radius: 5px;
+            box-shadow: 2px 1px;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <form action="./cadastroHistoria.php" method="post">
+            <table>
+                <thead>
+                    <th>Personagem</th>
+                    <th>História</th>
+                    <th>Cenários</th>
+                    <th>Dialogos</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><textarea name="txtAereaPersonagem1" id=""></textarea></td>
+                        <td><textarea name="txtAereaHistoria1" id=""></textarea></td>
+                        <td><textarea name="txtAereaCenarios1" id=""></textarea></td>
+                        <td><textarea name="txtAereaDialogos1" id=""></textarea></td>
+                    </tr>
+                    <tr>
+                        <td><textarea name="txtAereaPersonagem2" id=""></textarea></td>
+                        <td><textarea name="txtAereaHistoria2" id=""></textarea></td>
+                        <td><textarea name="txtAereaCenarios2" id=""></textarea></td>
+                        <td><textarea name="txtAereaDialogos2" id=""></textarea></td>
+                    </tr>
+                    <tr>
+                        <td><textarea name="txtAereaPersonagem3" id=""></textarea></td>
+                        <td><textarea name="txtAereaHistoria3" id=""></textarea></td>
+                        <td><textarea name="txtAereaCenarios3" id=""></textarea></td>
+                        <td><textarea name="txtAereaDialogos3" id=""></textarea></td>
+                    </tr>                    
+                </tbody>                    
+    
+            </table>
+            <div>
+                <button type="submit">salvar</button>
+            </div>
+        </form>
+    </section>
+</body>
+</html>
