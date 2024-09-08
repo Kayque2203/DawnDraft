@@ -1,0 +1,100 @@
+doctype html
+html(lang="pt-br")
+head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title Login
+    link(rel="stylesheet" href="/stylesheets/style-login-cadastro.css")
+    link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css")
+    link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css")
+
+body
+    if( notify.length )
+        h1=notify
+    div(class="container")
+        div(class="content first-content")
+            div(class="first-column")
+                h2(class="title title-primary") Bem vindo de volta
+                p(class="description description-primary") Para manter-se conectado conosco
+                p(class="description description-primary") Faça o login com suas informações pessoais
+                button(id="signin" class="btn btn-primary") assinar
+            
+            div(class="second-column")
+
+                h2(class="title title-second") Criar Conta
+
+                div(class="social-media") <!-- social media -->
+
+                    ul(class="list-social-media")
+                        a(class="link-social-media" href="#")
+                            li(class="item-social-media")
+                                i(class="fab fa-facebook-f")
+                                                    
+                        a(class="link-social-media" href="#")
+                            li(class="item-social-media")
+                                i(class="fab fa-google-plus-g")
+
+                        a(class="link-social-media" href="#")
+                            li(class="item-social-media")
+                                i(class="fab fa-linkedin-in")
+                    
+                    
+                    p(class="description description-second") ou use seu e-mail para registro:
+
+                    form(class="form", method="post", action="http://localhost:3000/LoginECadastro")
+                        label(class="label-input" for="")
+                            i(class="fas fa-user icon-modify")
+                            input(type="text" placeholder="nome" name="nome")
+
+                        label(class="label-input" for="")
+                            i(class="fas fa-envelope icon-modify")
+                            input(type="email" placeholder="email" name="email")
+
+                        label(class="label-input" for="")
+                            i(class="fas fa-phone icon-modify")
+                            input(type="number" placeholder="celular" name="telefone")
+                        
+                        label(class="label-input" for="")
+                            i(class="fas fa-lock icon-modify")
+                            input(type="password" placeholder="senha" name="senha")
+                
+                        button(class="btn btn-second" type="submit") cadastrar-se
+
+        div(class="content second-content")
+            div(class="first-column")
+                h2(class="title title-primary") Olá amigos
+                p(class="description description-primary") Insira seus dados pessoais
+                p(class="description description-primary") comece a sua jornada conosco
+                button(id="signup" class="btn btn-primary") Inscrever-se
+
+            div(class="second-column")
+                h2(class="title title-second") Entrar no desenvolvedor
+                div(class="social-media")
+                    ul(class="list-social-media")
+                        a(class="link-social-media" href="#")
+                            li(class="item-social-media")
+                                i(class="fab fa-facebook-f")
+
+                        a(class="link-social-media" href="#")
+                            li(class="item-social-media")
+                                i(class="fab fa-google-plus-g")
+
+                        a(class="link-social-media" href="#")
+                            li(class="item-social-media")
+                                i(class="fab fa-linkedin-in")
+
+
+                    p(class="description description-second") ou use sua conta de email:
+                        form(class="form")
+                            label(class="label-input" for="")
+                                i(class="fas fa-envelope icon-modify")
+                                input(type="email" placeholder="email")
+
+                            label(class="label-input" for="")
+                                i(class="fas fa-lock icon-modify")
+                                input(type="password" placeholder="senha")
+ 
+                            a(class="password" href="#") esqueceu sua senha?                   
+                            button(class="btn btn-second") Entrar
+
+    script(src="/javascripts/js-login-cadastro.js")
