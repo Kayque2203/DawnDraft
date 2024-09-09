@@ -1,5 +1,6 @@
-const { contextsKey } = require('express-validator/lib/base.js');
-const Conexao = require('../conexaoBD/conexaoBD.js');
+const conexao = require('../conexaoBD/conexaoBD.js');
+
+const Conexao = new conexao();
 
 class Usuarios {
     #nome;
@@ -31,19 +32,33 @@ class Usuarios {
         this.#senha = senhaUsuario;
     }
 
-    // Metodos
+    // Getters
+    get getNome(){
+        return this.#nome;
+    }
 
+    get getEmail(){
+        return this.#email;
+    }
+
+    get getTelefone(){
+        return this.#telefone;
+    }
+
+    get getSenha(){
+        return this.#senha;
+    }
+
+    // Metodos
     async adicionarUsuario(){
         try {
 
-            let novoUser = await Conexao.Usuarios.insertOne({
+            let novoUser = await Conexao.getUsuarioCollection.insertOne({
                 "Nome" : this.#nome,
                 "Email" : this.#email,
                 "Telefone" : this.#telefone,
                 "Senha" : this.#senha
             })
-
-            await Conexao.fecharConexao()
 
             return novoUser.insertedId;
 
@@ -54,10 +69,8 @@ class Usuarios {
     }
 
     async buscaUsuario(email) {
-       
-        let usuario =  await Conexao.Usuarios.findOne({"Email": email});
 
-       await Conexao.fecharConexao();
+       let usuario =  await Conexao.getUsuarioCollection.findOne({"Email": email});
 
        return usuario;
 

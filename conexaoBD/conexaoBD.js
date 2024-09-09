@@ -1,26 +1,24 @@
-// Arrumar isso
 const { MongoClient } = require('mongodb');
 
-const uri = 'mongodb://localhost:27017';
-
-const client = new  MongoClient(uri);
-
-const database = client.db('DawnDraft');
-// const Usuarios = database.collection('Usuarios');
-
 class Conexao {
-    static Usuarios = database.collection('Usuarios')
+    #client;
+    #database;
+    #Usuarios;
 
-    static async fecharConexao(){
-        await client.close()
+    constructor(){
+        this.#client = new MongoClient('mongodb://localhost:27017');
+        this.#database = this.#client.db('DawnDraft');
+        this.#Usuarios = this.#database.collection('Usuarios');
     }
+
+    get getUsuarioCollection(){
+        return this.#Usuarios
+    }
+
+    get getCliente(){
+        return this.#client
+    }
+    
 }
-
-
-
-
-
- 
-
 
 module.exports = Conexao;

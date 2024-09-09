@@ -23,11 +23,11 @@ exports.CadastroPost = [
 
             res.render('loginEcadastro', {notify: `Um erro inesperado aconteceu cheque se todas as informações estão corretas erro: ${errors}`})
 
-        }/*else if (await novoUsuario.buscaUsuario(req.body.email) != null) {// ALGUM ERRO AQUI DESCOBRIR DPS basicamente isso serve para verificar se existe algum outro usuario com esse email no bd
+        }else if (await novoUsuario.buscaUsuario(req.body.email) != null) {// ALGUM ERRO AQUI DESCOBRIR DPS basicamente isso serve para verificar se existe algum outro usuario com esse email no bd
 
             res.render('loginEcadastro', {notify: `Um usuario com esse mesmo email ja esta cadastrado eum nosso sistema tente novamente com um novo email!`})
             
-        }*/else{
+        }else{
 
             try {
 
