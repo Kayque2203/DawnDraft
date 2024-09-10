@@ -8,8 +8,6 @@ Tela de Login e cadastro
 
     -> Adicionar Máscaras nos campos, Validar e Sanitizar os dados colocados nos inputs ( Podemos ultilizar Jquery e Regex );
 
-    -> Arrumar o texto da tela de login ta meio confuso;
-
 Estudar e conversa com a galera, para hospedarmos nosso banco de dados na nuvem;
 
 Criar a index page
