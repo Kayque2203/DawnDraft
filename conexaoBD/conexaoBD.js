@@ -1,24 +1,23 @@
 const { MongoClient } = require('mongodb');
 
+const DadosSensiveis = require('../dadosSensiveis.json');
+
 class Conexao {
     #client;
     #database;
-    #Usuarios;
 
     constructor(){
-        this.#client = new MongoClient('mongodb://localhost:27017');
+        this.#client = new MongoClient(DadosSensiveis.UriBD);
         this.#database = this.#client.db('DawnDraft');
-        this.#Usuarios = this.#database.collection('Usuarios');
-    }
-
-    get getUsuarioCollection(){
-        return this.#Usuarios
     }
 
     get getCliente(){
         return this.#client
     }
     
+    getCollections(collection){ // Método que retorna a coleção desejada.
+        return this.#database.collection(collection);
+    }
 }
 
 module.exports = Conexao;

@@ -8,6 +8,8 @@ exports.CadastroGet = (req,res,next) => {
 
 exports.CadastroPost = [
 
+    // Aqui ultilizamos a biblioteca express-validator para sanitizar os dados inseridos nos campos dos furmularios que vem através do corpo da requisição http
+    // O método trim() retira os espaços do começo e do final da string, O metodo escape() retirar possiveis caracteres maliciossos das strings, o notEmpty() não aceita que os campos venham vazis.
     body('nome').trim().escape().notEmpty(),
     body('email').trim().escape().notEmpty(),
     body('telefone').trim().escape().notEmpty(),
@@ -23,7 +25,7 @@ exports.CadastroPost = [
 
             res.render('loginEcadastro', {notify: `Um erro inesperado aconteceu cheque se todas as informações estão corretas erro: ${errors}`})
 
-        }else if (await novoUsuario.buscaUsuario(req.body.email) != null) {// ALGUM ERRO AQUI DESCOBRIR DPS basicamente isso serve para verificar se existe algum outro usuario com esse email no bd
+        }else if (await novoUsuario.buscaUsuarioPeloEmail(req.body.email) != null) {
 
             res.render('loginEcadastro', {notify: `Um usuario com esse mesmo email ja esta cadastrado eum nosso sistema tente novamente com um novo email!`})
             
