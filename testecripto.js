@@ -1,16 +1,18 @@
 // Teste de criptografia
 var aesjs = require('aes-js');
+var dadosSensiveis = require('./dadosSensiveis.json');
 
-var chave = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31];
+class Criptografacao{
+    static criptografar(senha){
+        let senhaEmBytes = aesjs.utils.utf8.toBytes(senha);
+        let aesCtr = new aesjs.ModeOfOperation.ctr(dadosSensiveis.ChaveCriptografia, new aesjs.Counter(5));
+        let cripto = aesCtr.encrypt(senhaEmBytes);
+        let criptografiaHexadecimal = aesjs.utils.hex.fromBytes(cripto);
 
-var senha = "47826487EM";
+        return criptografiaHexadecimal;
+    }
 
-var senhaEmBytes = aesjs.utils.utf8.toBytes(senha);
-
-var aesCtr = new aesjs.ModeOfOperation.ctr(chave, new aesjs.Counter(5));
-
-var criptografia = aesCtr.encrypt(senhaEmBytes);
-
-var criptografiaHexadecimal = aesjs.utils.hex.fromBytes(criptografia);
-
-console.log(criptografiaHexadecimal);
+    static descriptografa(){
+        // Parte de descriptografar
+    }
+}

@@ -9,7 +9,7 @@ class Usuarios {
     #telefone;
     #senha;
 
-    constructor( nomeUsuario, emailUsuario, telUsuario, senhaUsuario ) {
+    constructor( nomeUsuario = '', emailUsuario = '', telUsuario = '', senhaUsuario = '' ) {
         this.setUsuario(nomeUsuario);
         this.setEmail(emailUsuario);
         this.setTelefone(telUsuario);
@@ -65,9 +65,7 @@ class Usuarios {
 
         } catch (error) {
             console.log(error);
-            next(error);
         }
-        
     }
 
     async buscaUsuarioPeloEmail(email) {
