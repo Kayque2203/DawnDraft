@@ -2,6 +2,8 @@ const conexao = require('../conexaoBD/conexaoBD');
 
 const Conexao = new conexao();
 
+// DPS retirar esse try catch para nao interferir nos outros dos controllers
+
 class Personagens {
     // Propiedades
     nome;

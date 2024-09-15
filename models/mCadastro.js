@@ -3,6 +3,8 @@ const conexao = require('../conexaoBD/conexaoBD.js');
 
 const Conexao = new conexao();
 
+// DPS retirar esse try catch para nao interferir nos outros dos controllers
+
 class Usuarios {
     #nome;
     #email;
@@ -76,8 +78,14 @@ class Usuarios {
 
     }
 
+    static async buscaUsuariosPeloEmail2(email){
+        let usuario =  await Conexao.getCollections('Usuarios').findOne({"Email": email});
+
+        return usuario;
+    }
+
     static async buscaUsuarioPeloId(id){
-        let usuario = await Conexao.getCollections('Usuarios').findOne( { _id: ObjectId(id) } );
+        let usuario = await Conexao.getCollections('Usuarios').findOne( { _id: new ObjectId(id) } );
 
         return usuario;
     }

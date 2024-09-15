@@ -16,33 +16,28 @@ exports.CadastroPost = [
     body('senha').trim().escape().notEmpty(),
 
     async (req, res, next) => {
+        try {
+            const errors = validationResult(req);
 
-        const errors = validationResult(req);
+            var novoUsuario = new Usuarios(req.body.nome, req.body.email, req.body.telefone, req.body.senha);
 
-        var novoUsuario = new Usuarios(req.body.nome, req.body.email, req.body.telefone, req.body.senha);
+            if (!errors.isEmpty()){
 
-        if (!errors.isEmpty()){
+                res.render('loginEcadastro', {notify: `Um erro inesperado aconteceu cheque se todas as informações estão corretas erro: ${errors}`})
 
-            res.render('loginEcadastro', {notify: `Um erro inesperado aconteceu cheque se todas as informações estão corretas erro: ${errors}`})
+            }else if (await novoUsuario.buscaUsuarioPeloEmail(req.body.email) != null) {
 
-        }else if (await novoUsuario.buscaUsuarioPeloEmail(req.body.email) != null) {
-
-            res.render('loginEcadastro', {notify: `Um usuario com esse mesmo email ja esta cadastrado eum nosso sistema tente novamente com um novo email!`})
-            
-        }else{
-
-            try {
+                res.render('loginEcadastro', {notify: `Um usuario com esse mesmo email ja esta cadastrado eum nosso sistema tente novamente com um novo email!`})
+                
+            }else{
 
                 let usuarioCadastrado = await novoUsuario.adicionarUsuario();
 
                 res.redirect(`http://localhost:3000/Usuarios/:${usuarioCadastrado}`);
-                
-            } catch (error) {
 
-                res.render('loginEcadastro', {notify: `Um erro inesperado aconteceu cheque se todas as informações estão corretas erro: ${error}`})
-                
-            }    
-
+            }
+        } catch (error) {
+            next(error)
         }
     }
 ]

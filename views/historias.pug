@@ -1,0 +1,15 @@
+doctype html
+html(lang="pt-br")
+  head
+    title home
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+      h1 Pagina onde vai carregar uma historia em especifico
+
+      form(action="", method="put") 
+
+        input(type="text", name="titulo", value=`${historia.Titulo}`)
+
+        textarea(name="texto")= historia.Texto
+
+        button(type="submit") salvar

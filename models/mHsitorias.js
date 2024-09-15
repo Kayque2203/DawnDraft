@@ -1,6 +1,8 @@
 const { ObjectId } = require('mongodb');
 const conexao = require('../conexaoBD/conexaoBD');
 
+// DPS retirar esse try catch para nao interferir nos outros dos controllers
+
 const Conexao = new conexao();
 
 class Historias {
@@ -31,12 +33,31 @@ class Historias {
         }
     }
 
-    async buscaHistoria(id){
+    async attHistoria(id){
+        try {
+
+            await Conexao.getCollections('Historias').updateOne({_id: new ObjectId(id)}, {$set: {Titulo: this.titulo, Texto: this.texto}, $currentDate: {lastModified: true}});
+
+            return "Atualizado com sucesso!!!"
+            
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    // Metodos estaticos
+    static async buscaHistoria(id){
+        let historiaBuscada = await Conexao.getCollections('Historias').findOne({_id : new ObjectId(id)})
+
+        return historiaBuscada;
+    }
+
+    static async buscaHistorias(id){
         try {
             
-            let usuarioEncontarado = await Conexao.getCollections('Historia').find({ _id : ObjectId(id) });
+            let historiasEncontradas = await Conexao.getCollections('Historias').find({Usuario: id}).toArray();
 
-            return usuarioEncontarado;
+            return historiasEncontradas;
 
         } catch (error) {
             console.log(error);

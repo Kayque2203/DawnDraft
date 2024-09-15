@@ -1,8 +1,17 @@
 doctype html
-html
+html(lang="pt-br")
   head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    title home
+    link(rel='stylesheet', href='/stylesheets/paginaHomeUsuarios.css')
   body
       h1 Pagina index dos usuario onde vai carregar todas as histórias criadas por eles
-      h2=idUSuario
+      
+      section(class="")
+        h1 Histórias 
+        div(class="containerHistorias")
+          if historias.length
+            for teste in historias
+              div(class="boxHistorias")
+                a(href=`http://localhost:3000/historias/:${teste._id.toString()}`,r el="noopener noreferrer")
+                  p= teste.Titulo
+                  p= teste.Prologo
