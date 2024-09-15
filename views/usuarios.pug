@@ -10,8 +10,9 @@ html(lang="pt-br")
         h1 Histórias 
         div(class="containerHistorias")
           if historias.length
-            for teste in historias
+            for historia in historias
               div(class="boxHistorias")
-                a(href=`http://localhost:3000/historias/:${teste._id.toString()}`,r el="noopener noreferrer")
-                  p= teste.Titulo
-                  p= teste.Prologo
+                a(href=`http://localhost:3000/Usuarios/:${historia.Usuario}/historia/:${historia._id.toString()}`, rel="noopener noreferrer")
+                  p= historia.Titulo
+                  p= historia.Prologo
+                  p= historia.Usuario

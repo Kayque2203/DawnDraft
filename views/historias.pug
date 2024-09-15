@@ -6,7 +6,7 @@ html(lang="pt-br")
   body
       h1 Pagina onde vai carregar uma historia em especifico
 
-      form(action="", method="put") 
+      form(action=`http://localhost:3000/Usuarios/:${historia.Usuario}/historia/:${historia._id.toString()}`, method="post") 
 
         input(type="text", name="titulo", value=`${historia.Titulo}`)
 

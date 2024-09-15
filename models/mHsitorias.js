@@ -13,36 +13,26 @@ class Historias {
     constructor(tituloHis, txtHis, userHis){
         this.titulo = tituloHis;
         this.texto = txtHis;
-        this.usuario = ObjectId(userHis);
+        this.usuario = userHis;
     }
 
     async addHistorias(){
-        try {
 
-            let novaHistoria = await Conexao.getCollections('Historias').insertOne({
-                'Titulo' : this.titulo,
-                'Texto' : this.texto,
-                'Personagens' : this.personagens,
-                'Usuario' : this.usuario
-            })
+        let novaHistoria = await Conexao.getCollections('Historias').insertOne({
+            'Titulo' : this.titulo,
+            'Texto' : this.texto,
+            'Personagens' : this.personagens,
+            'Usuario' : this.usuario
+        })
 
-            return novaHistoria.insertedId;
-
-        } catch (error) {
-            console.log(error)
-        }
+        return novaHistoria.insertedId;
     }
 
     async attHistoria(id){
-        try {
 
-            await Conexao.getCollections('Historias').updateOne({_id: new ObjectId(id)}, {$set: {Titulo: this.titulo, Texto: this.texto}, $currentDate: {lastModified: true}});
+        await Conexao.getCollections('Historias').updateOne({_id: new ObjectId(id)}, {$set: {Titulo: this.titulo, Texto: this.texto}, $currentDate: {lastModified: true}});
 
-            return "Atualizado com sucesso!!!"
-            
-        } catch (error) {
-            console.log(error)
-        }
+        return "Atualizado com sucesso!!!"
     }
 
     // Metodos estaticos

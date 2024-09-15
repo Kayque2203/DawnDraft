@@ -17,3 +17,8 @@ Criar pagina do Editor de textos para os usuarios criarem suas histórias
 criar pagina de personagens 
 
 Criar uma pagina ade erros onde eu possa manipular e passar os erros gerados por algo não existir
+
+
+Anotações
+
+
