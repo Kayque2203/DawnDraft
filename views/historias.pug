@@ -10,6 +10,8 @@ html(lang="pt-br")
 
         input(type="text", name="titulo", value=`${historia.Titulo}`)
 
+        textarea(name="prologo")= historia.Prologo 
+
         textarea(name="texto")= historia.Texto
 
         button(type="submit") salvar

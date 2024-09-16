@@ -17,6 +17,6 @@ exports.UsuariosIndex = async (req, res, next) => {
     {
         var consultaHistoriasDoUsuario = await Historias.buscaHistorias(tratamentoParametroRota(req.params.idUsuario));
 
-        res.render('Usuarios', { historias: consultaHistoriasDoUsuario });
+        res.render('usuarios', { historias: consultaHistoriasDoUsuario , id_Usuario: tratamentoParametroRota(req.params.idUsuario) });
     }
 }

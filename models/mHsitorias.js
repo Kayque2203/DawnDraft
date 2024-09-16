@@ -7,21 +7,23 @@ const Conexao = new conexao();
 
 class Historias {
     titulo;
+    prologo;
     texto;
     usuario;
 
-    constructor(tituloHis, txtHis, userHis){
+    constructor(tituloHis, prologoHis, txtHis, userHis){
         this.titulo = tituloHis;
+        this.prologo = prologoHis;
         this.texto = txtHis;
         this.usuario = userHis;
     }
 
+    // MÉTODOS DA CLASSE
     async addHistorias(){
-
         let novaHistoria = await Conexao.getCollections('Historias').insertOne({
             'Titulo' : this.titulo,
+            'Prologo': this.prologo,
             'Texto' : this.texto,
-            'Personagens' : this.personagens,
             'Usuario' : this.usuario
         })
 
@@ -43,15 +45,10 @@ class Historias {
     }
 
     static async buscaHistorias(id){
-        try {
-            
-            let historiasEncontradas = await Conexao.getCollections('Historias').find({Usuario: id}).toArray();
+           
+        let historiasEncontradas = await Conexao.getCollections('Historias').find({Usuario: id}).toArray();
 
-            return historiasEncontradas;
-
-        } catch (error) {
-            console.log(error);
-        }
+        return historiasEncontradas;
     }
 }
 

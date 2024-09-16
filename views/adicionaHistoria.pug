@@ -1,0 +1,17 @@
+doctype html
+html(lang="pt-br")
+  head
+    title home
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+      h1 Pagina de criação de historia
+
+      form(action=`http://localhost:3000/Usuarios/:${id_Usuario}/NovaHistoria/`, method="post") 
+
+        input(type="text", name="titulo", placeholder="Titulo")
+
+        textarea(name="prologo")
+
+        textarea(name="texto")
+
+        button(type="submit") salvar

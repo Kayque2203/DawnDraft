@@ -9,10 +9,12 @@ html(lang="pt-br")
       section(class="")
         h1 Histórias 
         div(class="containerHistorias")
+          div(class='boxsHistorias')
+            a(href=`http://localhost:3000/Usuarios/:${id_Usuario}/NovaHistoria`) +
+            
           if historias.length
             for historia in historias
               div(class="boxHistorias")
                 a(href=`http://localhost:3000/Usuarios/:${historia.Usuario}/historia/:${historia._id.toString()}`, rel="noopener noreferrer")
                   p= historia.Titulo
                   p= historia.Prologo
-                  p= historia.Usuario
