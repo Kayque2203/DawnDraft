@@ -1,12 +1,21 @@
-var Historias = require('../models/mHsitorias');
+var Historias = require('../models/mHistorias');
 var tratamentoParametroDeRota = require('../assets/tratamentoParametroRota');
 const { validationResult, body } = require('express-validator');
-const Usuarios = require('../models/mCadastro');
+const Usuarios = require('../models/mUsuarios');
 
 // Endpoint para renderizar o template de criação de uma nova historia
-exports.adicionaHistoriaGet = (req, res, next) => {
+exports.adicionaHistoriaGet = async (req, res, next) => {
     try {
-        res.render('adicionaHistoria', {id_Usuario: req.params.idUsuario})
+        let usuarioDaHistoria = await Usuarios.buscaUsuarioPeloId(tratamentoParametroDeRota(req.params.idUsuario));
+
+        if (usuarioDaHistoria == null) 
+        {
+            res.render('paginaERRO', {erro: 'O USUARIO NÃO EXISTE'});
+        } 
+        else 
+        {
+            res.render('adicionaHistoria', {id_Usuario: req.params.idUsuario});
+        }
     } catch (error) {
         next(error);
     }
@@ -23,15 +32,15 @@ exports.adicionaHistoriaPost = [
 
             let errors = validationResult(req);
 
-            let usuario = Usuarios.buscaUsuarioPeloId(tratamentoParametroDeRota(req.params.idUsuario));
+            let usuario = await Usuarios.buscaUsuarioPeloId(tratamentoParametroDeRota(req.params.idUsuario));
 
             if(!errors.isEmpty())
             {
-                res.render('adicionaHistoria', { titulo: req.body.titulo , prologo: req.body.prologo, texto: req.body.texto }); // Da uma atenção aqui
+                res.redirect(`http://localhost:3000/Usuarios/:${usuario._id.toString()}/NovaHistoria`); // Da uma atenção aqui
             }
             else if(usuario == null)
             {
-                res.json('O Usuario não existe'); // DA UMA ATENÇÂO AQUI!!!
+                res.render('paginaERRO', {erro: 'O USUARIO NÃO EXISTE'});
             }
             else
             {
@@ -50,13 +59,21 @@ exports.adicionaHistoriaPost = [
 // Endpoint que renderiza o template da historia com os dados da historia
 exports.buscaHistoria = async (req, res, next) => {
     try {
+
+        // Busca se o usuario existe no banco de dados com base no id inserido no parametro de rota 
+        let usuarioDaHistoria = await Usuarios.buscaUsuarioPeloId(tratamentoParametroDeRota(req.params.idUsuario));
+
         // Busca as historias atraves do parametro de rota que traz o id da historia
         let historiaBuscada = await Historias.buscaHistoria(tratamentoParametroDeRota(req.params.idHistooria));
 
         // verifica se a busca da historia retorna algo ou não
-        if (historiaBuscada == null) 
+        if(usuarioDaHistoria == null)
         {
-            res.json('Historia Não existe'); // DA UMA ATENÇÃO AQUI!!!
+            res.render('paginaERRO', {erro: 'O USUARIO NÃO EXISTE'});
+        }
+        else if (historiaBuscada == null) 
+        {
+            res.render('paginaERRO', {erro: 'A HISTÓRIA NÃO EXISTE'}); // DA UMA ATENÇÃO AQUI!!!
         } 
         else
         {
@@ -77,11 +94,16 @@ exports.atualizaHistoria = [
     async (req, res, next) => {
 
         let errors = validationResult(req);
+        let usuarioDaHistoria = await Usuarios.buscaUsuarioPeloId(tratamentoParametroDeRota(req.params.idUsuario));
 
         try {
             if (!errors.isEmpty()) 
             {
                 res.render('historia', {notify: "Verifique se os campos não estão vizios e tente novamente!!!", titulo: req.body.titulo, texto: req.body.texto}); //   DA UMA TAENÇÃO AQUI
+            }
+            else if(usuarioDaHistoria == null)
+            {
+                res.render('paginaERRO', {erro: 'O USUARIO NÃO EXISTE'});
             }
             else
             {
@@ -97,3 +119,28 @@ exports.atualizaHistoria = [
         }
     }
 ]
+
+exports.deletaHistoria = async (req, res, next) => {
+    try {
+        let usuarioDaHistoria = await Usuarios.buscaUsuarioPeloId(tratamentoParametroDeRota(req.params.idUsuario));
+        let historiaADeletar = await Historias.buscaHistoria(tratamentoParametroDeRota(req.params.idHistooria));
+
+        if (usuarioDaHistoria == null) 
+        {
+            res.render('paginaERRO', {erro: 'O USUARIO NÃO EXISTE'});
+        } 
+        else if(historiaADeletar == null) 
+        {
+            res.render('paginaERRO', {erro: 'A HISTÓRIA NÃO EXISTE'});
+        }
+        else 
+        {
+            await Historias.deleteHistoria(tratamentoParametroDeRota(req.params.idHistooria));
+
+            res.redirect(`http://localhost:3000/Usuarios/:${tratamentoParametroDeRota(req.params.idUsuario)}`)
+        }
+
+    } catch (error) {
+        next(error);
+    }
+}

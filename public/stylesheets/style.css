@@ -11,7 +11,10 @@ body {
 }
 
 a {
-  color: #00B7FF;
+  color: black;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 input{
@@ -57,4 +60,32 @@ button{
 button:hover{
   background-color: green;
   color: white
+}
+
+.iptnTable{
+  border: none
+}
+
+.iptnTable:focus{
+  border: none;
+  box-shadow: 0 0 0 0;
+  outline: 0;
+}
+
+table{
+  border-collapse: collapse;
+  border: 1px solid black;
+  padding: 5px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+th, td {
+  padding: 10px;
+  border: 1px solid black;
+}
+
+.formAnotacoes{
+  margin-top: 2%;
+  margin-bottom: 2%;
 }

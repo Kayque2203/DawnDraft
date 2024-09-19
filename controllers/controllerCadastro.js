@@ -1,6 +1,6 @@
 const { body, validationResult} = require("express-validator");
 
-const Usuarios = require('../models/mCadastro');
+const Usuarios = require('../models/mUsuarios');
 
 exports.CadastroGet = (req,res,next) => {
     res.render('loginEcadastro', {notify: ''});

@@ -1,7 +1,8 @@
 // Falta testar tudo, fiz com sono deve ter varios erros!
 const { body, validationResult} = require("express-validator");
+const Criptografia = require('../assets/criptografia');
 
-const Usuarios = require('../models/mCadastro');
+const Usuarios = require('../models/mUsuarios');
 
 exports.login = [
     
@@ -11,7 +12,7 @@ exports.login = [
     async (req, res, next) => {
         try {
 
-            var errors = validationResult(req);
+            let errors = validationResult(req);
 
             if(!errors.isEmpty())
             {
@@ -19,13 +20,13 @@ exports.login = [
             }
             else
             {
-                var usuarioEncontrado = await Usuarios.buscaUsuariosPeloEmail2(req.body.login_email);
+                let usuarioEncontrado = await Usuarios.buscaUsuariosPeloEmail2(req.body.login_email);
 
                 if(usuarioEncontrado == null)
                 {
-                    res.render('loginEcadastro', {notify: `Nenhum usuario cadastrado com esse email`, email: false});
+                    res.render('loginEcadastro', {notify: `Nenhum usuario cadastrado com esse email`});
                 }
-                else if(usuarioEncontrado.Senha != req.body.login_senha)
+                else if(Criptografia.descriptografa(usuarioEncontrado.Senha) != req.body.login_senha)
                 {
                     res.render('loginEcadastro', {notify: `Senha errada`, email: req.body.login_email });
                 }

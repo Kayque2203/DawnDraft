@@ -1,5 +1,6 @@
 const { ObjectId } = require('mongodb');
 const conexao = require('../conexaoBD/conexaoBD.js');
+const Criptografia = require('../assets/criptografia.js');
 
 const Conexao = new conexao();
 
@@ -32,7 +33,7 @@ class Usuarios {
     }
 
     setSenha(senhaUsuario){
-        this.#senha = senhaUsuario;
+        this.#senha = Criptografia.criptografar(senhaUsuario);
     }
 
     // Getters
@@ -54,20 +55,15 @@ class Usuarios {
 
     // Metodos
     async adicionarUsuario(){
-        try {
 
-            let novoUser = await Conexao.getCollections('Usuarios').insertOne({
-                "Nome" : this.#nome,
-                "Email" : this.#email,
-                "Telefone" : this.#telefone,
-                "Senha" : this.#senha
-            })
+        let novoUser = await Conexao.getCollections('Usuarios').insertOne({
+            "Nome" : this.#nome,
+            "Email" : this.#email,
+            "Telefone" : this.#telefone,
+            "Senha" : this.#senha
+        })
 
-            return novoUser.insertedId;
-
-        } catch (error) {
-            console.log(error);
-        }
+        return novoUser.insertedId;
     }
 
     async buscaUsuarioPeloEmail(email) {

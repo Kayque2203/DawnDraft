@@ -4,6 +4,9 @@ html(lang="pt-br")
     title home
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
+      h1 
+        a(href=`http://localhost:3000/Usuarios/:${historia.Usuario}/`) Home 
+        
       h1 Pagina onde vai carregar uma historia em especifico
 
       form(action=`http://localhost:3000/Usuarios/:${historia.Usuario}/historia/:${historia._id.toString()}`, method="post") 
@@ -15,3 +18,29 @@ html(lang="pt-br")
         textarea(name="texto")= historia.Texto
 
         button(type="submit") salvar
+
+      form(action="", method="post", class="formAnotacoes")
+        h2 Anotações 
+
+        table 
+          thead 
+            tr
+              th Foco Do Cápitulo
+              th Personagens 
+              th Cenários 
+              th Humor/tom
+
+          tbody 
+            tr 
+              td 
+                input(type="text", name="", class="iptnTable")
+              td 
+                input(type="text", name="", class="iptnTable")
+              td 
+                input(type="text", name="", class="iptnTable")
+              td 
+                input(type="text", name="", class="iptnTable")
+
+            tr 
+              td(colspan="4")
+                a(href="")  +
