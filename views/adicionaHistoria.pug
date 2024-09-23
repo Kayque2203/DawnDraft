@@ -4,14 +4,14 @@ html(lang="pt-br")
     title home
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
-      h1 Pagina de criação de historia
+      h1 
+        a(href=`http://localhost:3000/Usuarios/:${id_Usuario}/`) Home 
 
       form(action=`http://localhost:3000/Usuarios/:${id_Usuario}/NovaHistoria/`, method="post") 
 
-        input(type="text", name="titulo", placeholder="Titulo")
+        input(type="text", name="titulo", placeholder="Titulo do cápitulo")
 
-        textarea(name="prologo")
-
-        textarea(name="texto")
+        textarea(name="prologo" placeholder="Prologo Do Capitulo")
 
         button(type="submit") salvar
+        

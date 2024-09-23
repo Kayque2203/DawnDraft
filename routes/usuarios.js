@@ -25,4 +25,14 @@ router.post('/:idUsuario/NovaHistoria', controllerHistoria.adicionaHistoriaPost)
 // Rota para deletar uma história
 router.get('/:idUsuario/deletarHistoria/:idHistooria', controllerHistoria.deletaHistoria);
 
+// Rotas Dos Capitulos
+// Rota que retorna o formulario para adicionar historias  
+router.get('/:idUsuario/historia/:idHistoria/adicionarCapitulo', controllerHistoria.adicionaCapituloGet);
+
+// Rota post para adicionar novos cápitulos as histórias
+router.post('/:idUsuario/historia/:idHistoria/adicionarCapitulo', controllerHistoria.adicionaCapituloPost);
+
+//
+router.get('/:idUsuario/historia/:idHistoria/capitulo/:idCapitulo', controllerHistoria.BuscaCapitulo);
+
 module.exports = router;

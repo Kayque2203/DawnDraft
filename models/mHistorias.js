@@ -6,13 +6,11 @@ const Conexao = new conexao();
 class Historias {
     titulo;
     prologo;
-    texto;
     usuario;
 
-    constructor(tituloHis, prologoHis, txtHis, userHis){
+    constructor(tituloHis, prologoHis, userHis){
         this.titulo = tituloHis;
         this.prologo = prologoHis;
-        this.texto = txtHis;
         this.usuario = userHis;
     }
 
@@ -21,7 +19,6 @@ class Historias {
         let novaHistoria = await Conexao.getCollections('Historias').insertOne({
             'Titulo' : this.titulo,
             'Prologo': this.prologo,
-            'Texto' : this.texto,
             'Usuario' : this.usuario
         })
 
@@ -30,7 +27,16 @@ class Historias {
 
     async attHistoria(id){
 
-        await Conexao.getCollections('Historias').updateOne({_id: new ObjectId(id)}, {$set: {Titulo: this.titulo, Prologo: this.prologo, Texto: this.texto}, $currentDate: {lastModified: true}});
+        await Conexao.getCollections('Historias').updateOne(
+            {_id: new ObjectId(id)}, 
+            {
+                $set: {
+                    Titulo: this.titulo, 
+                    Prologo: this.prologo
+                }, 
+                $currentDate: {lastModified: true}
+            }
+        );
 
         // return "Atualizado com sucesso!!!";
     }

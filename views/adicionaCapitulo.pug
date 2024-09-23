@@ -1,0 +1,42 @@
+doctype html
+html(lang="pt-br")
+  head
+    title home
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+    h1 Pagina de criação de historia
+
+    form(action="", method="post", class="formAnotacoes")
+        h2 Anotações 
+
+        table 
+            thead 
+                tr
+                    th Foco Do Cápitulo
+                    th Personagens 
+                    th Cenários 
+                    th Humor/tom
+
+            tbody 
+                tr 
+                    td 
+                        input(type="text", name="", class="iptnTable")
+                    td 
+                        input(type="text", name="", class="iptnTable")
+                    td 
+                        input(type="text", name="", class="iptnTable")
+                    td 
+                        input(type="text", name="", class="iptnTable")
+
+                tr 
+                    td(colspan="4")
+                        a(href="")  +
+
+    form(action=`http://localhost:3000/Usuarios/:${id_Usuario}/historia/:${id_Historia}/adicionarCapitulo`, method="post")
+        h2 Escreva Seu Novo Cápitulo 
+
+        input(type="text", name="tituloCapitulo",  placeholder="Titulo do capitulo")
+
+        textarea(name="textoCapitulo" placeholder="Historia do capitulo")
+
+        button(type="submit") Adicionar Cápitulo
