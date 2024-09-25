@@ -209,7 +209,7 @@ exports.adicionaCapituloPost = [
 
                 let capituloAdicionado = await novoCapitulo.adicionarCapitulo();
 
-                res.json('Deu certo!!!');
+                res.redirect(`http://localhost:3000/Usuarios/:${tratamentoParametroDeRota(req.params.idUsuario)}/historia/:${tratamentoParametroDeRota(req.params.idHistoria)}/capitulo/:${capituloAdicionado.toString()}`);
             }
 
         } catch (error) {
@@ -250,3 +250,52 @@ exports.BuscaCapitulo = async (req, res, next) => {
         next(error);
     }
 }
+
+exports.AtualizaCapitulo = [
+
+    body('tituloCapitulo').trim().escape().notEmpty(),
+    body('textoCapitulo').trim().escape().notEmpty(),
+
+    async (req, res, next) => {
+        try {
+            
+            let errors = validationResult(req);
+
+            let usuario = await Usuarios.buscaUsuarioPeloId(tratamentoParametroDeRota(req.params.idUsuario));
+
+            let historia = await Historias.buscaHistoria(tratamentoParametroDeRota(req.params.idHistoria));
+
+            let capituloBuscado = await Capitulos.buscaCapitulo(tratamentoParametroDeRota(req.params.idCapitulo));
+
+            if (!errors.isEmpty()) 
+            {
+                res.json(`Erro nos campos do txt`);
+            }
+            else if(usuario == null)
+            {
+                res.json('Usuario não encontrado');
+            } 
+            else if(historia == null || historia.Usuario != tratamentoParametroDeRota(req.params.idUsuario))
+            {
+                res.json('Historia não encontrada');
+            } 
+            else if(capituloBuscado == null)
+            {
+            res.json('Capitulo não encontrado');
+            }
+            else
+            {
+                let atualizandoCapitulo = new Capitulos(req.body.tituloCapitulo, req.body.textoCapitulo, tratamentoParametroDeRota(req.params.idHistoria));
+
+                await atualizandoCapitulo.atuaizarCapitulo(tratamentoParametroDeRota(req.params.idCapitulo));
+
+                res.redirect(`http://localhost:3000/Usuarios/:${tratamentoParametroDeRota(req.params.idUsuario)}/historia/:${tratamentoParametroDeRota(req.params.idHistoria)}/capitulo/:${tratamentoParametroDeRota(req.params.idCapitulo)}`);
+            }
+
+        } catch (error) {
+            next(error);
+        }
+
+    }
+
+];

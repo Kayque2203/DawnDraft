@@ -5,9 +5,15 @@
 }
 
 body {
-  padding-left: 50px;
-  padding-right: 50px;
+  padding-top: 50px;
+  padding-left: 350px;
+  padding-right: 350px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #EFEEA5;
+
+  font-family: "Sora", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
 }
 
 a {
@@ -15,6 +21,27 @@ a {
   width: 100%;
   display: flex;
   justify-content: center;
+}
+
+.linkCapitulos{
+  color: black;
+  font-size: 15pt;
+  text-align: left;
+  display: block;
+  width: auto;
+}
+
+.paragrafoLinksCapitulos{
+  display: flex;
+  font-size: 15pt;
+  flex-direction: row;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.tituloCapitulos{
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 input{
@@ -88,4 +115,33 @@ th, td {
 .formAnotacoes{
   margin-top: 2%;
   margin-bottom: 2%;
+}
+
+header{
+  display: flex;
+  justify-content: space-between;
+}
+
+section{
+  margin-top: 150px;
+  font-size: 16pt;
+}
+
+.boxsIntro{
+  width: 35%;
+}
+
+.boxsIntro h2{
+  margin-bottom: 30px;
+}
+
+.linkLogin{
+  padding: 10px;
+  background-color: white;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.linkCadastro{
+  padding: 10px;
 }

@@ -32,7 +32,10 @@ router.get('/:idUsuario/historia/:idHistoria/adicionarCapitulo', controllerHisto
 // Rota post para adicionar novos cápitulos as histórias
 router.post('/:idUsuario/historia/:idHistoria/adicionarCapitulo', controllerHistoria.adicionaCapituloPost);
 
-//
+// Rota para carregar o template com o capitulo da historia do usuario
 router.get('/:idUsuario/historia/:idHistoria/capitulo/:idCapitulo', controllerHistoria.BuscaCapitulo);
+
+// Rota para atualizar um capitulo
+router.post('/:idUsuario/historia/:idHistoria/capitulo/:idCapitulo', controllerHistoria.AtualizaCapitulo);
 
 module.exports = router;

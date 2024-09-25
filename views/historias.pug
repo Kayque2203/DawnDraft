@@ -17,9 +17,11 @@ html(lang="pt-br")
 
         button(type="submit") salvar
       
-      h1 Capitulos 
+      h1(class="tituloCapitulos") Capitulos
+      - var contador = 1
       for capitulo in capitulos
-        a(href=`http://localhost:3000/Usuarios/:${historia.Usuario}/historia/:${historia._id.toString()}/capitulo/:${capitulo._id.toString()}`)= capitulo.TituloCapitulo
-
+        p(class="paragrafoLinksCapitulos") Capitulo #{contador} => 
+          a(href=`http://localhost:3000/Usuarios/:${historia.Usuario}/historia/:${historia._id.toString()}/capitulo/:${capitulo._id.toString()}` class="linkCapitulos")= capitulo.TituloCapitulo
+        - contador++
       h2 
         a(href=`http://localhost:3000/Usuarios/:${historia.Usuario}/historia/:${historia._id.toString()}/adicionarCapitulo`) Adicionar Cápitulo

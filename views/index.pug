@@ -1,13 +1,45 @@
-extends layout
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel="preconnect" href="https://fonts.googleapis.com")
+    link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin)
+    link(href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap" rel="stylesheet")
 
-block content
-  h1 Nessa tela ficara a pagina principal do site
-  h2 Com as informações sobre o projeto
-  h3 Exemplo
+  body
 
-  ul 
-    li Sobre nós 
-    li Fale Conosco 
-    li Etc...
+    header
+      h1 Dawn Draft
 
-  a(href="http://localhost:3000/LoginECadastro") Login
+      nav(class="navBar")
+        a(href="http://localhost:3000/LoginECadastro", class="linkLogin") Cadastre-se / Login
+
+    
+    section 
+      div(class="boxsIntro") 
+        h2 ORGANIZE SUAS HISTÓRIAS DE FORMA SIMPLES E EFICAZ
+        p O DawnDraft é a ferramenta ideal para escritores que querem levar suas criações ao próximo nível. Organize personagens, cenários e tramas em um só lugar, de forma intuitiva e prática. Perfeito para quem busca transformar ideias em histórias bem estruturadas, seja para livros, roteiros ou contos. Crie seu universo literário com facilidade.
+
+      //- ul
+      //-   //- li Apresentando o Dawn Draft: O Seu Companheiro Ideal na Jornada da Escrita
+
+      //-   //- li Escrever é uma arte, e cada artista precisa das ferramentas certas para expressar sua criatividade. Com isso em mente, temos o prazer de apresentar o Dawn Draft, um editor de texto projetado especialmente para escritores que buscam um espaço inspirador e funcional.
+
+      //-   //- li Funcionalidades Principais:
+
+      //-   //- li Interface Intuitiva: Navegue com facilidade em uma interface limpa e organizada, permitindo que você se concentre no que realmente importa: suas palavras.
+
+      //-   //- li Modos de Escrita Personalizáveis: Escolha entre diferentes modos de escrita que se adaptam ao seu estilo, seja para rascunhos, revisão ou formatação final.
+
+      //-   //- li Ferramentas de Colaboração: Trabalhe em equipe sem complicações. Compartilhe seu projeto com outros escritores e receba feedback em tempo real.
+
+      //-   //- li Recursos de Organização: Crie pastas, adicione etiquetas e organize seus textos de maneira que facilite o acesso e a gestão dos seus projetos.
+
+      //-   //- li Suporte a Diversos Formatos: Exportação e importação de arquivos em múltiplos formatos, garantindo que você possa trabalhar da maneira que preferir.
+
+      //-   //- li Por Que Escolher o Dawn Draft?
+
+      //-   //- li Seja você um romancista em busca da palavra perfeita, um poeta que deseja capturar emoções ou um redator que precisa de agilidade, o Dawn Draft é a solução que você esperava. Ele combina praticidade e inspiração, ajudando você a transformar ideias em palavras e palavras em histórias.
+
+      //-   //- li Dê o próximo passo na sua jornada de escrita. Experimente o Dawn Draft e descubra um novo jeito de escrever!

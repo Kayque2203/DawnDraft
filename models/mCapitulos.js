@@ -10,10 +10,9 @@ class Capitulos {
     historia;
     colecaoHistoria;
     
-    constructor( tituloCap, textoCap, anotocoesCap, idHis ){
+    constructor( tituloCap, textoCap, idHis ){
         this.tituloCapitulo = tituloCap;
         this.textoCapitulo = textoCap;
-        this.anotacoes = anotocoesCap;
         this.historia = idHis;
     }
 
@@ -23,7 +22,6 @@ class Capitulos {
         let novoCapitulo = await Conexao.getCollections('Capitulos').insertOne({
             "TituloCapitulo" : this.tituloCapitulo,
             "TextoCapitulo" : this.textoCapitulo,
-            "Anotacoes" : this.anotacoes,
             "Historia" : new ObjectId(this.historia)
         });
 
