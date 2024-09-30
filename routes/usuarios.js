@@ -38,4 +38,6 @@ router.get('/:idUsuario/historia/:idHistoria/capitulo/:idCapitulo', controllerHi
 // Rota para atualizar um capitulo
 router.post('/:idUsuario/historia/:idHistoria/capitulo/:idCapitulo', controllerHistoria.AtualizaCapitulo);
 
+router.get('/:idUsuario/historia/:idHistoria/capitulo/:idCapitulo/deletarCapitulo', controllerHistoria.deletarCapitulo);
+
 module.exports = router;

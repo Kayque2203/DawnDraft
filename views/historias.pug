@@ -2,26 +2,31 @@ doctype html
 html(lang="pt-br")
   head
     title home
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/stylesheets/paginaHistorias.css')
   body
+    header 
       h1 
-        a(href=`http://localhost:3000/Usuarios/:${historia.Usuario}/`) Home 
+          a(href=`http://localhost:3000/Usuarios/:${historia.Usuario}/`) Home 
 
-      h1 Pagina onde vai carregar uma historia em especifico
+    section 
+        h1 Pagina onde vai carregar uma historia em especifico
 
-      form(action=`http://localhost:3000/Usuarios/:${historia.Usuario}/historia/:${historia._id.toString()}`, method="post") 
+        form(action=`http://localhost:3000/Usuarios/:${historia.Usuario}/historia/:${historia._id.toString()}`, method="post") 
 
-        input(type="text", name="titulo", value=`${historia.Titulo}`)
+          input(type="text", name="titulo", value=`${historia.Titulo}`)
 
-        textarea(name="prologo" placeholder="Prologo Do Capitulo")= historia.Prologo 
+          textarea(name="prologo" placeholder="Prologo Do Capitulo")= historia.Prologo 
 
-        button(type="submit") salvar
+          button(type="submit") salvar
       
+    section(class="sectionCapitulos")
       h1(class="tituloCapitulos") Capitulos
-      - var contador = 1
-      for capitulo in capitulos
-        p(class="paragrafoLinksCapitulos") Capitulo #{contador} => 
-          a(href=`http://localhost:3000/Usuarios/:${historia.Usuario}/historia/:${historia._id.toString()}/capitulo/:${capitulo._id.toString()}` class="linkCapitulos")= capitulo.TituloCapitulo
-        - contador++
-      h2 
-        a(href=`http://localhost:3000/Usuarios/:${historia.Usuario}/historia/:${historia._id.toString()}/adicionarCapitulo`) Adicionar Cápitulo
+
+      div(class="boxCapitulos")
+        for capitulo in capitulos
+          p(class="paragrafoLinksCapitulos") Capitulo:
+            a(href=`http://localhost:3000/Usuarios/:${historia.Usuario}/historia/:${historia._id.toString()}/capitulo/:${capitulo._id.toString()}` class="linkCapitulos")= capitulo.TituloCapitulo
+            span(class="spanDeletarCap")
+              a(href=`http://localhost:3000/Usuarios/:${historia.Usuario}/historia/:${historia._id.toString()}/capitulo/:${capitulo._id.toString()}/deletarCapitulo`  class="linkDeletarCap") Deletar
+        h2 
+          a(href=`http://localhost:3000/Usuarios/:${historia.Usuario}/historia/:${historia._id.toString()}/adicionarCapitulo`) Adicionar Cápitulo

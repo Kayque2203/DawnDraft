@@ -59,6 +59,12 @@ class Capitulos {
 
         return capituloExcluido;
     } 
+
+    static async deletarVariosCapitulos(idHistoria){
+        let capitulosExcluidos = await Conexao.getCollections('Capitulos').deleteMany({Historia : new ObjectId(idHistoria)});
+
+        return capitulosExcluidos;
+    }
 }
 
 module.exports = Capitulos;
