@@ -1,6 +1,8 @@
 const { ObjectId } = require('mongodb');
 const conexao = require('../conexaoBD/conexaoBD.js');
 const Criptografia = require('../assets/criptografia.js');
+const Capitulos = require('../models/mCapitulos.js');
+const Historias = require('../models/mHistorias.js');
 
 const Conexao = new conexao();
 
@@ -74,6 +76,7 @@ class Usuarios {
 
     }
 
+    // Staticos 
     static async buscaUsuariosPeloEmail2(email){
         let usuario =  await Conexao.getCollections('Usuarios').findOne({"Email": email});
 
@@ -84,6 +87,14 @@ class Usuarios {
         let usuario = await Conexao.getCollections('Usuarios').findOne( { _id: new ObjectId(id) } );
 
         return usuario;
+    }
+
+    static async deletarUsuario(id){
+        
+        let usuarioDeletado = await Conexao.getCollections('Usuarios').deleteOne({_id: new ObjectId(id)});
+
+
+        return usuarioDeletado;
     }
 }
 
