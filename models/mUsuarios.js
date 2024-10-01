@@ -1,7 +1,6 @@
 const { ObjectId } = require('mongodb');
 const conexao = require('../conexaoBD/conexaoBD.js');
 const Criptografia = require('../assets/criptografia.js');
-const Capitulos = require('../models/mCapitulos.js');
 const Historias = require('../models/mHistorias.js');
 
 const Conexao = new conexao();
@@ -90,11 +89,9 @@ class Usuarios {
     }
 
     static async deletarUsuario(id){
-        
+        let historiasDeletadas = await Historias.deleteTodasHistoriasDoUser(id);
         let usuarioDeletado = await Conexao.getCollections('Usuarios').deleteOne({_id: new ObjectId(id)});
-
-
-        return usuarioDeletado;
+        return usuarioDeletado, historiasDeletadas;
     }
 }
 

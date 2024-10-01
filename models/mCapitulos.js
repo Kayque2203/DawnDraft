@@ -9,11 +9,13 @@ class Capitulos {
     anotacoes;
     historia;
     colecaoHistoria;
+    usuario;
     
-    constructor( tituloCap, textoCap, idHis ){
+    constructor( tituloCap, textoCap, idHis, idUsuario ){
         this.tituloCapitulo = tituloCap;
         this.textoCapitulo = textoCap;
         this.historia = idHis;
+        this.usuario = idUsuario;
     }
 
     // Métodos
@@ -22,7 +24,8 @@ class Capitulos {
         let novoCapitulo = await Conexao.getCollections('Capitulos').insertOne({
             "TituloCapitulo" : this.tituloCapitulo,
             "TextoCapitulo" : this.textoCapitulo,
-            "Historia" : new ObjectId(this.historia)
+            "Historia" : new ObjectId(this.historia),
+            "Usuario" : new ObjectId(this.usuario)
         });
 
         return novoCapitulo.insertedId;

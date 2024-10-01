@@ -207,7 +207,7 @@ exports.adicionaCapituloPost = [
             }
             else
             {
-                let novoCapitulo = new Capitulos( req.body.tituloCapitulo, req.body.textoCapitulo, tratamentoParametroDeRota(req.params.idHistoria) );
+                let novoCapitulo = new Capitulos( req.body.tituloCapitulo, req.body.textoCapitulo, tratamentoParametroDeRota(req.params.idHistoria), tratamentoParametroDeRota(req.params.idUsuario) );
 
                 let capituloAdicionado = await novoCapitulo.adicionarCapitulo();
 

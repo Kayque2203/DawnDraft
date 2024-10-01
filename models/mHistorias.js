@@ -60,6 +60,13 @@ class Historias {
 
         return historiaDeletada;
     }
+
+    static async deleteTodasHistoriasDoUser(id){
+        let capitulosDeletados = await Conexao.getCollections('Capitulos').deleteMany({ "Usuario" : new ObjectId(id) });
+        let historiasDeletadas = await Conexao.getCollections('Historias').deleteMany({ "Usuario": id });
+
+        return historiasDeletadas, capitulosDeletados;
+    }
 }
 
 module.exports = Historias;

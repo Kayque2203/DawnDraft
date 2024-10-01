@@ -1,15 +1,18 @@
 var express = require('express');
 var router = express.Router();
 
-var controllerCadastro = require('../controllers/controllerCadastro');
 var controllerLogin = require('../controllers/controllerLogin');
 
-/* GET users listing. */
-// essa vai ser somente a rota de cadastro irei trabalhar com uma rota para login e outra para cadastro tenho que mudar o nopme dessa rota
-router.get('/', controllerCadastro.CadastroGet);
+// Rota Para Retornar O template Com O Formulario
+router.get('/', controllerLogin.CadastroGet);
 
-router.post('/Cadastro', controllerCadastro.CadastroPost);
+// Rota que vai cadastrar um novo usuario
+router.post('/Cadastro', controllerLogin.CadastroPost);
 
+// Rota que vai efetuar o login do usuario
 router.post('/Login', controllerLogin.login);
+
+// Rota para deletar um usuario
+router.get('/deletarUsuario/:idUsuario',  controllerLogin.deletarUsuario);
 
 module.exports = router;
