@@ -46,7 +46,7 @@ class Personagens {
             return novoPersonagem.insertedId;
 
         } catch (error) {
-            console.log(error)
+            console.log(error);
         }
     }
 }

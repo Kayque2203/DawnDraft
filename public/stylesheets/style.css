@@ -29,12 +29,12 @@ header{
 }
 
 section{
-  margin-top: 150px;
+  margin-top: 50px;
   font-size: 16pt;
 }
 
 .boxsIntro{
-  width: 35%;
+  width: 45%;
 }
 
 .boxsIntro h2{
@@ -46,8 +46,47 @@ section{
   background-color: white;
   border-radius: 5px;
   text-decoration: none;
+  width: 20%;
+  height: min-content;
 }
 
 .linkCadastro{
   padding: 10px;
+}
+
+.h1-home{
+  padding-top: 10px;
+  font-size: 20pt;
+}
+
+.img-home{
+  width: 400px;
+  height: 300px;
+  border-radius: 7px;
+}
+
+.section1{
+  display: flex;
+  justify-content: space-between;
+  gap: 5%;
+  align-items: center;
+}
+
+.logo-nav{
+  width: 75px;
+  height: 75px;
+  border-radius: 10px;
+}
+
+.navBar{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.boxTituloLogo{
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
