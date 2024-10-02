@@ -330,3 +330,13 @@ exports.deletarCapitulo = async (req, res, next) => {
         next(error);
     }
 }
+
+exports.adicionarAnotacao = [
+
+    body('').trim().escape().notEmpty(),
+    body('').trim().escape().notEmpty(),
+
+    async ( req, res, next ) => {
+        
+    }
+];
