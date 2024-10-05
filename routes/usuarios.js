@@ -38,6 +38,10 @@ router.get('/:idUsuario/historia/:idHistoria/capitulo/:idCapitulo', controllerHi
 // Rota para atualizar um capitulo
 router.post('/:idUsuario/historia/:idHistoria/capitulo/:idCapitulo', controllerHistoria.AtualizaCapitulo);
 
+// Rota para deletar um capitulo 
 router.get('/:idUsuario/historia/:idHistoria/capitulo/:idCapitulo/deletarCapitulo', controllerHistoria.deletarCapitulo);
+
+// Rota para adicionar uma nova anotacao
+router.post('/:idUsuario/historia/:idHistoria/capitulo/:idCapitulo/adicionarAnotacao', controllerHistoria.adicionarAnotacao);
 
 module.exports = router;

@@ -7,33 +7,34 @@ html(lang="pt-br")
     h1 
         a(href=`http://localhost:3000/Usuarios/:${id_Usuario}/`) Home
 
-    h1 Pagina de criação de historia
+    h1= capitulo.TituloCapitulo
 
-    form(action="", method="post", class="formAnotacoes")
+    form(action=`http://localhost:3000/Usuarios/:${id_Usuario}/historia/:${id_Historia}/capitulo/:${capitulo._id.toString()}/adicionarAnotacao`, method="post", class="formAnotacoes")
         h2 Anotações 
 
         table 
             thead 
                 tr
                     th Foco Do Cápitulo
-                    th Personagens 
-                    th Cenários 
                     th Humor/tom
 
             tbody 
-                tr 
-                    td 
-                        input(type="text", name="", class="iptnTable")
-                    td 
-                        input(type="text", name="", class="iptnTable")
-                    td 
-                        input(type="text", name="", class="iptnTable")
-                    td 
-                        input(type="text", name="", class="iptnTable")
+                if anotacoes.length
+                    for anotacao in anotacoes
+                        tr 
+                            td 
+                                input(type="text", name="", class="iptnTable", value=`${anotacao.FocoCapitulo}`)
+                            td 
+                                input(type="text", name="", class="iptnTable", value=`${anotacao.FocoCapitulo}`)
 
                 tr 
+                    td 
+                        input(type="text", name="focoCapitulo", class="iptnTable")
+                    td 
+                        input(type="text", name="humorCapitulo", class="iptnTable")
+                tr 
                     td(colspan="4")
-                        a(href="")  +
+                        button(type="submit") Salvar
 
     form(action=``, method="post")
         h2 Continue escrevendo seu capitulo

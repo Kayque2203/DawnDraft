@@ -2,6 +2,9 @@
 const Historias = require('../models/mHistorias'); // Modelo Historias
 const Usuarios = require('../models/mUsuarios'); // Modelo Usuarios
 const Capitulos = require('../models/mCapitulos'); // Modelo Cápitulos
+const Anotacoes = require('../models/mAnotacoesCapitulos'); // Modelo das anotações
+const PersonagensAnotacao = require('../models/mPersonagensAnotacao'); // Modelo personagens da anotação
+const CenariosAnotacao = require('../models/mCenariosAnotacao'); // Modelo cenarios da anotação
 
 // Importando a função para tratar os parametros de rota
 var tratamentoParametroDeRota = require('../assets/tratamentoParametroRota');
@@ -245,7 +248,9 @@ exports.BuscaCapitulo = async (req, res, next) => {
         }
         else
         {
-            res.render('capitulos', {id_Usuario : tratamentoParametroDeRota(req.params.idUsuario), id_Historia : tratamentoParametroDeRota(req.params.idHistoria), capitulo: capituloBuscado });
+            let anotacoesDoCapitulo = await Anotacoes.buscaAnotacoes(tratamentoParametroDeRota(req.params.idCapitulo));
+            console.log(anotacoesDoCapitulo)
+            res.render('capitulos', {id_Usuario : tratamentoParametroDeRota(req.params.idUsuario), id_Historia : tratamentoParametroDeRota(req.params.idHistoria), capitulo : capituloBuscado, anotacoes : anotacoesDoCapitulo });
         }
 
     } catch (error) {
@@ -333,10 +338,27 @@ exports.deletarCapitulo = async (req, res, next) => {
 
 exports.adicionarAnotacao = [
 
-    body('').trim().escape().notEmpty(),
-    body('').trim().escape().notEmpty(),
+    body('focoCapitulo').trim().escape().notEmpty(),
+    body('humorCapitulo').trim().escape().notEmpty(),
 
     async ( req, res, next ) => {
-        
+        try {
+            let errors = validationResult(req);
+
+            if (!errors.isEmpty()) 
+            {
+                res.render('paginaERRO', { erro:`Erro nos campos do txt` } );
+            } 
+            else
+            {
+                let novaAnotacao = new Anotacoes(req.body.focoCapitulo, req.body.humorCapitulo, tratamentoParametroDeRota(req.params.idCapitulo));
+
+                await novaAnotacao.adicionarAnotacao();
+
+                res.redirect(`http://localhost:3000/Usuarios/:${tratamentoParametroDeRota(req.params.idUsuario)}/historia/:${tratamentoParametroDeRota(req.params.idHistoria)}/capitulo/:${tratamentoParametroDeRota(req.params.idCapitulo)}`);
+            }
+        } catch (error) {
+            next(error);
+        }
     }
 ];

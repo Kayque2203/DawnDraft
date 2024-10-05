@@ -40,7 +40,7 @@ class Anotacoes {
 
     // Métodos staticos
     static async buscaAnotacoes(idCapitulo){
-        let todasAnotacoes = await Conexao.getCollections('Anotacoes').find({"Capitulo" : new ObjectId(idCapitulo)}).toArray();
+        let todasAnotacoes = await Conexao.getCollections('Anotacoes').find({ Capitulo : new ObjectId(idCapitulo)}).toArray();
 
         return todasAnotacoes;
     }

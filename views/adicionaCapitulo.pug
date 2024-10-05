@@ -5,33 +5,7 @@ html(lang="pt-br")
     link(rel='stylesheet', href='/stylesheets/paginaCapitulos.css')
   body
     h1 Pagina de criação de historia
-
-    form(action="", method="post", class="formAnotacoes")
-        h2 Anotações 
-
-        table 
-            thead 
-                tr
-                    th Foco Do Cápitulo
-                    th Personagens 
-                    th Cenários 
-                    th Humor/tom
-
-            tbody 
-                tr 
-                    td 
-                        input(type="text", name="", class="iptnTable")
-                    td 
-                        input(type="text", name="", class="iptnTable")
-                    td 
-                        input(type="text", name="", class="iptnTable")
-                    td 
-                        input(type="text", name="", class="iptnTable")
-
-                tr 
-                    td(colspan="4")
-                        a(href="")  +
-
+    
     form(action=`http://localhost:3000/Usuarios/:${id_Usuario}/historia/:${id_Historia}/adicionarCapitulo`, method="post")
         h2 Escreva Seu Novo Cápitulo 
 
