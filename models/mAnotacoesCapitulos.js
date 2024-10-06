@@ -26,7 +26,7 @@ class Anotacoes {
     }
 
     async atualizarAnotacao(idAnotacao){
-        await Conexao.getCollections('Anotacoes').updateOne(
+        let anotacaoAtualizada = await Conexao.getCollections('Anotacoes').updateOne(
             {_id : new ObjectId(idAnotacao)},
             {
                 $set: {
@@ -36,6 +36,8 @@ class Anotacoes {
                 $currentDate: { lastModified: true }
             }
         );
+
+        return anotacaoAtualizada;
     }
 
     // Métodos staticos
@@ -43,6 +45,12 @@ class Anotacoes {
         let todasAnotacoes = await Conexao.getCollections('Anotacoes').find({ Capitulo : new ObjectId(idCapitulo)}).toArray();
 
         return todasAnotacoes;
+    }
+
+    static async buscaAnotacao(idAnotacao){
+        let anotacaoBuscada = await Conexao.getCollections('Anotacoes').findOne({_id : new ObjectId(idAnotacao)});
+
+        return anotacaoBuscada;
     }
 
     static async deletarAnotacao(idAnotacao){

@@ -3,14 +3,15 @@ const Historias = require('../models/mHistorias'); // Modelo Historias
 const Usuarios = require('../models/mUsuarios'); // Modelo Usuarios
 const Capitulos = require('../models/mCapitulos'); // Modelo Cápitulos
 const Anotacoes = require('../models/mAnotacoesCapitulos'); // Modelo das anotações
-const PersonagensAnotacao = require('../models/mPersonagensAnotacao'); // Modelo personagens da anotação
-const CenariosAnotacao = require('../models/mCenariosAnotacao'); // Modelo cenarios da anotação
+const PersonagensAnotacao = require('../models/mPersonagensCapitulo'); // Modelo personagens da anotação
+const CenariosAnotacao = require('../models/mCenariosCapitulo'); // Modelo cenarios da anotação
 
 // Importando a função para tratar os parametros de rota
 var tratamentoParametroDeRota = require('../assets/tratamentoParametroRota');
 
 // Importando os métodos do express-validator
 const { validationResult, body } = require('express-validator');
+const trataParametrosDeRota = require('../assets/tratamentoParametroRota');
 
 // Endpoint para renderizar o template de criação de uma nova historia
 exports.adicionaHistoriaGet = async (req, res, next) => {
@@ -249,7 +250,6 @@ exports.BuscaCapitulo = async (req, res, next) => {
         else
         {
             let anotacoesDoCapitulo = await Anotacoes.buscaAnotacoes(tratamentoParametroDeRota(req.params.idCapitulo));
-            console.log(anotacoesDoCapitulo)
             res.render('capitulos', {id_Usuario : tratamentoParametroDeRota(req.params.idUsuario), id_Historia : tratamentoParametroDeRota(req.params.idHistoria), capitulo : capituloBuscado, anotacoes : anotacoesDoCapitulo });
         }
 
@@ -344,11 +344,25 @@ exports.adicionarAnotacao = [
     async ( req, res, next ) => {
         try {
             let errors = validationResult(req);
+            let usuario = await Usuarios.buscaUsuarioPeloId(tratamentoParametroDeRota(req.params.idUsuario));
+            let capitulo = await Capitulos.buscaCapitulo(tratamentoParametroDeRota(req.params.idCapitulo));
 
             if (!errors.isEmpty()) 
             {
                 res.render('paginaERRO', { erro:`Erro nos campos do txt` } );
-            } 
+            }
+            else if(usuario == null) 
+            {
+                res.render('paginaERRO', {erro: "Usuario não encontrado volte ao inicio e tente novamente!!!"});
+            }
+            else if(capitulo == null)
+            {
+                res.render('paginaERRO', {erro: "Capitulo não encontrado volte ao inicio e tente novamente!!!"});
+            }
+            else if(capitulo.Historia.toString() != tratamentoParametroDeRota(req.params.idHistoria) )
+            {
+                res.render('paginaERRO', {erro: "O id da historia não corresponde a este capitulo, volte ao inicio e tente novamente!!!"});
+            }
             else
             {
                 let novaAnotacao = new Anotacoes(req.body.focoCapitulo, req.body.humorCapitulo, tratamentoParametroDeRota(req.params.idCapitulo));
@@ -357,6 +371,79 @@ exports.adicionarAnotacao = [
 
                 res.redirect(`http://localhost:3000/Usuarios/:${tratamentoParametroDeRota(req.params.idUsuario)}/historia/:${tratamentoParametroDeRota(req.params.idHistoria)}/capitulo/:${tratamentoParametroDeRota(req.params.idCapitulo)}`);
             }
+        } catch (error) {
+            next(error);
+        }
+    }
+];
+
+exports.deletarAnotacao = async (req, res, next) => {
+    try {
+        
+        let usuario  = await Usuarios.buscaUsuarioPeloId(tratamentoParametroDeRota(req.params.idUsuario));
+        let capitulo = await Capitulos.buscaCapitulo(trataParametrosDeRota(req.params.idCapitulo));
+        let anotacao = await Anotacoes.buscaAnotacao(trataParametrosDeRota(req.params.idAnotacao))
+
+        if (usuario == null) 
+        {
+            res.render('paginaERRO', {erro: "Usuario não encontrado volte do inicio e tente novamente!!!"});
+        }
+        else if(capitulo == null)
+        {
+            res.render('paginaERRO', {erro: "Capitulo não encontrado volte do inicio e tente novamente!!!"});
+        }
+        else if(capitulo.Historia.toString() != trataParametrosDeRota(req.params.idHistoria))
+        {
+            res.render('paginaERRO', {erro: "O id da historia não corresponde a este capitulo, volte do inicio e tente novamente!!!"});
+        }
+        else if(anotacao == null)
+        {
+            res.render('paginaERRO', {erro: "Esta anotação não existe!!!"});
+        }
+        else
+        {
+            let anotacaoExcluida = await Anotacoes.deletarAnotacao(tratamentoParametroDeRota(req.params.idAnotacao));
+
+            switch (anotacaoExcluida) {
+                case null:
+                    res.render('paginaERRO', {erro: "Erro ao excluir tente novamente"});
+                    break;
+            
+                default:
+                    res.redirect(`http://localhost:3000/Usuarios/:${tratamentoParametroDeRota(req.params.idUsuario)}/historia/:${tratamentoParametroDeRota(req.params.idHistoria)}/capitulo/:${tratamentoParametroDeRota(req.params.idCapitulo)}`);
+                    break;
+            }
+        }
+
+    } catch (error) {
+        next(error);
+    }
+}
+
+exports.atualizarAnotacaoGet = async (req, res, next) => {
+    try {
+        let anotacaoBuscada = await Anotacoes.buscaAnotacao(tratamentoParametroDeRota(req.params.idAnotacao));
+        res.render('atualizarAnotacao', {anotacao: anotacaoBuscada});
+    } catch (error) {
+        next(error);
+    }
+}
+
+exports.atualizarAnotacaoPost = [
+
+    body('focoCapitulo').trim().escape().notEmpty(),
+    body('humorCapitulo').trim().escape().notEmpty(),
+
+    async (req, res, next) => {
+        try {
+            let anotacao= new Anotacoes(req.body.focoCapitulo, req.body.humorCapitulo, trataParametrosDeRota(req.params.idAnotacao));
+
+            let anotacaoAtualizada = await anotacao.atualizarAnotacao(trataParametrosDeRota(req.params.idAnotacao));
+
+            console.log(anotacaoAtualizada);
+
+            res.redirect(`http://localhost:3000/Usuarios/:${tratamentoParametroDeRota(req.params.idUsuario)}/historia/:${tratamentoParametroDeRota(req.params.idHistoria)}/capitulo/:${tratamentoParametroDeRota(req.params.idCapitulo)}`);
+
         } catch (error) {
             next(error);
         }

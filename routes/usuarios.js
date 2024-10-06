@@ -41,7 +41,17 @@ router.post('/:idUsuario/historia/:idHistoria/capitulo/:idCapitulo', controllerH
 // Rota para deletar um capitulo 
 router.get('/:idUsuario/historia/:idHistoria/capitulo/:idCapitulo/deletarCapitulo', controllerHistoria.deletarCapitulo);
 
+// Rotas Das Anotações
 // Rota para adicionar uma nova anotacao
 router.post('/:idUsuario/historia/:idHistoria/capitulo/:idCapitulo/adicionarAnotacao', controllerHistoria.adicionarAnotacao);
+
+// Rota Para Excluir uma Anotação
+router.get('/:idUsuario/historia/:idHistoria/capitulo/:idCapitulo/excluirAnotacao/:idAnotacao', controllerHistoria.deletarAnotacao);
+
+// Rota que retorna um template para atualizar uma anotação 
+router.get('/:idUsuario/historia/:idHistoria/capitulo/:idCapitulo/atualizarAnotacao/:idAnotacao', controllerHistoria.atualizarAnotacaoGet);
+
+// Rota que atualiza uma anotação
+router.post('/:idUsuario/historia/:idHistoria/capitulo/:idCapitulo/atualizarAnotacao/:idAnotacao', controllerHistoria.atualizarAnotacaoPost);
 
 module.exports = router;

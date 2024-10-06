@@ -23,9 +23,18 @@ html(lang="pt-br")
                     for anotacao in anotacoes
                         tr 
                             td 
-                                input(type="text", name="", class="iptnTable", value=`${anotacao.FocoCapitulo}`)
+                                p= anotacao.FocoCapitulo
+                                    span 
+                                        a(href=`http://localhost:3000/Usuarios/:${id_Usuario}/historia/:${id_Historia}/capitulo/:${capitulo._id.toString()}/excluirAnotacao/:${anotacao._id.toString()}`) Deletar
+                                    span 
+                                        a(href=`http://localhost:3000/Usuarios/:${id_Usuario}/historia/:${id_Historia}/capitulo/:${capitulo._id.toString()}/atualizarAnotacao/:${anotacao._id.toString()}`) Atualizar
                             td 
-                                input(type="text", name="", class="iptnTable", value=`${anotacao.FocoCapitulo}`)
+                                p= anotacao.HumorTom
+                                    span 
+                                        a(href=`http://localhost:3000/Usuarios/:${id_Usuario}/historia/:${id_Historia}/capitulo/:${capitulo._id.toString()}/excluirAnotacao/:${anotacao._id.toString()}`) Deletar
+                                    span 
+                                        a(href=`http://localhost:3000/Usuarios/:${id_Usuario}/historia/:${id_Historia}/capitulo/:${capitulo._id.toString()}/atualizarAnotacao/:${anotacao._id.toString()}`) Atualizar
+
 
                 tr 
                     td 
