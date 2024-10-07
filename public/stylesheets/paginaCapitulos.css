@@ -125,3 +125,9 @@ textarea[name="texto"], textarea[name="textoCapitulo"]{
     margin-top: 150px;
     font-size: 16pt;
   }
+
+  select{
+    width: 100%;
+    padding: 5pt;
+    text-align: center;
+  }

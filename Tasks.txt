@@ -11,12 +11,15 @@ Tela de Login e cadastro (Nesse fim de semana acabo isso)
 
 Estudar e conversa com a galera, para hospedarmos nosso banco de dados na nuvem;
 
-Criar a index page
+Criar a index page (50%)
 
-Criar pagina do Editor de textos para os usuarios criarem suas histórias
+Criar pagina do Editor de textos para os usuarios criarem suas histórias (98%)
 
 criar pagina de personagens 
 
 Criar uma pagina ade erros onde eu possa manipular e passar os erros gerados por algo não existir
 
 Final do mes da uma revisada para analisar possiveis erros e dar uma refatorada.
+
+
+alterar a coleção de anotações e colocar o id dos usuarios nela para que possamos excluir todas de uma vez

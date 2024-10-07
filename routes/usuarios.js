@@ -54,4 +54,10 @@ router.get('/:idUsuario/historia/:idHistoria/capitulo/:idCapitulo/atualizarAnota
 // Rota que atualiza uma anotação
 router.post('/:idUsuario/historia/:idHistoria/capitulo/:idCapitulo/atualizarAnotacao/:idAnotacao', controllerHistoria.atualizarAnotacaoPost);
 
+// Rota Para Adicionar Personagens aos capitulos
+router.post('/:idUsuario/historia/:idHistoria/capitulo/:idCapitulo/adicionarPersonagem', controllerHistoria.adicionaPersonagensNoCapitulo);
+
+// Rota Para Remover Um Personagem De Uma Historia
+router.get('/:idUsuario/historia/:idHistoria/capitulo/:idCapitulo/removerPersonagemDoCapitulo/:idPersonagemDoCapitulo', controllerHistoria.deletarPersonagemDoCapitulo);
+
 module.exports = router;

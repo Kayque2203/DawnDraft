@@ -45,6 +45,39 @@ html(lang="pt-br")
                     td(colspan="4")
                         button(type="submit") Salvar
 
+
+    form(action=`http://localhost:3000/Usuarios/:${id_Usuario}/historia/:${id_Historia}/capitulo/:${capitulo._id.toString()}/adicionarPersonagem`, method="post")
+        table 
+            thead 
+                tr 
+                    th Personagens 
+            
+            tbody  
+                if personagensCapitulo.length
+                    - contador = 0
+                    for personagem1 in personagensCapitulo
+                        tr
+                            td
+                                p= personagem1.Nome
+                                    span
+                                        a(href=`http://localhost:3000/Usuarios/:${id_Usuario}/historia/:${id_Historia}/capitulo/:${capitulo._id.toString()}/removerPersonagemDoCapitulo/${idsDosPersonagensDoCapitulo[contador]}`) Deletar
+                                        - contador++
+
+                tr
+                    td
+                        if personagens.length
+                            select(name="personagem")
+                                option(value="0") Escolha um personagem
+                                for personagem2 in personagens
+                                    option(value=`${personagem2._id.toString()}`)= personagem2.Nome
+                        else 
+                            select(name="personagem", disabled) 
+            tfoot 
+                tr
+                    td
+                        button(type="submit") Adicionar Personagem
+
+
     form(action=``, method="post")
         h2 Continue escrevendo seu capitulo
 

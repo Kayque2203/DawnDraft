@@ -18,7 +18,7 @@ class PersonagensCapitulo {
     async adicionarPersonagemNoCapitulo(){
         let novoPersonagemNoCapitulo = await this.colecaoPersonagensCapitulo.insertOne({
             "Personagem" : this.personagem,
-            "Anotacao" : this.anotacao
+            "Capitulo" : this.anotacao
         });
 
         return novoPersonagemNoCapitulo.insertedId.toString();
@@ -29,6 +29,18 @@ class PersonagensCapitulo {
         let personagemDeletado = Conexao.getCollections('PersonagensCapitulo').deleteOne({_id: new ObjectId(idPersonagemAnotacao) });
 
         return personagemDeletado;
+    }
+
+    static async buscaPersonagensDoCapitulo(idCapitulo){
+        let personagensBuscados = await Conexao.getCollections('PersonagensCapitulo').find({Capitulo : new ObjectId(idCapitulo)}).toArray();
+
+        return personagensBuscados;
+    }
+
+    static async buscaPersonagemDoCapitulo(idPersonagem){
+        let personagemEncontrado = await Conexao.getCollections('PersonagensCapitulo').findOne({_id: new ObjectId(idPersonagem)});
+
+        return personagemEncontrado;
     }
 }
 

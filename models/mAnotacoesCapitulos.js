@@ -7,11 +7,13 @@ class Anotacoes {
     focoCapitulo;
     humorTom;
     capitulo;
+    historia;
 
-    constructor(focoCap, humroTomCap, capituloAnotacao){
+    constructor(focoCap, humroTomCap, capituloAnotacao, historiaAnotacao){
         this.focoCapitulo = focoCap;
         this.humorTom = humroTomCap;
         this.capitulo = capituloAnotacao;
+        this.historia = historiaAnotacao;
     }
 
     // Métodos da classe
@@ -19,7 +21,8 @@ class Anotacoes {
         let novaAnotacao = await Conexao.getCollections('Anotacoes').insertOne({
             "FocoCapitulo" : this.focoCapitulo,
             "HumorTom" : this.humorTom,
-            "Capitulo" : new ObjectId(this.capitulo)
+            "Capitulo" : new ObjectId(this.capitulo),
+            "Historia" : new ObjectId(this.historia)
         });
 
         return novaAnotacao.insertedId.toString();
@@ -53,10 +56,22 @@ class Anotacoes {
         return anotacaoBuscada;
     }
 
+    static async deletarAnotacoes(idCapitulo){
+        let anotacoesDeletadas = await Conexao.getCollections('Anotacoes').deleteMany({Capitulo : new ObjectId(idCapitulo)});
+        
+        return anotacoesDeletadas;
+    }
+
     static async deletarAnotacao(idAnotacao){
         let anotacaoDeletada = await Conexao.getCollections('Anotacoes').deleteOne({_id: new ObjectId(idAnotacao)});
 
         return anotacaoDeletada;
+    }
+
+    static async deletarAnotacoesPeloIdHistoria(idHistoria){
+        let anotacoesExcluidas = await Conexao.getCollections('Anotacoes').deleteMany({Historia : new ObjectId(idHistoria)});
+
+        return anotacoesExcluidas;
     }
 }
 

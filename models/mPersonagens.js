@@ -1,3 +1,4 @@
+const { ObjectId } = require('mongodb');
 const conexao = require('../conexaoBD/conexaoBD');
 
 const Conexao = new conexao();
@@ -27,27 +28,33 @@ class Personagens {
 
     // Metodo da classe para adicionar novos personagens
     async adicionaPersonagem(){
-        try {
+         // Adiciona um novo personagem no banco de dados
+        let novoPersonagem = await Conexao.getCollections('Personagens').insertOne({
+            "Nome" : this.nome,
+            "Caracteristicas_Fisicas" : {
+                "Altura" : this.altura,
+                "Peso" : this.peso,
+                "Cor" : this.cor
+            },
+            "Pais_Origem" : this.pais_origem,
+            "Cidade" : this.cidade
+        });
 
-            // Adiciona um novo personagem no banco de dados
-            let novoPersonagem = await Conexao.getCollections('Personagens').insertOne({
-                "Nome" : this.nome,
-                "Caracteristicas_Fisicas" : {
-                    "Altura" : this.altura,
-                    "Peso" : this.peso,
-                    "Cor" : this.cor
-                },
-                "Pais_Origem" : this.pais_origem,
-                "Cidade" : this.cidade,
-                "Historia" : ObjectId(this.historia)
-            });
+        // Retorna o id do personagem recem adicionado
+        return novoPersonagem.insertedId;
+    }
 
-            // Retorna o id do personagem recem adicionado
-            return novoPersonagem.insertedId;
+    // Métodos Estaticos
+    static async buscaPersonagens(){
+        let personagensBuscados = await Conexao.getCollections('Personagens').find().toArray()
 
-        } catch (error) {
-            console.log(error);
-        }
+        return personagensBuscados;
+    }
+
+    static async buscaPersonagem(idPersongem){
+        let personagemEncontrado = await Conexao.getCollections('Personagens').findOne({_id : new ObjectId(idPersongem)});
+
+        return personagemEncontrado;
     }
 }
 
