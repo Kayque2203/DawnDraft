@@ -558,3 +558,30 @@ exports.deletarPersonagemDoCapitulo = async (req, res, next) => {
         next(error);
     }
 }
+
+exports.adicionarCenarioNoCapitulo = [
+
+    body('').trim().escape().notEmpty(),
+
+    async (req, res, next) => {
+
+        try {
+            let adicionaCenario = new CenariosCapitulo(req.body.cenario, trataParametrosDeRota(req.params.idUsuario));
+
+            let adicionandoCenario = await adicionaCenario.adicionarCenarioNoCapitulo();
+
+            switch (adicionandoCenario) {
+                case null:
+                    res.render('paginaERRO', {erro: "Erro ao adicionar personagem, tente novamente!!!"});
+                    break;
+            
+                default:
+                    res.redirect(`http://localhost:3000/Usuarios/:${tratamentoParametroDeRota(req.params.idUsuario)}/historia/:${tratamentoParametroDeRota(req.params.idHistoria)}/capitulo/:${tratamentoParametroDeRota(req.params.idCapitulo)}`);
+                    break;
+            }
+        } catch (error) {
+            next(error);
+        }
+    }
+
+];
