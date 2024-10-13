@@ -57,7 +57,10 @@ router.post('/:idUsuario/historia/:idHistoria/capitulo/:idCapitulo/atualizarAnot
 // Rota Para Adicionar Personagens aos capitulos
 router.post('/:idUsuario/historia/:idHistoria/capitulo/:idCapitulo/adicionarPersonagem', controllerHistoria.adicionaPersonagensNoCapitulo);
 
-// Rota Para Remover Um Personagem De Uma Historia
+// Rota Para Remover Um Personagem De Um Capitulo
 router.get('/:idUsuario/historia/:idHistoria/capitulo/:idCapitulo/removerPersonagemDoCapitulo/:idPersonagemDoCapitulo', controllerHistoria.deletarPersonagemDoCapitulo);
+
+// Rota Para Adicionar Um Cenário A Um Capitulo
+router.post('/:idUsuario/historia/:idHistoria/capitulo/:idCapitulo/adicionaCenario', controllerHistoria.adicionarCenarioNoCapitulo);
 
 module.exports = router;

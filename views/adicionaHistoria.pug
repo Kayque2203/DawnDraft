@@ -9,9 +9,9 @@ html(lang="pt-br")
 
       form(action=`http://localhost:3000/Usuarios/:${id_Usuario}/NovaHistoria/`, method="post") 
 
-        input(type="text", name="titulo", placeholder="Titulo do cápitulo")
+        input(type="text", name="titulo", placeholder="Titulo Da Histora", maxlength="255")
 
-        textarea(name="prologo" placeholder="Prologo Do Capitulo")
+        textarea(name="prologo" placeholder="Prologo Da Histria", maxlength="400")
 
         button(type="submit") salvar
         

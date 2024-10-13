@@ -30,6 +30,12 @@ class CenariosCapitulo {
 
         return cenarioExcluidoDoCapitulo;
     }
+
+    static async buscaCenarioDoCapitulo(idCenarioDoCapitulo){
+        let cenarioDoCapituloBuscado = await Coexao.getCollections('CenariosCapitulo').findOne({ _id : new ObejctId(idCenarioDoCapitulo) });
+
+        return cenarioDoCapituloBuscado;
+    }
 }
 
 module.exports = CenariosCapitulo;

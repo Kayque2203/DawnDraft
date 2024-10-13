@@ -559,29 +559,88 @@ exports.deletarPersonagemDoCapitulo = async (req, res, next) => {
     }
 }
 
+// Falta Testar isso aqui não testei pois não tinha nenhum cenario cadastrado no banco, vou fazer a parte de cadastrar personagens e cernarios e ai podemos testar!!!
 exports.adicionarCenarioNoCapitulo = [
 
-    body('').trim().escape().notEmpty(),
+    body('cenario').trim().escape().notEmpty(),
 
     async (req, res, next) => {
 
         try {
-            let adicionaCenario = new CenariosCapitulo(req.body.cenario, trataParametrosDeRota(req.params.idUsuario));
 
-            let adicionandoCenario = await adicionaCenario.adicionarCenarioNoCapitulo();
+            let errors = validationResult(req); 
 
-            switch (adicionandoCenario) {
-                case null:
-                    res.render('paginaERRO', {erro: "Erro ao adicionar personagem, tente novamente!!!"});
-                    break;
-            
-                default:
-                    res.redirect(`http://localhost:3000/Usuarios/:${tratamentoParametroDeRota(req.params.idUsuario)}/historia/:${tratamentoParametroDeRota(req.params.idHistoria)}/capitulo/:${tratamentoParametroDeRota(req.params.idCapitulo)}`);
-                    break;
+            let usuario = await Usuarios.buscaUsuarioPeloId(tratamentoParametroDeRota(req.params.idUsuario));
+
+            let capitulo = await Capitulos.buscaCapitulo(trataParametrosDeRota(req.params.idCapitulo));
+
+            if(!errors.isEmpty())
+            {
+                res.render('paginaERRO', {erro: "Um erro na inserção dos dados aconteceu, verifique se todos os dados foram inseridos corretamente!!!", link: `http://localhost:3000/Usuario/:${trataParametrosDeRota(req.params.idUsuario)}/historia/:${trataParametrosDeRota(req.params.idHistoria)}/capitulo/:${tratamentoParametroDeRota(req.params.idCapitulo)}`});
+            }
+            else if(usuario == null)
+            {
+                res.render('paginaERRO', {erro: "Usuario não encontrado, volte e tente novamente!!!", link: `http://localhost:3000/`});
+            }
+            else if(capitulo == null)
+            {
+                res.render('paginaERRO', {erro: "Capitulo não encontrado, volte e tente novamente!!!", link: `http://localhost:3000/Usuario/:${trataParametrosDeRota(req.params.idUsuario)}/historia/:${trataParametrosDeRota(req.params.idHistoria)}`});
+            }
+            else if(capitulo.Historia != tratamentoParametroDeRota(req.params.idHistoria))
+            {
+                res.render('paginaERRO', {erro: "Capitulo não encontrado, volte e tente novamente!!!", link: `http://localhost:3000/Usuario/:${trataParametrosDeRota(req.params.idUsuario)}/`});
+            }
+            else
+            {
+                let adicionaCenario = new CenariosCapitulo(req.body.cenario, trataParametrosDeRota(req.params.idUsuario));
+
+                let adicionandoCenario = await adicionaCenario.adicionarCenarioNoCapitulo();
+
+                switch (adicionandoCenario) {
+                    case null:
+                        res.render('paginaERRO', {erro: "Erro ao adicionar personagem, tente novamente!!!"});
+                        break;
+                
+                    default:
+                        res.redirect(`http://localhost:3000/Usuarios/:${tratamentoParametroDeRota(req.params.idUsuario)}/historia/:${tratamentoParametroDeRota(req.params.idHistoria)}/capitulo/:${tratamentoParametroDeRota(req.params.idCapitulo)}`);
+                        break;
+                }
             }
         } catch (error) {
             next(error);
         }
     }
-
 ];
+
+exports.deletarCenarioDoCapitulo = async (req, res, next) => {
+    let usuario = Usuarios.buscaUsuarioPeloId(tratamentoParametroDeRota(req.params.idUsuario));
+    let capitulo = Capitulos.buscaCapitulo(tratamentoParametroDeRota(req.params.idCapitulo));
+    let cenarioQSeraDeletadoDoCapitulo = CenariosCapitulo.buscaCenarioDoCapitulo(trataParametrosDeRota(req.params.idCenarioDoCapitulo)); // Parei aqui
+
+    if(usuario == null)
+    {
+        res.render('paginaERRO', {erro: 'Usuario não encontrado, volte e tente novamente!!!', link : `http://localhost:3000`});
+    }
+    else if(capitulo == null)
+    {
+        res.render('paginaERRO', { erro : "Capitulo não encontrado, volte e tente novamente!!!", link: `http://localhost:3000/Usuario/:${tratamentoParametroDeRota(req.params.idUsuario)}/historia/:${tratamentoParametroDeRota(req.params.idHistoria)}`});
+    }
+    else if(cenarioQSeraDeletadoDoCapitulo == null)
+    {
+        res.render('paginaERRo', { erro : "O cenario não existe, volte e tente novamente!!!", link : `http://localhost:3000/Usuario/:${tratamentoParametroDeRota(req.params.idUsuario)}/historia/:${tratamentoParametroDeRota(req.params.idHistoria)}/capitulo/:${tratamentoParametroDeRota(req.params.idCapitulo)}`});
+    }
+    else
+    {
+        let cenarioDeletadoDoCapitulo = await CenariosCapitulo.deletarCenarioDoCapitulo(tratamentoParametroDeRota(req.params.idCenarioDoCapitulo));
+
+        switch (cenarioDeletadoDoCapitulo) {
+            case null:
+                res.render('paginaERRO', { erro : "Um erro Aconteceu, volte e tente novamente!!!", link : `http://localhost:3000/Usuario/:${tratamentoParametroDeRota(req.params.idUsuario)}/historia/:${tratamentoParametroDeRota(req.params.idHistoria)}/capitulo/:${tratamentoParametroDeRota(req.params.idCapitulo)}`});
+                break;
+        
+            default:
+                res.redirect(`http://localhost:3000/Usuario/:${tratamentoParametroDeRota(req.params.idUsuario)}/historia/:${tratamentoParametroDeRota(req.params.idHistoria)}/capitulo/:${tratamentoParametroDeRota(req.params.idCapitulo)}`);
+                break;
+        }
+    }
+}

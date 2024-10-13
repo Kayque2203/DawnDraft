@@ -14,15 +14,12 @@ body
     div(class="container")
         div(class="content first-content")
             div(class="first-column")
-                h2(class="title title-primary") Bem vindo
-                p(class="description description-primary") Para manter-se conectado conosco
-                p(class="description description-primary") Faça o cadastro com suas informações pessoais
-                p(class="description description-primary") Ja possui uma conta? clique em entrar!
-                button(id="signin" class="btn btn-primary") Entrar
+                h2(class="title title-primary") Não Possui Uma Conta?
+                button(id="signin" class="btn btn-primary") Cadastre-se
             
             div(class="second-column")
 
-                h2(class="title title-second") Criar Conta
+                h2(class="title title-second") Entrar
 
                 div(class="social-media") <!-- social media -->
 
@@ -31,7 +28,35 @@ body
                             li(class="item-social-media")
                                 i(class="fab fa-google-plus-g")
                     
-                    p(class="description description-second") ou use seu e-mail para registro:
+                    p(class="description description-second") ou use seu e-mail:
+
+                    form(class="form", method="post", action="http://localhost:3000/LoginECadastro/Login")
+                        label(class="label-input" for="")
+                            i(class="fas fa-envelope icon-modify")
+                            input(type="email", placeholder="email", name="login_email")
+
+                        label(class="label-input" for="")
+                            i(class="fas fa-lock icon-modify")
+                            input(type="password", placeholder="senha", name="login_senha")
+
+                        a(class="password" href="#") esqueceu sua senha?                   
+                        button(class="btn btn-second" type="submit") Entrar
+
+ 
+        div(class="content second-content")
+            div(class="first-column")
+                h2(class="title title-primary") Ja Possui Uma Conta?
+                button(id="signup" class="btn btn-primary") Login!!!
+
+            div(class="second-column")
+                h2(class="title title-second") Cadastre-se
+                div(class="social-media")
+                    ul(class="list-social-media")
+                        a(class="link-social-media" href="#")
+                            li(class="item-social-media")
+                                i(class="fab fa-google-plus-g")
+
+                    p(class="description description-second") ou use sua conta de email para cadastro:
 
                     form(class="form", method="post", action="http://localhost:3000/LoginECadastro/Cadastro")
                         label(class="label-input" for="")
@@ -51,33 +76,7 @@ body
                             input(type="password" placeholder="senha" name="senha")
                 
                         button(class="btn btn-second" type="submit") cadastrar-se
-
-        div(class="content second-content")
-            div(class="first-column")
-                h2(class="title title-primary") Olá amigos
-                p(class="description description-primary") Faça seu login
-                p(class="description description-primary") Não possui uma conta?
-                button(id="signup" class="btn btn-primary") Inscreva-se!!!
-
-            div(class="second-column")
-                h2(class="title title-second") Entrar no desenvolvedor
-                div(class="social-media")
-                    ul(class="list-social-media")
-                        a(class="link-social-media" href="#")
-                            li(class="item-social-media")
-                                i(class="fab fa-google-plus-g")
-
-                    p(class="description description-second") ou use sua conta de email:
-                    form(class="form", method="post", action="http://localhost:3000/LoginECadastro/Login")
-                        label(class="label-input" for="")
-                            i(class="fas fa-envelope icon-modify")
-                            input(type="email", placeholder="email", name="login_email")
-
-                        label(class="label-input" for="")
-                            i(class="fas fa-lock icon-modify")
-                            input(type="password", placeholder="senha", name="login_senha")
-
-                        a(class="password" href="#") esqueceu sua senha?                   
-                        button(class="btn btn-second" type="submit") Entrar
+                    
+                
 
     script(src="/javascripts/js-login-cadastro.js")

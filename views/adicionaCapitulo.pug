@@ -9,7 +9,7 @@ html(lang="pt-br")
     form(action=`http://localhost:3000/Usuarios/:${id_Usuario}/historia/:${id_Historia}/adicionarCapitulo`, method="post")
         h2 Escreva Seu Novo Cápitulo 
 
-        input(type="text", name="tituloCapitulo",  placeholder="Titulo do capitulo")
+        input(type="text", name="tituloCapitulo",  placeholder="Titulo do capitulo", maxlength="255")
 
         textarea(name="textoCapitulo" placeholder="Historia do capitulo")
 
