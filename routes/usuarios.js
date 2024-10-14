@@ -42,17 +42,17 @@ router.post('/:idUsuario/historia/:idHistoria/capitulo/:idCapitulo', controllerH
 router.get('/:idUsuario/historia/:idHistoria/capitulo/:idCapitulo/deletarCapitulo', controllerHistoria.deletarCapitulo);
 
 // Rotas Das Anotações
-// Rota para adicionar uma nova anotacao
-router.post('/:idUsuario/historia/:idHistoria/capitulo/:idCapitulo/adicionarAnotacao', controllerHistoria.adicionarAnotacao);
+// Rota para adicionar Um Novo Foco Ao Capitulo
+router.post('/:idUsuario/historia/:idHistoria/capitulo/:idCapitulo/adicionarFocoAoCapitulo', controllerHistoria.adicionarFocoAoCapitulo);
 
-// Rota Para Excluir uma Anotação
-router.get('/:idUsuario/historia/:idHistoria/capitulo/:idCapitulo/excluirAnotacao/:idAnotacao', controllerHistoria.deletarAnotacao);
+// Rota Para Excluir um Foco Ao Capitulo
+router.get('/:idUsuario/historia/:idHistoria/capitulo/:idCapitulo/excluirFocoDoCapitulo/:idFocoDoCapitulo', controllerHistoria.deletarFocoCapitulo);
 
 // Rota que retorna um template para atualizar uma anotação 
-router.get('/:idUsuario/historia/:idHistoria/capitulo/:idCapitulo/atualizarAnotacao/:idAnotacao', controllerHistoria.atualizarAnotacaoGet);
+router.get('/:idUsuario/historia/:idHistoria/capitulo/:idCapitulo/atualizarFocoCapitulo/:idFocoDoCapitulo', controllerHistoria.atualizarFocoDoCapituloGet);
 
 // Rota que atualiza uma anotação
-router.post('/:idUsuario/historia/:idHistoria/capitulo/:idCapitulo/atualizarAnotacao/:idAnotacao', controllerHistoria.atualizarAnotacaoPost);
+router.post('/:idUsuario/historia/:idHistoria/capitulo/:idCapitulo/atualizarFocoCapitulo/:idFocoDoCapitulo', controllerHistoria.atualizarFocoDoCapituloPost);
 
 // Rota Para Adicionar Personagens aos capitulos
 router.post('/:idUsuario/historia/:idHistoria/capitulo/:idCapitulo/adicionarPersonagem', controllerHistoria.adicionaPersonagensNoCapitulo);

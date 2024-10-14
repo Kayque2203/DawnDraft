@@ -6,7 +6,6 @@ const Conexao = new conexao;
 class Capitulos {
     tituloCapitulo;
     textoCapitulo;
-    anotacoes;
     historia;
     colecaoHistoria;
     usuario;

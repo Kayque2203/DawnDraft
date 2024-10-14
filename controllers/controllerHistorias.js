@@ -2,7 +2,7 @@
 const Historias = require('../models/mHistorias'); // Modelo Historias
 const Usuarios = require('../models/mUsuarios'); // Modelo Usuarios
 const Capitulos = require('../models/mCapitulos'); // Modelo Cápitulos
-const Anotacoes = require('../models/mAnotacoesCapitulos'); // Modelo das anotações
+const FocoDoCapitulo = require('../models/mFocoDosCapitulos'); // Modelo dos focos dos capitulos 
 const Personagens = require('../models/mPersonagens'); // Modelo Personagens
 const PersonagensCapitulo = require('../models/mPersonagensCapitulo'); // Modelo personagens da anotação
 const CenariosCapitulo = require('../models/mCenariosCapitulo'); // Modelo cenarios da anotação
@@ -13,6 +13,7 @@ var tratamentoParametroDeRota = require('../assets/tratamentoParametroRota');
 // Importando os métodos do express-validator
 const { validationResult, body } = require('express-validator');
 const trataParametrosDeRota = require('../assets/tratamentoParametroRota');
+const HumorCapitulo = require('../models/mHumorCapitulo');
 
 // Endpoint para renderizar o template de criação de uma nova historia
 exports.adicionaHistoriaGet = async (req, res, next) => {
@@ -256,7 +257,7 @@ exports.BuscaCapitulo = async (req, res, next) => {
         }
         else
         {
-            let anotacoesDoCapitulo = await Anotacoes.buscaAnotacoes(tratamentoParametroDeRota(req.params.idCapitulo));
+            let focosDoCapitulo = await FocoDoCapitulo.buscaFocosDoCapitulo(tratamentoParametroDeRota(req.params.idCapitulo));
 
             let personagens = await Personagens.buscaPersonagens();
 
@@ -267,7 +268,7 @@ exports.BuscaCapitulo = async (req, res, next) => {
                 idsPorOrdem.push(element._id.toString());
             }
 
-            res.render('capitulos', {id_Usuario : tratamentoParametroDeRota(req.params.idUsuario), id_Historia : tratamentoParametroDeRota(req.params.idHistoria), capitulo : capituloBuscado, anotacoes : anotacoesDoCapitulo, personagens, personagensCapitulo : todosPersonagensDoCapitulo, idsDosPersonagensDoCapitulo: idsPorOrdem});
+            res.render('capitulos', {id_Usuario : tratamentoParametroDeRota(req.params.idUsuario), id_Historia : tratamentoParametroDeRota(req.params.idHistoria), capitulo : capituloBuscado, focoCapitulo : focosDoCapitulo, humor : '', personagens, personagensCapitulo : todosPersonagensDoCapitulo, idsDosPersonagensDoCapitulo: idsPorOrdem});
         }
 
     } catch (error) {
@@ -353,11 +354,10 @@ exports.deletarCapitulo = async (req, res, next) => {
         next(error);
     }
 }
-
-exports.adicionarAnotacao = [
+// Daqui para cima refatorar com o novo padrão ^
+exports.adicionarFocoAoCapitulo = [
 
     body('focoCapitulo').trim().escape().notEmpty(),
-    body('humorCapitulo').trim().escape().notEmpty(),
 
     async ( req, res, next ) => {
         try {
@@ -367,27 +367,35 @@ exports.adicionarAnotacao = [
 
             if (!errors.isEmpty()) 
             {
-                res.render('paginaERRO', { erro:`Erro nos campos do txt` } );
+                res.render('paginaERRO', { erro:`Erro nos campos do txt`, link : `http://localhost:3000/Usuarios/:${tratamentoParametroDeRota(req.params.idUsuario)}/historia/:${tratamentoParametroDeRota(req.params.idHistoria)}/capitulo/:${tratamentoParametroDeRota(req.params.idCapitulo)}`} );
             }
             else if(usuario == null) 
             {
-                res.render('paginaERRO', {erro: "Usuario não encontrado volte ao inicio e tente novamente!!!"});
+                res.render('paginaERRO', {erro: "Usuario não encontrado volte ao inicio e tente novamente!!!", link : `http://localhost:3000/`});
             }
-            else if(capitulo == null)
+            else if(capitulo == null || capitulo.Usuario.toString() != tratamentoParametroDeRota(req.params.idUsuario) )
             {
-                res.render('paginaERRO', {erro: "Capitulo não encontrado volte ao inicio e tente novamente!!!"});
+                res.render('paginaERRO', {erro: "Capitulo não encontrado volte ao inicio e tente novamente!!!", link : `http://localhost:3000/Usuarios/:${tratamentoParametroDeRota(req.params.idUsuario)}/historia/:${tratamentoParametroDeRota(req.params.idHistoria)}`});
             }
-            else if(capitulo.Historia.toString() != tratamentoParametroDeRota(req.params.idHistoria) )
+            else if(capitulo.Historia.toString() != tratamentoParametroDeRota(req.params.idHistoria))
             {
-                res.render('paginaERRO', {erro: "O id da historia não corresponde a este capitulo, volte ao inicio e tente novamente!!!"});
+                res.render('paginaERRO', {erro: "O id da historia não corresponde a este capitulo, volte ao inicio e tente novamente!!!", link : `http://localhost:3000/Usuarios/:${tratamentoParametroDeRota(req.params.idUsuario)}`});
             }
             else
             {
-                let novaAnotacao = new Anotacoes(req.body.focoCapitulo, req.body.humorCapitulo, tratamentoParametroDeRota(req.params.idCapitulo), trataParametrosDeRota(req.params.idHistoria));
+                let novoFocoAoCapitulo = new FocoDoCapitulo(req.body.focoCapitulo, tratamentoParametroDeRota(req.params.idCapitulo), trataParametrosDeRota(req.params.idHistoria));
 
-                await novaAnotacao.adicionarAnotacao();
+                let focoAdicionado = await novoFocoAoCapitulo.adicionarFocoAoCapitulo();
 
-                res.redirect(`http://localhost:3000/Usuarios/:${tratamentoParametroDeRota(req.params.idUsuario)}/historia/:${tratamentoParametroDeRota(req.params.idHistoria)}/capitulo/:${tratamentoParametroDeRota(req.params.idCapitulo)}`);
+                switch (focoAdicionado) {
+                    case null:
+                        res.render('paginaERRO', { erro : 'Um erro inesperado aconteceu volte e tente novamente!!!', link : `http://localhost:3000/Usuarios/:${tratamentoParametroDeRota(req.params.idUsuario)}/historia/:${tratamentoParametroDeRota(req.params.idHistoria)}/capitulo/:${tratamentoParametroDeRota(req.params.idCapitulo)}`})
+                        break;
+                
+                    default:
+                        res.redirect(`http://localhost:3000/Usuarios/:${tratamentoParametroDeRota(req.params.idUsuario)}/historia/:${tratamentoParametroDeRota(req.params.idHistoria)}/capitulo/:${tratamentoParametroDeRota(req.params.idCapitulo)}`);
+                        break;
+                }
             }
         } catch (error) {
             next(error);
@@ -395,36 +403,36 @@ exports.adicionarAnotacao = [
     }
 ];
 
-exports.deletarAnotacao = async (req, res, next) => {
+exports.deletarFocoCapitulo = async (req, res, next) => {
     try {
         
         let usuario  = await Usuarios.buscaUsuarioPeloId(tratamentoParametroDeRota(req.params.idUsuario));
         let capitulo = await Capitulos.buscaCapitulo(trataParametrosDeRota(req.params.idCapitulo));
-        let anotacao = await Anotacoes.buscaAnotacao(trataParametrosDeRota(req.params.idAnotacao))
+        let focoDoCapitulo = await FocoDoCapitulo.buscaFocoDoCapitulo(trataParametrosDeRota(req.params.idFocoDoCapitulo));
 
         if (usuario == null) 
         {
-            res.render('paginaERRO', {erro: "Usuario não encontrado volte do inicio e tente novamente!!!"});
+            res.render('paginaERRO', {erro: "Usuario não encontrado volte do inicio e tente novamente!!!", link : `http://localhost:3000`});
         }
-        else if(capitulo == null)
+        else if(capitulo == null || capitulo.Usuario.toString() != tratamentoParametroDeRota(req.params.idUsuario))
         {
-            res.render('paginaERRO', {erro: "Capitulo não encontrado volte do inicio e tente novamente!!!"});
+            res.render('paginaERRO', {erro: "Capitulo não encontrado volte do inicio e tente novamente!!!", link : `http://localhost:3000/Usuarios/:${tratamentoParametroDeRota(req.params.idUsuario)}/historia/:${tratamentoParametroDeRota(req.params.idHistoria)}`});
         }
         else if(capitulo.Historia.toString() != trataParametrosDeRota(req.params.idHistoria))
         {
-            res.render('paginaERRO', {erro: "O id da historia não corresponde a este capitulo, volte do inicio e tente novamente!!!"});
+            res.render('paginaERRO', {erro: "O id da historia não corresponde a este capitulo, volte do inicio e tente novamente!!!", link : `http://localhost:3000/Usuarios/:${tratamentoParametroDeRota(req.params.idUsuario)}`});
         }
-        else if(anotacao == null)
+        else if(focoDoCapitulo == null)
         {
-            res.render('paginaERRO', {erro: "Esta anotação não existe!!!"});
+            res.render('paginaERRO', {erro: "O foco docapitulo não existe não existe!!!", link : `http://localhost:3000/Usuarios/:${tratamentoParametroDeRota(req.params.idUsuario)}/historia/:${tratamentoParametroDeRota(req.params.idHistoria)}/capitulo/:${tratamentoParametroDeRota(req.params.idCapitulo)}`});
         }
         else
         {
-            let anotacaoExcluida = await Anotacoes.deletarAnotacao(tratamentoParametroDeRota(req.params.idAnotacao));
+            let focoCapituloExcluido = await FocoDoCapitulo.DeletarfocoDoCapitulo(tratamentoParametroDeRota(req.params.idFocoDoCapitulo));
 
-            switch (anotacaoExcluida) {
+            switch (focoCapituloExcluido) {
                 case null:
-                    res.render('paginaERRO', {erro: "Erro ao excluir tente novamente"});
+                    res.render('paginaERRO', {erro: "Erro ao excluir tente novamente", link : `http://localhost:3000/Usuarios/:${tratamentoParametroDeRota(req.params.idUsuario)}/historia/:${tratamentoParametroDeRota(req.params.idHistoria)}/capitulo/:${tratamentoParametroDeRota(req.params.idCapitulo)}`});
                     break;
             
                 default:
@@ -438,52 +446,51 @@ exports.deletarAnotacao = async (req, res, next) => {
     }
 }
 
-exports.atualizarAnotacaoGet = async (req, res, next) => {
+exports.atualizarFocoDoCapituloGet = async (req, res, next) => {
     try {
-        let anotacaoBuscada = await Anotacoes.buscaAnotacao(tratamentoParametroDeRota(req.params.idAnotacao));
-        res.render('atualizarAnotacao', {anotacao: anotacaoBuscada});
+        let focoDoCapituloBuscado = await FocoDoCapitulo.buscaFocoDoCapitulo(trataParametrosDeRota(req.params.idFocoDoCapitulo));
+        res.render('atualizarAnotacao', {anotacao: focoDoCapituloBuscado});
     } catch (error) {
         next(error);
     }
 }
 
-exports.atualizarAnotacaoPost = [
+exports.atualizarFocoDoCapituloPost = [
 
     body('focoCapitulo').trim().escape().notEmpty(),
-    body('humorCapitulo').trim().escape().notEmpty(),
 
     async (req, res, next) => {
         try {
 
             let usuario = await Usuarios.buscaUsuarioPeloId(trataParametrosDeRota(req.params.idUsuario));
             let capitulo = await Capitulos.buscaCapitulo(trataParametrosDeRota(req.params.idCapitulo));
-            let anotacao = await Anotacoes.buscaAnotacao(trataParametrosDeRota(req.params.idAnotacao));
+            let focoDoCapituloBuscado = await FocoDoCapitulo.buscaFocoDoCapitulo(trataParametrosDeRota(req.params.idFocoDoCapitulo));
 
             if (usuario == null) 
             {
-                res.render('paginaERRO', {erro: "Usuario não encontrado volte do inicio e tente novamente!!!"});
+                res.render('paginaERRO', {erro: "Usuario não encontrado volte do inicio e tente novamente!!!", link : `http://localhost:3000`});
             } 
-            else if (capitulo == null)
+            else if (capitulo == null || capitulo.Usuario.toString() != tratamentoParametroDeRota(req.params.idUsuario))
             {
-                res.render('paginaERRO', {erro: "Capitulo Não encontarado, volte etente novamente!!!"});
+                res.render('paginaERRO', {erro: "Capitulo Não encontarado, volte e tente novamente!!!", link : `http://localhost:3000/Usuarios/:${tratamentoParametroDeRota(req.params.idUsuario)}/historia/:${tratamentoParametroDeRota(req.params.idHistoria)}/`});
             }
             else if (capitulo.Historia.toString() != tratamentoParametroDeRota(req.params.idHistoria)) 
             {
-                res.render('paginaERRO', {erro: "A historia não pertence a esse capitulo, volte e tente novamente!!!"});
+                res.render('paginaERRO', {erro: "A historia não pertence a esse capitulo, volte e tente novamente!!!", link : `http://localhost:3000/Usuarios/:${tratamentoParametroDeRota(req.params.idUsuario)}/`});
             }
-            else if (anotacao == null)
+            else if (focoDoCapituloBuscado == null)
             {
-                res.render('paginaERRO', {erro: "Anotacao Não encontrada, volte do inicio e tente novamente!!!"})
+                res.render('paginaERRO', {erro: "Anotacao Não encontrada, volte do inicio e tente novamente!!!", link : `http://localhost:3000/Usuarios/:${tratamentoParametroDeRota(req.params.idUsuario)}/historia/:${tratamentoParametroDeRota(req.params.idHistoria)}/capitulo/:${tratamentoParametroDeRota(req.params.idCapitulo)}` })
             }
             else
             {
-                anotacao = new Anotacoes(req.body.focoCapitulo, req.body.humorCapitulo, trataParametrosDeRota(req.params.idAnotacao), tratamentoParametroDeRota(req.params.idHistoria));
+                focoDoCapituloBuscado = new FocoDoCapitulo(req.body.focoCapitulo, trataParametrosDeRota(req.params.idCapitulo), tratamentoParametroDeRota(req.params.idHistoria));
 
-                let anotacaoAtualizada = await anotacao.atualizarAnotacao(trataParametrosDeRota(req.params.idAnotacao));
+                let focoDoCapituloAtualizado = await focoDoCapituloBuscado.atualizarAnotacao(trataParametrosDeRota(req.params.idFocoDoCapitulo));
 
-                switch (anotacaoAtualizada) {
+                switch (focoDoCapituloAtualizado) {
                     case null:
-                        res.render('paginaERRO', {erro: "Um erro inesperado aconteceu, volte e tente novamente!!!"});
+                        res.render('paginaERRO', {erro: "Um erro inesperado aconteceu, volte e tente novamente!!!", link : `http://localhost:3000/Usuarios/:${tratamentoParametroDeRota(req.params.idUsuario)}/historia/:${tratamentoParametroDeRota(req.params.idHistoria)}/capitulo/:${tratamentoParametroDeRota(req.params.idCapitulo)}`});
                         break;
                 
                     default:
@@ -497,6 +504,57 @@ exports.atualizarAnotacaoPost = [
         }
     }
 ];
+
+// Parei aqui falta terminar as funções para deletar e atualizar o humor do capitulo feito isso só arummar os erros adicionar todos os links as chamadas do template PaginaERRO e fazer um Pull Request e A Feature Tela De CRiação De HIstoria Estará Acabada 
+// Adiciona Humor Ao Capitulo, Isso Não Está Testado!!!
+exports.adicionaHumorPost = [
+
+    body('humor').trim().escape().notEmpty(),
+
+    async (req, res, next) => {
+        try {
+            let errors = validationResult(req);
+            let usuario = await Usuarios.buscaUsuarioPeloId(tratamentoParametroDeRota(req.params.idUsuario));
+            let capitulo = await Capitulos.buscaCapitulo(trataParametrosDeRota(req.params.idCapitulo));
+
+            if(!errors.isEmpty())
+            {
+                res.render('paginaERRO', {erro: "Um erro aconteceu na validação dos dados, verifique a inserção dos dados e tente novamente!!!", link : `http://localhost:3000/Usuario/:${tratamentoParametroDeRota(req.params.idUsuario)}/historia/:${tratamentoParametroDeRota(req.params.idHistoria)}/capitulo/:${tratamentoParametroDeRota(req.params.idCapitulo)}`});
+            }
+            else if(usuario == null)
+            {
+                res.render('paginaERRO', {erro: "Usuario Não Encontrado, volte e tente novamente!!!", link : `http://localhost:3000`});
+            }
+            else if(capitulo == null || capitulo.Usuario.toString() != tratamentoParametroDeRota(req.params.idUsuario))
+            {
+                res.render('paginaERRO', {erro : "Capitulo não encontrado volte ao inicio e tente novamente!!!", link : `http://localhost:3000/Usuario/:${tratamentoParametroDeRota(req.params.idUSuario)}`});
+            }
+            else if(capitulo.Historia.toString() != tratamentoParametroDeRota(req.params.idHistoria))
+            {
+                res.render('paginaERRO', {erro : "Historia não encontrada, volte e tente novamente!!!", link : `htpp://localhost:3000/Usuario/${req.params.idUsuario}`});
+            }
+            else 
+            {
+                let adicinandoHumor = new HumorCapitulo(req.body.humor, tratamentoParametroDeRota(req.params.idCapitulo), tratamentoParametroDeRota(re.params.idHistoria), tratamentoParametroDeRota(req.params.idUsuario));
+
+                let humorAdicionado = await adicinandoHumor.adicionaHumorNoCapitulo()
+
+                switch (humorAdicionado) {
+                    case null:
+                        res.render('paginaERRO', {erro: "Um erro aconteceu, volte e tente novamente!!!", link : `http://localhost:3000/Usuario/:${tratamentoParametroDeRota(req.params.idUsuario)}/historia/:${tratamentoParametroDeRota(req.params.idHistoria)}/capitulo/:${tratamentoParametroDeRota(req.params.idCapitulo)}`});
+                        break;
+                
+                    default:
+                        res.redirect(`http://localhost:3000/Usuario/:${tratamentoParametroDeRota(req.params.idUsuario)}/historia/:${tratamentoParametroDeRota(req.params.idHistoria)}/capitulo/:${tratamentoParametroDeRota(req.params.idCapitulo)}`);
+                        break;
+                }
+            }
+
+        } catch (error) {
+            next(error);
+        }
+    }
+]
 
 // Adicionar Personagens no capitulo
 exports.adicionaPersonagensNoCapitulo = [ // Falta fazer a verificação de cada parametro de rota para que não de boqueta!!!
@@ -528,7 +586,7 @@ exports.deletarPersonagemDoCapitulo = async (req, res, next) => {
         {
             res.render('paginaERRO', {erro: "Usuario Não encontrado, volte ao inicio e tente novamente!!!"});    
         } 
-        else if(capitulo == null)
+        else if(capitulo == null || capitulo.Usuario.toString() != tratamentoParametroDeRota(req.params.idUsuario))
         {
             res.render('paginaERRO', {erro: "Capitulo não encontrado, volte ao inicio e tente novamente!!!"});
         }
@@ -582,11 +640,11 @@ exports.adicionarCenarioNoCapitulo = [
             {
                 res.render('paginaERRO', {erro: "Usuario não encontrado, volte e tente novamente!!!", link: `http://localhost:3000/`});
             }
-            else if(capitulo == null)
+            else if(capitulo == null || capitulo.Usuario.toString() != tratamentoParametroDeRota(req.params.idUsuario))
             {
                 res.render('paginaERRO', {erro: "Capitulo não encontrado, volte e tente novamente!!!", link: `http://localhost:3000/Usuario/:${trataParametrosDeRota(req.params.idUsuario)}/historia/:${trataParametrosDeRota(req.params.idHistoria)}`});
             }
-            else if(capitulo.Historia != tratamentoParametroDeRota(req.params.idHistoria))
+            else if(capitulo.Historia.toString() != tratamentoParametroDeRota(req.params.idHistoria))
             {
                 res.render('paginaERRO', {erro: "Capitulo não encontrado, volte e tente novamente!!!", link: `http://localhost:3000/Usuario/:${trataParametrosDeRota(req.params.idUsuario)}/`});
             }
@@ -613,17 +671,21 @@ exports.adicionarCenarioNoCapitulo = [
 ];
 
 exports.deletarCenarioDoCapitulo = async (req, res, next) => {
-    let usuario = Usuarios.buscaUsuarioPeloId(tratamentoParametroDeRota(req.params.idUsuario));
-    let capitulo = Capitulos.buscaCapitulo(tratamentoParametroDeRota(req.params.idCapitulo));
-    let cenarioQSeraDeletadoDoCapitulo = CenariosCapitulo.buscaCenarioDoCapitulo(trataParametrosDeRota(req.params.idCenarioDoCapitulo)); // Parei aqui
+    let usuario = await Usuarios.buscaUsuarioPeloId(tratamentoParametroDeRota(req.params.idUsuario));
+    let capitulo = await Capitulos.buscaCapitulo(tratamentoParametroDeRota(req.params.idCapitulo));
+    let cenarioQSeraDeletadoDoCapitulo = await CenariosCapitulo.buscaCenarioDoCapitulo(trataParametrosDeRota(req.params.idCenarioDoCapitulo));
 
     if(usuario == null)
     {
         res.render('paginaERRO', {erro: 'Usuario não encontrado, volte e tente novamente!!!', link : `http://localhost:3000`});
     }
-    else if(capitulo == null)
+    else if(capitulo == null || capitulo.Usuario.toString() != tratamentoParametroDeRota(req.params.idUsuario))
     {
         res.render('paginaERRO', { erro : "Capitulo não encontrado, volte e tente novamente!!!", link: `http://localhost:3000/Usuario/:${tratamentoParametroDeRota(req.params.idUsuario)}/historia/:${tratamentoParametroDeRota(req.params.idHistoria)}`});
+    }
+    else if(capitulo.Historia.toString() != tratamentoParametroDeRota(req.params.idUsuario))
+    {
+        res.render('paginaERRO', { erro : "Historia não encontrada, volte e tente novamente!!!", link: `http://localhost:3000/Usuario/:${tratamentoParametroDeRota(req.params.idUsuario)}`});
     }
     else if(cenarioQSeraDeletadoDoCapitulo == null)
     {

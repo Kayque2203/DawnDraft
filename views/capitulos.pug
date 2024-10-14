@@ -16,44 +16,61 @@ html(lang="pt-br")
 
         button(type="submit") Salvar 
 
+    br/ 
+    h2 Anotações
 
-
-
-    form(action=`http://localhost:3000/Usuarios/:${id_Usuario}/historia/:${id_Historia}/capitulo/:${capitulo._id.toString()}/adicionarAnotacao`, method="post", class="formAnotacoes")
-        h2 Anotações 
-
+    form(action=`http://localhost:3000/Usuarios/:${id_Usuario}/historia/:${id_Historia}/capitulo/:${capitulo._id.toString()}/adicionarFocoAoCapitulo`, method="post", class="formAnotacoes")
         table 
             thead 
                 tr
                     th Foco Do Cápitulo
-                    th Humor/tom
 
             tbody 
-                if anotacoes.length
-                    for anotacao in anotacoes
+                if focoCapitulo.length
+                    for focoDoCapitulo in focoCapitulo
                         tr 
                             td 
-                                p= anotacao.FocoCapitulo
+                                p= focoDoCapitulo.FocoCapitulo
                                     span 
-                                        a(href=`http://localhost:3000/Usuarios/:${id_Usuario}/historia/:${id_Historia}/capitulo/:${capitulo._id.toString()}/excluirAnotacao/:${anotacao._id.toString()}`) Deletar
+                                        a(href=`http://localhost:3000/Usuarios/:${id_Usuario}/historia/:${id_Historia}/capitulo/:${capitulo._id.toString()}/excluirFocoDoCapitulo/:${focoDoCapitulo._id.toString()}`) Deletar
                                     span 
-                                        a(href=`http://localhost:3000/Usuarios/:${id_Usuario}/historia/:${id_Historia}/capitulo/:${capitulo._id.toString()}/atualizarAnotacao/:${anotacao._id.toString()}`) Atualizar
+                                        a(href=`http://localhost:3000/Usuarios/:${id_Usuario}/historia/:${id_Historia}/capitulo/:${capitulo._id.toString()}/atualizarFocoCapitulo/:${focoDoCapitulo._id.toString()}`) Atualizar
+                tr 
+                    td 
+                        input(type="text", name="focoCapitulo", class="iptnTable", maxlength="100")
+
+            tfoot
+                tr 
+                    td
+                        button(type="submit") Salvar
+
+    form(action="", method="post")
+        table 
+            thead 
+                tr
+                    th Humor / Tom 
+            
+            tbody 
+                if humor.lenght 
+                    for humorCap in humor
+                        tr 
                             td 
                                 p= anotacao.HumorTom
                                     span 
-                                        a(href=`http://localhost:3000/Usuarios/:${id_Usuario}/historia/:${id_Historia}/capitulo/:${capitulo._id.toString()}/excluirAnotacao/:${anotacao._id.toString()}`) Deletar
+                                        a(href=`http://localhost:3000/Usuarios/:${id_Usuario}/historia/:${id_Historia}/capitulo/:${capitulo._id.toString()}/excluirAnotacao/:${humorCap._id.toString()}`) Deletar
                                     span 
-                                        a(href=`http://localhost:3000/Usuarios/:${id_Usuario}/historia/:${id_Historia}/capitulo/:${capitulo._id.toString()}/atualizarAnotacao/:${anotacao._id.toString()}`) Atualizar
+                                        a(href=`http://localhost:3000/Usuarios/:${id_Usuario}/historia/:${id_Historia}/capitulo/:${capitulo._id.toString()}/atualizarAnotacao/:${humorCap._id.toString()}`) Atualizar
+                    
+                tr 
+                    td
+                        input(type="text", name="humor", class="iptnTable", maxlength="100")
+            tfoot
+                tr
+                    td 
+                        button(type="submit") Salvar Humor / Tom Do Capitulo
 
 
-                tr 
-                    td 
-                        input(type="text", name="focoCapitulo", class="iptnTable", maxlength="255")
-                    td 
-                        input(type="text", name="humorCapitulo", class="iptnTable", maxlength="255")
-                tr 
-                    td(colspan="4")
-                        button(type="submit") Salvar
+    br/
 
 
     form(action=`http://localhost:3000/Usuarios/:${id_Usuario}/historia/:${id_Historia}/capitulo/:${capitulo._id.toString()}/adicionarPersonagem`, method="post")
