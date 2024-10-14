@@ -54,6 +54,9 @@ router.get('/:idUsuario/historia/:idHistoria/capitulo/:idCapitulo/atualizarFocoC
 // Rota que atualiza uma anotação
 router.post('/:idUsuario/historia/:idHistoria/capitulo/:idCapitulo/atualizarFocoCapitulo/:idFocoDoCapitulo', controllerHistoria.atualizarFocoDoCapituloPost);
 
+// Rota Para Adicionar Humor Ao Capitulo
+router.post('/:idUsuario/historia/:idHistoria/capitulo/:idCapitulo/adicionarHumor', controllerHistoria.adicionaHumorPost);
+
 // Rota Para Adicionar Personagens aos capitulos
 router.post('/:idUsuario/historia/:idHistoria/capitulo/:idCapitulo/adicionarPersonagem', controllerHistoria.adicionaPersonagensNoCapitulo);
 

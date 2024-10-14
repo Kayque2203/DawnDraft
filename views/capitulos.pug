@@ -29,12 +29,13 @@ html(lang="pt-br")
                 if focoCapitulo.length
                     for focoDoCapitulo in focoCapitulo
                         tr 
-                            td 
-                                p= focoDoCapitulo.FocoCapitulo
+                            td(class="tdConteudoTabela")
+                                p #{focoDoCapitulo.FocoCapitulo}
+                                div(class="spansAttExcluir") 
                                     span 
-                                        a(href=`http://localhost:3000/Usuarios/:${id_Usuario}/historia/:${id_Historia}/capitulo/:${capitulo._id.toString()}/excluirFocoDoCapitulo/:${focoDoCapitulo._id.toString()}`) Deletar
+                                        a(href=`http://localhost:3000/Usuarios/:${id_Usuario}/historia/:${id_Historia}/capitulo/:${capitulo._id.toString()}/excluirFocoDoCapitulo/:${focoDoCapitulo._id.toString()}`, class="aExcluirAtt") Deletar
                                     span 
-                                        a(href=`http://localhost:3000/Usuarios/:${id_Usuario}/historia/:${id_Historia}/capitulo/:${capitulo._id.toString()}/atualizarFocoCapitulo/:${focoDoCapitulo._id.toString()}`) Atualizar
+                                        a(href=`http://localhost:3000/Usuarios/:${id_Usuario}/historia/:${id_Historia}/capitulo/:${capitulo._id.toString()}/atualizarFocoCapitulo/:${focoDoCapitulo._id.toString()}`, class="aExcluirAtt") Atualizar
                 tr 
                     td 
                         input(type="text", name="focoCapitulo", class="iptnTable", maxlength="100")
@@ -44,7 +45,7 @@ html(lang="pt-br")
                     td
                         button(type="submit") Salvar
 
-    form(action="", method="post")
+    form(action=`http://localhost:3000/Usuarios/:${id_Usuario}/historia/:${id_Historia}/capitulo/:${capitulo._id.toString()}/adicionarHumor`, method="post")
         table 
             thead 
                 tr
