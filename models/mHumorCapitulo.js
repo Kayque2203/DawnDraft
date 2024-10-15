@@ -28,6 +28,18 @@ class HumorCapitulo {
         return adicionandoHumorAoCapitulo;
     }
 
+    async AtualizarHumorDoCapitulo(idHumorCapitulo){
+        let atualizaHumorCapitulo = ConexaoBD.getCollections('HumorDosCapitulos').updateOne(
+            { _id: new ObjectId(idHumorCapitulo) }, 
+            {
+                $set : { "Humor" : this.humor },
+                $currentDate : {lastModified: true}
+            }
+        );
+
+        return atualizaHumorCapitulo;
+    }
+
     // Métodos Estaticos
     static async excluiHumorDoCapitulo(idHumorCap){ // Remove Um Humor De Um Capitulo, Para Quando Fomos Excluir Apenas 1 Humor Do Capitulo
         let excluiHumorDoCapitulo = await ConexaoBD.getCollections('HumorDosCapitulos').deleteOne({ _id : new ObjectId(idHumorCap)});

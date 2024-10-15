@@ -52,16 +52,17 @@ html(lang="pt-br")
                     th Humor / Tom 
             
             tbody 
-                if humor.lenght 
+                if humor.length 
                     for humorCap in humor
                         tr 
-                            td 
-                                p= anotacao.HumorTom
+                            td(class="tdConteudoTabela")
+                                p= humorCap.Humor
+                                div(class="spansAttExcluir")
                                     span 
-                                        a(href=`http://localhost:3000/Usuarios/:${id_Usuario}/historia/:${id_Historia}/capitulo/:${capitulo._id.toString()}/excluirAnotacao/:${humorCap._id.toString()}`) Deletar
+                                        a(href=`http://localhost:3000/Usuarios/:${id_Usuario}/historia/:${id_Historia}/capitulo/:${capitulo._id.toString()}/excluirHumorDoCapitulo/:${humorCap._id.toString()}`) Deletar
                                     span 
-                                        a(href=`http://localhost:3000/Usuarios/:${id_Usuario}/historia/:${id_Historia}/capitulo/:${capitulo._id.toString()}/atualizarAnotacao/:${humorCap._id.toString()}`) Atualizar
-                    
+                                        a(href=`http://localhost:3000/Usuarios/:${id_Usuario}/historia/:${id_Historia}/capitulo/:${capitulo._id.toString()}/atualizarHumorDoCapitulo/:${humorCap._id.toString()}`) Atualizar
+
                 tr 
                     td
                         input(type="text", name="humor", class="iptnTable", maxlength="100")

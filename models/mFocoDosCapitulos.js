@@ -7,11 +7,13 @@ class FocoDoCapitulo {
     focoCapitulo;
     capitulo;
     historia;
+    usuario;
 
-    constructor(focoCap, capituloAnotacao, historiaAnotacao){
+    constructor(focoCap, capituloAnotacao, historiaAnotacao, user){
         this.focoCapitulo = focoCap;
         this.capitulo = capituloAnotacao;
         this.historia = historiaAnotacao;
+        this.usuario = user;
     }
 
     // Métodos da classe
@@ -19,7 +21,8 @@ class FocoDoCapitulo {
         let novaFocoDoCapitulo = await Conexao.getCollections('FocoDosCapitulos').insertOne({
             "FocoCapitulo" : this.focoCapitulo,
             "Capitulo" : new ObjectId(this.capitulo),
-            "Historia" : new ObjectId(this.historia)
+            "Historia" : new ObjectId(this.historia),
+            "Usuario" : new ObjectId(this.usuario)
         });
 
         return novaFocoDoCapitulo.insertedId.toString();
@@ -31,7 +34,6 @@ class FocoDoCapitulo {
             {
                 $set: {
                     "FocoCapitulo" : this.focoCapitulo,
-                    "HumorTom" : this.humorTom
                 },
                 $currentDate: { lastModified: true }
             }
@@ -68,7 +70,7 @@ class FocoDoCapitulo {
     static async deletarFocosDoCapituloPeloIdHistoria(idHistoria){
         let focosDoCapituloExcluidos = await Conexao.getCollections('FocoDosCapitulos').deleteMany({Historia : new ObjectId(idHistoria)});
 
-        return anotacoesExcluidas;
+        return focosDoCapituloExcluidos;
     }
 }
 

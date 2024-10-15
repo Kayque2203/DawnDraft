@@ -11,10 +11,10 @@ router.get('/:idUsuario', controllerPaginaHomeUsuarios.UsuariosIndex);
 
 //  ROTAS DAS HISTÓRIAS!!!
 // Rota que carrega a pagina de uma historia
-router.get('/:idUsuario/historia/:idHistooria', controllerHistoria.buscaHistoria);
+router.get('/:idUsuario/historia/:idHistoria', controllerHistoria.buscaHistoria);
 
 // Rota para atualizar uma historia
-router.post('/:idUsuario/historia/:idHistooria', controllerHistoria.atualizaHistoria);
+router.post('/:idUsuario/historia/:idHistoria', controllerHistoria.atualizaHistoria);
 
 // Rota para exibir a pagina de criação de uma nova história
 router.get('/:idUsuario/NovaHistoria', controllerHistoria.adicionaHistoriaGet);
@@ -23,7 +23,7 @@ router.get('/:idUsuario/NovaHistoria', controllerHistoria.adicionaHistoriaGet);
 router.post('/:idUsuario/NovaHistoria', controllerHistoria.adicionaHistoriaPost);
 
 // Rota para deletar uma história
-router.get('/:idUsuario/deletarHistoria/:idHistooria', controllerHistoria.deletaHistoria);
+router.get('/:idUsuario/deletarHistoria/:idHistoria', controllerHistoria.deletaHistoria);
 
 // Rotas Dos Capitulos
 // Rota que retorna o formulario para adicionar historias  
@@ -48,14 +48,23 @@ router.post('/:idUsuario/historia/:idHistoria/capitulo/:idCapitulo/adicionarFoco
 // Rota Para Excluir um Foco Ao Capitulo
 router.get('/:idUsuario/historia/:idHistoria/capitulo/:idCapitulo/excluirFocoDoCapitulo/:idFocoDoCapitulo', controllerHistoria.deletarFocoCapitulo);
 
-// Rota que retorna um template para atualizar uma anotação 
+// Rota que retorna um template para atualizar um foco de capitulo
 router.get('/:idUsuario/historia/:idHistoria/capitulo/:idCapitulo/atualizarFocoCapitulo/:idFocoDoCapitulo', controllerHistoria.atualizarFocoDoCapituloGet);
 
-// Rota que atualiza uma anotação
+// Rota que atualiza um foco do capitulo
 router.post('/:idUsuario/historia/:idHistoria/capitulo/:idCapitulo/atualizarFocoCapitulo/:idFocoDoCapitulo', controllerHistoria.atualizarFocoDoCapituloPost);
 
 // Rota Para Adicionar Humor Ao Capitulo
 router.post('/:idUsuario/historia/:idHistoria/capitulo/:idCapitulo/adicionarHumor', controllerHistoria.adicionaHumorPost);
+
+// Rota que retorna o template para atualizar um humor de capitulo
+router.get('/:idUsuario/historia/:idHistoria/capitulo/:idCapitulo/atualizarHumorDoCapitulo/:idHumorDoCapitulo', controllerHistoria.atualizarHumorGet);
+
+// Rota Para Atualizar Um Humor Do Capitulo
+router.post('/:idUsuario/historia/:idHistoria/capitulo/:idCapitulo/atualizarHumorDoCapitulo/:idHumorDoCapitulo', controllerHistoria.atualizarHumorPost);
+
+// Rota Para Deletar Humor Do Capitulo
+router.get('/:idUsuario/historia/:idHistoria/capitulo/:idCapitulo/excluirHumorDoCapitulo/:idHumorDoCapitulo', controllerHistoria.deletaHumor);
 
 // Rota Para Adicionar Personagens aos capitulos
 router.post('/:idUsuario/historia/:idHistoria/capitulo/:idCapitulo/adicionarPersonagem', controllerHistoria.adicionaPersonagensNoCapitulo);
