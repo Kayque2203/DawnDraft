@@ -1,0 +1,16 @@
+doctype html
+html(lang="pt-br")
+  head
+    title home
+    link(rel='stylesheet', href='/stylesheets/paginaCapitulos.css')
+  body
+    h1 Pagina de criação de historia
+    
+    form(action=`http://localhost:3000/Usuarios/:${id_Usuario}/historia/:${id_Historia}/adicionarCapitulo`, method="post")
+        h2 Escreva Seu Novo Cápitulo 
+
+        input(type="text", name="tituloCapitulo",  placeholder="Titulo do capitulo", maxlength="255")
+
+        textarea(name="textoCapitulo" placeholder="Historia do capitulo")
+
+        button(type="submit") Adicionar Cápitulo

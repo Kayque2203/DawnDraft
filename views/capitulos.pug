@@ -1,0 +1,128 @@
+doctype html
+html(lang="pt-br")
+  head
+    title home
+    link(rel='stylesheet', href='/stylesheets/paginaCapitulos.css')
+  body
+    h1 
+        a(href=`http://localhost:3000/Usuarios/:${id_Usuario}/historia/:${capitulo.Historia}`) Voltar Para A Historia
+
+    form(action=``, method="post")
+        h2 Continue escrevendo seu capitulo
+
+        input(type="text", name="tituloCapitulo",  placeholder="Titulo do capitulo" value=`${capitulo.TituloCapitulo}` maxlength="100")
+
+        textarea(name="textoCapitulo" placeholder="Historia do capitulo")= capitulo.TextoCapitulo
+
+        button(type="submit") Salvar 
+
+    br/ 
+    h2 Anotações
+
+    form(action=`http://localhost:3000/Usuarios/:${id_Usuario}/historia/:${id_Historia}/capitulo/:${capitulo._id.toString()}/adicionarFocoAoCapitulo`, method="post", class="formAnotacoes")
+        table 
+            thead 
+                tr
+                    th Foco Do Cápitulo
+
+            tbody 
+                if focoCapitulo.length
+                    for focoDoCapitulo in focoCapitulo
+                        tr 
+                            td(class="tdConteudoTabela")
+                                p #{focoDoCapitulo.FocoCapitulo}
+                                div(class="spansAttExcluir") 
+                                    span 
+                                        a(href=`http://localhost:3000/Usuarios/:${id_Usuario}/historia/:${id_Historia}/capitulo/:${capitulo._id.toString()}/excluirFocoDoCapitulo/:${focoDoCapitulo._id.toString()}`, class="aExcluirAtt") Deletar
+                                    span 
+                                        a(href=`http://localhost:3000/Usuarios/:${id_Usuario}/historia/:${id_Historia}/capitulo/:${capitulo._id.toString()}/atualizarFocoCapitulo/:${focoDoCapitulo._id.toString()}`, class="aExcluirAtt") Atualizar
+                tr 
+                    td 
+                        input(type="text", name="focoCapitulo", class="iptnTable", maxlength="100")
+
+            tfoot
+                tr 
+                    td
+                        button(type="submit") Salvar
+
+    form(action=`http://localhost:3000/Usuarios/:${id_Usuario}/historia/:${id_Historia}/capitulo/:${capitulo._id.toString()}/adicionarHumor`, method="post")
+        table 
+            thead 
+                tr
+                    th Humor / Tom 
+            
+            tbody 
+                if humor.length 
+                    for humorCap in humor
+                        tr 
+                            td(class="tdConteudoTabela")
+                                p= humorCap.Humor
+                                div(class="spansAttExcluir")
+                                    span 
+                                        a(href=`http://localhost:3000/Usuarios/:${id_Usuario}/historia/:${id_Historia}/capitulo/:${capitulo._id.toString()}/excluirHumorDoCapitulo/:${humorCap._id.toString()}`) Deletar
+                                    span 
+                                        a(href=`http://localhost:3000/Usuarios/:${id_Usuario}/historia/:${id_Historia}/capitulo/:${capitulo._id.toString()}/atualizarHumorDoCapitulo/:${humorCap._id.toString()}`) Atualizar
+
+                tr 
+                    td
+                        input(type="text", name="humor", class="iptnTable", maxlength="100")
+            tfoot
+                tr
+                    td 
+                        button(type="submit") Salvar Humor / Tom Do Capitulo
+
+
+    br/
+
+
+    form(action=`http://localhost:3000/Usuarios/:${id_Usuario}/historia/:${id_Historia}/capitulo/:${capitulo._id.toString()}/adicionarPersonagem`, method="post")
+        table 
+            thead
+                tr 
+                    th Personagens 
+            
+            tbody  
+                if personagensCapitulo.length
+                    - contador = 0
+                    for personagem1 in personagensCapitulo
+                        tr
+                            td
+                                p= personagem1.Nome
+                                    span
+                                        a(href=`http://localhost:3000/Usuarios/:${id_Usuario}/historia/:${id_Historia}/capitulo/:${capitulo._id.toString()}/removerPersonagemDoCapitulo/${idsDosPersonagensDoCapitulo[contador]}`) Deletar
+                                        - contador++
+
+                tr
+                    td
+                        if personagens.length
+                            select(name="personagem")
+                                option(value="0") Escolha um personagem
+                                for personagem2 in personagens
+                                    option(value=`${personagem2._id.toString()}`)= personagem2.Nome
+                        else 
+                            select(name="personagem", disabled) 
+            tfoot 
+                tr
+                    td
+                        if personagens.length
+                            button(type="submit") Adicionar Personagem
+                        else 
+                            button(type="submit", disabled) Adicionar Personagem
+    
+    br/
+    form(action=`http://localhost:3000/Usuarios/:${id_Usuario}/historia/:${id_Historia}/capitulo/:${capitulo._id.toString()}/adicionaCenario`, method="post")
+        table
+            thead 
+                tr
+                    th Cenários
+            
+            tbody                
+                tr
+                    td
+                        select(name="cenario", disabled)
+                            option(value="null") Cenario 1  
+            
+            tfoot
+                tr
+                    td 
+                        button(type="submit") Adicionar Cenário

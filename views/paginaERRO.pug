@@ -1,0 +1,21 @@
+doctype html
+html(lang="pt-br")
+  head
+    title Erro
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+    header 
+         h1 Um erro inesperado aconteceu 
+
+    section
+        p= erro 
+        p
+          if link.length
+            a(href=`${link}`) Voltar
+          else 
+            a(href="http://localhost:3000") Voltar ao inicio
+        
+
+
+
+    

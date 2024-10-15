@@ -1,0 +1,92 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  padding-top: 50px;
+  padding-left: 350px;
+  padding-right: 350px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #EFEEA5;
+
+  font-family: "Sora", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+a {
+  color: black;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+header{
+  display: flex;
+  justify-content: space-between;
+}
+
+section{
+  margin-top: 50px;
+  font-size: 16pt;
+}
+
+.boxsIntro{
+  width: 45%;
+}
+
+.boxsIntro h2{
+  margin-bottom: 30px;
+}
+
+.linkLogin{
+  padding: 10px;
+  background-color: white;
+  border-radius: 5px;
+  text-decoration: none;
+  width: 20%;
+  height: min-content;
+}
+
+.linkCadastro{
+  padding: 10px;
+}
+
+.h1-home{
+  padding-top: 10px;
+  font-size: 20pt;
+}
+
+.img-home{
+  width: 400px;
+  height: 300px;
+  border-radius: 7px;
+}
+
+.section1{
+  display: flex;
+  justify-content: space-between;
+  gap: 5%;
+  align-items: center;
+}
+
+.logo-nav{
+  width: 75px;
+  height: 75px;
+  border-radius: 10px;
+}
+
+.navBar{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.boxTituloLogo{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}

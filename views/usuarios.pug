@@ -1,0 +1,39 @@
+doctype html
+html(lang="pt-br")
+  head
+    title home
+    link(rel='stylesheet', href='/stylesheets/paginaHomeUsuarios.css')
+  body
+      h1 Seja Bem Vindo, #{nome_Usuario}
+
+      section(class="")
+        h1 Histórias 
+        div(class="containerHistorias")
+          div(class='boxHistorias mais')
+            a(href=`http://localhost:3000/Usuarios/:${id_Usuario}/NovaHistoria`) +
+            span Adicionar Historia
+            
+          if historias.length
+            for historia in historias
+              div(class="boxHistorias")
+                a(href=`http://localhost:3000/Usuarios/:${historia.Usuario}/historia/:${historia._id.toString()}`, rel="noopener noreferrer")
+                  h2= historia.Titulo
+                  p= historia.Prologo
+                  span
+                    a(href=`http://localhost:3000/Usuarios/:${historia.Usuario}/deletarHistoria/${historia._id.toString()}`, class="spanDeletarHis") Deletar Historia
+
+      section
+        h1 Personagens
+
+        div(class="containerHistorias")
+          div(class='boxHistorias mais')
+            a(href='#') + 
+            span Adicionar Personagem
+
+      section 
+        h1 Cenários
+
+        div(class="containerHistorias")
+          div(class='boxHistorias mais')
+            a(href='#') +
+            span Adicionar Historia

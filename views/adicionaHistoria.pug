@@ -1,0 +1,17 @@
+doctype html
+html(lang="pt-br")
+  head
+    title home
+    link(rel='stylesheet', href='/stylesheets/paginaHistorias.css')
+  body
+      h1 
+        a(href=`http://localhost:3000/Usuarios/:${id_Usuario}/`) Home 
+
+      form(action=`http://localhost:3000/Usuarios/:${id_Usuario}/NovaHistoria/`, method="post") 
+
+        input(type="text", name="titulo", placeholder="Titulo Da Histora", maxlength="255")
+
+        textarea(name="prologo" placeholder="Prologo Da Histria", maxlength="400")
+
+        button(type="submit") salvar
+        
