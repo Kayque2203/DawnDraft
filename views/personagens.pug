@@ -1,0 +1,30 @@
+doctype html
+html(lang="pt-br")
+  head
+    link(rel='stylesheet', href='/stylesheets/paginaCapitulos.css')
+    title Personagem
+  body
+    header 
+      h1 
+          a(href=`javascript:history.back()`) Home
+
+    section
+        form(action=`http://localhost:3000/Usuarios/:${personagem.Usuario.toString()}/atualizarPersonagem/:${personagem._id.toString()}`, method="post")
+
+            input(type="text", name="nome", value=`${personagem.Nome}`)
+
+            input(type="text", name="idade", value=`${personagem.Idade}`)
+
+            input(type="text", name="personalidade", value=`${personagem.Personalidade}`)
+
+            input(type="text", name="hobies", value=`${personagem.Hobies}`)
+
+            input(type="text", name="sonhos", value=`${personagem.MairoesSonhos}`)
+
+            input(type="text", name="traumas", value=`${personagem.MairoesTraumas}`)
+
+            input(type="text", name="objetivo", value=`${personagem.ObjetivoNaHistoria}`)
+
+            input(type="text", name="informacoes", value=`${personagem.InformacoesRelevantesAParte}`)
+
+            button(type="submit") Salvar

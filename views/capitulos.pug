@@ -87,7 +87,8 @@ html(lang="pt-br")
                     for personagem1 in personagensCapitulo
                         tr
                             td
-                                p= personagem1.Nome
+                                p
+                                    a(href=`http://localhost:3000/Usuarios/:${personagem1.Usuario.toString()}/personagem/:${personagem1._id.toString()}`)= personagem1.Nome
                                     span
                                         a(href=`http://localhost:3000/Usuarios/:${id_Usuario}/historia/:${id_Historia}/capitulo/:${capitulo._id.toString()}/removerPersonagemDoCapitulo/${idsDosPersonagensDoCapitulo[contador]}`) Deletar
                                         - contador++

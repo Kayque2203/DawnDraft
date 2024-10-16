@@ -6,6 +6,8 @@ const controllerPaginaHomeUsuarios =  require('../controllers/controllerUsuarios
 
 const controllerHistoria = require('../controllers/controllerHistorias');
 
+const controllerPersonagens = require('../controllers/controllerPersonagens');
+
 // Rota para carregar a pagina home dos usuarios
 router.get('/:idUsuario', controllerPaginaHomeUsuarios.UsuariosIndex);
 
@@ -74,5 +76,24 @@ router.get('/:idUsuario/historia/:idHistoria/capitulo/:idCapitulo/removerPersona
 
 // Rota Para Adicionar Um Cenário A Um Capitulo
 router.post('/:idUsuario/historia/:idHistoria/capitulo/:idCapitulo/adicionaCenario', controllerHistoria.adicionarCenarioNoCapitulo);
+
+
+
+// Rotas Dos Personagens
+
+// Rota Para Retornar Um Template Para Adicionar Personagens
+router.get('/:idUsuario/adicionarPersonagem', controllerPersonagens.adicionarPersonagemGet);
+
+// Rota Para Retornar Para Adicionar Personagens
+router.post('/:idUsuario/adicionarPersonagem', controllerPersonagens.adicionarPersonagemPost);
+
+// Rota Para Exibir Um Template De Um Usuario
+router.get('/:idUsuario/personagem/:idPersonagem', controllerPersonagens.buscaPersonagem);
+
+// Rota Para Atualizar As Informações De Um Personagem No Banco De Dados
+router.post('/:idUsuario/atualizarPersonagem/:idPersonagem', controllerPersonagens.atualizarPersonagemPost);
+
+// Rota Para Deletar As Informações De Um Personagem No Banco De Dados
+router.get('/:idUsuario/deletarPersonagem/:idPersonagem', controllerPersonagens.deletarPersonagem);
 
 module.exports = router;

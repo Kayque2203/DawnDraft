@@ -72,6 +72,12 @@ class FocoDoCapitulo {
 
         return focosDoCapituloExcluidos;
     }
+
+    static async deletarFocosDoCapituloPeloIdCapitulo(idCapitulo){
+        let focosDoCapituloExcluidos = await Conexao.getCollections('FocoDosCapitulos').deleteMany({Historia : new ObjectId(idCapitulo)});
+
+        return focosDoCapituloExcluidos;
+    }
 }
 
 module.exports = FocoDoCapitulo;

@@ -61,6 +61,7 @@ class Historias {
         return historiaDeletada;
     }
 
+    // Verifica Isso Aqui DPS
     static async deleteTodasHistoriasDoUser(id){
         let capitulosDeletados = await Conexao.getCollections('Capitulos').deleteMany({ "Usuario" : new ObjectId(id) });
         let historiasDeletadas = await Conexao.getCollections('Historias').deleteMany({ "Usuario": id });

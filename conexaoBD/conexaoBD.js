@@ -11,9 +11,9 @@ class Conexao {
         this.#database = this.#client.db('DawnDraft');
     }
 
-    get getCliente(){
-        return this.#client
-    }
+    // get getCliente(){
+    //     return this.#client
+    // }
     
     getCollections(collection){ // Método que retorna a coleção desejada.
         return this.#database.collection(collection);

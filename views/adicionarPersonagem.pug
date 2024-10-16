@@ -1,0 +1,30 @@
+doctype html
+html(lang="pt-br")
+  head
+    link(rel='stylesheet', href='/stylesheets/paginaCapitulos.css')
+    title Criar Personagem
+  body
+    header 
+      h1 
+          a(href=`http://localhost:3000/Usuarios/${UsuarioID}/`) Home
+
+    section
+        form(action="", method="post")
+
+            input(type="text", name="nome", placeholder="nome") 
+
+            input(type="text", name="idade", placeholder="idade") 
+
+            input(type="text", name="personalidade", placeholder="personalidade") 
+
+            input(type="text", name="hobies", placeholder="hobies") 
+
+            input(type="text", name="sonhos", placeholder="sonhos") 
+
+            input(type="text", name="traumas", placeholder="traumas") 
+
+            input(type="text", name="objetivo", placeholder="objetivo") 
+
+            input(type="text", name="informacoes", placeholder="informacoes") 
+
+            button(type="submit") Criar Personagem

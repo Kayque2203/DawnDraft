@@ -20,15 +20,24 @@ html(lang="pt-br")
                   h2= historia.Titulo
                   p= historia.Prologo
                   span
-                    a(href=`http://localhost:3000/Usuarios/:${historia.Usuario}/deletarHistoria/${historia._id.toString()}`, class="spanDeletarHis") Deletar Historia
+                    a(href=`http://localhost:3000/Usuarios/:${historia.Usuario}/deletarHistoria/:${historia._id.toString()}`, class="spanDeletarHis") Deletar Historia
 
       section
         h1 Personagens
 
         div(class="containerHistorias")
           div(class='boxHistorias mais')
-            a(href='#') + 
+            a(href=`http://localhost:3000/Usuarios/:${id_Usuario}/adicionarPersonagem`) + 
             span Adicionar Personagem
+
+          if Personagens.length
+            for personagem in Personagens
+              div(class="boxHistorias")
+                a(href=`http://localhost:3000/Usuarios/:${personagem.Usuario.toString()}/personagem/:${personagem._id.toString()}`)
+                  h2= personagem.Nome
+                  span
+                    a(href=`http://localhost:3000/Usuarios/:${personagem.Usuario.toString()}/deletarPersonagem/:${personagem._id.toString()}`, class="spanDeletarHis") Deletar Personagem
+
 
       section 
         h1 Cenários

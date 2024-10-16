@@ -103,8 +103,6 @@ exports.deletarUsuario = async (req, res, next) => {
         {
             let usuarioADeletar = await Usuarios.deletarUsuario(tratamentoParametroDeRota(req.params.idUsuario));
 
-            console.log(usuarioADeletar);
-
             res.redirect('/');
         }
         

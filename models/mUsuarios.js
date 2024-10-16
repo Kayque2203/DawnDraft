@@ -88,7 +88,11 @@ class Usuarios {
         return usuario;
     }
 
+    // Verificar isso aqui dps
     static async deletarUsuario(id){
+        let personagensDoCapituloDeletados = await PersonagensCapitulo.deletarTodosPersonagensDoCapituloPeloIdHistoria(tratamentoParametroDeRota(req.params.idHistoria));
+        let FocosDeCapituloDeletados = await FocoDoCapitulo.deletarFocosDoCapituloPeloIdCapitulo(trataParametrosDeRota(req.params.idCapitulo));
+        let HomoresDeCapitulosDeletados = await HumorCapitulo.excluiTodosHumorDoCapituloPeloIdCapitulo(trataParametrosDeRota(req.params.idCapitulo));
         let historiasDeletadas = await Historias.deleteTodasHistoriasDoUser(id);
         let usuarioDeletado = await Conexao.getCollections('Usuarios').deleteOne({_id: new ObjectId(id)});
         return usuarioDeletado, historiasDeletadas;

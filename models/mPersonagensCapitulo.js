@@ -5,12 +5,16 @@ const Conexao = new conexao();
 
 class PersonagensCapitulo {
     personagem;
-    anotacao;
+    capitulo;
+    historia;
+    usuario;
     colecaoPersonagensCapitulo;
 
-    constructor(personagemAnotacao, idAnotacao){
-        this.personagem = new ObjectId(personagemAnotacao);
-        this.anotacao = new ObjectId(idAnotacao);
+    constructor(personagemCapitulo, idcapitulo, idHistoria, idUsuario){
+        this.personagem = new ObjectId(personagemCapitulo);
+        this.capitulo = new ObjectId(idcapitulo);
+        this.historia = new ObjectId(idHistoria);
+        this.usuario = new ObjectId(idUsuario);
         this.colecaoPersonagensCapitulo = Conexao.getCollections('PersonagensCapitulo');
     }
 
@@ -18,7 +22,9 @@ class PersonagensCapitulo {
     async adicionarPersonagemNoCapitulo(){
         let novoPersonagemNoCapitulo = await this.colecaoPersonagensCapitulo.insertOne({
             "Personagem" : this.personagem,
-            "Capitulo" : this.anotacao
+            "Capitulo" : this.capitulo,
+            "Historia" : this.historia,
+            "Usuario" : this.usuario,
         });
 
         return novoPersonagemNoCapitulo.insertedId.toString();
@@ -29,6 +35,18 @@ class PersonagensCapitulo {
         let personagemDeletado = Conexao.getCollections('PersonagensCapitulo').deleteOne({_id: new ObjectId(idPersonagemAnotacao) });
 
         return personagemDeletado;
+    }
+
+    static async deletarTodosPersonagensDoCapituloPeloIdCapitulo(idCapitulo){
+        let personegensExcluidos = Conexao.getCollections('PersonagensCapitulo').deleteMany({Capitulo : new ObjectId(idCapitulo)});
+
+        return personegensExcluidos;
+    }
+
+    static async deletarTodosPersonagensDoCapituloPeloIdHistoria(idHistoria){
+        let personegensExcluidos = Conexao.getCollections('PersonagensCapitulo').deleteMany({Historia : new ObjectId(idHistoria)});
+
+        return personegensExcluidos;
     }
 
     static async buscaPersonagensDoCapitulo(idCapitulo){

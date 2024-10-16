@@ -1,6 +1,7 @@
 // Falta terminar, esse sera o controller para manipular a rota da pagina index dos usuarios (*Obs essa pagina ira exibir as histórias criadas pelo usuario e seus personagens e cenários)
 const Usuarios = require('../models/mUsuarios');
 const Historias = require('../models/mHistorias');
+const Personagens = require('../models/mPersonagens');
 const tratamentoParametroRota = require('../assets/tratamentoParametroRota');
 
 exports.UsuariosIndex = async (req, res, next) => {
@@ -17,8 +18,9 @@ exports.UsuariosIndex = async (req, res, next) => {
         else 
         {
             let consultaHistoriasDoUsuario = await Historias.buscaHistorias(tratamentoParametroRota(req.params.idUsuario));
+            let consultaPersonagens = await Personagens.buscaPersonagens(tratamentoParametroRota(req.params.idUsuario));
 
-            res.render('usuarios', { historias: consultaHistoriasDoUsuario , id_Usuario: tratamentoParametroRota(req.params.idUsuario), nome_Usuario: consultaUsuario.Nome });
+            res.render('usuarios', { historias: consultaHistoriasDoUsuario , id_Usuario: tratamentoParametroRota(req.params.idUsuario), nome_Usuario: consultaUsuario.Nome, Personagens: consultaPersonagens });
         }
     } catch (error) {
         next(error);

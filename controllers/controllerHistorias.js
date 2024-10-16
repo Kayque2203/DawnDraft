@@ -160,6 +160,8 @@ exports.deletaHistoria = async (req, res, next) => {
         else 
         {
             // Não Tão Importante Assim Mas Devo Pensar Em Um Jeito Melhor Para Fazer Isso!!!
+            await PersonagensCapitulo.deletarTodosPersonagensDoCapituloPeloIdHistoria(tratamentoParametroDeRota(req.params.idHistoria));
+
             await FocoDoCapitulo.deletarFocosDoCapituloPeloIdHistoria(trataParametrosDeRota(req.params.idHistoria));
 
             await HumorCapitulo.excluiTodosHumorDeCapituloPeloIdHistoria(trataParametrosDeRota(req.params.idHistoria));
@@ -277,7 +279,7 @@ exports.BuscaCapitulo = async (req, res, next) => {
 
             let humorDoCapitulo = await HumorCapitulo.buscaHumoresDoCapitulo(trataParametrosDeRota(req.params.idCapitulo));
 
-            let personagens = await Personagens.buscaPersonagens();
+            let personagens = await Personagens.buscaPersonagens(tratamentoParametroDeRota(req.params.idUsuario));
 
             let personagensCapitulo = await PersonagensCapitulo.buscaPersonagensDoCapitulo(trataParametrosDeRota(req.params.idCapitulo));
 
@@ -363,7 +365,12 @@ exports.deletarCapitulo = async (req, res, next) => {
         }
         else 
         {
-            await Anotacoes.deletarAnotacoes(trataParametrosDeRota(req.params.idCapitulo));
+            await PersonagensCapitulo.deletarTodosPersonagensDoCapituloPeloIdHistoria(tratamentoParametroDeRota(req.params.idHistoria));
+
+            await FocoDoCapitulo.deletarFocosDoCapituloPeloIdCapitulo(trataParametrosDeRota(req.params.idCapitulo));
+
+            await HumorCapitulo.excluiTodosHumorDoCapituloPeloIdCapitulo(trataParametrosDeRota(req.params.idCapitulo));
+            
             await Capitulos.deletarCapitulo(tratamentoParametroDeRota(req.params.idCapitulo));
 
             res.redirect(`http://localhost:3000/Usuarios/:${tratamentoParametroDeRota(req.params.idUsuario)}/historia/:${tratamentoParametroDeRota(req.params.idHistoria)}`);
