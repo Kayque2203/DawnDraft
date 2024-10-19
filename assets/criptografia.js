@@ -2,7 +2,7 @@
 var aesjs = require('aes-js');
 
 // Importa o arquivo json com os dados sensiveis incluindo a chave de criptografação.
-const dadosSensiveis = require('../etc/secrets/dadosSensiveis.json');
+const dadosSensiveis = require('../dadosSensiveis.json');
 
 class Criptografacao {
 

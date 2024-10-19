@@ -1,6 +1,6 @@
 const { MongoClient } = require('mongodb');
 
-const DadosSensiveis = require('../etc/secrets/dadosSensiveis.json');
+const DadosSensiveis = require('../dadosSensiveis.json');
 
 class Conexao {
     #client;
