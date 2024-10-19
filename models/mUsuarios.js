@@ -5,8 +5,6 @@ const Historias = require('../models/mHistorias.js');
 
 const Conexao = new conexao();
 
-// DPS retirar esse try catch para nao interferir nos outros dos controllers
-
 class Usuarios {
     #nome;
     #email;
@@ -37,23 +35,6 @@ class Usuarios {
         this.#senha = Criptografia.criptografar(senhaUsuario);
     }
 
-    // Getters
-    get getNome(){
-        return this.#nome;
-    }
-
-    get getEmail(){
-        return this.#email;
-    }
-
-    get getTelefone(){
-        return this.#telefone;
-    }
-
-    get getSenha(){
-        return this.#senha;
-    }
-
     // Metodos
     async adicionarUsuario(){
 
@@ -73,6 +54,23 @@ class Usuarios {
 
        return usuario;
 
+    }
+
+    async atualizaUsuario(idUsuario) { // Falta Testar!!!
+        let usuarioAserAtualizado = await Conexao.getCollections('Usuarios').updateOne(
+            {
+                _id : new ObjectId(idUsuario)
+            },
+            {
+                $set : {
+                    "Nome" : this.#nome,
+                    "Telefone" : this.#telefone,
+                    "Senha" : this.#senha
+                }
+            }
+        );
+
+        return usuarioAserAtualizado == null? false : true
     }
 
     // Staticos 
