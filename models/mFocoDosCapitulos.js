@@ -73,11 +73,19 @@ class FocoDoCapitulo {
         return focosDoCapituloExcluidos;
     }
 
+    // Isso aqui esta estranho refatorar dps
     static async deletarFocosDoCapituloPeloIdCapitulo(idCapitulo){
-        let focosDoCapituloExcluidos = await Conexao.getCollections('FocoDosCapitulos').deleteMany({Historia : new ObjectId(idCapitulo)});
+        let focosDoCapituloExcluidos = await Conexao.getCollections('FocoDosCapitulos').deleteMany({Capitulo : new ObjectId(idCapitulo)});
 
         return focosDoCapituloExcluidos;
     }
+
+    static async deletarFocosDoCapituloPeloIdUsuario(idUsuario){
+        let focosDoCapituloExcluidos = await Conexao.getCollections('FocoDosCapitulos').deleteMany({Usuario : new ObjectId(idUsuario)});
+
+        return focosDoCapituloExcluidos;
+    }
+
 }
 
 module.exports = FocoDoCapitulo;

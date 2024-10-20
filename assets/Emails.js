@@ -7,6 +7,7 @@ class Email {
     #transporte
     #DawnDraft
     #EmailUsuario
+    #CodigoVerificacaoEmail
 
     constructor(emailUsuario) {
         this.#TOKEN = dadosSensiveis.TOKEN2;
@@ -20,9 +21,6 @@ class Email {
             name: "DawnDraft"
         };
         this.#EmailUsuario = emailUsuario;
-    }
-
-    enviarEmailDeVerificacao(){
 
         let codigoVerificacao = "";
 
@@ -32,11 +30,19 @@ class Email {
             
         }
 
+        this.#CodigoVerificacaoEmail = codigoVerificacao;
+    }
+
+    get getCodigoVerificacaoEmail(){
+        return this.#CodigoVerificacaoEmail;
+    }
+
+    enviarEmailDeVerificacao(){
         this.#transporte.sendMail({
             from: this.#DawnDraft,
             to: this.#EmailUsuario,
             subject: "Verificação De Email",
-            text: `Código De Verificação ${codigoVerificacao}`,
+            text: `Código De Verificação ${this.#CodigoVerificacaoEmail}`,
             category: "Integration Test",
         }).then(console.log, console.error);
 

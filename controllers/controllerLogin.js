@@ -1,7 +1,7 @@
-// Falta testar tudo, fiz com sono deve ter varios erros!
 const { body, validationResult} = require("express-validator");
 const Criptografia = require('../assets/criptografia');
 const tratamentoParametroDeRota = require('../assets/tratamentoParametroRota');
+const Emails = require('../assets/Emails');
 
 const Usuarios = require('../models/mUsuarios');
 
@@ -40,6 +40,10 @@ exports.CadastroPost = [
                 }
                 else
                 {
+                    let ValidadarEmail = new Emails(req.body.email);
+
+                    ValidadarEmail.enviarEmailDeVerificacao()
+
                     let usuarioCadastrado = await novoUsuario.adicionarUsuario();
     
                     res.redirect(`http://localhost:3000/Usuarios/:${usuarioCadastrado}`);
