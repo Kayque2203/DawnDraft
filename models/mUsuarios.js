@@ -46,7 +46,8 @@ class Usuarios {
             "Nome" : this.#nome,
             "Email" : this.#email,
             "Telefone" : this.#telefone,
-            "Senha" : this.#senha
+            "Senha" : this.#senha,
+            "Verificado" : false
         })
 
         return novoUser.insertedId;
@@ -88,6 +89,21 @@ class Usuarios {
         let usuario = await Conexao.getCollections('Usuarios').findOne( { _id: new ObjectId(id) } );
 
         return usuario;
+    }
+
+    static async mudarVerificacao(idUsuario, verificacao){
+        let usuarioAserAtualizado = await Conexao.getCollections('Usuarios').updateOne(
+            {
+                _id : new ObjectId(idUsuario)
+            },
+            {
+                $set : {
+                    "Verificado" : verificacao
+                }
+            }
+        );
+
+        return usuarioAserAtualizado == null? false : true
     }
 
     // Verificar isso aqui dps

@@ -6,7 +6,7 @@ html(lang="pt-br")
   body
     h1 Pagina de criação de historia
     
-    form(action=`http://localhost:3000/Usuarios/:${id_Usuario}/historia/:${id_Historia}/adicionarCapitulo`, method="post")
+    form(action=`/Usuarios/:${id_Usuario}/historia/:${id_Historia}/adicionarCapitulo`, method="post")
         h2 Escreva Seu Novo Cápitulo 
 
         input(type="text", name="tituloCapitulo",  placeholder="Titulo do capitulo", maxlength="255")

@@ -55,6 +55,12 @@ class PersonagensCapitulo {
         return personegensExcluidos;
     }
 
+    static async deletaPersonagensDoCapituloPeloIdPersonagem(idPersonagem){
+        let personegemExcluidos = Conexao.getCollections('PersonagensCapitulo').deleteMany({Personagem : new ObjectId(idPersonagem)});
+
+        return personegemExcluidos;
+    }
+
     static async buscaPersonagensDoCapitulo(idCapitulo){
         let personagensBuscados = await Conexao.getCollections('PersonagensCapitulo').find({Capitulo : new ObjectId(idCapitulo)}).toArray();
 

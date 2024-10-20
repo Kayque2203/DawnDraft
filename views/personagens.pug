@@ -6,10 +6,10 @@ html(lang="pt-br")
   body
     header 
       h1 
-          a(href=`javascript:history.back()`) Home
+          a(href=`/Usuarios/:${personagem.Usuario.toString()}`) Home
 
     section
-        form(action=`http://localhost:3000/Usuarios/:${personagem.Usuario.toString()}/atualizarPersonagem/:${personagem._id.toString()}`, method="post")
+        form(action=`/Usuarios/:${personagem.Usuario.toString()}/atualizarPersonagem/:${personagem._id.toString()}`, method="post")
 
             input(type="text", name="nome", value=`${personagem.Nome}`)
 

@@ -5,7 +5,7 @@ html(lang="pt-br")
     link(rel='stylesheet', href='/stylesheets/paginaCapitulos.css')
   body
     h1 
-        a(href=`http://localhost:3000/Usuarios/:${id_Usuario}/historia/:${capitulo.Historia}`) Voltar Para A Historia
+        a(href=`/Usuarios/:${id_Usuario}/historia/:${capitulo.Historia}`) Voltar Para A Historia
 
     form(action=``, method="post")
         h2 Continue escrevendo seu capitulo
@@ -19,7 +19,7 @@ html(lang="pt-br")
     br/ 
     h2 Anotações
 
-    form(action=`http://localhost:3000/Usuarios/:${id_Usuario}/historia/:${id_Historia}/capitulo/:${capitulo._id.toString()}/adicionarFocoAoCapitulo`, method="post", class="formAnotacoes")
+    form(action=`/Usuarios/:${id_Usuario}/historia/:${id_Historia}/capitulo/:${capitulo._id.toString()}/adicionarFocoAoCapitulo`, method="post", class="formAnotacoes")
         table 
             thead 
                 tr
@@ -33,9 +33,9 @@ html(lang="pt-br")
                                 p #{focoDoCapitulo.FocoCapitulo}
                                 div(class="spansAttExcluir") 
                                     span 
-                                        a(href=`http://localhost:3000/Usuarios/:${id_Usuario}/historia/:${id_Historia}/capitulo/:${capitulo._id.toString()}/excluirFocoDoCapitulo/:${focoDoCapitulo._id.toString()}`, class="aExcluirAtt") Deletar
+                                        a(href=`/Usuarios/:${id_Usuario}/historia/:${id_Historia}/capitulo/:${capitulo._id.toString()}/excluirFocoDoCapitulo/:${focoDoCapitulo._id.toString()}`, class="aExcluirAtt") Deletar
                                     span 
-                                        a(href=`http://localhost:3000/Usuarios/:${id_Usuario}/historia/:${id_Historia}/capitulo/:${capitulo._id.toString()}/atualizarFocoCapitulo/:${focoDoCapitulo._id.toString()}`, class="aExcluirAtt") Atualizar
+                                        a(href=`/Usuarios/:${id_Usuario}/historia/:${id_Historia}/capitulo/:${capitulo._id.toString()}/atualizarFocoCapitulo/:${focoDoCapitulo._id.toString()}`, class="aExcluirAtt") Atualizar
                 tr 
                     td 
                         input(type="text", name="focoCapitulo", class="iptnTable", maxlength="100")
@@ -45,7 +45,7 @@ html(lang="pt-br")
                     td
                         button(type="submit") Salvar
 
-    form(action=`http://localhost:3000/Usuarios/:${id_Usuario}/historia/:${id_Historia}/capitulo/:${capitulo._id.toString()}/adicionarHumor`, method="post")
+    form(action=`/Usuarios/:${id_Usuario}/historia/:${id_Historia}/capitulo/:${capitulo._id.toString()}/adicionarHumor`, method="post")
         table 
             thead 
                 tr
@@ -59,9 +59,9 @@ html(lang="pt-br")
                                 p= humorCap.Humor
                                 div(class="spansAttExcluir")
                                     span 
-                                        a(href=`http://localhost:3000/Usuarios/:${id_Usuario}/historia/:${id_Historia}/capitulo/:${capitulo._id.toString()}/excluirHumorDoCapitulo/:${humorCap._id.toString()}`) Deletar
+                                        a(href=`/Usuarios/:${id_Usuario}/historia/:${id_Historia}/capitulo/:${capitulo._id.toString()}/excluirHumorDoCapitulo/:${humorCap._id.toString()}`) Deletar
                                     span 
-                                        a(href=`http://localhost:3000/Usuarios/:${id_Usuario}/historia/:${id_Historia}/capitulo/:${capitulo._id.toString()}/atualizarHumorDoCapitulo/:${humorCap._id.toString()}`) Atualizar
+                                        a(href=`/Usuarios/:${id_Usuario}/historia/:${id_Historia}/capitulo/:${capitulo._id.toString()}/atualizarHumorDoCapitulo/:${humorCap._id.toString()}`) Atualizar
 
                 tr 
                     td
@@ -75,7 +75,7 @@ html(lang="pt-br")
     br/
 
 
-    form(action=`http://localhost:3000/Usuarios/:${id_Usuario}/historia/:${id_Historia}/capitulo/:${capitulo._id.toString()}/adicionarPersonagem`, method="post")
+    form(action=`/Usuarios/:${id_Usuario}/historia/:${id_Historia}/capitulo/:${capitulo._id.toString()}/adicionarPersonagem`, method="post")
         table 
             thead
                 tr 
@@ -88,9 +88,9 @@ html(lang="pt-br")
                         tr
                             td
                                 p
-                                    a(href=`http://localhost:3000/Usuarios/:${personagem1.Usuario.toString()}/personagem/:${personagem1._id.toString()}`)= personagem1.Nome
+                                    a(href=`/Usuarios/:${id_Usuario}/personagem/:${personagem1._id.toString()}`)= personagem1.Nome
                                     span
-                                        a(href=`http://localhost:3000/Usuarios/:${id_Usuario}/historia/:${id_Historia}/capitulo/:${capitulo._id.toString()}/removerPersonagemDoCapitulo/${idsDosPersonagensDoCapitulo[contador]}`) Deletar
+                                        a(href=`/Usuarios/:${id_Usuario}/historia/:${id_Historia}/capitulo/:${capitulo._id.toString()}/removerPersonagemDoCapitulo/${idsDosPersonagensDoCapitulo[contador]}`) Deletar
                                         - contador++
 
                 tr
@@ -111,7 +111,7 @@ html(lang="pt-br")
                             button(type="submit", disabled) Adicionar Personagem
     
     br/
-    form(action=`http://localhost:3000/Usuarios/:${id_Usuario}/historia/:${id_Historia}/capitulo/:${capitulo._id.toString()}/adicionaCenario`, method="post")
+    form(action=`/Usuarios/:${id_Usuario}/historia/:${id_Historia}/capitulo/:${capitulo._id.toString()}/adicionaCenario`, method="post")
         table
             thead 
                 tr

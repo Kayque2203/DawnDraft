@@ -37,15 +37,16 @@ class Email {
         return this.#CodigoVerificacaoEmail;
     }
 
-    enviarEmailDeVerificacao(){
-        this.#transporte.sendMail({
+    async enviarEmailDeVerificacao(){
+        let emailEnviado = await this.#transporte.sendMail({
             from: this.#DawnDraft,
             to: this.#EmailUsuario,
             subject: "Verificação De Email",
             text: `Código De Verificação ${this.#CodigoVerificacaoEmail}`,
             category: "Integration Test",
-        }).then(console.log, console.error);
+        });
 
+       return emailEnviado.success;
     }
 }
 

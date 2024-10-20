@@ -40,13 +40,18 @@ exports.CadastroPost = [
                 }
                 else
                 {
-                    let ValidadarEmail = new Emails(req.body.email);
-
-                    ValidadarEmail.enviarEmailDeVerificacao()
 
                     let usuarioCadastrado = await novoUsuario.adicionarUsuario();
-    
-                    res.redirect(`http://localhost:3000/Usuarios/:${usuarioCadastrado}`);
+
+                    switch (usuarioCadastrado) {
+                        case null:
+                            res.render('paginaERRO', {erro: "Um erro aconteceu ao efetuar o cadastro, volte e tente novamente!!!", link : "/LoginECadastro"});
+                            break;
+                    
+                        default:
+                            res.redirect(`/LoginECadastro/validacaoDeEmail/:${req.body.email}`);
+                            break;
+                    }
                 }
             } 
         } catch (error) {
@@ -54,6 +59,69 @@ exports.CadastroPost = [
         }
     }
 ];
+
+var cod;
+
+exports.validaEmailGet = async (req, res, next) => {
+    try {
+
+        let buscaEmail = await Usuarios.buscaUsuariosPeloEmail2(tratamentoParametroDeRota(req.params.emailUsuario));
+
+        if (buscaEmail == null) 
+        {
+            res.render('paginaERRO', {erro: "Nenhum Usuario Cadastrado Com Esse Email, volte e tente novamente!!!", link : "/LoginECadastro"});
+        } 
+        else 
+        {
+            let verificacaoEmail = new Emails(tratamentoParametroDeRota(req.params.emailUsuario));
+
+            let emailEnviado = await verificacaoEmail.enviarEmailDeVerificacao();
+
+            cod = Criptografia.criptografar(verificacaoEmail.getCodigoVerificacaoEmail);
+
+            if (emailEnviado != true) 
+            {
+                await Usuarios.deletarUsuario(buscaEmail._id.toString());
+                res.render('paginaERRO', {erro: "Erro ao validar o email, faça seu cadastro novamente!!!", link : "/LoginECadastro"})
+            } 
+            else 
+            {
+                res.render('validacaoDeEmail', {notify: ""});
+            }
+        }
+    } catch (error) {
+        next(error);
+    }
+}
+
+exports.validaEmailPost = [
+
+    body('codigoVerificacao').trim().escape().notEmpty(),
+
+    async (req, res, next) => {
+        try {
+            let buscaEmail = await Usuarios.buscaUsuariosPeloEmail2(tratamentoParametroDeRota(req.params.emailUsuario));
+    
+            if (buscaEmail == null) 
+            {
+                res.render('paginaERRO', {erro: "Nenhum Usuario Cadastrado Com Esse Email, volte e tente novamente!!!", link : "/LoginECadastro"});
+            } 
+            else if (req.body.codigoVerificacao == Criptografia.descriptografa(cod))
+            {
+                cod = '';
+                let mudandoAVerificacaoDoUsuario = Usuarios.mudarVerificacao(buscaEmail._id.toString(), true)
+                res.redirect(`/Usuarios/${buscaEmail._id.toString()}`);
+            }
+            else
+            {
+                res.render('validacaoDeEmail', {notify: "Código Errado Tente Novamente!!!"});
+            }
+        } catch (error) {
+            next(error);
+        }
+    }
+
+]
 
 exports.login = [
     
@@ -77,13 +145,17 @@ exports.login = [
                 {
                     res.render('loginEcadastro', {notify: `Nenhum usuario cadastrado com esse email`});
                 }
+                else if(usuarioEncontrado.Verificado == false)
+                {
+                    res.redirect(`/LoginECadastro/validacaoDeEmail/:${usuarioEncontrado.Email}`);
+                }
                 else if(Criptografia.descriptografa(usuarioEncontrado.Senha) != req.body.login_senha)
                 {
                     res.render('loginEcadastro', {notify: `Senha errada`, email: req.body.login_email });
                 }
                 else
                 {
-                    res.redirect(`http://localhost:3000/Usuarios/:${usuarioEncontrado._id.toString()}`);
+                    res.redirect(`/Usuarios/:${usuarioEncontrado._id.toString()}`);
                 }
             }
             

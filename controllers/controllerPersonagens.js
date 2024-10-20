@@ -4,6 +4,7 @@ const Usuarios = require('../models/mUsuarios');
 const TratamentoParamtrosDeRota = require('../assets/tratamentoParametroRota');
 
 const { validationResult, body } = require('express-validator');
+const PersonagensCapitulo = require('../models/mPersonagensCapitulo');
 
 // Endpoint que retorna um template para criar um usuario
 exports.adicionarPersonagemGet = async (req, res, next) => {
@@ -12,7 +13,7 @@ exports.adicionarPersonagemGet = async (req, res, next) => {
 
         if (usuario == null) 
         {
-            res.render('paginaERRO', {erro : "Usuario não encontrado, volte e tente novamente!!!", link: 'http://localhost:3000'});
+            res.render('paginaERRO', {erro : "Usuario não encontrado, volte e tente novamente!!!", link: '/'});
         } 
         else 
         {
@@ -43,11 +44,11 @@ exports.adicionarPersonagemPost = [
 
             if (!errors.isEmpty()) 
             {
-                res.render('paginaERRO', {erro: 'Um Erro Aconteceu Na Validação Dos Dados, volte e tente novamente!!!', link : `http://localhost:3000/Usuarios/${req.params.idUsuario}/adicionarPersonagem`});
+                res.render('paginaERRO', {erro: 'Um Erro Aconteceu Na Validação Dos Dados, volte e tente novamente!!!', link : `/Usuarios/${req.params.idUsuario}/adicionarPersonagem`});
             } 
             else if(usuario == null)
             {
-                res.render('paginaERRO', {erro: 'Usuario Não Encontrado, Volte E Tente Novamente!!!', link : 'http://localhost:3000'});
+                res.render('paginaERRO', {erro: 'Usuario Não Encontrado, Volte E Tente Novamente!!!', link : '/'});
             }
             else
             {
@@ -57,11 +58,11 @@ exports.adicionarPersonagemPost = [
 
                 switch (personagemAdicinado) {
                     case null:
-                        res.render('paginaERRO', {erro : 'Um Erro Ao Adicionar O Personagem Aconteceu, volte e tente novamente!!!', link : `http://localhost:3000/Usuarios/${req.params.idUsuario}/adicionarPersonagem`});
+                        res.render('paginaERRO', {erro : 'Um Erro Ao Adicionar O Personagem Aconteceu, volte e tente novamente!!!', link : `/Usuarios/${req.params.idUsuario}/adicionarPersonagem`});
                         break;
                 
                     default:
-                        res.redirect(`http://localhost:3000/Usuarios/${req.params.idUsuario}/personagem/${personagemAdicinado.toString()}`);
+                        res.redirect(`/Usuarios/${req.params.idUsuario}/personagem/${personagemAdicinado.toString()}`);
                         break;
                 }
             }
@@ -80,11 +81,11 @@ exports.buscaPersonagem = async (req, res, next) => {
 
         if (usuario == null) 
         {
-            res.render('paginaERRO', {erro : "Usuario não encontrado, volte e tente novamente!!!", link: 'http://localhost:3000'});
+            res.render('paginaERRO', {erro : "Usuario não encontrado, volte e tente novamente!!!", link: '/'});
         } 
         else if(personagem == null || personagem.Usuario.toString() != TratamentoParamtrosDeRota(req.params.idUsuario))
         {
-            res.render('paginaERRO', {erro : "Personagem não encontrado, volte e tente novamente!!!", link: `http://localhost:3000/Usuarios/${req.params.idUsuario}`});
+            res.render('paginaERRO', {erro : "Personagem não encontrado, volte e tente novamente!!!", link: `/Usuarios/${req.params.idUsuario}`});
         }
         else
         {
@@ -141,15 +142,15 @@ exports.atualizarPersonagemPost = [
 
             if (!errors.isEmpty()) 
             {
-                res.render('paginaERRO', {erro: 'Um Erro Aconteceu Na Validação Dos Dados, volte e tente novamente!!!', link : `http://localhost:3000/Usuarios/${req.params.idUsuario}/adicionarPersonagem`});
+                res.render('paginaERRO', {erro: 'Um Erro Aconteceu Na Validação Dos Dados, volte e tente novamente!!!', link : `/Usuarios/${req.params.idUsuario}/adicionarPersonagem`});
             } 
             else if(usuario == null)
             {
-                res.render('paginaERRO', {erro: 'Usuario Não Encontrado, Volte E Tente Novamente!!!', link : 'http://localhost:3000'});
+                res.render('paginaERRO', {erro: 'Usuario Não Encontrado, Volte E Tente Novamente!!!', link : '/'});
             }
             else if(personagem == null || personagem.Usuario.toString() != TratamentoParamtrosDeRota(req.params.idUsuario))
             {
-                res.render('paginaERRO', {erro : "Personagem não encontrado, volte e tente novamente!!!", link: `http://localhost:3000/Usuarios/${req.params.idUsuario}`});
+                res.render('paginaERRO', {erro : "Personagem não encontrado, volte e tente novamente!!!", link: `/Usuarios/${req.params.idUsuario}`});
             }
             else
             {
@@ -159,11 +160,11 @@ exports.atualizarPersonagemPost = [
 
                 switch (personagemAtualizado) {
                     case null:
-                        res.render('paginaERRO', {erro : 'Um Erro Ao Atualizar O Personagem Aconteceu, volte e tente novamente!!!', link : `http://localhost:3000/Usuarios/${req.params.idUsuario}/adicionarPersonagem`});
+                        res.render('paginaERRO', {erro : 'Um Erro Ao Atualizar O Personagem Aconteceu, volte e tente novamente!!!', link : `/Usuarios/${req.params.idUsuario}/adicionarPersonagem`});
                         break;
                 
                     default:
-                        res.redirect(`http://localhost:3000/Usuarios/${req.params.idUsuario}/personagem/${personagemAtualizado._id.toString()}`);
+                        res.redirect(`/Usuarios/${req.params.idUsuario}/personagem/${personagemAtualizado._id.toString()}`);
                         break;
                 }
             }
@@ -182,14 +183,15 @@ exports.deletarPersonagem = async (req, res, next) => {
 
         if (usuario == null)
         {
-            res.render('paginaERRO', {erro : "Usuario não encontrado, volte e tente novamente!!!", link: 'http://localhost:3000'});
+            res.render('paginaERRO', {erro : "Usuario não encontrado, volte e tente novamente!!!", link: '/'});
         } 
         else if(personagem == null || personagem.Usuario.toString() != TratamentoParamtrosDeRota(req.params.idUsuario))
         {
-            res.render('paginaERRO', {erro : "Personagem não encontrado, volte e tente novamente!!!", link: `http://localhost:3000/Usuarios/${req.params.idUsuario}`});
+            res.render('paginaERRO', {erro : "Personagem não encontrado, volte e tente novamente!!!", link: `/Usuarios/${req.params.idUsuario}`});
         }
         else
         {
+            let deletaPersonagemDosCapitulos = await PersonagensCapitulo.deletaPersonagensDoCapituloPeloIdPersonagem(TratamentoParamtrosDeRota(req.params.idPersonagem));
             let personagemDeletado = await Personagens.deletarPersonagem(TratamentoParamtrosDeRota(req.params.idPersonagem));
 
             switch (personagemDeletado) {
@@ -198,7 +200,7 @@ exports.deletarPersonagem = async (req, res, next) => {
                     break;
             
                 default:
-                    res.redirect(`http://localhost:3000/Usuarios/${req.params.idUsuario}`);
+                    res.redirect(`/Usuarios/${req.params.idUsuario}`);
                     break;
             }
         }

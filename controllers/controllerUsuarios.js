@@ -13,7 +13,7 @@ exports.UsuariosIndex = async (req, res, next) => {
         // Faz a verfificação, caso a variavel consultaUsuario retorne null siginifica que aquele usario não existe, caso exista essa variavel ira conter todas as infos do usuario.
         if (consultaUsuario == null) 
         {
-            res.render('paginaERRO', {erro: 'O USUARIO NÃO EXISTE', link: "http://localhost:3000/"});
+            res.render('paginaERRO', {erro: 'O USUARIO NÃO EXISTE', link: "/"});
         } 
         else 
         {

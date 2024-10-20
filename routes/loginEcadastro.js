@@ -15,4 +15,9 @@ router.post('/Login', controllerLogin.login);
 // Rota para deletar um usuario
 router.get('/deletarUsuario/:idUsuario',  controllerLogin.deletarUsuario);
 
+// Rot que ira retornar o template de validação de email
+router.get('/validacaoDeEmail/:emailUsuario', controllerLogin.validaEmailGet);
+
+router.post('/validacaoDeEmail/:emailUsuario', controllerLogin.validaEmailPost);
+
 module.exports = router;

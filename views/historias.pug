@@ -6,10 +6,10 @@ html(lang="pt-br")
   body
     header 
       h1 
-          a(href=`http://localhost:3000/Usuarios/:${historia.Usuario}/`) Home
+          a(href=`/Usuarios/:${historia.Usuario}/`) Home
 
     section
-        form(action=`http://localhost:3000/Usuarios/:${historia.Usuario}/historia/:${historia._id.toString()}`, method="post") 
+        form(action=`/Usuarios/:${historia.Usuario}/historia/:${historia._id.toString()}`, method="post") 
 
           input(type="text", name="titulo", value=`${historia.Titulo}`, maxlength="100")
 
@@ -23,8 +23,8 @@ html(lang="pt-br")
       div(class="boxCapitulos")
         for capitulo in capitulos
           p(class="paragrafoLinksCapitulos") Capitulo:
-            a(href=`http://localhost:3000/Usuarios/:${historia.Usuario}/historia/:${historia._id.toString()}/capitulo/:${capitulo._id.toString()}` class="linkCapitulos")= capitulo.TituloCapitulo
+            a(href=`/Usuarios/:${historia.Usuario}/historia/:${historia._id.toString()}/capitulo/:${capitulo._id.toString()}` class="linkCapitulos")= capitulo.TituloCapitulo
             span(class="spanDeletarCap")
-              a(href=`http://localhost:3000/Usuarios/:${historia.Usuario}/historia/:${historia._id.toString()}/capitulo/:${capitulo._id.toString()}/deletarCapitulo`  class="linkDeletarCap") Deletar
+              a(href=`/Usuarios/:${historia.Usuario}/historia/:${historia._id.toString()}/capitulo/:${capitulo._id.toString()}/deletarCapitulo`  class="linkDeletarCap") Deletar
         h2 
-          a(href=`http://localhost:3000/Usuarios/:${historia.Usuario}/historia/:${historia._id.toString()}/adicionarCapitulo`) Adicionar Cápitulo
+          a(href=`/Usuarios/:${historia.Usuario}/historia/:${historia._id.toString()}/adicionarCapitulo`) Adicionar Cápitulo
