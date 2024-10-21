@@ -48,6 +48,19 @@ class Email {
 
        return emailEnviado.success;
     }
+
+    // Envia Link Para Mudar Senha
+    async enviarEmailComLinkSenha(){
+        let emailEnviado = await this.#transporte.sendMail({
+            from: this.#DawnDraft,
+            to: this.#EmailUsuario,
+            subject: "Verificação De Email",
+            text: `LINK Para Alterar Senha: \n http://localhost:3000/LoginECadastro/esqueciMinhaSenha/:${this.#CodigoVerificacaoEmail}`,
+            category: "Integration Test",
+        });
+
+        return emailEnviado.success;
+    }
 }
 
 module.exports = Email;

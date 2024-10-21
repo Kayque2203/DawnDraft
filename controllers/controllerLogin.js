@@ -60,7 +60,8 @@ exports.CadastroPost = [
     }
 ];
 
-var cod;
+// Arrumar Isso Na Terça
+var cod; // Essa Variavel serve para conseguirmos acessar o código gerado no controller validaEmailPost, mas quase ctz que existe um erro aqui, quando diferentes usuarios fizerem o uso dessa funcionalidade os códigos irão entrar um por cima do outro 
 
 exports.validaEmailGet = async (req, res, next) => {
     try {

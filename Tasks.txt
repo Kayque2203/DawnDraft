@@ -6,5 +6,4 @@ Tela de Login e cadastro (Nesse fim de semana acabo isso)
         Um norte para conseguirmos enviar emails automaticos atraves do nodeJS os emails automaticos seriam usados para enviar códigos de acesso para os usuarios que esquecerem suas senhas.
             https://mailtrap.io/pt/blog/send-emails-with-nodejs/
 
-    É do front não sei como vai funcionar
-    -> Adicionar Máscaras nos campos, Validar e Sanitizar os dados colocados nos inputs ( Podemos ultilizar Jquery e Regex );
+    -> Adicionar Máscaras nos campos ( Podemos ultilizar Jquery e Regex );
