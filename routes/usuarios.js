@@ -1,17 +1,22 @@
-var express = require('express');
+var express = require('express'); // Importando o módulo express para definirmos as rotas!!!
 
-var router = express.Router();
+var router = express.Router(); // "Instanciando" o método de roteamento Express
 
+/* Importando os Controllers */
 const controllerPaginaHomeUsuarios =  require('../controllers/controllerUsuarios');
 
 const controllerHistoria = require('../controllers/controllerHistorias');
 
 const controllerPersonagens = require('../controllers/controllerPersonagens');
 
+
+
 // Rota para carregar a pagina home dos usuarios
 router.get('/:idUsuario', controllerPaginaHomeUsuarios.UsuariosIndex);
 
-//  ROTAS DAS HISTÓRIAS!!!
+
+
+/* Historias */
 // Rota que carrega a pagina de uma historia
 router.get('/:idUsuario/historia/:idHistoria', controllerHistoria.buscaHistoria);
 
@@ -27,7 +32,9 @@ router.post('/:idUsuario/NovaHistoria', controllerHistoria.adicionaHistoriaPost)
 // Rota para deletar uma história
 router.get('/:idUsuario/deletarHistoria/:idHistoria', controllerHistoria.deletaHistoria);
 
-// Rotas Dos Capitulos
+
+
+/* Capitulos */
 // Rota que retorna o formulario para adicionar historias  
 router.get('/:idUsuario/historia/:idHistoria/adicionarCapitulo', controllerHistoria.adicionaCapituloGet);
 
@@ -43,7 +50,9 @@ router.post('/:idUsuario/historia/:idHistoria/capitulo/:idCapitulo', controllerH
 // Rota para deletar um capitulo 
 router.get('/:idUsuario/historia/:idHistoria/capitulo/:idCapitulo/deletarCapitulo', controllerHistoria.deletarCapitulo);
 
-// Rotas Das Anotações
+
+
+/* Foco Do Capitulo */
 // Rota para adicionar Um Novo Foco Ao Capitulo
 router.post('/:idUsuario/historia/:idHistoria/capitulo/:idCapitulo/adicionarFocoAoCapitulo', controllerHistoria.adicionarFocoAoCapitulo);
 
@@ -56,6 +65,9 @@ router.get('/:idUsuario/historia/:idHistoria/capitulo/:idCapitulo/atualizarFocoC
 // Rota que atualiza um foco do capitulo
 router.post('/:idUsuario/historia/:idHistoria/capitulo/:idCapitulo/atualizarFocoCapitulo/:idFocoDoCapitulo', controllerHistoria.atualizarFocoDoCapituloPost);
 
+
+
+/* Humor Do Capitulo */
 // Rota Para Adicionar Humor Ao Capitulo
 router.post('/:idUsuario/historia/:idHistoria/capitulo/:idCapitulo/adicionarHumor', controllerHistoria.adicionaHumorPost);
 
@@ -68,19 +80,24 @@ router.post('/:idUsuario/historia/:idHistoria/capitulo/:idCapitulo/atualizarHumo
 // Rota Para Deletar Humor Do Capitulo
 router.get('/:idUsuario/historia/:idHistoria/capitulo/:idCapitulo/excluirHumorDoCapitulo/:idHumorDoCapitulo', controllerHistoria.deletaHumor);
 
+
+
+/* Personagem Capitulo */
 // Rota Para Adicionar Personagens aos capitulos
 router.post('/:idUsuario/historia/:idHistoria/capitulo/:idCapitulo/adicionarPersonagem', controllerHistoria.adicionaPersonagensNoCapitulo);
 
 // Rota Para Remover Um Personagem De Um Capitulo
 router.get('/:idUsuario/historia/:idHistoria/capitulo/:idCapitulo/removerPersonagemDoCapitulo/:idPersonagemDoCapitulo', controllerHistoria.deletarPersonagemDoCapitulo);
 
+
+
+/* Cenarios Do Capitulo */
 // Rota Para Adicionar Um Cenário A Um Capitulo
 router.post('/:idUsuario/historia/:idHistoria/capitulo/:idCapitulo/adicionaCenario', controllerHistoria.adicionarCenarioNoCapitulo);
 
 
 
-// Rotas Dos Personagens
-
+/* Rotas Dos Personagens */
 // Rota Para Retornar Um Template Para Adicionar Personagens
 router.get('/:idUsuario/adicionarPersonagem', controllerPersonagens.adicionarPersonagemGet);
 

@@ -1,4 +1,4 @@
-const Nodemailer = require("nodemailer");
+const nodemailer = require("nodemailer");
 const { MailtrapTransport } = require("mailtrap");
 const dadosSensiveis = require('../dadosSensiveis.json');
 
@@ -7,7 +7,7 @@ class Email {
     #transporte
     #DawnDraft
     #EmailUsuario
-    #CodigoVerificacaoEmail
+    #CodigoVerificacao
 
     constructor(emailUsuario) {
         this.#TOKEN = dadosSensiveis.TOKEN2;
@@ -30,11 +30,11 @@ class Email {
             
         }
 
-        this.#CodigoVerificacaoEmail = codigoVerificacao;
+        this.#CodigoVerificacao = codigoVerificacao;
     }
 
     get getCodigoVerificacaoEmail(){
-        return this.#CodigoVerificacaoEmail;
+        return this.#CodigoVerificacao;
     }
 
     async enviarEmailDeVerificacao(){
@@ -42,8 +42,8 @@ class Email {
             from: this.#DawnDraft,
             to: this.#EmailUsuario,
             subject: "Verificação De Email",
-            text: `Código De Verificação ${this.#CodigoVerificacaoEmail}`,
-            category: "Integration Test",
+            text: `Código De Verificação ${this.#CodigoVerificacao}`,
+            category: "Validação De Email",
         });
 
        return emailEnviado.success;
@@ -55,8 +55,8 @@ class Email {
             from: this.#DawnDraft,
             to: this.#EmailUsuario,
             subject: "Verificação De Email",
-            text: `LINK Para Alterar Senha: \n http://localhost:3000/LoginECadastro/esqueciMinhaSenha/:${this.#CodigoVerificacaoEmail}`,
-            category: "Integration Test",
+            text: `LINK Para Alterar Senha: \n http://localhost:3000/LoginECadastro/esqueciMinhaSenha/:${this.#CodigoVerificacao}`,
+            category: "Recuperar Acesso A Conta",
         });
 
         return emailEnviado.success;

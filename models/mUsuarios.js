@@ -91,7 +91,7 @@ class Usuarios {
         return usuario;
     }
 
-    static async mudarVerificacao(idUsuario, verificacao){
+    static async mudarVerificacaoDoUsuario(idUsuario, verificacao){
         let usuarioAserAtualizado = await Conexao.getCollections('Usuarios').updateOne(
             {
                 _id : new ObjectId(idUsuario)

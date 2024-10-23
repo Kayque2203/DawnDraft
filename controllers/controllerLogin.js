@@ -43,14 +43,22 @@ exports.CadastroPost = [
 
                     let usuarioCadastrado = await novoUsuario.adicionarUsuario();
 
-                    switch (usuarioCadastrado) {
-                        case null:
-                            res.render('paginaERRO', {erro: "Um erro aconteceu ao efetuar o cadastro, volte e tente novamente!!!", link : "/LoginECadastro"});
-                            break;
-                    
-                        default:
-                            res.redirect(`/LoginECadastro/validacaoDeEmail/:${req.body.email}`);
-                            break;
+                    let verificacaoEmail = new Emails(tratamentoParametroDeRota(req.params.emailUsuario));
+
+                    let emailEnviado = await verificacaoEmail.enviarEmailDeVerificacao();
+
+                    if (usuarioCadastrado == null)
+                    {
+                        res.render('paginaERRO', {erro: "Um erro aconteceu ao efetuar o cadastro, volte e tente novamente!!!", link : "/LoginECadastro"});
+                    }
+                    else if (emailEnviado != true) 
+                    {
+                        await Usuarios.deletarUsuario(buscaEmail._id.toString());
+                        res.render('paginaERRO', {erro: "Erro ao validar o email, faça seu cadastro novamente!!!", link : "/LoginECadastro"})
+                    } 
+                    else 
+                    {
+                        res.redirect(`/LoginECadastro/validacaoDeEmail/:${req.body.email}/:${Criptografia.criptografar(verificacaoEmail.getCodigoVerificacaoEmail)}`);
                     }
                 }
             } 
@@ -58,10 +66,7 @@ exports.CadastroPost = [
             next(error);
         }
     }
-];
-
-// Arrumar Isso Na Terça
-var cod; // Essa Variavel serve para conseguirmos acessar o código gerado no controller validaEmailPost, mas quase ctz que existe um erro aqui, quando diferentes usuarios fizerem o uso dessa funcionalidade os códigos irão entrar um por cima do outro 
+]; 
 
 exports.validaEmailGet = async (req, res, next) => {
     try {
@@ -74,21 +79,7 @@ exports.validaEmailGet = async (req, res, next) => {
         } 
         else 
         {
-            let verificacaoEmail = new Emails(tratamentoParametroDeRota(req.params.emailUsuario));
-
-            let emailEnviado = await verificacaoEmail.enviarEmailDeVerificacao();
-
-            cod = Criptografia.criptografar(verificacaoEmail.getCodigoVerificacaoEmail);
-
-            if (emailEnviado != true) 
-            {
-                await Usuarios.deletarUsuario(buscaEmail._id.toString());
-                res.render('paginaERRO', {erro: "Erro ao validar o email, faça seu cadastro novamente!!!", link : "/LoginECadastro"})
-            } 
-            else 
-            {
-                res.render('validacaoDeEmail', {notify: ""});
-            }
+            res.render('validacaoDeEmail', {notify: ""});
         }
     } catch (error) {
         next(error);
@@ -107,10 +98,10 @@ exports.validaEmailPost = [
             {
                 res.render('paginaERRO', {erro: "Nenhum Usuario Cadastrado Com Esse Email, volte e tente novamente!!!", link : "/LoginECadastro"});
             } 
-            else if (req.body.codigoVerificacao == Criptografia.descriptografa(cod))
+            else if (req.body.codigoVerificacao == Criptografia.descriptografa(tratamentoParametroDeRota(req.params.codValidacao)))
             {
                 cod = '';
-                let mudandoAVerificacaoDoUsuario = Usuarios.mudarVerificacao(buscaEmail._id.toString(), true)
+                let mudandoAVerificacaoDoUsuario = Usuarios.mudarVerificacaoDoUsuario(buscaEmail._id.toString(), true);
                 res.redirect(`/Usuarios/${buscaEmail._id.toString()}`);
             }
             else
