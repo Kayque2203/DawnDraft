@@ -106,6 +106,22 @@ class Usuarios {
         return usuarioAserAtualizado == null? false : true
     }
 
+    // Redefine senha do usuario na funcionalidade de esqueci minha senha!!!
+    static async redefinirSenhaUsuario(emailUsuario, novaSenha){
+        let usuarioARedefinirSenha = await Conexao.getCollections('Usuarios').updateOne(
+            {
+                "Email" : emailUsuario
+            },
+            {
+                $set : {
+                    "Senha" : novaSenha
+                }
+            }
+        );
+
+        return usuarioARedefinirSenha;
+    }
+
     // Verificar isso aqui dps
     static async deletarUsuario(id){
         let personagensDoCapituloDeletados = await PersonagensCapitulo.deletarTodosPersonagensDoCapituloPeloIdUsuario(id);

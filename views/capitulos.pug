@@ -86,12 +86,13 @@ html(lang="pt-br")
                     - contador = 0
                     for personagem1 in personagensCapitulo
                         tr
-                            td
+                            td(class="tdConteudoTabela")
                                 p
                                     a(href=`/Usuarios/:${id_Usuario}/personagem/:${personagem1._id.toString()}`)= personagem1.Nome
                                     span
-                                        a(href=`/Usuarios/:${id_Usuario}/historia/:${id_Historia}/capitulo/:${capitulo._id.toString()}/removerPersonagemDoCapitulo/${idsDosPersonagensDoCapitulo[contador]}`) Deletar
-                                        - contador++
+                                        div(class="spansAttExcluir")
+                                            a(href=`/Usuarios/:${id_Usuario}/historia/:${id_Historia}/capitulo/:${capitulo._id.toString()}/removerPersonagemDoCapitulo/${idsDosPersonagensDoCapitulo[contador]}`) Deletar
+                                            - contador++
 
                 tr
                     td

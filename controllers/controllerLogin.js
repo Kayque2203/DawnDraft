@@ -60,8 +60,7 @@ exports.CadastroPost = [
     }
 ];
 
-// Arrumar Isso Na Terça
-var cod; // Essa Variavel serve para conseguirmos acessar o código gerado no controller validaEmailPost, mas quase ctz que existe um erro aqui, quando diferentes usuarios fizerem o uso dessa funcionalidade os códigos irão entrar um por cima do outro 
+var cod; // Essa Variavel serve para conseguirmos acessar o código gerado no controller validaEmailPost
 
 exports.validaEmailGet = async (req, res, next) => {
     try {
@@ -79,7 +78,6 @@ exports.validaEmailGet = async (req, res, next) => {
             let emailEnviado = await verificacaoEmail.enviarEmailDeVerificacao();
 
             cod = verificacaoEmail.getCodigoVerificacaoEmail;
-            console.log(cod);
 
             if (emailEnviado != true) 
             {
@@ -188,3 +186,120 @@ exports.deletarUsuario = async (req, res, next) => {
         next(error);
     }
 }
+
+exports.esqueciMinhaSenhaGet = (req, res, next) => {
+    try {
+        res.render('esqueciMinhaSenha', {notify:""});
+    } catch (error) {
+        next(error);
+    }
+}
+
+exports.esqueciMinhaSenhaPost = [
+
+    body('email').trim().escape().notEmpty(),
+
+    async (req, res, next) => {
+        try {
+
+            let errors = validationResult(req);
+
+            let buscandoEmail = Usuarios.buscaUsuariosPeloEmail2(req.body.email);
+
+            if (!errors.isEmpty()) 
+            {
+                res.render('esqueciMinhaSenha', {notify: "Verifique se vc digitou certo seu email e tente novamente!!!"})
+            }
+            else if (buscandoEmail == null) 
+            {
+                res.render('paginaERRO', {erro:"Usuario não encontrado, volte e tente novamente!!!", link:`/LoginECadastro`})
+            } 
+            else 
+            {
+                let enviaEmail = new Emails(req.body.email);
+
+                let enviandoEmail = await enviaEmail.enviarEmailComLinkSenha();
+
+                cod = enviaEmail.getCodigoVerificacaoEmail;
+
+                switch (enviandoEmail) {
+                    case null:
+                        res.render('paginaERRO', {erro : "Um erro inesperado aconteceu ao enviar o email, volte e tente novamente!!!", link : "/LoginECadastro"});
+                        break;
+                
+                    default:
+                        res.render('avisos', {aviso : "Email enviado com sucesso, verifique seu email e acesse o link enviado!!!", link : ""});
+                        break;
+                }
+            }
+        } catch (error) {
+            next(error);
+        }
+    }
+];
+
+exports.redefinirSenhaUsuarioGet = async (req, res, next) => {
+    try {
+
+        let buscaEmail = await Usuarios.buscaUsuariosPeloEmail2(tratamentoParametroDeRota(req.params.emailUsuario));
+
+        if(buscaEmail == null)
+        {
+            res.render("paginaERRO", {erro: "Usuario não encontrado volte e tente novamente!!!", link : "/LoginECadastro"});
+        }
+        else if (tratamentoParametroDeRota(req.params.codigoVerificacao) != cod) 
+        {
+            res.render("paginaERRO", {erro: "Código invalido, volte e tente novamente!!!", link : "/LoginECadastro"});
+        }
+        else
+        {
+            res.render('redefinirSenha', {notify : ""});
+        }
+    } catch (error) {
+        next(error);
+    }
+}
+
+
+exports.redefinirSenhaUsuarioPost = [
+
+    body('senha').trim().escape().notEmpty(),
+
+    async (req, res, next) => {
+        try {
+            let errors = validationResult(req);
+            
+            let buscaEmail = await Usuarios.buscaUsuariosPeloEmail2(tratamentoParametroDeRota(req.params.emailUsuario));
+
+            if (!errors.isEmpty()) 
+            {
+                res.render('redefinirSenha', {notify : "Verifique se inseriu a senha corretamente!!!"})
+            }
+            else if(buscaEmail == null)
+            {
+                res.render("paginaERRO", {erro: "Usuario não encontrado volte e tente novamente!!!", link : "/LoginECadastro"});
+            }
+            else if (tratamentoParametroDeRota(req.params.codigoVerificacao) != cod) 
+            {
+                res.render("paginaERRO", {erro: "Código invalido, volte e tente novamente!!!", link : "/LoginECadastro"});
+            }
+            else
+            {
+                let redefinindoSenha = await Usuarios.redefinirSenhaUsuario(tratamentoParametroDeRota(req.params.emailUsuario), Criptografia.criptografar(req.body.senha));
+
+                switch (redefinindoSenha.modifiedCount) {
+                    case 0:
+                        res.render('paginaERRO', {erro : "Um erro aconteceu ao redefinir sua senha, volte e tente novamente!!!", link : "/LoginECadastro"});
+                        break;
+                
+                    default:
+                        cod = "";
+                        res.render('avisos', {aviso: "Senha redefinida com sucesso, volte e faça o login!!!", link : "/loginECadastro"});
+                        break;
+                }
+            }
+        } catch (error) {
+            next(error);
+        }
+    }
+];

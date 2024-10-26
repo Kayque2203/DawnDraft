@@ -55,7 +55,7 @@ class Email {
             from: this.#DawnDraft,
             to: this.#EmailUsuario,
             subject: "Verificação De Email",
-            text: `LINK Para Alterar Senha: \n http://localhost:3000/LoginECadastro/esqueciMinhaSenha/:${this.#CodigoVerificacaoEmail}`,
+            text: `LINK Para Alterar Senha: \n http://localhost:3000/LoginECadastro/redefinirSenha/:${this.#EmailUsuario}/:${this.#CodigoVerificacaoEmail}`,
             category: "Integration Test",
         });
 

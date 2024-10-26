@@ -1,0 +1,13 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+    header
+        h1= aviso 
+
+    if link.length
+        section
+            h2 
+                a(href=`${link}`) Voltar 
