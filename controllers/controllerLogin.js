@@ -19,7 +19,6 @@ exports.CadastroPost = [
     // O método trim() retira os espaços do começo e do final da string, O metodo escape() retirar possiveis caracteres maliciossos das strings, o notEmpty() não aceita que os campos venham vazis.
     body('nome').trim().escape().notEmpty(),
     body('email').trim().escape().notEmpty(),
-    body('telefone').trim().escape().notEmpty(),
     body('senha').trim().escape().notEmpty(),
 
     async (req, res, next) => {
@@ -32,7 +31,7 @@ exports.CadastroPost = [
             }
             else
             {
-                var novoUsuario = new Usuarios(req.body.nome, req.body.email, req.body.telefone, req.body.senha);
+                var novoUsuario = new Usuarios(req.body.nome, req.body.email, req.body.senha);
 
                 if (await novoUsuario.buscaUsuarioPeloEmail(req.body.email) != null)
                 {
@@ -110,7 +109,7 @@ exports.validaEmailPost = [
             {
                 cod = '';
                 let mudandoAVerificacaoDoUsuario = Usuarios.mudarVerificacao(buscaEmail._id.toString(), true)
-                res.redirect(`/Usuarios/${buscaEmail._id.toString()}`);
+                res.render("avisos",{aviso : "Email Verificado Com Sucesso, clique no link para ser redirecionado para a pagina do usuario", txtLink: "Ir para a pagina do usuario" ,link :`/Usuarios/${buscaEmail._id.toString()}`});
             }
             else
             {
@@ -228,7 +227,7 @@ exports.esqueciMinhaSenhaPost = [
                         break;
                 
                     default:
-                        res.render('avisos', {aviso : "Email enviado com sucesso, verifique seu email e acesse o link enviado!!!", link : ""});
+                        res.render('avisos', {aviso : "Email enviado com sucesso, verifique seu email e acesse o link enviado!!!", link : "", txtLink : ""});
                         break;
                 }
             }
@@ -294,7 +293,7 @@ exports.redefinirSenhaUsuarioPost = [
                 
                     default:
                         cod = "";
-                        res.render('avisos', {aviso: "Senha redefinida com sucesso, volte e faça o login!!!", link : "/loginECadastro"});
+                        res.render('avisos', {aviso: "Senha redefinida com sucesso, volte e faça o login!!!", link : "/loginECadastro", txtLink: ""});
                         break;
                 }
             }

@@ -12,13 +12,11 @@ const Conexao = new conexao();
 class Usuarios {
     #nome;
     #email;
-    #telefone;
     #senha;
 
-    constructor( nomeUsuario = '', emailUsuario = '', telUsuario = '', senhaUsuario = '' ) {
+    constructor( nomeUsuario = '', emailUsuario = '', senhaUsuario = '' ) {
         this.setUsuario(nomeUsuario);
         this.setEmail(emailUsuario);
-        this.setTelefone(telUsuario);
         this.setSenha(senhaUsuario);
     }
 
@@ -31,10 +29,6 @@ class Usuarios {
         this.#email = emailUsuario;
     }
 
-    setTelefone(telUsuario){
-        this.#telefone = telUsuario;
-    }
-
     setSenha(senhaUsuario){
         this.#senha = Criptografia.criptografar(senhaUsuario);
     }
@@ -45,7 +39,6 @@ class Usuarios {
         let novoUser = await Conexao.getCollections('Usuarios').insertOne({
             "Nome" : this.#nome,
             "Email" : this.#email,
-            "Telefone" : this.#telefone,
             "Senha" : this.#senha,
             "Verificado" : false
         })
@@ -69,7 +62,6 @@ class Usuarios {
             {
                 $set : {
                     "Nome" : this.#nome,
-                    "Telefone" : this.#telefone,
                     "Senha" : this.#senha
                 }
             }

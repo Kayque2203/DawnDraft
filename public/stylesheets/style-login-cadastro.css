@@ -37,7 +37,7 @@ body {
 .title {
     font-size: 28px;
     font-weight: bold;
-    text-transform: capitalize;
+    /* text-transform: capitalize; */
 }
 .title-primary {
     color: #fff;
