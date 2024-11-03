@@ -1,25 +1,23 @@
 const Nodemailer = require("nodemailer");
-const { MailtrapTransport } = require("mailtrap");
+// const { MailtrapTransport } = require("mailtrap");
 const dadosSensiveis = require('../dadosSensiveis.json');
 
 class Email {
-    #TOKEN
     #transporte
-    #DawnDraft
-    #EmailUsuario
+    #EmailUsuario   
     #CodigoVerificacaoEmail
 
     constructor(emailUsuario) {
-        this.#TOKEN = dadosSensiveis.TOKEN2;
-        this.#transporte = Nodemailer.createTransport(
-            MailtrapTransport({
-              token: this.#TOKEN,
-            })
-        );
-        this.#DawnDraft = {
-            address: "hello@demomailtrap.com",
-            name: "DawnDraft"
-        };
+        this.#transporte = Nodemailer.createTransport({
+            host: "smtp.gmail.com",
+            port: 465,
+            secure: true,
+            auth: {
+                user: "dawndrafttcc@gmail.com",
+                pass: dadosSensiveis.ChaveAPPGmail
+            }
+        });
+
         this.#EmailUsuario = emailUsuario;
 
         let codigoVerificacao = "";
@@ -39,27 +37,25 @@ class Email {
 
     async enviarEmailDeVerificacao(){
         let emailEnviado = await this.#transporte.sendMail({
-            from: this.#DawnDraft,
+            from: "DawnDraft",
             to: this.#EmailUsuario,
             subject: "Verificação De Email",
             text: `Código De Verificação ${this.#CodigoVerificacaoEmail}`,
-            category: "Integration Test",
         });
 
-       return emailEnviado.success;
+       return emailEnviado.accepted;
     }
 
     // Envia Link Para Mudar Senha
     async enviarEmailComLinkSenha(){
         let emailEnviado = await this.#transporte.sendMail({
-            from: this.#DawnDraft,
+            from: "DawnDraf",
             to: this.#EmailUsuario,
             subject: "Verificação De Email",
-            text: `LINK Para Alterar Senha: \n http://localhost:3000/LoginECadastro/redefinirSenha/:${this.#EmailUsuario}/:${this.#CodigoVerificacaoEmail}`,
-            category: "Integration Test",
+            text: `LINK Para Alterar Senha: \n http://localhost:3000/LoginECadastro/redefinirSenha/:${this.#EmailUsuario}/:${this.#CodigoVerificacaoEmail}`
         });
 
-        return emailEnviado.success;
+        return emailEnviado.response;
     }
 }
 

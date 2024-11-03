@@ -77,8 +77,8 @@ exports.validaEmailGet = async (req, res, next) => {
             let emailEnviado = await verificacaoEmail.enviarEmailDeVerificacao();
 
             cod = verificacaoEmail.getCodigoVerificacaoEmail;
-
-            if (emailEnviado != true) 
+            console.log(emailEnviado)
+            if (emailEnviado == null) 
             {
                 await Usuarios.deletarUsuario(buscaEmail._id.toString());
                 res.render('paginaERRO', {erro: "Erro ao validar o email, faça seu cadastro novamente!!!", link : "/LoginECadastro"})
@@ -108,7 +108,7 @@ exports.validaEmailPost = [
             else if (req.body.codigoVerificacao == cod)
             {
                 cod = '';
-                let mudandoAVerificacaoDoUsuario = Usuarios.mudarVerificacao(buscaEmail._id.toString(), true)
+                let mudandoAVerificacaoDoUsuario = Usuarios.mudarVerificacaoDoUsuario(buscaEmail._id.toString(), true)
                 res.render("avisos",{aviso : "Email Verificado Com Sucesso, clique no link para ser redirecionado para a pagina do usuario", txtLink: "Ir para a pagina do usuario" ,link :`/Usuarios/${buscaEmail._id.toString()}`});
             }
             else
@@ -293,7 +293,7 @@ exports.redefinirSenhaUsuarioPost = [
                 
                     default:
                         cod = "";
-                        res.render('avisos', {aviso: "Senha redefinida com sucesso, volte e faça o login!!!", link : "/loginECadastro", txtLink: ""});
+                        res.render('avisos', {aviso: "Senha redefinida com sucesso, volte e faça o login!!!", link : "/loginECadastro", txtLink: "Login"});
                         break;
                 }
             }
