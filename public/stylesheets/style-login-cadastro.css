@@ -12,7 +12,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: brown;
+    background-color: #fcfbee;
 }
 .content {
     background-color: #fff;
@@ -27,7 +27,7 @@ body {
 .content::before {
     content: "";
     position: absolute;
-    background-color: #5b5b5b;
+    background: linear-gradient(to bottom, #ff9101, #f8eb59c2);
     width: 45%;
     height: 100%;
     border-top-left-radius: 15px;

@@ -2,18 +2,15 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+ 
 }
 
 body {
-  padding-top: 50px;
-  padding-left: 350px;
-  padding-right: 350px;
+  width: 100%;
+  margin: 0;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color: #EFEEA5;
-
+  background-color: #fcfbee;
   font-family: "Sora", sans-serif;
-  font-optical-sizing: auto;
-  font-style: normal;
 }
 
 a {
@@ -25,12 +22,22 @@ a {
 
 header{
   display: flex;
+  height: 100%;
+  width: 100%;
   justify-content: space-between;
+  background: linear-gradient(to bottom, #ff9101, #f8eb59c2);
+  margin: 0%;
+  padding: 10px;
+  
+
 }
 
 section{
-  margin-top: 50px;
+  border: 2px solid rebeccapurple;
   font-size: 16pt;
+  width: 100%;
+  min-height: 100vh;
+  flex: 1;
 }
 
 .boxsIntro{
@@ -43,11 +50,19 @@ section{
 
 .linkLogin{
   padding: 10px;
-  background-color: white;
+  background-color: rgba(93, 89, 89, 0.644);
   border-radius: 5px;
   text-decoration: none;
-  width: 20%;
+  width: 15%;
   height: min-content;
+  font-weight: bold;
+  color: white
+  
+}
+
+.linkLogin:hover{
+  background-color: rgb(30, 97, 241);
+
 }
 
 .linkCadastro{
@@ -60,22 +75,26 @@ section{
 }
 
 .img-home{
-  width: 400px;
+  width: 500px;
   height: 300px;
   border-radius: 7px;
 }
 
 .section1{
+  
   display: flex;
   justify-content: space-between;
   gap: 5%;
   align-items: center;
+  padding-left: 200px;
+  padding-right: 200px;
+
 }
 
 .logo-nav{
   width: 75px;
   height: 75px;
-  border-radius: 10px;
+  border-radius: 38px;
 }
 
 .navBar{
@@ -89,4 +108,45 @@ section{
   display: flex;
   align-items: center;
   gap: 10px;
+}
+
+.btn-sobre{
+  width: 15%;
+  height: 35px;
+  background: transparent; 
+  border: none; 
+  color: #000; 
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.btn-sobre:hover{
+  color: white;
+
+}
+
+.btn-inicio{
+  width: 15%;
+  height: 35px;
+  background: transparent; 
+  border: none; 
+  color: #000; 
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.btn-inicio:hover{
+  color: white;
+}
+
+.footer{
+  background-color: #292727da; 
+  color: white; 
+  text-align: center; 
+  padding: 20px; 
+  position: relative; 
+  bottom: 0; 
+  width: 100%; 
 }
