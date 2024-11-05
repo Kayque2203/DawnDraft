@@ -3,8 +3,6 @@ const conexao = require('../conexaoBD/conexaoBD.js');
 const Criptografia = require('../assets/criptografia.js');
 const Historias = require('../models/mHistorias.js');
 const PersonagensCapitulo = require('../models/mPersonagensCapitulo.js');
-const FocoDoCapitulo = require('../models/mFocoDosCapitulos.js');
-const HumorCapitulo = require('../models/mHumorCapitulo.js');
 const Personagens = require('../models/mPersonagens.js');
 
 const Conexao = new conexao();
@@ -118,8 +116,6 @@ class Usuarios {
     static async deletarUsuario(id){
         let personagensDoCapituloDeletados = await PersonagensCapitulo.deletarTodosPersonagensDoCapituloPeloIdUsuario(id);
         let personagens = await Personagens.deletarTodosPersonagensPeloIdUsuario(id);
-        let FocosDeCapituloDeletados = await FocoDoCapitulo.deletarFocosDoCapituloPeloIdUsuario(id);
-        let HomoresDeCapitulosDeletados = await HumorCapitulo.excluiTodosHumorDoCapituloPeloIdUsuario(id);
         let historiasDeletadas = await Historias.deleteTodasHistoriasDoUser(id);
         let usuarioDeletado = await Conexao.getCollections('Usuarios').deleteOne({_id: new ObjectId(id)});
         return usuarioDeletado

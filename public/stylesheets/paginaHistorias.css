@@ -103,10 +103,10 @@ textarea[name="prologo"]{
 body {
     padding-top: 50px;
     padding-bottom: 50px;
-    padding-left: 350px;
-    padding-right: 350px;
+    padding-left: 10%;
+    padding-right: 10%;
     font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-    background-color: #EFEEA5;
+    background-color: #fcfbee;
 
     font-family: "Sora", sans-serif;
     font-optical-sizing: auto;
