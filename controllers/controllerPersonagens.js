@@ -140,10 +140,10 @@ exports.atualizarPersonagemPost = [
 
             let personagem = await Personagens.buscaPersonagem(TratamentoParamtrosDeRota(req.params.idPersonagem));
 
-            if (!errors.isEmpty()) 
+            if (!errors.isEmpty())
             {
                 res.render('paginaERRO', {erro: 'Um Erro Aconteceu Na Validação Dos Dados, volte e tente novamente!!!', link : `/Usuarios/${req.params.idUsuario}/adicionarPersonagem`});
-            } 
+            }
             else if(usuario == null)
             {
                 res.render('paginaERRO', {erro: 'Usuario Não Encontrado, Volte E Tente Novamente!!!', link : '/'});
@@ -157,6 +157,8 @@ exports.atualizarPersonagemPost = [
                 let personagemASerAtualizado = new Personagens(req.body.nome, req.body.idade, req.body.personalidade, req.body.hobies, req.body.sonhos, req.body.traumas, req.body.objetivo, req.body.informacoes, TratamentoParamtrosDeRota(req.params.idUsuario));
 
                 let personagemAtualizado = await personagemASerAtualizado.atualizaPersonagem();
+
+                console.log(personagemAtualizado);
 
                 switch (personagemAtualizado) {
                     case null:
@@ -184,7 +186,7 @@ exports.deletarPersonagem = async (req, res, next) => {
         if (usuario == null)
         {
             res.render('paginaERRO', {erro : "Usuario não encontrado, volte e tente novamente!!!", link: '/'});
-        } 
+        }
         else if(personagem == null || personagem.Usuario.toString() != TratamentoParamtrosDeRota(req.params.idUsuario))
         {
             res.render('paginaERRO', {erro : "Personagem não encontrado, volte e tente novamente!!!", link: `/Usuarios/${req.params.idUsuario}`});

@@ -35,7 +35,7 @@ router.get('/:idUsuario/deletarHistoria/:idHistoria', controllerHistoria.deletaH
 
 
 /* Capitulos */
-// Rota que retorna o formulario para adicionar historias  
+// Rota que retorna o formulario para adicionar historias
 router.get('/:idUsuario/historia/:idHistoria/adicionarCapitulo', controllerHistoria.adicionaCapituloGet);
 
 // Rota post para adicionar novos cápitulos as histórias
@@ -47,7 +47,7 @@ router.get('/:idUsuario/historia/:idHistoria/capitulo/:idCapitulo', controllerHi
 // Rota para atualizar um capitulo
 router.post('/:idUsuario/historia/:idHistoria/capitulo/:idCapitulo', controllerHistoria.AtualizaCapitulo);
 
-// Rota para deletar um capitulo 
+// Rota para deletar um capitulo
 router.get('/:idUsuario/historia/:idHistoria/capitulo/:idCapitulo/deletarCapitulo', controllerHistoria.deletarCapitulo);
 
 

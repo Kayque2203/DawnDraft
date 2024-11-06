@@ -18,7 +18,7 @@ router.get('/deletarUsuario/:idUsuario',  controllerLogin.deletarUsuario);
 // Rota que ira retornar o template de validação de email
 router.get('/validacaoDeEmail/:emailUsuario', controllerLogin.validaEmailGet);
 
-// Rota que irá validar emails 
+// Rota que irá validar emails
 router.post('/validacaoDeEmail/:emailUsuario', controllerLogin.validaEmailPost);
 
 // Rota que retorna um template para os usuarios que esqueceram sua senha

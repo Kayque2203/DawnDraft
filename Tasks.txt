@@ -1,9 +1,3 @@
 Tela de Login e cadastro (Nesse fim de semana acabo isso)
     -> Adicionar a funcionalidade de fazer login com o google
         Site da documentação da api: https://developers.google.com/identity/sign-in/web/sign-in?hl=pt-br;
-
-    -> Adicionar a funcionalidade para os usuarios que esqueceram sua senha;
-        Um norte para conseguirmos enviar emails automaticos atraves do nodeJS os emails automaticos seriam usados para enviar códigos de acesso para os usuarios que esquecerem suas senhas.
-            https://mailtrap.io/pt/blog/send-emails-with-nodejs/
-
-    -> Adicionar Máscaras nos campos ( Podemos ultilizar Jquery e Regex );

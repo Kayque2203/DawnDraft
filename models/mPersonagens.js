@@ -89,7 +89,7 @@ class Personagens {
     static async deletarPersonagem(idPErsonagem){
         let personagemDeletado = await Conexao.getCollections('Personagens').deleteOne({ _id : new ObjectId(idPErsonagem)});
 
-        return personagemDeletado; 
+        return personagemDeletado;
     }
 
     static async deletarTodosPersonagensPeloIdUsuario(idUsuario){
