@@ -13,12 +13,20 @@ class Personagens {
     #MairoesTraumas;
     #ObjetivoNaHistoria;
     #InformacoesRelevantesAParte;
+    #CorDaPele;
+    #CaracteristicasOlhos;
+    #CaracteristicasCabelo;
+    #Altura;
+    #Peso;
+    #RoupasEAcessorios;
+    #ResumoPersonagem;
+
     #ColecaoPersonagem;
     #Usuario;
 
 
     // Contrutor da classe
-    constructor(nomePersonagem, idadePersonagem, personalidadePersonagem, hobiesPersonagem, sonhosDoPersonagens, traumasDoPersonagem, objetivoDopersonagemNaHistoria, infosRelevantes, idUsuario){
+    constructor(nomePersonagem, idadePersonagem, personalidadePersonagem, hobiesPersonagem, sonhosDoPersonagens, traumasDoPersonagem, objetivoDopersonagemNaHistoria, infosRelevantes, idUsuario, corPele, caracOlhos, caracCabelo, alturaPers, pesoPers, acessoriosRoupas, resumoPers){
         this.#Nome = nomePersonagem;
         this.#Idade = idadePersonagem;
         this.#Personalidade = personalidadePersonagem;
@@ -27,6 +35,14 @@ class Personagens {
         this.#MairoesTraumas = traumasDoPersonagem;
         this.#ObjetivoNaHistoria = objetivoDopersonagemNaHistoria;
         this.#InformacoesRelevantesAParte = infosRelevantes;
+        this.#CorDaPele = corPele;
+        this.#CaracteristicasOlhos = caracOlhos;
+        this.#CaracteristicasCabelo = caracCabelo;
+        this.#Altura = alturaPers;
+        this.#Peso = pesoPers;
+        this.#RoupasEAcessorios = acessoriosRoupas;
+        this.#ResumoPersonagem = resumoPers;
+
         this.#Usuario = new ObjectId(idUsuario);
         this.#ColecaoPersonagem = Conexao.getCollections('Personagens');
     }
@@ -43,6 +59,13 @@ class Personagens {
             "MairoesTraumas" : this.#MairoesTraumas,
             "ObjetivoNaHistoria" : this.#ObjetivoNaHistoria,
             "InformacoesRelevantesAParte": this.#InformacoesRelevantesAParte,
+            "CorDaPele" : this.#CorDaPele,
+            "CaracteristicaDosOlhos" : this.#CaracteristicasOlhos,
+            "CaracteristicasDoCabelo" : this.#CaracteristicasCabelo,
+            "Altura" : this.#Altura,
+            "Peso" : this.#Peso,
+            "RoupasEAcessorios" : this.#RoupasEAcessorios,
+            "ResumoPerosnagem" : this.#ResumoPersonagem,
             "Usuario" : this.#Usuario
         });
 
@@ -64,7 +87,14 @@ class Personagens {
                     "MairoesSonhos" : this.#MairoesSonhos,
                     "MairoesTraumas" : this.#MairoesTraumas,
                     "ObjetivoNaHistoria" : this.#ObjetivoNaHistoria,
-                    "InformacoesRelevantesAParte": this.#InformacoesRelevantesAParte
+                    "InformacoesRelevantesAParte": this.#InformacoesRelevantesAParte,
+                    "CorDaPele" : this.#CorDaPele,
+                    "CaracteristicaDosOlhos" : this.#CaracteristicasOlhos,
+                    "CaracteristicasDoCabelo" : this.#CaracteristicasCabelo,
+                    "Altura" : this.#Altura,
+                    "Peso" : this.#Peso,
+                    "RoupasEAcessorios" : this.#RoupasEAcessorios,
+                    "ResumoPerosnagem" : this.#ResumoPersonagem,
                 },
                 $currentDate : {lastModified : true}
             }

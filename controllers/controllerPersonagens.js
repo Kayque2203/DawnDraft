@@ -36,6 +36,14 @@ exports.adicionarPersonagemPost = [
     body('objetivo').trim().escape().notEmpty(),
     body('informacoes').trim().escape().notEmpty(),
 
+    body('corPele').trim().escape().notEmpty(),
+    body('olhos').trim().escape().notEmpty(),
+    body('cabelo').trim().escape().notEmpty(),
+    body('altura').trim().escape().notEmpty(),
+    body('peso').trim().escape().notEmpty(),
+    body('roupas').trim().escape().notEmpty(),
+    body('resumoPersonagem').trim().escape().notEmpty(),
+    
     async (req, res, next) => {
         try {
             let errors = validationResult(req);
@@ -52,7 +60,7 @@ exports.adicionarPersonagemPost = [
             }
             else
             {
-                let personagemASerAdicionado = new Personagens(req.body.nome, req.body.idade, req.body.personalidade, req.body.hobies, req.body.sonhos, req.body.traumas, req.body.objetivo, req.body.informacoes, TratamentoParamtrosDeRota(req.params.idUsuario));
+                let personagemASerAdicionado = new Personagens(req.body.nome, req.body.idade, req.body.personalidade, req.body.hobies, req.body.sonhos, req.body.traumas, req.body.objetivo, req.body.informacoes, TratamentoParamtrosDeRota(req.params.idUsuario), req.body.corPele, req.body.olhos, req.body.cabelo, req.body.altura, req.body.peso, req.body.roupas, req.body.resumoPersonagem);
 
                 let personagemAdicinado = await personagemASerAdicionado.adicionaPersonagem();
 
@@ -132,6 +140,14 @@ exports.atualizarPersonagemPost = [
     body('objetivo').trim().escape().notEmpty(),
     body('informacoes').trim().escape().notEmpty(),
 
+    body('corPele').trim().escape().notEmpty(),
+    body('olhos').trim().escape().notEmpty(),
+    body('cabelo').trim().escape().notEmpty(),
+    body('altura').trim().escape().notEmpty(),
+    body('peso').trim().escape().notEmpty(),
+    body('roupas').trim().escape().notEmpty(),
+    body('resumoPersonagem').trim().escape().notEmpty(),
+
     async (req, res, next) => {
         try {
             let errors = validationResult(req);
@@ -154,7 +170,7 @@ exports.atualizarPersonagemPost = [
             }
             else
             {
-                let personagemASerAtualizado = new Personagens(req.body.nome, req.body.idade, req.body.personalidade, req.body.hobies, req.body.sonhos, req.body.traumas, req.body.objetivo, req.body.informacoes, TratamentoParamtrosDeRota(req.params.idUsuario));
+                let personagemASerAtualizado = new Personagens(req.body.nome, req.body.idade, req.body.personalidade, req.body.hobies, req.body.sonhos, req.body.traumas, req.body.objetivo, req.body.informacoes, TratamentoParamtrosDeRota(req.params.idUsuario), req.body.corPele, req.body.olhos, req.body.cabelo, req.body.altura, req.body.peso, req.body.roupas, req.body.resumoPersonagem);
 
                 let personagemAtualizado = await personagemASerAtualizado.atualizaPersonagem();
 
