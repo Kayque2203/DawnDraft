@@ -1,5 +1,4 @@
 const Nodemailer = require("nodemailer");
-// const { MailtrapTransport } = require("mailtrap");
 const dadosSensiveis = require('../dadosSensiveis.json');
 
 class Email {

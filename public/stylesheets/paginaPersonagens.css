@@ -1,0 +1,149 @@
+*{
+    margin : 0px;
+    padding : 0px;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    margin: 0;
+    font: 12.5pt "Lucida Grande", Helvetica, Arial, sans-serif;
+    background-color: #fcfbee;
+    font-family: "Sora", sans-serif;
+}
+
+.footer{
+    background-color: #292727da; 
+    color: white; 
+    text-align: center; 
+    padding: 20px; 
+    position: relative; 
+    bottom: 0; 
+    width: 100%; 
+}
+
+section{
+    padding-top: 1.9%;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-bottom: 50px;
+}
+
+
+input:focus{
+    border: none;
+    box-shadow: 0 0 0 0;
+    outline: 0;
+    border-bottom: 1px solid black;
+}
+
+input{
+    border: none;
+    width: 100%;
+    padding: 5pt;
+    margin-bottom: 5pt;
+    font-size: 12.5pt;
+}
+
+label{
+    padding: 5pt;
+    margin-bottom: 5pt;
+    background-color: white;
+    width: auto;
+}
+
+div{
+    display: flex;
+    align-items: center;
+}
+
+h2{
+    margin-bottom: 3pt;
+}
+
+button[type="submit"]{
+    width: 100%;
+    padding: 5pt;
+    border-radius: 5pt;
+    border: none;
+    cursor: pointer;
+    margin-top: 5pt;
+    background: linear-gradient(to bottom, #ff9101, #f8eb59c2);
+    font-size: 14pt;
+    color: black;
+}
+
+.divResumoPersonagem{
+    flex-direction: column;
+    width: 100%;
+    background-color: white;
+    height: 55%;
+    margin-top: 18pt;
+    margin-bottom: 18pt;
+    padding: 5pt;
+}
+
+textarea{
+    width: 100%;
+    height: max-content;
+    font-size: 12.5pt;
+    padding: 5pt;
+    height: 55%;
+    border: none;
+}
+
+textarea:focus{
+    border: none;
+    box-shadow: 0 0 0 0;
+    outline: 0;
+}
+
+.marginTop15pt{
+    margin-top: 15pt;
+}
+
+/* Nav bar */
+header{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    justify-content: space-between;
+    background: linear-gradient(to bottom, #ff9101, #f8eb59c2);
+    margin: 0%;
+    padding: 10px;
+}
+
+.logo-nav{
+    width: 75px;
+    height: 75px;
+    border-radius: 38px;
+}
+
+.boxTituloLogo{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-inicio{
+    width: 15%;
+    height: 35px;
+    background: transparent; 
+    border: none; 
+    color: #000; 
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.navBar{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+a{
+    color:black;
+    text-decoration: none;
+}

@@ -28,8 +28,6 @@ header{
   background: linear-gradient(to bottom, #ff9101, #f8eb59c2);
   margin: 0%;
   padding: 10px;
-  
-
 }
 
 section{
@@ -57,12 +55,10 @@ section{
   height: min-content;
   font-weight: bold;
   color: white
-  
 }
 
 .linkLogin:hover{
   background-color: rgb(30, 97, 241);
-
 }
 
 .linkCadastro{
@@ -81,14 +77,12 @@ section{
 }
 
 .section1{
-  
   display: flex;
   justify-content: space-between;
   gap: 5%;
   align-items: center;
   padding-left: 200px;
   padding-right: 200px;
-
 }
 
 .logo-nav{
@@ -123,7 +117,6 @@ section{
 
 .btn-sobre:hover{
   color: white;
-
 }
 
 .btn-inicio{
