@@ -5,7 +5,6 @@ const TratamentoParamtrosDeRota = require('../assets/tratamentoParametroRota');
 
 const { validationResult, body } = require('express-validator');
 const PersonagensCapitulo = require('../models/mPersonagensCapitulo');
-const trataParametrosDeRota = require('../assets/tratamentoParametroRota');
 
 // Endpoint que retorna um template para criar um usuario
 exports.adicionarPersonagemGet = async (req, res, next) => {
@@ -104,30 +103,6 @@ exports.buscaPersonagem = async (req, res, next) => {
         next(error);
     }
 }
-
-// Endpoint que retorna um template para atualizar um personagem
-// exports.atualizarPersonagemGet = async (req, res, next) => {
-//     try {
-//         let usuario = await Usuarios.buscaUsuarioPeloId(TratamentoParamtrosDeRota(req.params.idUsuario));
-
-//         let personagem = await Personagens.buscaPersonagem(TratamentoParamtrosDeRota(req.params.idPersonagem));
-
-//         if (usuario == null) 
-//         {
-//             res.render('paginaERRO', {erro : "Usuario não encontrado, volte e tente novamente!!!", link: 'http://localhost:3000'});
-//         } 
-//         else if(personagem == null || personagem.Usuario.toString() != TratamentoParamtrosDeRota(req.params.idUsuario))
-//         {
-//             res.render('paginaERRO', {erro : "Personagem não encontrado, volte e tente novamente!!!", link: `http://localhost:3000/Usuarios/${req.params.idUsuario}`});
-//         }
-//         else
-//         {
-//             res.render('atualizarPersonagem', {personagem});
-//         }
-//     } catch (error) {
-//         next(error);
-//     }
-// }
 
 // EndPoint Para Atualizar As Infoemações Do Personagem No Banco De DaDos
 exports.atualizarPersonagemPost = [

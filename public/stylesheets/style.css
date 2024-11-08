@@ -1,14 +1,13 @@
 *{
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
- 
+  box-sizing: border-box; 
 }
 
 body {
   width: 100%;
   margin: 0;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 1.8vh "Lucida Grande", Helvetica, Arial, sans-serif;
   background-color: #fcfbee;
   font-family: "Sora", sans-serif;
 }
@@ -22,12 +21,12 @@ a {
 
 header{
   display: flex;
-  height: 100%;
   width: 100%;
   justify-content: space-between;
   background: linear-gradient(to bottom, #ff9101, #f8eb59c2);
   margin: 0%;
   padding: 10px;
+  align-items: center;
 }
 
 section{
@@ -35,11 +34,12 @@ section{
   font-size: 16pt;
   width: 100%;
   min-height: 100vh;
-  flex: 1;
 }
 
 .boxsIntro{
-  width: 45%;
+  width: auto;
+  max-width: 60%;
+  text-align: left;
 }
 
 .boxsIntro h2{
@@ -79,10 +79,9 @@ section{
 .section1{
   display: flex;
   justify-content: space-between;
-  gap: 5%;
+  gap: 2%;
   align-items: center;
-  padding-left: 200px;
-  padding-right: 200px;
+  padding: 5%;
 }
 
 .logo-nav{
@@ -92,7 +91,7 @@ section{
 }
 
 .navBar{
-  width: 100%;
+  width: 78%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -101,7 +100,8 @@ section{
 .boxTituloLogo{
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 7.5pt;
+  width: 22%;
 }
 
 .btn-sobre{
@@ -142,4 +142,50 @@ section{
   position: relative; 
   bottom: 0; 
   width: 100%; 
+}
+
+.btnDropDown{
+  display: none;
+  padding: 10pt;
+}
+
+@media (max-width: 1333px) {
+  .section1{
+    padding-top: 20pt;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .boxsIntro{
+    width: 95%;
+    margin-bottom: 20px;
+  }
+
+  .img-home{
+    width: 95%;
+  }
+}
+
+@media (max-width: 1024px) {
+  .navBar{
+    display: none;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* <a href="https://www.flaticon.com/br/icones-gratis/cardapio" title="cardápio ícones">Cardápio ícones criados por Catalin Fertu - Flaticon</a> */
+  .btnDropDown{
+    display: block;
+  }
+
+  .linkLogin{
+    width: 180px;
+  }
+}
+
+@media (max-width: 720px) {
+  .img-home {
+    width: 100%;
+    height: auto;
+  }
 }
