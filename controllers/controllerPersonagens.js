@@ -5,6 +5,7 @@ const TratamentoParamtrosDeRota = require('../assets/tratamentoParametroRota');
 
 const { validationResult, body } = require('express-validator');
 const PersonagensCapitulo = require('../models/mPersonagensCapitulo');
+const trataParametrosDeRota = require('../assets/tratamentoParametroRota');
 
 // Endpoint que retorna um template para criar um usuario
 exports.adicionarPersonagemGet = async (req, res, next) => {
@@ -139,7 +140,6 @@ exports.atualizarPersonagemPost = [
     body('traumas').trim().escape().notEmpty(),
     body('objetivo').trim().escape().notEmpty(),
     body('informacoes').trim().escape().notEmpty(),
-
     body('corPele').trim().escape().notEmpty(),
     body('olhos').trim().escape().notEmpty(),
     body('cabelo').trim().escape().notEmpty(),
@@ -158,7 +158,7 @@ exports.atualizarPersonagemPost = [
 
             if (!errors.isEmpty())
             {
-                res.render('paginaERRO', {erro: 'Um Erro Aconteceu Na Validação Dos Dados, volte e tente novamente!!!', link : `/Usuarios/${req.params.idUsuario}/adicionarPersonagem`});
+                res.render('paginaERRO', {erro: 'Um Erro Aconteceu Na Validação Dos Dados, volte e tente novamente!!!', link : `/Usuarios/${req.params.idUsuario}/personagem/${req.params.idPersonagem}`});
             }
             else if(usuario == null)
             {
@@ -172,17 +172,19 @@ exports.atualizarPersonagemPost = [
             {
                 let personagemASerAtualizado = new Personagens(req.body.nome, req.body.idade, req.body.personalidade, req.body.hobies, req.body.sonhos, req.body.traumas, req.body.objetivo, req.body.informacoes, TratamentoParamtrosDeRota(req.params.idUsuario), req.body.corPele, req.body.olhos, req.body.cabelo, req.body.altura, req.body.peso, req.body.roupas, req.body.resumoPersonagem);
 
-                let personagemAtualizado = await personagemASerAtualizado.atualizaPersonagem();
+                console.log(req.body.nome, req.body.idade, req.body.personalidade, req.body.hobies, req.body.sonhos, req.body.traumas, req.body.objetivo, req.body.informacoes, TratamentoParamtrosDeRota(req.params.idUsuario), req.body.corPele, req.body.olhos, req.body.cabelo, req.body.altura, req.body.peso, req.body.roupas, req.body.resumoPersonagem)
 
-                console.log(personagemAtualizado);
+                let personagemAtualizado = await personagemASerAtualizado.atualizaPersonagem(TratamentoParamtrosDeRota(req.params.idPersonagem));
 
-                switch (personagemAtualizado) {
-                    case null:
-                        res.render('paginaERRO', {erro : 'Um Erro Ao Atualizar O Personagem Aconteceu, volte e tente novamente!!!', link : `/Usuarios/${req.params.idUsuario}/adicionarPersonagem`});
+                console.log(personagemAtualizado)
+
+                switch (personagemAtualizado.modifiedCount) {
+                    case 0:
+                        res.render('paginaERRO', {erro : 'Um Erro Ao Atualizar O Personagem Aconteceu, volte e tente novamente!!!', link : `/Usuarios/${req.params.idUsuario}/personagem/${req.params.idPersonagem}`});
                         break;
                 
                     default:
-                        res.redirect(`/Usuarios/${req.params.idUsuario}/personagem/${personagemAtualizado._id.toString()}`);
+                        res.redirect(`/Usuarios/${req.params.idUsuario}/personagem/${TratamentoParamtrosDeRota(req.params.idPersonagem)}`);
                         break;
                 }
             }

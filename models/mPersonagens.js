@@ -35,6 +35,7 @@ class Personagens {
         this.#MairoesTraumas = traumasDoPersonagem;
         this.#ObjetivoNaHistoria = objetivoDopersonagemNaHistoria;
         this.#InformacoesRelevantesAParte = infosRelevantes;
+
         this.#CorDaPele = corPele;
         this.#CaracteristicasOlhos = caracOlhos;
         this.#CaracteristicasCabelo = caracCabelo;
@@ -65,7 +66,7 @@ class Personagens {
             "Altura" : this.#Altura,
             "Peso" : this.#Peso,
             "RoupasEAcessorios" : this.#RoupasEAcessorios,
-            "ResumoPerosnagem" : this.#ResumoPersonagem,
+            "ResumoPersonagem" : this.#ResumoPersonagem,
             "Usuario" : this.#Usuario
         });
 
@@ -80,7 +81,7 @@ class Personagens {
             },
             {
                 $set : {
-                    "Nome" : this.#Nome,
+                   "Nome" : this.#Nome,
                     "Idade" : this.#Idade,
                     "Personalidade" : this.#Personalidade,
                     "Hobies" : this.#Hobies,
@@ -94,7 +95,8 @@ class Personagens {
                     "Altura" : this.#Altura,
                     "Peso" : this.#Peso,
                     "RoupasEAcessorios" : this.#RoupasEAcessorios,
-                    "ResumoPerosnagem" : this.#ResumoPersonagem,
+                    "ResumoPersonagem" : this.#ResumoPersonagem,
+                    "Usuario" : this.#Usuario
                 },
                 $currentDate : {lastModified : true}
             }

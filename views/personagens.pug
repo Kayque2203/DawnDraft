@@ -41,8 +41,8 @@ html(lang="pt-br")
           input(type="text", name="sonhos", placeholder="Fale sobre os sonhos que o(a) personagem almeja",  maxlength="100", value=`${personagem.MairoesSonhos}`) 
 
         div
-            label(for="") Traumas:
-            input(type="text", name="traumas", placeholder="Conte os traumas sofridos pelo(a) personagem",  maxlength="100", value=`${personagem.MairoesTraumas}`) 
+          label(for="") Traumas:
+          input(type="text", name="traumas", placeholder="Conte os traumas sofridos pelo(a) personagem",  maxlength="100", value=`${personagem.MairoesTraumas}`) 
 
         div
           label(for="") Objetivo:
@@ -56,56 +56,37 @@ html(lang="pt-br")
 
         div
           label Cor&nbspda&nbsppele:
-          input(type="text", name="corPele", placeholder="Informe a cor de pele do(a) personagem", maxlength="50")
+          input(type="text", name="corPele", placeholder="Informe a cor de pele do(a) personagem", maxlength="50", value=`${personagem.CorDaPele}`)
 
         div 
           label Caracteristicas&nbspdos&nbspolhos:
-          input(type="text", name="olhos", placeholder="Informe as caracteristicas dos olhos do(a) personagem", maxlength="50")
+          input(type="text", name="olhos", placeholder="Informe as caracteristicas dos olhos do(a) personagem", maxlength="50", value=`${personagem.CaracteristicaDosOlhos}`)
         
         div 
           label Caracteristicas&nbspdo&nbspcabelo: 
-          input(type="text", name="cabelo", placeholder="Informe as caracteristicas do cabelo do(a) personagem", maxlength="50")
+          input(type="text", name="cabelo", placeholder="Informe as caracteristicas do cabelo do(a) personagem", maxlength="50", value=`${personagem.CaracteristicasDoCabelo}`)
         
         div
           label Altura:
-          input(type="text", name="altura", placeholder="Informe a altura do(a) personagem", maxlength="10")
+          input(type="text", name="altura", placeholder="Informe a altura do(a) personagem", maxlength="10", value=`${personagem.Altura}`)
         
         div
           label Peso:
-          input(type="text", name="peso", placeholder="Informe o peso do(a) personagem", maxlength="10")
+          input(type="text", name="peso", placeholder="Informe o peso do(a) personagem", maxlength="10", value=`${personagem.Peso}`)
         
         div 
           label(for="") Roupas&nbspe&nbspacessórios:
-          input(type="text", nome="roupas", placeholder="Insira informações sobre as vestes do personagem")
+          input(type="text", name="roupas", placeholder="Insira informações sobre as vestes do personagem", value=`${personagem.RoupasEAcessorios}`)
 
         div(class="divResumoPersonagem")
           label 
             h2 Resumo do personagem 
-          textarea(name="resumoPersonagem", placeholder="Escreva um resumo sobre o personagem")
+          textarea(name="resumoPersonagem", placeholder="Escreva um resumo sobre o personagem")= personagem.ResumoPersonagem
 
         div
-          button(type="submit") Criar Personagem
+          button(type="submit") Salvar Alterações
     
     footer(class="footer")
       p &copy; 2024 DawnDraft. Todos os direitos reservados.
       a(href="/politicaPrivacidade.html" style="color: white; text-decoration: none;") Política de Privacidade
       a(href="/contato.html" style="color: white; text-decoration: none;") Contato
-
-
-        //- input(type="text", name="nome", value=`${personagem.Nome}`)
-
-        //- input(type="text", name="idade", value=`${personagem.Idade}`)
-
-        //- input(type="text", name="personalidade", value=`${personagem.Personalidade}`)
-
-        //- input(type="text", name="hobies", value=`${personagem.Hobies}`)
-
-        //- input(type="text", name="sonhos", value=`${personagem.MairoesSonhos}`)
-
-        //- input(type="text", name="traumas", value=`${personagem.MairoesTraumas}`)
-
-        //- input(type="text", name="objetivo", value=`${personagem.ObjetivoNaHistoria}`)
-
-        //- input(type="text", name="informacoes", value=`${personagem.InformacoesRelevantesAParte}`)
-
-        //- button(type="submit") Salvar
