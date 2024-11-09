@@ -3,6 +3,8 @@ html(lang="pt-br")
   head
     title home
     link(rel='stylesheet', href='/stylesheets/paginaHistorias.css')
+    meta(http-equiv="Content-Type", content="text/html;charset=UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
   body
     header(class="header")
       nav(class="navBar")
@@ -24,6 +26,7 @@ html(lang="pt-br")
           div(class="divResumoPersonagem")
             label(for="") Prologo
             textarea(name="prologo" placeholder="Prologo Do Capitulo", maxlength="400")= historia.Prologo
+            script(src="/javascripts/historias.js")
 
           div
             button(type="submit") Salvar Alterações

@@ -27,10 +27,10 @@ header{
   margin: 0%;
   padding: 12pt;
   align-items: center;
+  border-bottom: 2px solid rebeccapurple;
 }
 
 section{
-  border: 2px solid rebeccapurple;
   font-size: 16pt;
   width: 100%;
   min-height: 100vh;
@@ -140,8 +140,8 @@ section{
   text-align: center;
   text-wrap: wrap; 
   padding: 20px; 
-  position: relative; 
-  bottom: 0; 
+  /* position: relative; 
+  bottom: 0;  */
   width: 100%; 
 }
 
@@ -152,7 +152,7 @@ section{
 
 @media (max-width: 1333px) {
   .section1{
-    padding-top: 20pt;
+    padding: 1%;
     flex-direction: column;
     align-items: center;
     justify-content: start;
@@ -160,12 +160,10 @@ section{
 
   .boxsIntro{
     max-width: 100%;
-    padding: 50pt;
-
+    padding: 10pt;
     width: 85vw;
     margin-bottom: 20px;
     text-align: center;
-    font-size: 20pt;
   }
 
   .img-home{
@@ -190,10 +188,6 @@ section{
     width: 180px;
   }
 
-  .boxsIntro{
-    font-size: 1.9em;
-  }
-
   .img-home{
     width: 80vw;
     height: auto;
@@ -202,7 +196,7 @@ section{
 
 @media (max-width : 1000px ) {
   .logo-nav{
-    width: 80pt;
+    width: 50pt;
   }
 
   .boxTituloLogo{
@@ -210,13 +204,20 @@ section{
   }
 
   .h1-home{
-    font-size: 32pt;
+    font-size: 18pt;
   }
 
   .nav, .btn-sobre, .btn-inicio{
-    font-size: 1.2em;
+    font-size: 18pt;
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+}
+
+@media (min-height: 800px) {
+  section{
+    min-height: 100vw;
+    margin-bottom: 10pt;
   }
 }

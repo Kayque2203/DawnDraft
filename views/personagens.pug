@@ -2,79 +2,79 @@ doctype html
 html(lang="pt-br")
   head
     link(rel='stylesheet', href='/stylesheets/paginaPersonagens.css')
+    meta(http-equiv="Content-Type", content="text/html;charset=UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
     title Personagem
+
   body
     header(class="header")
       nav(class="navBar")
         div(class="boxTituloLogo")
           img( class="logo-nav" src="/images/63b55e87-83ca-4b1e-afe9-c0e899910615.jpg")
           h1(class="h1-home") Dawn Draft
-        
+
         button(class="btn-inicio") 
           a(href=`/Usuarios/${personagem.Usuario.toString()}/`) Início
-    //- header 
-    //-   h1 
-    //-     a(href=`/Usuarios/:${personagem.Usuario.toString()}`) Home
 
     section
       form(action=`/Usuarios/:${personagem.Usuario.toString()}/atualizarPersonagem/:${personagem._id.toString()}`, method="post")
 
         h2 Informações em geral
-        div
+        div(class="divInpt")
           label(for="nome") Nome:
           input(type="text", name="nome", placeholder="Insira o nome do(a) personagem", id="nome", maxlength="75", value=`${personagem.Nome}`) 
 
-        div
+        div(class="divInpt")
           label(for="") Idade:
           input(type="text", name="idade", placeholder="Insira a idade do(a) personagem",  maxlength="10", value=`${personagem.Idade}`) 
 
-        div
+        div(class="divInpt")
           label(for="") Personalidade:
           input(type="text", name="personalidade", placeholder="Crie a personalidades do(a) personagem",  maxlength="100", value=`${personagem.Personalidade}`) 
 
-        div
+        div(class="divInpt")
           label(for="") Hobies:
           input(type="text", name="hobies", placeholder="Descreva os hobies do(a) personagem", maxlength="100", value=`${personagem.Hobies}`) 
 
-        div
+        div(class="divInpt")
           label(for="") Sonhos:
           input(type="text", name="sonhos", placeholder="Fale sobre os sonhos que o(a) personagem almeja",  maxlength="100", value=`${personagem.MairoesSonhos}`) 
 
-        div
+        div(class="divInpt")
           label(for="") Traumas:
           input(type="text", name="traumas", placeholder="Conte os traumas sofridos pelo(a) personagem",  maxlength="100", value=`${personagem.MairoesTraumas}`) 
 
-        div
+        div(class="divInpt")
           label(for="") Objetivo:
           input(type="text", name="objetivo", placeholder="Fale sobre os objetivos do(a) personagem", maxlength="100", value=`${personagem.ObjetivoNaHistoria}`) 
 
-        div
+        div(class="divInpt")
           label(for="") +Informações:
           input(type="text", name="informacoes", placeholder="Aqui são informações adicionais caso queira adicionar", maxlength="100", value=`${personagem.InformacoesRelevantesAParte}`)
 
         h2(class="marginTop15pt") Caracteristicas fisicas
 
-        div
+        div(class="divInpt")
           label Cor&nbspda&nbsppele:
           input(type="text", name="corPele", placeholder="Informe a cor de pele do(a) personagem", maxlength="50", value=`${personagem.CorDaPele}`)
 
-        div 
+        div(class="divInpt")
           label Caracteristicas&nbspdos&nbspolhos:
           input(type="text", name="olhos", placeholder="Informe as caracteristicas dos olhos do(a) personagem", maxlength="50", value=`${personagem.CaracteristicaDosOlhos}`)
         
-        div 
+        div(class="divInpt")
           label Caracteristicas&nbspdo&nbspcabelo: 
           input(type="text", name="cabelo", placeholder="Informe as caracteristicas do cabelo do(a) personagem", maxlength="50", value=`${personagem.CaracteristicasDoCabelo}`)
         
-        div
+        div(class="divInpt")
           label Altura:
           input(type="text", name="altura", placeholder="Informe a altura do(a) personagem", maxlength="10", value=`${personagem.Altura}`)
         
-        div
+        div(class="divInpt")
           label Peso:
           input(type="text", name="peso", placeholder="Informe o peso do(a) personagem", maxlength="10", value=`${personagem.Peso}`)
         
-        div 
+        div(class="divInpt")
           label(for="") Roupas&nbspe&nbspacessórios:
           input(type="text", name="roupas", placeholder="Insira informações sobre as vestes do personagem", value=`${personagem.RoupasEAcessorios}`)
 
@@ -82,6 +82,7 @@ html(lang="pt-br")
           label 
             h2 Resumo do personagem 
           textarea(name="resumoPersonagem", placeholder="Escreva um resumo sobre o personagem")= personagem.ResumoPersonagem
+          script(src="/javascripts/historias.js")
 
         div
           button(type="submit") Salvar Alterações

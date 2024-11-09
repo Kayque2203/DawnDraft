@@ -6,7 +6,6 @@ head
     title Login
     link(rel="stylesheet" href="/stylesheets/style-login-cadastro.css")
     link(rel="stylesheet" href="/stylesheets/style.css")
-
     //- link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css")
     link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css")
 
@@ -16,14 +15,14 @@ body
       div(class="boxTituloLogo")
         img( class="logo-nav" src="/images/63b55e87-83ca-4b1e-afe9-c0e899910615.jpg")
         h1(class="h1-home") Dawn&nbspDraft
-  
+
       nav(class="navBar")
         button(class="btn-sobre") Sobre&nbspnós
         button(class="btn-sobre") Contato
         a(href="/" class="linkLogin") Inicio
 
       img(src="/images/botao-de-menu.png", alt="Menu", class="btnDropDown")
-      
+
     script(src="/javascripts/indexPage.js")
 
     if notify.length
@@ -33,7 +32,7 @@ body
             div(class="first-column")
                 h2(class="title title-primary") Não Possui Uma Conta?
                 button(id="signin" class="btn btn-primary") Cadastre-se 
-            
+
             div(class="second-column")
 
                 h2(class="title title-second") Entrar
@@ -44,7 +43,7 @@ body
                         a(class="link-social-media" href="#")
                             li(class="item-social-media")
                                 i(class="fab fa-google-plus-g")
-                    
+
                     p(class="description description-second") ou use seu e-mail:
 
                     form(class="form", method="post", action="/LoginECadastro/Login")
@@ -59,7 +58,7 @@ body
                         a(class="password" href="/LoginECadastro/esqueciMinhaSenha") esqueceu sua senha?                   
                         button(class="btn btn-second" type="submit") Entrar
 
- 
+
         div(class="content second-content")
             div(class="first-column")
                 h2(class="title title-primary") Ja possui uma conta?
@@ -75,7 +74,7 @@ body
 
                     p(class="description description-second") ou use sua conta de email para cadastro:
 
-                    form(class="form", method="post", action="http://localhost:3000/LoginECadastro/Cadastro")
+                    form(class="form", method="post", action="/LoginECadastro/Cadastro")
                         label(class="label-input" for="")
                             i(class="fas fa-user icon-modify")
                             input(type="text" placeholder="nome" name="nome")
@@ -91,9 +90,8 @@ body
                         label(class="label-input" for="")
                             i(class="fas fa-lock icon-modify")
                             input(type="password" placeholder="Confirmar senha" name="confirmarSenha")
-                
+
                         button(class="btn btn-second" type="submit") cadastrar-se
-                    
-                
+
 
     script(src="/javascripts/js-login-cadastro.js")

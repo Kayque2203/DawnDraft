@@ -19,7 +19,9 @@ body {
     padding: 20px; 
     position: relative; 
     bottom: 0; 
-    width: 100%; 
+    width: 100%;
+    /* position: absolute;
+    bottom: 0; */
 }
 
 section{
@@ -41,20 +43,26 @@ input{
     border: none;
     width: 100%;
     padding: 5pt;
-    margin-bottom: 5pt;
+    /* margin-bottom: 5pt; */
     font-size: 12.5pt;
+    background-color: #F2F0EB;
 }
 
 label{
     padding: 5pt;
-    margin-bottom: 5pt;
-    background-color: white;
+    /* margin-bottom: 5pt; */
+    background-color: #F2F0EB;
     width: auto;
 }
 
 div{
     display: flex;
     align-items: center;
+}
+
+.divInpt{
+    background-color: #BFBEBA;
+    padding: 10pt;
 }
 
 h2{
@@ -76,11 +84,17 @@ button[type="submit"]{
 .divResumoPersonagem{
     flex-direction: column;
     width: 100%;
-    background-color: white;
+    background-color: #BFBEBA;
     height: 55%;
     margin-top: 18pt;
     margin-bottom: 18pt;
-    padding: 5pt;
+    padding: 8pt;
+    border-radius: 10pt;
+}
+
+.divResumoPersonagem label{
+    width: 100%;
+    text-align: center;
 }
 
 textarea{
@@ -90,6 +104,14 @@ textarea{
     padding: 5pt;
     height: 55%;
     border: none;
+    background-color: #F2F0EB;
+    border-radius: 0pt 0pt 5pt 5pt;
+}
+
+.divResumoPersonagem label{
+    background-color: #F2F0EB;
+    padding: 5pt;
+    border-radius: 5pt 5pt 0pt 0pt;
 }
 
 textarea:focus{
@@ -101,6 +123,65 @@ textarea:focus{
 .marginTop15pt{
     margin-top: 15pt;
 }
+
+.sectionCapitulos{
+    background-color: #BFBEBA;
+    margin-top: 1.9%;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 50px;
+    border-radius: 10pt;
+}
+
+.boxCapitulos{
+    display: flex;
+    flex-direction: column;
+}
+
+.paragrafoLinksCapitulos{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 5%;
+    padding-top: 1%;
+    padding-bottom: 2%;
+}
+
+.linkCapitulos{
+    width: 90%;
+    background-color: #F2F0EB;
+    padding: 5pt;
+    border-radius: 5pt;
+}
+
+.linkDeletarCap{
+    background-color: #F2F0EB;
+    padding: 5pt;
+    width: auto;
+    background-color: red;
+    border-radius: 10pt;
+    color: white;
+}
+
+.tituloCapitulos{
+    margin-bottom: 12pt;
+}
+
+.h2BoxCapitulos{
+    padding: 15pt;
+    background-color: #F2F0EB;
+    border-radius: 10pt;
+    transition: 0.5s;
+}
+
+.h2BoxCapitulos:hover{
+    background-color: green;
+}
+
+/* <a href="https://www.flaticon.com/br/icones-gratis/casa" title="casa ícones">Casa ícones criados por Dave Gandy - Flaticon</a> */
+
+
 
 /* Nav bar */
 header{
@@ -130,10 +211,7 @@ header{
     height: 35px;
     background: transparent; 
     border: none; 
-    color: #000; 
     cursor: pointer;
-    font-size: 20px;
-    font-weight: bold;
 }
 
 .navBar{
@@ -146,4 +224,15 @@ header{
 a{
     color:black;
     text-decoration: none;
+}
+
+/* Medias Query */
+@media (max-width : 600px){
+    section, input, button{
+        font-size: 15pt;
+    }
+
+    button[type="submit"]{
+        font-size: 16pt;
+    }
 }
