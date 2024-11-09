@@ -5,10 +5,27 @@ head
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
     title Login
     link(rel="stylesheet" href="/stylesheets/style-login-cadastro.css")
-    link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css")
+    link(rel="stylesheet" href="/stylesheets/style.css")
+
+    //- link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css")
     link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css")
 
 body
+
+    header(class="header")
+      div(class="boxTituloLogo")
+        img( class="logo-nav" src="/images/63b55e87-83ca-4b1e-afe9-c0e899910615.jpg")
+        h1(class="h1-home") Dawn&nbspDraft
+  
+      nav(class="navBar")
+        button(class="btn-sobre") Sobre&nbspnós
+        button(class="btn-sobre") Contato
+        a(href="/" class="linkLogin") Inicio
+
+      img(src="/images/botao-de-menu.png", alt="Menu", class="btnDropDown")
+      
+    script(src="/javascripts/indexPage.js")
+
     if notify.length
         h1=notify
     div(class="container")

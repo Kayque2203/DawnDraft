@@ -25,7 +25,7 @@ header{
   justify-content: space-between;
   background: linear-gradient(to bottom, #ff9101, #f8eb59c2);
   margin: 0%;
-  padding: 10px;
+  padding: 12pt;
   align-items: center;
 }
 
@@ -43,7 +43,7 @@ section{
 }
 
 .boxsIntro h2{
-  margin-bottom: 30px;
+  margin-bottom: 15pt;
 }
 
 .linkLogin{
@@ -85,9 +85,9 @@ section{
 }
 
 .logo-nav{
-  width: 75px;
-  height: 75px;
-  border-radius: 38px;
+  width: 50pt;
+  height: auto;
+  border-radius: 50%;
 }
 
 .navBar{
@@ -106,12 +106,12 @@ section{
 
 .btn-sobre{
   width: 15%;
-  height: 35px;
+  height: auto;
   background: transparent; 
   border: none; 
   color: #000; 
   cursor: pointer;
-  font-size: 20px;
+  font-size: 17.5pt;
   font-weight: bold;
 }
 
@@ -121,12 +121,12 @@ section{
 
 .btn-inicio{
   width: 15%;
-  height: 35px;
+  height: auto;
   background: transparent; 
   border: none; 
   color: #000; 
   cursor: pointer;
-  font-size: 20px;
+  font-size: 17.5pt;
   font-weight: bold;
 }
 
@@ -137,7 +137,8 @@ section{
 .footer{
   background-color: #292727da; 
   color: white; 
-  text-align: center; 
+  text-align: center;
+  text-wrap: wrap; 
   padding: 20px; 
   position: relative; 
   bottom: 0; 
@@ -154,15 +155,22 @@ section{
     padding-top: 20pt;
     flex-direction: column;
     align-items: center;
+    justify-content: start;
   }
 
   .boxsIntro{
-    width: 95%;
+    max-width: 100%;
+    padding: 50pt;
+
+    width: 85vw;
     margin-bottom: 20px;
+    text-align: center;
+    font-size: 20pt;
   }
 
   .img-home{
-    width: 95%;
+    width: 70vw;
+    height: auto;
   }
 }
 
@@ -181,11 +189,34 @@ section{
   .linkLogin{
     width: 180px;
   }
+
+  .boxsIntro{
+    font-size: 1.9em;
+  }
+
+  .img-home{
+    width: 80vw;
+    height: auto;
+  }
 }
 
-@media (max-width: 720px) {
-  .img-home {
-    width: 100%;
-    height: auto;
+@media (max-width : 1000px ) {
+  .logo-nav{
+    width: 80pt;
+  }
+
+  .boxTituloLogo{
+    width: auto;
+  }
+
+  .h1-home{
+    font-size: 32pt;
+  }
+
+  .nav, .btn-sobre, .btn-inicio{
+    font-size: 1.2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
