@@ -4,27 +4,47 @@ html(lang="pt-br")
     title home
     link(rel='stylesheet', href='/stylesheets/paginaHistorias.css')
   body
-    header 
-      h1 
-          a(href=`/Usuarios/:${historia.Usuario}/`) Home
-
+    header(class="header")
+      nav(class="navBar")
+        div(class="boxTituloLogo")
+          img( class="logo-nav" src="/images/63b55e87-83ca-4b1e-afe9-c0e899910615.jpg")
+          h1(class="h1-home") Dawn Draft
+        
+        button(class="btn-inicio") 
+          a(href=`/Usuarios/${historia.Usuario}/`)
+            img(src="/images/casa.png", alt="")
+  
     section
         form(action=`/Usuarios/:${historia.Usuario}/historia/:${historia._id.toString()}`, method="post") 
 
-          input(type="text", name="titulo", value=`${historia.Titulo}`, maxlength="100")
+          div
+            label(for="") Titulo:
+            input(type="text", name="titulo", value=`${historia.Titulo}`, maxlength="100")
 
-          textarea(name="prologo" placeholder="Prologo Do Capitulo", maxlength="400")= historia.Prologo 
+          div(class="divResumoPersonagem")
+            label(for="") Prologo:
+            textarea(name="prologo" placeholder="Prologo Do Capitulo", maxlength="400")= historia.Prologo
 
-          button(type="submit") salvar
+          div
+            button(type="submit") Salvar Alterações
       
     section(class="sectionCapitulos")
       h1(class="tituloCapitulos") Capitulos
 
       div(class="boxCapitulos")
-        for capitulo in capitulos
-          p(class="paragrafoLinksCapitulos") Capitulo:
-            a(href=`/Usuarios/:${historia.Usuario}/historia/:${historia._id.toString()}/capitulo/:${capitulo._id.toString()}` class="linkCapitulos")= capitulo.TituloCapitulo
-            span(class="spanDeletarCap")
-              a(href=`/Usuarios/:${historia.Usuario}/historia/:${historia._id.toString()}/capitulo/:${capitulo._id.toString()}/deletarCapitulo`  class="linkDeletarCap") Deletar
-        h2 
-          a(href=`/Usuarios/:${historia.Usuario}/historia/:${historia._id.toString()}/adicionarCapitulo`) Adicionar Cápitulo
+        if capitulos.length != 0
+          for capitulo in capitulos
+            p(class="paragrafoLinksCapitulos")
+              a(href=`/Usuarios/:${historia.Usuario}/historia/:${historia._id.toString()}/capitulo/:${capitulo._id.toString()}` class="linkCapitulos")= capitulo.TituloCapitulo
+
+              span(class="spanDeletarCap")
+                a(href=`/Usuarios/:${historia.Usuario}/historia/:${historia._id.toString()}/capitulo/:${capitulo._id.toString()}/deletarCapitulo`  class="linkDeletarCap") Deletar
+        else
+          p Essa historia ainda não possue capitulos, adicione um agora mesmo!!!
+        h2(class="h2BoxCapitulos") 
+          a(href=`/Usuarios/:${historia.Usuario}/historia/:${historia._id.toString()}/adicionarCapitulo`, class="aAddCapitulo") Adicionar Cápitulo
+
+    footer(class="footer")
+      p &copy; 2024 DawnDraft. Todos os direitos reservados.
+      a(href="/politicaPrivacidade.html" style="color: white; text-decoration: none;") Política de Privacidade
+      a(href="/contato.html" style="color: white; text-decoration: none;") Contato

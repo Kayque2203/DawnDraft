@@ -1,175 +1,214 @@
 *{
-    margin: 0;
-    padding: 0;
+    margin : 0px;
+    padding : 0px;
     box-sizing: border-box;
 }
 
+body {
+    width: 100%;
+    margin: 0;
+    font: 12.5pt "Lucida Grande", Helvetica, Arial, sans-serif;
+    background-color: #fcfbee;
+    font-family: "Sora", sans-serif;
+}
+
+.footer{
+    background-color: #292727da; 
+    color: white; 
+    text-align: center; 
+    padding: 20px; 
+    position: relative; 
+    bottom: 0; 
+    width: 100%;
+    /* position: absolute;
+    bottom: 0; */
+}
+
+section{
+    padding-top: 1.9%;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-bottom: 50px;
+}
+
+
+input:focus{
+    border: none;
+    box-shadow: 0 0 0 0;
+    outline: 0;
+    border-bottom: 1px solid black;
+}
+
 input{
+    border: none;
     width: 100%;
-    padding: 10px;
-    border-radius: 10px;
-    color: black;
-    font-size: 18px;
-    margin-top: 10px;
+    padding: 5pt;
+    margin-bottom: 5pt;
+    font-size: 12.5pt;
+    background-color: #F2F0EB;
 }
 
-button{
+label{
+    padding: 5pt;
+    margin-bottom: 5pt;
+    background-color: #F2F0EB;
+    width: auto;
+}
+
+div{
+    display: flex;
+    align-items: center;
+}
+
+h2{
+    margin-bottom: 3pt;
+}
+
+button[type="submit"]{
     width: 100%;
-    padding: 5px;
+    padding: 5pt;
+    border-radius: 5pt;
+    border: none;
     cursor: pointer;
-    background-color: transparent;
-    border: 1px solid black;
+    margin-top: 5pt;
+    background: linear-gradient(to bottom, #ff9101, #f8eb59c2);
+    font-size: 14pt;
     color: black;
-    border-radius: 5px;
-    transition: 100ms;
 }
 
-button:hover{
-    background-color: green;
-    color: white
+.divResumoPersonagem{
+    flex-direction: column;
+    width: 100%;
+    background-color: white;
+    height: 55%;
+    margin-top: 18pt;
+    margin-bottom: 18pt;
+    padding: 5pt;
+    border-radius: 10pt;
 }
 
-.iptnTable{
-    border: none
+textarea{
+    width: 100%;
+    height: max-content;
+    font-size: 12.5pt;
+    padding: 5pt;
+    height: 55%;
+    border: none;
+    background-color: #F2F0EB;
 }
 
-.iptnTable:focus{
+.divResumoPersonagem label{
+    background-color: white;
+}
+
+textarea:focus{
     border: none;
     box-shadow: 0 0 0 0;
     outline: 0;
 }
 
-table{
-    border-collapse: collapse;
-    border: 1px solid black;
-    padding: 5px;
-    margin: 0 auto;
-    width: 100%;
-}
-  
-th, td {
-    padding: 10px;
-    border: 1px solid black;
-}
-  
-.formAnotacoes{
-    margin-top: 2%;
-    margin-bottom: 2%;
-}
-
-.linkCapitulos{
-    color: black;
-    font-size: 15pt;
-    text-align: left;
-    display: block;
-    text-align: center;
-    width: 30%;
-}
-  
-.paragrafoLinksCapitulos{
-    display: flex;
-    justify-content: center;
-    font-size: 15pt;
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-}
-  
-.tituloCapitulos{
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
-textarea[name="texto"], textarea[name="textoCapitulo"]{
-    width: 100%;
-    height: 30vw;
-    padding: 15px;
-    margin-top: 10px;
-    border-radius: 10px;
-    color: black;
-    font-size: 18px;
-}
-  
-textarea[name="prologo"]{
-    width: 100%;
-    height: 8vw;
-    padding: 15px;
-    margin-top: 10px;
-    border-radius: 10px;
-    color: black;
-    font-size: 18px;
-}
-
-body {
-    padding-top: 50px;
-    padding-bottom: 50px;
-    padding-left: 10%;
-    padding-right: 10%;
-    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-    background-color: #fcfbee;
-
-    font-family: "Sora", sans-serif;
-    font-optical-sizing: auto;
-    font-style: normal;
-}
-
-a {
-    color: black;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
-header{
-    display: flex;
-    justify-content: space-between;
-}
-
-header h1{
-    display: flex;
-    justify-content: center;
-    width: 100%;
-}
-
-section{
-    margin-top: 50px;
-    font-size: 16pt;
+.marginTop15pt{
+    margin-top: 15pt;
 }
 
 .sectionCapitulos{
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    background-color: #BFBEBA;
+    margin-top: 1.9%;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 50px;
+    border-radius: 10pt;
 }
 
 .boxCapitulos{
-    width: 90%;
     display: flex;
-    justify-content: center;
     flex-direction: column;
+}
+
+.paragrafoLinksCapitulos{
+    display: flex;
+    justify-content: space-between;
     align-items: center;
+    width: 100%;
+    padding: 5%;
+    padding-top: 1%;
+    padding-bottom: 2%;
 }
 
-span{
-    font-size: 6pt;
-}
-
-.spanDeletarCap{
-    background-color: red;
-    color: white;
-    padding: 5px;
-    border-radius: 10px;
+.linkCapitulos{
+    width: 90%;
+    background-color: #F2F0EB;
+    padding: 5pt;
+    border-radius: 5pt;
 }
 
 .linkDeletarCap{
-    color: whitesmoke;
-    font-size: 12pt;
-    text-align: left;
-    display: block;
-    text-align: center;
-    width: 30%;
+    background-color: #F2F0EB;
+    padding: 5pt;
+    width: auto;
+    background-color: red;
+    border-radius: 10pt;
+    color: white;
+}
+
+.tituloCapitulos{
+    margin-bottom: 12pt;
+}
+
+.h2BoxCapitulos{
+    padding: 15pt;
+    background-color: #F2F0EB;
+    border-radius: 10pt;
+    transition: 0.5s;
+}
+
+.h2BoxCapitulos:hover{
+    background-color: green;
+}
+
+/* <a href="https://www.flaticon.com/br/icones-gratis/casa" title="casa ícones">Casa ícones criados por Dave Gandy - Flaticon</a> */
+
+
+
+/* Nav bar */
+header{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    justify-content: space-between;
+    background: linear-gradient(to bottom, #ff9101, #f8eb59c2);
+    margin: 0%;
+    padding: 10px;
+}
+
+.logo-nav{
+    width: 75px;
+    height: 75px;
+    border-radius: 38px;
+}
+
+.boxTituloLogo{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-inicio{
+    width: 15%;
+    height: 35px;
+    background: transparent; 
+    border: none; 
+    cursor: pointer;
+}
+
+.navBar{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+a{
+    color:black;
+    text-decoration: none;
 }

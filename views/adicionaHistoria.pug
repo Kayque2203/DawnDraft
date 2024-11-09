@@ -4,14 +4,30 @@ html(lang="pt-br")
     title home
     link(rel='stylesheet', href='/stylesheets/paginaHistorias.css')
   body
-      h1 
-        a(href=`/Usuarios/:${id_Usuario}/`) Home 
+    header(class="header")
+      nav(class="navBar")
+        div(class="boxTituloLogo")
+          img( class="logo-nav" src="/images/63b55e87-83ca-4b1e-afe9-c0e899910615.jpg")
+          h1(class="h1-home") Dawn Draft
+        
+        button(class="btn-inicio") 
+          a(href=`/Usuarios/${id_Usuario}/`) Início
 
-      form(action=`/Usuarios/:${id_Usuario}/NovaHistoria/`, method="post") 
+    section 
+      form(action=`/Usuarios/:${id_Usuario}/NovaHistoria/`, method="post")
+        div
+          label(for="") Titulo&nbspda&nbsphistoria 
+          input(type="text", name="titulo", placeholder="Titulo Da Histora", maxlength="75")
 
-        input(type="text", name="titulo", placeholder="Titulo Da Histora", maxlength="255")
+        div
+          label(for="") Prologo&nbspda&nbsphistoria
+          textarea(name="prologo" placeholder="Prologo Da Histria", maxlength="400")
 
-        textarea(name="prologo" placeholder="Prologo Da Histria", maxlength="400")
+        div
+          button(type="submit") salvar
 
-        button(type="submit") salvar
+    footer(class="footer")
+      p &copy; 2024 DawnDraft. Todos os direitos reservados.
+      a(href="/politicaPrivacidade.html" style="color: white; text-decoration: none;") Política de Privacidade
+      a(href="/contato.html" style="color: white; text-decoration: none;") Contato
         
