@@ -9,15 +9,17 @@ class Capitulos {
     historia;
     humorCapitulo;
     focoCapitulo;
+    resumoCapitulo;
     usuario;
     
-    constructor( tituloCap, textoCap, idHis, idUsuario, humorCap, focoCap ){
+    constructor( tituloCap = "", textoCap = "", idHis = "", idUsuario = "", humorCap = "", focoCap = "", resumoCap = "" ){
         this.tituloCapitulo = tituloCap;
         this.textoCapitulo = textoCap;
         this.historia = idHis;
         this.usuario = idUsuario;
         this.humorCapitulo = humorCap;
         this.focoCapitulo = focoCap;
+        this.resumoCapitulo = resumoCap;
     }
 
     // Métodos
@@ -26,6 +28,7 @@ class Capitulos {
         let novoCapitulo = await Conexao.getCollections('Capitulos').insertOne({
             "TituloCapitulo" : this.tituloCapitulo,
             "TextoCapitulo" : this.textoCapitulo,
+            "ResumoCapitulo" : this.resumoCapitulo,
             "HumorDoCapitulo" : this.humorCapitulo,
             "FocoDoCapitulo" : this.focoCapitulo,
             "Historia" : new ObjectId(this.historia),
@@ -42,6 +45,7 @@ class Capitulos {
                 $set: {
                     "TituloCapitulo" : this.tituloCapitulo,
                     "TextoCapitulo" : this.textoCapitulo,
+                    "ResumoCapitulo" : this.resumoCapitulo,
                     "HumorDoCapitulo" : this.humorCapitulo,
                     "FocoDoCapitulo" : this.focoCapitulo
                 },

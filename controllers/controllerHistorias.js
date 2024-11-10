@@ -202,9 +202,10 @@ exports.adicionaCapituloGet = async (req, res, next) => {
 exports.adicionaCapituloPost = [
 
     body('tituloCapitulo').trim().escape().notEmpty(),
-    body('textoCapitulo').trim().escape().notEmpty(),
-    body('humorCapitulo').trim().escape().notEmpty(),
-    body('focoCapitulo').trim().escape().notEmpty(),
+    body('textoCapitulo').trim().escape(),
+    body('humorCapitulo').trim().escape(),
+    body('focoCapitulo').trim().escape(),
+    body("resumoCapitulo").trim().escape().notEmpty(),
 
     async (req, res, next) => {
         try {
@@ -228,7 +229,7 @@ exports.adicionaCapituloPost = [
             }
             else
             {
-                let novoCapitulo = new Capitulos( req.body.tituloCapitulo, req.body.textoCapitulo, tratamentoParametroDeRota(req.params.idHistoria), tratamentoParametroDeRota(req.params.idUsuario), req.body.humorCapitulo, req.body.focoCapitulo);
+                let novoCapitulo = new Capitulos( req.body.tituloCapitulo, req.body.textoCapitulo, tratamentoParametroDeRota(req.params.idHistoria), tratamentoParametroDeRota(req.params.idUsuario), req.body.humorCapitulo, req.body.focoCapitulo, req.body.resumoCapitulo);
 
                 let capituloAdicionado = await novoCapitulo.adicionarCapitulo();
 
@@ -291,9 +292,10 @@ exports.BuscaCapitulo = async (req, res, next) => {
 exports.AtualizaCapitulo = [
 
     body('tituloCapitulo').trim().escape().notEmpty(),
-    body('textoCapitulo').trim().escape().notEmpty(),
-    body('humorCapitulo').trim().escape().notEmpty(),
-    body('focoCapitulo').trim().escape().notEmpty(),
+    body('textoCapitulo').trim().escape(),
+    body('humorCapitulo').trim().escape(),
+    body('focoCapitulo').trim().escape(),
+    body("resumoCapitulo").trim().escape().notEmpty(),
 
     async (req, res, next) => {
         try {
@@ -324,7 +326,7 @@ exports.AtualizaCapitulo = [
             }
             else
             {
-                let atualizandoCapitulo = new Capitulos(req.body.tituloCapitulo, req.body.textoCapitulo, tratamentoParametroDeRota(req.params.idHistoria),"", req.body.humorCapitulo, req.body.focoCapitulo);
+                let atualizandoCapitulo = new Capitulos(req.body.tituloCapitulo, req.body.textoCapitulo, tratamentoParametroDeRota(req.params.idHistoria),"", req.body.humorCapitulo, req.body.focoCapitulo, req.body.resumoCapitulo);
 
                 await atualizandoCapitulo.atuaizarCapitulo(tratamentoParametroDeRota(req.params.idCapitulo));
 
