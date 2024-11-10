@@ -1,22 +1,50 @@
 doctype html
 html(lang="pt-br")
   head
-    title home
+    title Crie um novo capitulo
     link(rel='stylesheet', href='/stylesheets/paginaCapitulos.css')
     meta(http-equiv="Content-Type", content="text/html;charset=UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
+
   body
-    h1 Pagina de criação de historia
-    
-    form(action=`/Usuarios/:${id_Usuario}/historia/:${id_Historia}/adicionarCapitulo`, method="post")
-        h2 Escreva Seu Novo Cápitulo 
+    header(class="header")
+      nav(class="navBar")
+        div(class="boxTituloLogo")
+          img( class="logo-nav" src="/images/63b55e87-83ca-4b1e-afe9-c0e899910615.jpg")
+          h1(class="h1-home") Dawn Draft
+        
+        button(class="btn-inicio") 
+          a(href=`/Usuarios/${id_Usuario}/`)
+            img(src="/images/casa.png", alt="Home")
 
-        input(type="text", name="tituloCapitulo",  placeholder="Titulo do capitulo", maxlength="100")
+    section
+      form(action=`/Usuarios/:${id_Usuario}/historia/:${id_Historia}/adicionarCapitulo`, method="post")
+        h2 Crie seu novo capitulo 
 
-        input(type="text", name="humorCapitulo",  placeholder="Humor Do Capitulo", maxlength="100")
+        div(class="divInpt")
+          label(for="") Titulo 
+          input(type="text", name="tituloCapitulo",  placeholder="Crie o titulo do capitulo", maxlength="100")
 
-        input(type="text", name="focoCapitulo",  placeholder="Foco Do Capitulo", maxlength="100")
+        div(class="divInpt")
+          label(for="") Humor&nbspdo&nbspcapitulo 
+          input(type="text", name="humorCapitulo",  placeholder="Informe o humor ou o tom que conterá o capitulo", maxlength="100")
 
-        textarea(name="textoCapitulo" placeholder="Historia do capitulo")
+        div(class="divInpt")
+          label(for="") Foco&nbspdo&nbspcapitulo 
+          input(type="text", name="focoCapitulo",  placeholder="Informe qual será o foco do capitulo", maxlength="100")
 
-        button(type="submit") Adicionar Cápitulo
+        div(class="divResumoPersonagem")
+          label(for="") Resumo&nbspdo&nbspcapitulo
+          textarea(type="text", name="resumoCapitulo", placeholder="Faça um resumo do capitulo")
+
+        div(class="divResumoPersonagem")
+          label(for="") Escreva&nbspo&nbspcapitulo 
+          textarea(name="textoCapitulo" placeholder="Historia do capitulo")
+
+        div
+          button(type="submit") Adicionar&nbspCápitulo
+
+    footer(class="footer")
+          p &copy; 2024 DawnDraft. Todos os direitos reservados.
+          a(href="/politicaPrivacidade.html" style="color: white; text-decoration: none;") Política de Privacidade
+          a(href="/contato.html" style="color: white; text-decoration: none;") Contato

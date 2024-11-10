@@ -5,75 +5,89 @@ html(lang="pt-br")
     link(rel='stylesheet', href='/stylesheets/paginaCapitulos.css')
     meta(http-equiv="Content-Type", content="text/html;charset=UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
+
   body
-    h1 
-        a(href=`/Usuarios/:${id_Usuario}/historia/:${capitulo.Historia}`) Voltar Para A Historia
+    header(class="header")
+      nav(class="navBar")
+        div(class="boxTituloLogo")
+          img( class="logo-nav" src="/images/63b55e87-83ca-4b1e-afe9-c0e899910615.jpg")
+          h1(class="h1-home") Dawn Draft
+            
+        a(href=`/Usuarios/:${id_Usuario}/historia/:${capitulo.Historia}`, class="btn-inicio") Voltar
 
-    form(action=``, method="post")
-        h2 Continue escrevendo seu capitulo
 
-        input(type="text", name="tituloCapitulo",  placeholder="Titulo do capitulo" value=`${capitulo.TituloCapitulo}` maxlength="100")
+    section 
+        form(action=``, method="post")
+            h2 Continue escrevendo seu capitulo
+            
+            div(class="divInpt")
+                label(for="") Titulo:
+                input(type="text", name="tituloCapitulo",  placeholder="Titulo do capitulo" value=`${capitulo.TituloCapitulo}` maxlength="75")
 
-        input(type="text", name="humorCapitulo",  placeholder="Humor Do Capitulo", maxlength="100", value=`${capitulo.HumorDoCapitulo}`)
+            div(class="divInpt")
+                label(for="") Humor&nbspdo&nbspcapitulo:
+                input(type="text", name="humorCapitulo",  placeholder="Humor Do Capitulo", maxlength="100", value=`${capitulo.HumorDoCapitulo}`)
 
-        input(type="text", name="focoCapitulo",  placeholder="Foco Do Capitulo", maxlength="100", value=`${capitulo.FocoDoCapitulo}`)
+            div(class="divInpt")
+                label(for="") Foco&nbspdo&nbspcapitulo:
+                input(type="text", name="focoCapitulo",  placeholder="Foco Do Capitulo", maxlength="100", value=`${capitulo.FocoDoCapitulo}`)
 
-        textarea(name="textoCapitulo" placeholder="Historia do capitulo")= capitulo.TextoCapitulo
+            div(class="divResumoPersonagem")
+                label(for="") Resumo&nbspdo&nbspcapitulo:
+                textarea(name="resumoCapitulo", maxlength="500") 
 
-        button(type="submit") Salvar 
+            div(class="divResumoPersonagem")
+                label(for="") Historia&nbspdo&nbspcapitulo:
+                textarea(name="textoCapitulo" placeholder="Historia do capitulo")= capitulo.TextoCapitulo
+
+            div
+                button(type="submit") Salvar 
 
     br/ 
 
-    form(action=`/Usuarios/:${id_Usuario}/historia/:${id_Historia}/capitulo/:${capitulo._id.toString()}/adicionarPersonagem`, method="post")
-        table 
-            thead
-                tr 
-                    th Personagens 
-            
-            tbody  
+    section(class="sectionPersnagensECenarios")
+        form(action=`/Usuarios/:${id_Usuario}/historia/:${id_Historia}/capitulo/:${capitulo._id.toString()}/adicionarPersonagem`, method="post")
+
+            h2(class="tituloPersonagensECenarios") Personagens
+
+            div(class="boxPersonagensECapitulos")
                 if personagensCapitulo.length
                     - contador = 0
                     for personagem1 in personagensCapitulo
-                        tr
-                            td(class="tdConteudoTabela")
-                                p
-                                    a(href=`/Usuarios/:${id_Usuario}/personagem/:${personagem1._id.toString()}`)= personagem1.Nome
-                                    span
-                                        div(class="spansAttExcluir")
-                                            a(href=`/Usuarios/:${id_Usuario}/historia/:${id_Historia}/capitulo/:${capitulo._id.toString()}/removerPersonagemDoCapitulo/${idsDosPersonagensDoCapitulo[contador]}`) Deletar
-                                            - contador++
+                        
+                        p(class="paragrafoLinksPersonagensECapitulos")
+                            a(href=`/Usuarios/:${id_Usuario}/personagem/:${personagem1._id.toString()}`, class="linkPersonagensECapitulos")= personagem1.Nome
 
-                tr
-                    td
-                        if personagens.length
-                            select(name="personagem")
-                                option(value="0") Escolha um personagem
-                                for personagem2 in personagens
-                                    option(value=`${personagem2._id.toString()}`)= personagem2.Nome
-                        else 
-                            select(name="personagem", disabled) 
-            tfoot 
-                tr
-                    td
-                        if personagens.length
-                            button(type="submit") Adicionar Personagem
-                        else 
-                            button(type="submit", disabled) Adicionar Personagem
-    
+                            span(class="linkDeletarPersonagemECapitulo")
+                                a(href=`/Usuarios/:${id_Usuario}/historia/:${id_Historia}/capitulo/:${capitulo._id.toString()}/removerPersonagemDoCapitulo/${idsDosPersonagensDoCapitulo[contador]}`) Deletar
+                                - contador++
+                
+                else
+                    p(class="pAviso") Esse capitulo ainda não possui personagens, adicione um agora mesmo!
+
+            div(class="boxPersonagensECapitulos")
+                if personagens.length
+                    select(name="personagem")
+                        option(value="0") Escolha um personagem
+                        for personagem2 in personagens
+                            option(value=`${personagem2._id.toString()}`)= personagem2.Nome
+                else 
+                    select(name="personagem", disabled) 
+
+            div(class="boxPersonagensECapitulos")
+                if personagens.length
+                    button(type="submit", class="btnSubmit") Adicionar Personagem
+                else 
+                    button(type="submit", disabled) Adicionar Personagem
+
     br/
-    form(action=`/Usuarios/:${id_Usuario}/historia/:${id_Historia}/capitulo/:${capitulo._id.toString()}/adicionaCenario`, method="post")
-        table
-            thead 
-                tr
-                    th Cenários
-            
-            tbody                
-                tr
-                    td
-                        select(name="cenario", disabled)
-                            option(value="null") Cenario 1  
-            
-            tfoot
-                tr
-                    td 
-                        button(type="submit") Adicionar Cenário
+
+    section(class="sectionPersnagensECenarios")
+        form(action=`/Usuarios/:${id_Usuario}/historia/:${id_Historia}/capitulo/:${capitulo._id.toString()}/adicionaCenario`, method="post")
+
+            h2(class="tituloPersonagensECenarios") Cenários
+
+            select(name="cenario", disabled)
+                option(value="null") Cenario 1  
+
+            button(type="submit", disabled) Adicionar Cenário
