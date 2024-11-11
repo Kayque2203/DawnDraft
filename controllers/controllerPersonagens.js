@@ -5,6 +5,7 @@ const TratamentoParamtrosDeRota = require('../assets/tratamentoParametroRota');
 
 const { validationResult, body } = require('express-validator');
 const PersonagensCapitulo = require('../models/mPersonagensCapitulo');
+const Historias = require('../models/mHistorias');
 
 // Endpoint que retorna um template para criar um usuario
 exports.adicionarPersonagemGet = async (req, res, next) => {
@@ -97,7 +98,17 @@ exports.buscaPersonagem = async (req, res, next) => {
         }
         else
         {
-            res.render('personagens', {personagem});
+            let arrayHistoriasDoPersonagem = [];
+
+            let historiasDoPersonagem = await Personagens.buscaHistoriasDoPersonagem(TratamentoParamtrosDeRota(req.params.idPersonagem));
+
+            if (historiasDoPersonagem.length != 0) {
+                for (const element of historiasDoPersonagem) {
+                    arrayHistoriasDoPersonagem.push(await Historias.buscaHistoria(element.Historia.toString()))
+                }
+            }
+
+            res.render('personagens', {personagem, arrayHistoriasDoPersonagem});
         }
     } catch (error) {
         next(error);

@@ -129,6 +129,16 @@ class Personagens {
 
         return personagensDeletados;
     }
+
+    static async buscaHistoriasDoPersonagem(idPersonagem){
+        // Buscando os capitulos das historias em que o personagem esta 
+        let historiasDoPersonagem = await Conexao.getCollections('PersonagensCapitulo').find({
+            "Personagem" : new ObjectId(idPersonagem)
+        }).toArray()
+
+
+        return historiasDoPersonagem;
+    }
 }
 
 module.exports = Personagens;

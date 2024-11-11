@@ -86,6 +86,14 @@ html(lang="pt-br")
 
         div
           button(type="submit") Salvar Alterações
+
+    section 
+      if arrayHistoriasDoPersonagem.length != 0
+        for historia in arrayHistoriasDoPersonagem
+          p 
+            a(href="")= historia.Titulo
+      else 
+        p O personagem não esta vinculado a nenhum capitulo de uma historia
     
     footer(class="footer")
       p &copy; 2024 DawnDraft. Todos os direitos reservados.

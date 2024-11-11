@@ -397,7 +397,7 @@ exports.adicionaPersonagensNoCapitulo = [
             }
             else
             {
-                let adicionandoPersonagemNoCapitulo = new PersonagensCapitulo( req.body.personagem, trataParametrosDeRota(req.params.idCapitulo));
+                let adicionandoPersonagemNoCapitulo = new PersonagensCapitulo( req.body.personagem, trataParametrosDeRota(req.params.idCapitulo), capitulo.Historia.toString(), trataParametrosDeRota(req.params.idUsuario));
 
                 let personagemADD = await adicionandoPersonagemNoCapitulo.adicionarPersonagemNoCapitulo();
     

@@ -13,7 +13,9 @@ html(lang="pt-br")
           img( class="logo-nav" src="/images/63b55e87-83ca-4b1e-afe9-c0e899910615.jpg")
           h1(class="h1-home") Dawn Draft
             
-        a(href=`/Usuarios/:${id_Usuario}/historia/:${capitulo.Historia}`, class="btn-inicio") Voltar
+
+        a(href=`/Usuarios/${id_Usuario}/historia/:${id_Historia}`)
+            img(src="/images/de-volta.png", alt="voltar")
 
 
     section 
