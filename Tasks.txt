@@ -1,3 +1,31 @@
 Tela de Login e cadastro (Nesse fim de semana acabo isso)
     -> Adicionar a funcionalidade de fazer login com o google
         Site da documentação da api: https://developers.google.com/identity/sign-in/web/sign-in?hl=pt-br;
+
+Tela Contato Com um formulario para que os usuarios possam mandar msg
+
+Cadastro de cenarios
+
+Tela Do Perfil do usuarios Onde o Usuario Ira Poder Alterar Suas Informações
+
+Front:
+	1° Tela Index Feito
+
+	2° Tela Login E Cadastro;
+	3° Tela Index Usuário;
+	4° Tela Perfil Usuário;
+
+	5° Tela Historias feito
+
+	6° Tela Capítulos feito
+
+	7° Tela Personagens feito
+
+	8° Tela Cenários;
+    
+	9° Tela Confirmar E-mail 50%
+
+BackEnd: 
+	Login Com Conta Google;
+	Cenários;
+	Baixar Capitulo Para PDF;

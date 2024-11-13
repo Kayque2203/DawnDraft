@@ -20,7 +20,7 @@ exports.UsuariosIndex = async (req, res, next) => {
             let consultaHistoriasDoUsuario = await Historias.buscaHistorias(tratamentoParametroRota(req.params.idUsuario));
             let consultaPersonagens = await Personagens.buscaPersonagens(tratamentoParametroRota(req.params.idUsuario));
 
-            res.render('usuarios', { historias: consultaHistoriasDoUsuario , id_Usuario: tratamentoParametroRota(req.params.idUsuario), nome_Usuario: consultaUsuario.Nome, Personagens: consultaPersonagens });
+            res.render('usuarios', { historias: consultaHistoriasDoUsuario , id_Usuario: tratamentoParametroRota(req.params.idUsuario), nome_Usuario: consultaUsuario.Nome, Personagens: consultaPersonagens, notify: "" });
         }
     } catch (error) {
         next(error);

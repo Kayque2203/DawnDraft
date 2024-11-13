@@ -6,6 +6,7 @@ const TratamentoParamtrosDeRota = require('../assets/tratamentoParametroRota');
 const { validationResult, body } = require('express-validator');
 const PersonagensCapitulo = require('../models/mPersonagensCapitulo');
 const Historias = require('../models/mHistorias');
+const Capitulos = require('../models/mCapitulos');
 
 // Endpoint que retorna um template para criar um usuario
 exports.adicionarPersonagemGet = async (req, res, next) => {
@@ -98,17 +99,23 @@ exports.buscaPersonagem = async (req, res, next) => {
         }
         else
         {
-            let arrayHistoriasDoPersonagem = [];
+            let matrizHistoriasDoPersonagem = [];
 
             let historiasDoPersonagem = await Personagens.buscaHistoriasDoPersonagem(TratamentoParamtrosDeRota(req.params.idPersonagem));
 
             if (historiasDoPersonagem.length != 0) {
                 for (const element of historiasDoPersonagem) {
-                    arrayHistoriasDoPersonagem.push(await Historias.buscaHistoria(element.Historia.toString()))
+                    let arrayApoio = [];
+
+                    arrayApoio.push(await Historias.buscaHistoria(element.Historia.toString()));
+
+                    arrayApoio.push(await Capitulos.buscaCapitulo(element.Capitulo.toString()));
+
+                    matrizHistoriasDoPersonagem.push(arrayApoio);
                 }
             }
 
-            res.render('personagens', {personagem, arrayHistoriasDoPersonagem});
+            res.render('personagens', {personagem,  matrizHistoriasDoPersonagem});
         }
     } catch (error) {
         next(error);
@@ -206,7 +213,7 @@ exports.deletarPersonagem = async (req, res, next) => {
                     break;
             
                 default:
-                    res.redirect(`/Usuarios/${req.params.idUsuario}`);
+                    res.render('usuarios', {notify: "Personagem Deletado com sucesso!!!"});
                     break;
             }
         }

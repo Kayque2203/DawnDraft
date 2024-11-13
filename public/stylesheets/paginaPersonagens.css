@@ -29,6 +29,7 @@ section{
     padding-left: 5%;
     padding-right: 5%;
     padding-bottom: 50px;
+    width: 100%;
 }
 
 
@@ -53,6 +54,7 @@ label{
     /* margin-bottom: 5pt; */
     background-color: #F2F0EB;
     width: auto;
+    text-wrap: nowrap;
 }
 
 div{
@@ -95,6 +97,7 @@ button[type="submit"]{
 .divResumoPersonagem label{
     width: 100%;
     text-align: center;
+    text-wrap: nowrap;
 }
 
 textarea{
@@ -112,6 +115,7 @@ textarea{
     background-color: #F2F0EB;
     padding: 5pt;
     border-radius: 5pt 5pt 0pt 0pt;
+    text-wrap: nowrap;
 }
 
 textarea:focus{
@@ -155,14 +159,14 @@ textarea:focus{
     border-radius: 5pt;
 }
 
-.linkDeletarCap{
+/* .linkDeletarCap{
     background-color: #F2F0EB;
     padding: 5pt;
     width: auto;
     background-color: red;
     border-radius: 10pt;
     color: white;
-}
+} */
 
 .tituloCapitulos{
     margin-bottom: 12pt;
@@ -179,9 +183,83 @@ textarea:focus{
     background-color: green;
 }
 
+.spanDeletarHis{
+    background-color: red;
+    color: white;
+    padding: 8pt;
+    border-radius: 10pt;
+    width: 100%;
+    font-size: 12pt;
+    display: flex;
+    justify-content: center;
+}
+
+.divExcluirPersonagem{
+    padding: 10%;
+    width: 40vw;
+    height: auto;
+    left: calc(50vw - 20vw);
+    top: 5% ;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color:  #fcfbee;
+    color: black;
+    position: absolute;
+    border-radius: 20pt;
+    text-align: center;
+}
+
+.botoesDivExcluirPersonagem{
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    padding: 10pt;
+}
+
+#btnCancelar{
+    padding: 5pt;
+    background-color: yellowgreen;
+    border-radius: 10pt;
+    border: 1px solid yellowgreen;
+    cursor: pointer;
+    font-size: 12pt;
+}
+
+.excluir{
+    background-color: red;
+    color: white;
+    font-size: 12pt;
+    padding: 5pt;
+    border-radius: 10pt;
+}
+
+.ContainerHistoriasPersonagem{
+    background-color: #BFBEBA;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    padding: 10pt;
+    border-radius: 10pt;
+}
+
+.ContainerHistoriasPersonagem p{
+    background-color: #F2F0EB;
+    width: 100%;
+    padding: 5pt;
+}
+
+.spanCap{
+    margin-left: 20pt;
+}
+
+.spanCap a, .ContainerHistoriasPersonagem p a{
+    text-decoration: underline;
+}
+
 /* <a href="https://www.flaticon.com/br/icones-gratis/casa" title="casa ícones">Casa ícones criados por Dave Gandy - Flaticon</a> */
-
-
 
 /* Nav bar */
 header{

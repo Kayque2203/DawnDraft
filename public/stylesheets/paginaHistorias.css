@@ -52,6 +52,7 @@ label{
     /* margin-bottom: 5pt; */
     background-color: #F2F0EB;
     width: auto;
+    text-wrap: nowrap;
 }
 
 div{
@@ -95,6 +96,7 @@ button[type="submit"]{
 .divResumoPersonagem label{
     width: 100%;
     text-align: center;
+    text-wrap: nowrap;
 }
 
 textarea{
@@ -113,6 +115,7 @@ textarea{
     background-color: #F2F0EB;
     padding: 5pt;
     border-radius: 5pt 5pt 0pt 0pt;
+    text-wrap: nowrap;
 }
 
 textarea:focus{

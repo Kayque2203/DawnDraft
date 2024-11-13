@@ -25,8 +25,8 @@ class Personagens {
     #Usuario;
 
 
-    // Contrutor da classe
-    constructor(nomePersonagem, idadePersonagem, personalidadePersonagem, hobiesPersonagem, sonhosDoPersonagens, traumasDoPersonagem, objetivoDopersonagemNaHistoria, infosRelevantes, idUsuario, corPele, caracOlhos, caracCabelo, alturaPers, pesoPers, acessoriosRoupas, resumoPers){
+    // Construtor da classe
+    constructor(nomePersonagem = "", idadePersonagem ="", personalidadePersonagem = "", hobiesPersonagem = "", sonhosDoPersonagens = "", traumasDoPersonagem = "", objetivoDopersonagemNaHistoria = "", infosRelevantes = "", idUsuario, corPele = "", caracOlhos = "", caracCabelo = "" , alturaPers = "", pesoPers = "", acessoriosRoupas = "", resumoPers = ""){
         this.#Nome = nomePersonagem;
         this.#Idade = idadePersonagem;
         this.#Personalidade = personalidadePersonagem;
