@@ -215,9 +215,9 @@ section{
   }
 }
 
-@media (min-height: 800px) {
+/* @media (min-height: 800px) {
   section{
     min-height: 100vw;
     margin-bottom: 10pt;
   }
-}
+} */

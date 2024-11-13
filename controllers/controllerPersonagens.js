@@ -207,13 +207,16 @@ exports.deletarPersonagem = async (req, res, next) => {
             let deletaPersonagemDosCapitulos = await PersonagensCapitulo.deletaPersonagensDoCapituloPeloIdPersonagem(TratamentoParamtrosDeRota(req.params.idPersonagem));
             let personagemDeletado = await Personagens.deletarPersonagem(TratamentoParamtrosDeRota(req.params.idPersonagem));
 
-            switch (personagemDeletado) {
-                case null:
+            switch (personagemDeletado.deletedCount) {
+                case 0:
                     res.render('paginaERRO', {erro: 'Um Erro Aconteceu Ao Deletar O Personagem, Volte E Tente Novamente!!!'});
                     break;
             
                 default:
-                    res.render('usuarios', {notify: "Personagem Deletado com sucesso!!!"});
+                    let historias = await Historias.buscaHistorias(TratamentoParamtrosDeRota(req.params.idUsuario));
+                    let personagens = await Personagens.buscaPersonagens(TratamentoParamtrosDeRota(req.params.idUsuario));
+
+                    res.render('usuarios', {notify: "Personagem Deletado com sucesso!!!", historias, "Personagens" : personagens, id_Usuario : req.params.idUsuario});
                     break;
             }
         }

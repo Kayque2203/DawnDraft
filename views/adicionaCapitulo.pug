@@ -13,9 +13,8 @@ html(lang="pt-br")
           img( class="logo-nav" src="/images/63b55e87-83ca-4b1e-afe9-c0e899910615.jpg")
           h1(class="h1-home", translate="no") Dawn Draft
         
-        button(class="btn-inicio") 
-          a(href=`/Usuarios/${id_Usuario}/`)
-            img(src="/images/casa.png", alt="Home")
+        a(href=`/Usuarios/${id_Usuario}/`)
+          img(src="/images/de-volta.png", alt="Home")
 
     section
       form(action=`/Usuarios/:${id_Usuario}/historia/:${id_Historia}/adicionarCapitulo`, method="post")

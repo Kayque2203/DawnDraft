@@ -20,8 +20,8 @@ body {
     position: relative; 
     bottom: 0; 
     width: 100%;
-    /* position: absolute;
-    bottom: 0; */
+    position: absolute;
+    bottom: 0;
 }
 
 section{
@@ -178,7 +178,7 @@ textarea:focus{
     padding: 10pt;
     background-color: #F2F0EB;
     border-radius: 10pt;
-    transition: 0.5s;
+    transition: 0.2s;
     margin-top: 5pt;
     box-shadow: 4px 3px 4px 0px grey;
 }

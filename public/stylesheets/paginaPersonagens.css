@@ -192,6 +192,7 @@ textarea:focus{
     font-size: 12pt;
     display: flex;
     justify-content: center;
+    cursor: pointer;
 }
 
 .divExcluirPersonagem{

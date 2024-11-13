@@ -144,8 +144,25 @@ a{
     padding: 20px;
     position: sticky;
     bottom: 5pt;
-    right: 5pt;
+    left: 15pt;
+    color: black;
     background: linear-gradient(to bottom, #ff9101, #f8eb59c2);
+
+    /* display: flex;
+    flex-direction: column; */
+    width: 50%;
+    border-radius: 20pt;
+}
+
+.containerNotify span{
+    font-size: 16pt;
+    width: 99%;
+    background-color: #F2F0EB;
+    padding: 10px;
+    border-radius: 10pt;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
 }
 
 @media (max-width : 900px) {
@@ -200,7 +217,7 @@ a{
     }
 }
 
-@media (min-height: 800px) {
+@media (max-height: 800px) {
     /* section{
       min-height: 100vw;
       margin-bottom: 10pt;

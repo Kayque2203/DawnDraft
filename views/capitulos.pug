@@ -75,6 +75,7 @@ html(lang="pt-br")
                             option(value=`${personagem2._id.toString()}`)= personagem2.Nome
                 else 
                     select(name="personagem", disabled) 
+                        option(value="") Voce ainda não criou nenhum personagem
 
             div(class="boxPersonagensECapitulos")
                 if personagens.length
@@ -93,3 +94,8 @@ html(lang="pt-br")
                 option(value="null") Cenario 1  
 
             button(type="submit", disabled) Adicionar Cenário
+    
+    footer(class="footer")
+          p &copy; 2024 DawnDraft. Todos os direitos reservados.
+          a(href="/politicaPrivacidade.html" style="color: white; text-decoration: none;") Política de Privacidade
+          a(href="/contato.html" style="color: white; text-decoration: none;") Contato
