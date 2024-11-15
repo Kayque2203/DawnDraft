@@ -141,29 +141,84 @@ a{
 
 /* Falta Fazer a parte que a notificação aparece e some */
 .containerNotify{
-    padding: 20px;
+    padding-left: 2pt;
     position: sticky;
-    bottom: 5pt;
+    bottom: 15pt;
     left: 15pt;
-    color: black;
-    background: linear-gradient(to bottom, #ff9101, #f8eb59c2);
-
-    /* display: flex;
-    flex-direction: column; */
-    width: 50%;
-    border-radius: 20pt;
+    color: white;
+    background-color: green;
+    width: 20%;
 }
 
-.containerNotify span{
-    font-size: 16pt;
-    width: 99%;
-    background-color: #F2F0EB;
-    padding: 10px;
-    border-radius: 10pt;
+.boxNotify{
+    font-size: 12pt;
+    width: 100%;
+    background-color: grey;
     display: flex;
     flex-direction: column;
     align-items: start;
+    padding: 5pt;
 }
+
+@keyframes esmaecerNotify {
+    0%{
+      opacity: 1;
+    }
+
+    10%{
+        opacity: 0.90;
+        left: 10%;
+    }
+
+    20%{
+        opacity: 0.80;
+        left: 20%;
+    }
+
+    30%{
+        opacity: 0.70;
+        left: 30%;
+    }
+
+    40%{
+        opacity: 0.60;
+        left: 40%;
+    }
+
+    50%{
+        opacity: 0.50;
+        left: 50%;
+    }
+
+    60%{
+        opacity: 0.40;
+        left: 60%;
+    }
+
+    70%{
+        opacity: 0.30;
+        left: 70%;
+    }
+
+    80%{
+        opacity: 0.20;
+        left: 80%;
+    }
+
+    90%{
+        opacity: 0.10;
+        left: 90%;
+    }
+
+    100%{
+      opacity: 1;
+      left: calc(100% - 15pt);
+
+      .boxNotify{
+        display: none;
+      }
+    }
+  }
 
 @media (max-width : 900px) {
     .boxHistorias{
@@ -217,7 +272,7 @@ a{
     }
 }
 
-@media (max-height: 800px) {
+@media (max-height: 800px) and (max-width: 800px){
     /* section{
       min-height: 100vw;
       margin-bottom: 10pt;

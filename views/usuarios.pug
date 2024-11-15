@@ -42,8 +42,8 @@ html(lang="pt-br")
 
         if Personagens.length
           for personagem in Personagens
-              a(href=`/Usuarios/:${personagem.Usuario.toString()}/personagem/:${personagem._id.toString()}`, class="boxHistorias")
-                h2= personagem.Nome
+            a(href=`/Usuarios/:${personagem.Usuario.toString()}/personagem/:${personagem._id.toString()}`, class="boxHistorias")
+              h2= personagem.Nome
 
     section 
       h1(class="tituloSection") Cenários
@@ -53,9 +53,12 @@ html(lang="pt-br")
           span Adicionar Cenário
       
     if notify.length
-      div(class="containerNotify")
-        span DawnDraft
-          span= notify
+      div(class="containerNotify", id="containerNotify")
+        div(class="boxNotify")
+          h3 Sucesso!
+          span(id="idNotificacao")= notify
+      
+      script(src="/javascripts/homeUser.js") 
   
     footer(class="footer")
       p &copy; 2024 DawnDraft. Todos os direitos reservados.
