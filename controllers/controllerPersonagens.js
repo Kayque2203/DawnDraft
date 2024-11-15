@@ -64,15 +64,16 @@ exports.adicionarPersonagemPost = [
             {
                 let personagemASerAdicionado = new Personagens(req.body.nome, req.body.idade, req.body.personalidade, req.body.hobies, req.body.sonhos, req.body.traumas, req.body.objetivo, req.body.informacoes, TratamentoParamtrosDeRota(req.params.idUsuario), req.body.corPele, req.body.olhos, req.body.cabelo, req.body.altura, req.body.peso, req.body.roupas, req.body.resumoPersonagem);
 
-                let personagemAdicinado = await personagemASerAdicionado.adicionaPersonagem();
+                let personagemAdiocinado = await personagemASerAdicionado.adicionaPersonagem();
 
-                switch (personagemAdicinado) {
+                switch (personagemAdiocinado) {
                     case null:
                         res.render('paginaERRO', {erro : 'Um Erro Ao Adicionar O Personagem Aconteceu, volte e tente novamente!!!', link : `/Usuarios/${req.params.idUsuario}/adicionarPersonagem`});
                         break;
                 
                     default:
-                        res.redirect(`/Usuarios/${req.params.idUsuario}/personagem/${personagemAdicinado.toString()}`);
+                        let personagem = await Personagens.buscaPersonagem(personagemAdiocinado);
+                        res.render('personagens',{notify : "Personagem criado com sucesso!", personagem, matrizHistoriasDoPersonagem : ""});
                         break;
                 }
             }
@@ -115,7 +116,7 @@ exports.buscaPersonagem = async (req, res, next) => {
                 }
             }
 
-            res.render('personagens', {personagem,  matrizHistoriasDoPersonagem});
+            res.render('personagens', {personagem,  matrizHistoriasDoPersonagem, notify: ""});
         }
     } catch (error) {
         next(error);
@@ -169,15 +170,31 @@ exports.atualizarPersonagemPost = [
 
                 let personagemAtualizado = await personagemASerAtualizado.atualizaPersonagem(TratamentoParamtrosDeRota(req.params.idPersonagem));
 
-                console.log(personagemAtualizado)
-
                 switch (personagemAtualizado.modifiedCount) {
                     case 0:
                         res.render('paginaERRO', {erro : 'Um Erro Ao Atualizar O Personagem Aconteceu, volte e tente novamente!!!', link : `/Usuarios/${req.params.idUsuario}/personagem/${req.params.idPersonagem}`});
                         break;
                 
                     default:
-                        res.redirect(`/Usuarios/${req.params.idUsuario}/personagem/${TratamentoParamtrosDeRota(req.params.idPersonagem)}`);
+                        personagem = await Personagens.buscaPersonagem(TratamentoParamtrosDeRota(req.params.idPersonagem));
+
+                        let matrizHistoriasDoPersonagem = [];
+
+                        let historiasDoPersonagem = await Personagens.buscaHistoriasDoPersonagem(TratamentoParamtrosDeRota(req.params.idPersonagem));
+
+                        if (historiasDoPersonagem.length != 0) {
+                            for (const element of historiasDoPersonagem) {
+                                let arrayApoio = [];
+
+                                arrayApoio.push(await Historias.buscaHistoria(element.Historia.toString()));
+
+                                arrayApoio.push(await Capitulos.buscaCapitulo(element.Capitulo.toString()));
+
+                                matrizHistoriasDoPersonagem.push(arrayApoio);
+                            }
+                        }
+
+                        res.render('personagens',{notify : "Personagem atualizado com sucesso!", personagem, matrizHistoriasDoPersonagem});
                         break;
                 }
             }

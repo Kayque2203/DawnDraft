@@ -3,6 +3,7 @@ html(lang="pt-br")
   head
     title= capitulo.TituloCapitulo
     link(rel='stylesheet', href='/stylesheets/paginaCapitulos.css')
+    link(rel='stylesheet', href='/stylesheets/notify.css')
     meta(http-equiv="Content-Type", content="text/html;charset=UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
 
@@ -41,6 +42,8 @@ html(lang="pt-br")
             div(class="divResumoPersonagem")
                 label(for="") Historia&nbspdo&nbspcapitulo:
                 textarea(name="textoCapitulo" placeholder="Historia do capitulo")= capitulo.TextoCapitulo
+
+            script(src="/javascripts/capitulos.js")
 
             div
                 button(type="submit") Salvar 
@@ -94,6 +97,15 @@ html(lang="pt-br")
                 option(value="null") Cenario 1  
 
             button(type="submit", disabled) Adicionar Cenário
+
+    
+    //- if notify.length
+    //-   div(class="containerNotify", id="containerNotify")
+    //-     div(class="boxNotify")
+    //-       h3 Sucesso!
+    //-       span(id="idNotificacao")= notify
+      
+    //-   script(src="/javascripts/notify.js")
     
     footer(class="footer")
           p &copy; 2024 DawnDraft. Todos os direitos reservados.

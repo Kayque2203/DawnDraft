@@ -2,6 +2,7 @@ doctype html
 html(lang="pt-br")
   head
     link(rel='stylesheet', href='/stylesheets/paginaPersonagens.css')
+    link(rel='stylesheet', href='/stylesheets/notify.css')
     meta(http-equiv="Content-Type", content="text/html;charset=UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     title Personagem
@@ -109,8 +110,16 @@ html(lang="pt-br")
         div(class="botoesDivExcluirPersonagem")
           button(class="cancelar", id="btnCancelar") Cancelar 
           a(class="excluir", href=`/Usuarios/:${personagem.Usuario.toString()}/deletarPersonagem/:${personagem._id.toString()}`) Excluir
-        script(src="/javascripts/personagens.js") 
-    
+        script(src="/javascripts/personagens.js")
+
+    if notify.length
+      div(class="containerNotify", id="containerNotify")
+        div(class="boxNotify")
+          h3 Sucesso!
+          span(id="idNotificacao")= notify
+      
+      script(src="/javascripts/notify.js")
+
     footer(class="footer")
       p &copy; 2024 DawnDraft. Todos os direitos reservados.
       a(href="/politicaPrivacidade.html" style="color: white; text-decoration: none;") Política de Privacidade

@@ -139,87 +139,6 @@ a{
     text-decoration: none;
 }
 
-/* Falta Fazer a parte que a notificação aparece e some */
-.containerNotify{
-    padding-left: 2pt;
-    position: sticky;
-    bottom: 15pt;
-    left: 15pt;
-    color: white;
-    background-color: green;
-    width: 20%;
-}
-
-.boxNotify{
-    font-size: 12pt;
-    width: 100%;
-    background-color: grey;
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    padding: 5pt;
-}
-
-@keyframes esmaecerNotify {
-    0%{
-      opacity: 1;
-    }
-
-    10%{
-        opacity: 0.90;
-        left: 10%;
-    }
-
-    20%{
-        opacity: 0.80;
-        left: 20%;
-    }
-
-    30%{
-        opacity: 0.70;
-        left: 30%;
-    }
-
-    40%{
-        opacity: 0.60;
-        left: 40%;
-    }
-
-    50%{
-        opacity: 0.50;
-        left: 50%;
-    }
-
-    60%{
-        opacity: 0.40;
-        left: 60%;
-    }
-
-    70%{
-        opacity: 0.30;
-        left: 70%;
-    }
-
-    80%{
-        opacity: 0.20;
-        left: 80%;
-    }
-
-    90%{
-        opacity: 0.10;
-        left: 90%;
-    }
-
-    100%{
-      opacity: 1;
-      left: calc(100% - 15pt);
-
-      .boxNotify{
-        display: none;
-      }
-    }
-  }
-
 @media (max-width : 900px) {
     .boxHistorias{
         min-width: 26vw;
@@ -235,8 +154,6 @@ a{
         width: 20pt;
         height: auto;
     }
-
-    
 }
 
 @media (max-width : 720px) {

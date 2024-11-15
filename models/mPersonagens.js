@@ -71,7 +71,8 @@ class Personagens {
         });
 
         // Retorna o id do personagem recem adicionado
-        return novoPersonagem.insertedId;
+        console.log(novoPersonagem.insertedId.toString())
+        return novoPersonagem.insertedId.toString();
     }
     
     async atualizaPersonagem(idPersonagem){
