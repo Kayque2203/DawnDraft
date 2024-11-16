@@ -1,39 +1,66 @@
 doctype html
 html(lang="pt-br")
   head
-    title home
+    title Home Usuarios
     link(rel='stylesheet', href='/stylesheets/paginaHomeUsuarios.css')
+    link(rel='stylesheet', href='/stylesheets/notify.css')
+    link(rel="website icon", href="/images/3c323745-b83e-4589-b0a6-a5b15a0aa3c4.jpg")
+    meta(http-equiv="Content-Type", content="text/html;charset=UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+  
   body
-      h1 Seja Bem Vindo, #{nome_Usuario}
+    header(class="header")
+      div(class="boxTituloLogo")
+          img( class="logo-nav" src="/images/63b55e87-83ca-4b1e-afe9-c0e899910615.jpg")
+          h1(class="h1-home") Dawn Draft
+  
+      nav(class="navBar")
+        a(href=`/Usuarios/:${id_Usuario}/PerfilUsuario`)
+          img(src="/images/user.png", alt="Perfil Do Usuario")
 
-      section(class="")
-        h1 Histórias 
-        div(class="containerHistorias")
-          div(class='boxHistorias mais')
-            a(href=`http://localhost:3000/Usuarios/:${id_Usuario}/NovaHistoria`) +
-            span Adicionar Historia
-            
-          if historias.length
-            for historia in historias
-              div(class="boxHistorias")
-                a(href=`http://localhost:3000/Usuarios/:${historia.Usuario}/historia/:${historia._id.toString()}`, rel="noopener noreferrer")
-                  h2= historia.Titulo
-                  p= historia.Prologo
-                  span
-                    a(href=`http://localhost:3000/Usuarios/:${historia.Usuario}/deletarHistoria/${historia._id.toString()}`, class="spanDeletarHis") Deletar Historia
+        a(href="/")
+          img(src="/images/logout.png", alt="") 
 
-      section
-        h1 Personagens
+    
+    section(class="")
+      h1(class="tituloSection") Histórias 
+      div(class="containerHistorias")
+        a(href=`/Usuarios/:${id_Usuario}/NovaHistoria`, class='boxHistorias mais') +
+          span Adicionar Historia
+          
+        if historias.length
+          for historia in historias
+            a(href=`/Usuarios/:${historia.Usuario}/historia/:${historia._id.toString()}`, rel="noopener noreferrer", class="boxHistorias")
+              h2= historia.Titulo.substring(0, 30) + "..."
 
-        div(class="containerHistorias")
-          div(class='boxHistorias mais')
-            a(href='#') + 
-            span Adicionar Personagem
+    section
+      h1(class="tituloSection") Personagens
 
-      section 
-        h1 Cenários
+      div(class="containerHistorias")
+        a(href=`/Usuarios/:${id_Usuario}/adicionarPersonagem`, class='boxHistorias mais') + 
+          span Adicionar Personagem
 
-        div(class="containerHistorias")
-          div(class='boxHistorias mais')
-            a(href='#') +
-            span Adicionar Historia
+        if Personagens.length
+          for personagem in Personagens
+            a(href=`/Usuarios/:${personagem.Usuario.toString()}/personagem/:${personagem._id.toString()}`, class="boxHistorias")
+              h2= personagem.Nome
+
+    section 
+      h1(class="tituloSection") Cenários
+
+      div(class="containerHistorias")
+        a(href='#', class='boxHistorias mais') +
+          span Adicionar Cenário
+      
+    if notify.length
+      div(class="containerNotify sucesso", id="containerNotify")
+        div(class="boxNotify")
+          h3 Sucesso!
+          span(id="idNotificacao")= notify
+      
+      script(src="/javascripts/notify.js")
+  
+    footer(class="footer")
+      p &copy; 2024 DawnDraft. Todos os direitos reservados.
+      a(href="/politicaPrivacidade.html" style="color: white; text-decoration: none;") Política de Privacidade
+      a(href="/contato.html" style="color: white; text-decoration: none;") Contato

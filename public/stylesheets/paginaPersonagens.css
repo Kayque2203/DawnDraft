@@ -20,14 +20,18 @@ body {
     position: relative; 
     bottom: 0; 
     width: 100%;
+    /* position: absolute;
+    bottom: 0; */
 }
 
 section{
     padding-top: 1.9%;
     padding-left: 5%;
     padding-right: 5%;
-    padding-bottom: 10pt;
+    padding-bottom: 50px;
+    width: 100%;
 }
+
 
 input:focus{
     border: none;
@@ -43,7 +47,6 @@ input{
     /* margin-bottom: 5pt; */
     font-size: 12.5pt;
     background-color: #F2F0EB;
-    border-radius: 0pt 2.5pt 2.5pt 0pt;
 }
 
 label{
@@ -52,7 +55,6 @@ label{
     background-color: #F2F0EB;
     width: auto;
     text-wrap: nowrap;
-    border-radius: 2.5pt 0pt 0pt 2.5pt;
 }
 
 div{
@@ -63,7 +65,6 @@ div{
 .divInpt{
     background-color: #BFBEBA;
     padding: 10pt;
-    border-radius: 5pt;
 }
 
 h2{
@@ -80,15 +81,6 @@ button[type="submit"]{
     background: linear-gradient(to bottom, #ff9101, #f8eb59c2);
     font-size: 14pt;
     color: black;
-    border: 1.8px solid rebeccapurple;
-    box-shadow: 1px 1px 1px 1px rebeccapurple;
-    transition: 20ms;
-}
-  
-button:hover{
-    border: 1.8px solid rebeccapurple;
-    box-shadow: 6px 5px rebeccapurple;
-    outline: 0;
 }
 
 .divResumoPersonagem{
@@ -96,8 +88,8 @@ button:hover{
     width: 100%;
     background-color: #BFBEBA;
     height: 55%;
-    margin-top: 8pt;
-    margin-bottom: 5pt;
+    margin-top: 18pt;
+    margin-bottom: 18pt;
     padding: 8pt;
     border-radius: 10pt;
 }
@@ -117,7 +109,6 @@ textarea{
     border: none;
     background-color: #F2F0EB;
     border-radius: 0pt 0pt 5pt 5pt;
-    overflow: hidden;
 }
 
 .divResumoPersonagem label{
@@ -136,8 +127,6 @@ textarea:focus{
 .marginTop15pt{
     margin-top: 15pt;
 }
-
-/* Section capitulos */
 
 .sectionCapitulos{
     background-color: #BFBEBA;
@@ -164,141 +153,122 @@ textarea:focus{
 }
 
 .linkCapitulos{
-    width: 100%;
+    width: 90%;
     background-color: #F2F0EB;
     padding: 5pt;
     border-radius: 5pt;
-    box-shadow: 2pt 2pt;
-    transition: 50ms;
 }
 
-.linkCapitulos:hover{
-    box-shadow: 4pt 4pt;
-}
-
-.linkDeletarCap{
+/* .linkDeletarCap{
     background-color: #F2F0EB;
     padding: 5pt;
     width: auto;
     background-color: red;
     border-radius: 10pt;
     color: white;
-}
+} */
 
 .tituloCapitulos{
     margin-bottom: 12pt;
 }
 
 .h2BoxCapitulos{
-    padding: 10pt;
+    padding: 15pt;
     background-color: #F2F0EB;
     border-radius: 10pt;
-    transition: 0.2s;
-    margin-top: 5pt;
-    box-shadow: 4px 3px 4px 0px grey;
+    transition: 0.5s;
 }
 
 .h2BoxCapitulos:hover{
     background-color: green;
 }
 
-/* <a href="https://www.flaticon.com/br/icones-gratis/casa" title="casa ícones">Casa ícones criados por Dave Gandy - Flaticon</a> */
-/* <a href="https://www.flaticon.com/br/icones-gratis/costas" title="costas ícones">Costas ícones criados por Freepik - Flaticon</a> */
-
-/* Nav bar */
-header{
-    display: flex;
+.spanDeletarHis{
+    background-color: red;
+    color: white;
+    padding: 8pt;
+    border-radius: 10pt;
     width: 100%;
-    justify-content: space-between;
-    background: linear-gradient(to bottom, #ff9101, #f8eb59c2);
-    margin: 0%;
+    font-size: 12pt;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.divExcluirPersonagem{
+    padding: 10%;
+    width: 40vw;
+    height: auto;
+    left: calc(50vw - 20vw);
+    top: 5% ;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color:  #fcfbee;
+    color: black;
+    position: absolute;
+    border-radius: 20pt;
+    text-align: center;
+}
+
+.botoesDivExcluirPersonagem{
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
     padding: 10pt;
-    align-items: center;
-    border-bottom: 2px solid rebeccapurple;
 }
 
-.boxTituloLogo{
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.btn-inicio{
-    width: 15%;
-    height: 35px;
-    background: transparent; 
-    border: none; 
+#btnCancelar{
+    padding: 5pt;
+    background-color: yellowgreen;
+    border-radius: 10pt;
+    border: 1px solid yellowgreen;
     cursor: pointer;
+    font-size: 12pt;
 }
 
-a{
-    color:black;
-    text-decoration: none;
-}
-
-.logo-nav{
-    width: 50pt;
-    height: auto;
-    border-radius: 50%;
-  }
-  
-.navBar{
-    min-width: 25%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10pt;
-}
-  
-.boxTituloLogo{
-    display: flex;
-    align-items: center;
-    justify-content: start;
-    gap: 7.5pt;
-    width: 50%;
-}
-  
-.btn-sobre{
-    width: auto;
-    height: auto;
-    background: transparent; 
-    border: none; 
-    color: #000; 
-    cursor: pointer;
-    font-size: 15pt;
-    font-weight: bold;
-    text-decoration: none;
-}
-  
-  .btn-sobre:hover{
+.excluir{
+    background-color: red;
     color: white;
+    font-size: 12pt;
+    padding: 5pt;
+    border-radius: 10pt;
 }
 
-.btn-inicio{
-    width: 30%;
-    min-width: 30%;
-    height: auto;
-    background: transparent; 
-    border: none; 
-    color: #000; 
-    cursor: pointer;
-    font-size: 17.5pt;
-    font-weight: bold;
+.ContainerHistoriasPersonagem{
+    background-color: #BFBEBA;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    padding: 10pt;
+    border-radius: 10pt;
 }
 
-.btn-inicio:hover{
-    color: white;
+.ContainerHistoriasPersonagem p{
+    background-color: #F2F0EB;
+    width: 100%;
+    padding: 5pt;
 }
 
+.spanCap{
+    margin-left: 20pt;
+}
 
-@media (max-height: 800px) and (max-width: 800px){
-    /* section{
-      min-height: 100vw;
-      margin-bottom: 10pt;
-    } */
+.spanCap a, .ContainerHistoriasPersonagem p a{
+    text-decoration: underline;
+}
 
-    footer{
-        position: absolute;
-        bottom: 0;
+/* <a href="https://www.flaticon.com/br/icones-gratis/casa" title="casa ícones">Casa ícones criados por Dave Gandy - Flaticon</a> */
+
+/* Medias Query */
+@media (max-width : 600px){
+    section, input, button{
+        font-size: 15pt;
+    }
+
+    button[type="submit"]{
+        font-size: 16pt;
     }
 }

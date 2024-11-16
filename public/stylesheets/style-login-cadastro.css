@@ -12,13 +12,13 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: brown;
+    background-color: #fcfbee;
 }
 .content {
     background-color: #fff;
     border-radius: 15px;
     width: 960px;
-    height: 60%;
+    min-height: 70%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -27,7 +27,7 @@ body {
 .content::before {
     content: "";
     position: absolute;
-    background-color: #5b5b5b;
+    background: linear-gradient(to bottom, #ff9101, #f8eb59c2);
     width: 45%;
     height: 100%;
     border-top-left-radius: 15px;
@@ -37,7 +37,7 @@ body {
 .title {
     font-size: 28px;
     font-weight: bold;
-    text-transform: capitalize;
+    /* text-transform: capitalize; */
 }
 .title-primary {
     color: #fff;
@@ -200,11 +200,11 @@ input:-webkit-autofill {
     border-bottom-left-radius: 0;
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
-    animation: slidein 3s;
+    animation: slidein 1.5s linear;
     z-index: 13;
 }
 .sign-up-js .content::before {
-    animation: slideout 3s;
+    animation: slideout 1.5s linear;
     z-index: 13;
 }
 .sign-up-js .second-content .first-column,
@@ -222,12 +222,12 @@ input:-webkit-autofill {
 .sign-in-js .first-content .second-column {
     z-index: -1;
     position: relative;
-    animation: deslocamentoEsq 3s;
+    animation: deslocamentoEsq 1.5s linear;
 }
 .sign-up-js .second-content .second-column {
     position: relative;
     z-index: -1;
-    animation: deslocamentoDir 3s;
+    animation: deslocamentoDir 1.5s linear;
 }
 /* Anicação Css de Conteúdo */
 @keyframes deslocamentoEsq {
@@ -318,4 +318,12 @@ input:-webkit-autofill {
         width: 40%;
         
     }
+}
+
+.title-primary, .btn-primary {
+    color : black
+}
+
+.btn-primary {
+    border-color: black;
 }

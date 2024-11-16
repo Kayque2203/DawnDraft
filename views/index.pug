@@ -1,27 +1,39 @@
 doctype html
-html
+html(lang="pt-br")
   head
-    title= title
+    title DawnDraft
     link(rel='stylesheet', href='/stylesheets/style.css')
     link(rel="preconnect" href="https://fonts.googleapis.com")
     link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin)
     link(href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap" rel="stylesheet")
+    link(rel="website icon", href="/images/3c323745-b83e-4589-b0a6-a5b15a0aa3c4.jpg")
+    meta(http-equiv="Content-Type", content="text/html;charset=UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
 
   body
 
     header(class="header")
+      div(class="boxTituloLogo")
+        img( class="logo-nav" src="/images/63b55e87-83ca-4b1e-afe9-c0e899910615.jpg")
+        h1(class="h1-home", translate="no") Dawn&nbspDraft
+  
       nav(class="navBar")
-          div(class="boxTituloLogo")
-              img(class="logo-nav" src="../images/3c323745-b83e-4589-b0a6-a5b15a0aa3c4.jpg")
-              h1(class="h1-home") Dawn Draft
-          
-          a(href="http://localhost:3000/LoginECadastro" class="linkLogin") Entrar
+        a(class="btn-sobre", href = "/sobreNos.html") Sobre&nbspnós
+        a(class="btn-sobre", href = "/contato.html" ) Contato
+        a(href="/LoginECadastro" class="linkLogin") Entrar
+
+      img(src="/images/botao-de-menu.png", alt="Menu", class="btnDropDown")
+      
+    script(src="/javascripts/indexPage.js")
 
     section(class="section1")
       div(class="boxsIntro")
         h2 ORGANIZE SUAS HISTÓRIAS DE FORMA SIMPLES E EFICAZ
-        pO DawnDraft é a ferramenta ideal para escritores que querem levar suas criações ao próximo nível. Organize personagens, cenários e tramas em um só lugar, de forma intuitiva e prática. Perfeito para quem busca transformar ideias em histórias bem estruturadas, seja para livros, roteiros ou contos. Crie seu universo literário com facilidade. 
-  
+        p O DawnDraft é a ferramenta ideal para escritores que querem levar suas criações ao próximo nível. Organize personagens, cenários e tramas em um só lugar, de forma intuitiva e prática. Perfeito para quem busca transformar ideias em histórias bem estruturadas, seja para livros, roteiros ou contos. Crie seu universo literário com facilidade.
       div
-        img(class="img-home" src="../images/escrever-um-livro-neste-ano-scaled.jpg")
-    
+        img(class="img-home" src="/images/ilustracao-vetorial-de-desenho-animado-moderno-de-uma-mulher-de-negocios-escrevendo-com-caneta_1316704-20479.avif")
+
+    footer(class="footer")
+      p &copy; 2024 DawnDraft. Todos os direitos reservados.
+      a(href="/politicaPrivacidade.html" style="color: white; text-decoration: none;") Política de Privacidade
+      a(href="/contato.html" style="color: white; text-decoration: none;") Contato

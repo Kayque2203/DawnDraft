@@ -1,0 +1,130 @@
+doctype html
+html(lang="pt-br")
+  head
+    link(rel='stylesheet', href='/stylesheets/paginaPersonagens.css')
+    link(rel='stylesheet', href='/stylesheets/notify.css')
+    link(rel='stylesheet', href='/stylesheets/navbar.css')
+    link(rel="website icon", href="/images/3c323745-b83e-4589-b0a6-a5b15a0aa3c4.jpg")
+    meta(http-equiv="Content-Type", content="text/html;charset=UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title= personagem.Nome
+
+  body
+    header(class="header")
+      div(class="boxTituloLogo")
+        img( class="logo-nav" src="/images/63b55e87-83ca-4b1e-afe9-c0e899910615.jpg")
+        h1(class="h1-home", translate="no") Dawn Draft
+
+      nav(class="navBar")
+        a(href=`/Usuarios/${personagem.Usuario.toString()}/adicionarPersonagem`, class="btn-sobre") Criar personagem
+        a(href=`/Usuarios/${personagem.Usuario.toString()}/NovaHistoria`, class="btn-sobre") Criar historia
+        a(href=`/Usuarios/${personagem.Usuario.toString()}/`)
+          img(src="/images/casa.png", alt="Home")
+
+    section
+      form(action=`/Usuarios/:${personagem.Usuario.toString()}/atualizarPersonagem/:${personagem._id.toString()}`, method="post")
+
+        h2 Informações em geral
+        div(class="divInpt")
+          label(for="nome") Nome:
+          input(type="text", name="nome", placeholder="Insira o nome do(a) personagem", id="nome", maxlength="75", value=`${personagem.Nome}`) 
+
+        div(class="divInpt")
+          label(for="") Idade:
+          input(type="text", name="idade", placeholder="Insira a idade do(a) personagem",  maxlength="10", value=`${personagem.Idade}`) 
+
+        div(class="divInpt")
+          label(for="") Personalidade:
+          input(type="text", name="personalidade", placeholder="Crie a personalidades do(a) personagem",  maxlength="100", value=`${personagem.Personalidade}`) 
+
+        div(class="divInpt")
+          label(for="") Hobies:
+          input(type="text", name="hobies", placeholder="Descreva os hobies do(a) personagem", maxlength="100", value=`${personagem.Hobies}`) 
+
+        div(class="divInpt")
+          label(for="") Sonhos:
+          input(type="text", name="sonhos", placeholder="Fale sobre os sonhos que o(a) personagem almeja",  maxlength="100", value=`${personagem.MairoesSonhos}`) 
+
+        div(class="divInpt")
+          label(for="") Traumas:
+          input(type="text", name="traumas", placeholder="Conte os traumas sofridos pelo(a) personagem",  maxlength="100", value=`${personagem.MairoesTraumas}`) 
+
+        div(class="divInpt")
+          label(for="") Objetivo:
+          input(type="text", name="objetivo", placeholder="Fale sobre os objetivos do(a) personagem", maxlength="100", value=`${personagem.ObjetivoNaHistoria}`) 
+
+        div(class="divInpt")
+          label(for="") +Informações:
+          input(type="text", name="informacoes", placeholder="Aqui são informações adicionais caso queira adicionar", maxlength="100", value=`${personagem.InformacoesRelevantesAParte}`)
+
+        h2(class="marginTop15pt") Caracteristicas fisicas
+
+        div(class="divInpt")
+          label Cor&nbspda&nbsppele:
+          input(type="text", name="corPele", placeholder="Informe a cor de pele do(a) personagem", maxlength="50", value=`${personagem.CorDaPele}`)
+
+        div(class="divInpt")
+          label Caracteristicas&nbspdos&nbspolhos:
+          input(type="text", name="olhos", placeholder="Informe as caracteristicas dos olhos do(a) personagem", maxlength="50", value=`${personagem.CaracteristicaDosOlhos}`)
+        
+        div(class="divInpt")
+          label Caracteristicas&nbspdo&nbspcabelo: 
+          input(type="text", name="cabelo", placeholder="Informe as caracteristicas do cabelo do(a) personagem", maxlength="50", value=`${personagem.CaracteristicasDoCabelo}`)
+        
+        div(class="divInpt")
+          label Altura:
+          input(type="text", name="altura", placeholder="Informe a altura do(a) personagem", maxlength="10", value=`${personagem.Altura}`)
+        
+        div(class="divInpt")
+          label Peso:
+          input(type="text", name="peso", placeholder="Informe o peso do(a) personagem", maxlength="10", value=`${personagem.Peso}`)
+        
+        div(class="divInpt")
+          label(for="") Roupas&nbspe&nbspacessórios:
+          input(type="text", name="roupas", placeholder="Insira informações sobre as vestes do personagem", value=`${personagem.RoupasEAcessorios}`)
+
+        div(class="divResumoPersonagem")
+          label 
+            h2 Resumo do personagem 
+          textarea(name="resumoPersonagem", placeholder="Escreva um resumo sobre o personagem")= personagem.ResumoPersonagem
+          script(src="/javascripts/historias.js")
+
+        div
+          button(type="submit") Salvar Alterações
+
+    section
+      div(class="ContainerHistoriasPersonagem")
+        h2 Historias e capítulos vinculados ao personagem
+
+        if matrizHistoriasDoPersonagem.length != 0
+          for historia in matrizHistoriasDoPersonagem
+            p Historia:&nbsp
+              a(href=`/Usuarios/:${personagem.Usuario.toString()}/historia/:${historia[0]._id.toString()}`)= historia[0].Titulo
+              span(class="spanCap") Capitulo:&nbsp 
+              a(href=`/Usuarios/:${personagem.Usuario.toString()}/historia/:${historia[0]._id.toString()}/capitulo/:${historia[1]._id.toString()}`)= historia[1].TituloCapitulo
+             
+        else 
+          p O personagem não esta vinculado a nenhum capitulo de uma historia
+    
+    section  
+      span(class="spanDeletarHis") Deletar Personagem
+
+      div(class="divExcluirPersonagem")
+        p Certeza que deseja excluir o(a) personagem #{personagem.Nome}
+        div(class="botoesDivExcluirPersonagem")
+          button(class="cancelar", id="btnCancelar") Cancelar 
+          a(class="excluir", href=`/Usuarios/:${personagem.Usuario.toString()}/deletarPersonagem/:${personagem._id.toString()}`) Excluir
+        script(src="/javascripts/excluir.js")
+
+    if notify.length
+      div(class="containerNotify sucesso", id="containerNotify")
+        div(class="boxNotify")
+          h3 Sucesso!
+          span(id="idNotificacao")= notify
+      
+      script(src="/javascripts/notify.js")
+
+    footer(class="footer")
+      p &copy; 2024 DawnDraft. Todos os direitos reservados.
+      a(href="/politicaPrivacidade.html" style="color: white; text-decoration: none;") Política de Privacidade
+      a(href="/contato.html" style="color: white; text-decoration: none;") Contato

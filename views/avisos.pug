@@ -1,24 +1,16 @@
 doctype html
 html(lang="pt-br")
   head
-    title Erro
+    title Aviso!
     link(rel='stylesheet', href='/stylesheets/style.css')
     link(rel="website icon", href="/images/3c323745-b83e-4589-b0a6-a5b15a0aa3c4.jpg")
     meta(http-equiv="Content-Type", content="text/html;charset=UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
   body
-    header 
-      h1 Um erro inesperado aconteceu 
+    header
+        h1= aviso 
 
-    section
-      p= erro 
-      p
-        if link.length
-          a(href=`${link}`) Voltar
-        else 
-          a(href="/") Voltar ao inicio
-        
-
-
-
-    
+    if link.length
+        section
+            h2 
+                a(href=`${link}`)= txtLink

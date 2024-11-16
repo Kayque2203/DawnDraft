@@ -7,14 +7,19 @@ class Capitulos {
     tituloCapitulo;
     textoCapitulo;
     historia;
-    colecaoHistoria;
+    humorCapitulo;
+    focoCapitulo;
+    resumoCapitulo;
     usuario;
     
-    constructor( tituloCap, textoCap, idHis, idUsuario ){
+    constructor( tituloCap = "", textoCap = "", idHis = "", idUsuario = "", humorCap = "", focoCap = "", resumoCap = "" ){
         this.tituloCapitulo = tituloCap;
         this.textoCapitulo = textoCap;
         this.historia = idHis;
         this.usuario = idUsuario;
+        this.humorCapitulo = humorCap;
+        this.focoCapitulo = focoCap;
+        this.resumoCapitulo = resumoCap;
     }
 
     // Métodos
@@ -23,6 +28,9 @@ class Capitulos {
         let novoCapitulo = await Conexao.getCollections('Capitulos').insertOne({
             "TituloCapitulo" : this.tituloCapitulo,
             "TextoCapitulo" : this.textoCapitulo,
+            "ResumoCapitulo" : this.resumoCapitulo,
+            "HumorDoCapitulo" : this.humorCapitulo,
+            "FocoDoCapitulo" : this.focoCapitulo,
             "Historia" : new ObjectId(this.historia),
             "Usuario" : new ObjectId(this.usuario)
         });
@@ -31,16 +39,21 @@ class Capitulos {
     }
 
     async atuaizarCapitulo(id){
-        await Conexao.getCollections('Capitulos').updateOne(
+        let capAtualizado = await Conexao.getCollections('Capitulos').updateOne(
             { _id : new ObjectId(id) }, 
             {
                 $set: {
                     "TituloCapitulo" : this.tituloCapitulo,
-                    "TextoCapitulo" : this.textoCapitulo
+                    "TextoCapitulo" : this.textoCapitulo,
+                    "ResumoCapitulo" : this.resumoCapitulo,
+                    "HumorDoCapitulo" : this.humorCapitulo,
+                    "FocoDoCapitulo" : this.focoCapitulo
                 },
                 $currentDate: { lastModified : true }
             }
         )
+
+        return capAtualizado;
     }
 
     // métodos estaticos

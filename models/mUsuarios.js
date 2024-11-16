@@ -2,21 +2,19 @@ const { ObjectId } = require('mongodb');
 const conexao = require('../conexaoBD/conexaoBD.js');
 const Criptografia = require('../assets/criptografia.js');
 const Historias = require('../models/mHistorias.js');
+const PersonagensCapitulo = require('../models/mPersonagensCapitulo.js');
+const Personagens = require('../models/mPersonagens.js');
 
 const Conexao = new conexao();
-
-// DPS retirar esse try catch para nao interferir nos outros dos controllers
 
 class Usuarios {
     #nome;
     #email;
-    #telefone;
     #senha;
 
-    constructor( nomeUsuario = '', emailUsuario = '', telUsuario = '', senhaUsuario = '' ) {
+    constructor( nomeUsuario = '', emailUsuario = '', senhaUsuario = '' ) {
         this.setUsuario(nomeUsuario);
         this.setEmail(emailUsuario);
-        this.setTelefone(telUsuario);
         this.setSenha(senhaUsuario);
     }
 
@@ -29,29 +27,8 @@ class Usuarios {
         this.#email = emailUsuario;
     }
 
-    setTelefone(telUsuario){
-        this.#telefone = telUsuario;
-    }
-
     setSenha(senhaUsuario){
         this.#senha = Criptografia.criptografar(senhaUsuario);
-    }
-
-    // Getters
-    get getNome(){
-        return this.#nome;
-    }
-
-    get getEmail(){
-        return this.#email;
-    }
-
-    get getTelefone(){
-        return this.#telefone;
-    }
-
-    get getSenha(){
-        return this.#senha;
     }
 
     // Metodos
@@ -60,8 +37,8 @@ class Usuarios {
         let novoUser = await Conexao.getCollections('Usuarios').insertOne({
             "Nome" : this.#nome,
             "Email" : this.#email,
-            "Telefone" : this.#telefone,
-            "Senha" : this.#senha
+            "Senha" : this.#senha,
+            "Verificado" : false
         })
 
         return novoUser.insertedId;
@@ -73,6 +50,22 @@ class Usuarios {
 
        return usuario;
 
+    }
+
+    async atualizaUsuario(idUsuario) { // Falta Testar!!!
+        let usuarioAserAtualizado = await Conexao.getCollections('Usuarios').updateOne(
+            {
+                _id : new ObjectId(idUsuario)
+            },
+            {
+                $set : {
+                    "Nome" : this.#nome,
+                    "Senha" : this.#senha
+                }
+            }
+        );
+
+        return usuarioAserAtualizado == null? false : true
     }
 
     // Staticos 
@@ -88,10 +81,44 @@ class Usuarios {
         return usuario;
     }
 
+    static async mudarVerificacaoDoUsuario(idUsuario, verificacao){
+        let usuarioAserAtualizado = await Conexao.getCollections('Usuarios').updateOne(
+            {
+                _id : new ObjectId(idUsuario)
+            },
+            {
+                $set : {
+                    "Verificado" : verificacao
+                }
+            }
+        );
+
+        return usuarioAserAtualizado == null? false : true
+    }
+
+    // Redefine senha do usuario na funcionalidade de esqueci minha senha!!!
+    static async redefinirSenhaUsuario(emailUsuario, novaSenha){
+        let usuarioARedefinirSenha = await Conexao.getCollections('Usuarios').updateOne(
+            {
+                "Email" : emailUsuario
+            },
+            {
+                $set : {
+                    "Senha" : novaSenha
+                }
+            }
+        );
+
+        return usuarioARedefinirSenha;
+    }
+
+    // Verificar isso aqui dps
     static async deletarUsuario(id){
+        let personagensDoCapituloDeletados = await PersonagensCapitulo.deletarTodosPersonagensDoCapituloPeloIdUsuario(id);
+        let personagens = await Personagens.deletarTodosPersonagensPeloIdUsuario(id);
         let historiasDeletadas = await Historias.deleteTodasHistoriasDoUser(id);
         let usuarioDeletado = await Conexao.getCollections('Usuarios').deleteOne({_id: new ObjectId(id)});
-        return usuarioDeletado, historiasDeletadas;
+        return usuarioDeletado
     }
 }
 

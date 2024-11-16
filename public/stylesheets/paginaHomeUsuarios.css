@@ -5,6 +5,15 @@
     box-sizing: border-box;
 }
 
+h1{
+    font-size: 18pt;
+}
+
+h2{
+    font-size: 16pt;
+    text-wrap: wrap;
+}
+
 a{
     color: black;
     text-decoration: none;
@@ -15,29 +24,31 @@ a::after{
 }
 
 body{
+    background-color: #fcfbee;
+}
+
+section{
     margin-top: 2%;
     margin-left: 5%;
     margin-right: 5%;
 }
 
-section{
-    margin-top: 4%;
-}
-
 .containerHistorias{
-    height: 20vw;
+    height: 18vw;
     width: auto;
     display: flex;
-    justify-content: space-evenly;
     align-items: center;
-    overflow-x: scroll;
-    gap: 10px;
+    overflow-x: auto;
+    gap: 5%;
+    padding: 5pt;
+    margin-bottom: 20pt;
 }
 
 .boxHistorias{
-    width: 20%;
+    min-width: 18vw;
+    width: 18vw;
     border: 1px solid black;
-    height: 90%;
+    height: 15vw;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -47,6 +58,8 @@ section{
     box-shadow: 1px 1px;
     cursor: pointer;
     transition: 0.2s;
+    text-wrap: wrap;
+    background-color:#F2F0EB;
 }
 
 p{
@@ -62,20 +75,128 @@ p{
     background-color: lightslategrey;
     transform: scale(1.05);
     box-shadow: 4px 4px;
-    .spanDeletarHis{
-        display: block;
-    }
 }
 
 span{
     font-size: 10pt;
 }
 
-.spanDeletarHis{
-    background-color: red;
-    color: white;
-    padding: 2%;
-    border-radius: 10px;
-    margin-top: 30px;
-    display: none;
+.footer{
+    background-color: #292727da; 
+    color: white; 
+    text-align: center;
+    text-wrap: wrap; 
+    padding: 20px; 
+    width: 100%; 
+}
+
+/* <a href="https://www.flaticon.com/free-icons/user" title="user icons"> User icons created by Freepik - Flaticon </a> */
+/* <a href="https://www.flaticon.com/free-icons/logout" title="logout icons">Logout icons created by dmitri13 - Flaticon</a> */
+
+/* Nav bar */
+header{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    justify-content: space-between;
+    background: linear-gradient(to bottom, #ff9101, #f8eb59c2);
+    margin: 0%;
+    padding: 10px;
+    text-wrap: nowrap;
+    margin-bottom: 20pt;
+}
+
+.logo-nav{
+    width: 50pt;
+    height: auto;
+    border-radius: 50%;
+}
+
+.boxTituloLogo{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-inicio{
+    width: 15%;
+    height: 35px;
+    background: transparent; 
+    border: none; 
+    cursor: pointer;
+}
+
+.navBar{
+    width: 50%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 20px;
+}
+
+a{
+    color:black;
+    text-decoration: none;
+}
+
+@media (max-width : 900px) {
+    .boxHistorias{
+        min-width: 26vw;
+        width: 26vw;
+        height: 20vw;
+    }
+    
+    .containerHistorias{
+        height: 23vw;
+    }
+
+    nav a img{
+        width: 20pt;
+        height: auto;
+    }
+}
+
+@media (max-width : 720px) {
+    .boxHistorias{
+        min-width: 36vw;
+        width: 36vw;
+        height: 30vw;
+    }
+    
+    .containerHistorias{
+        height: 33vw;
+    }
+
+    .boxHistorias:hover{
+        background-color: auto;
+        transform: none;
+        box-shadow: none;
+        .spanDeletarHis{
+            display: none;
+        }
+    }
+}
+
+@media (max-width : 425px) {
+    .boxHistorias{
+        min-width: 46vw;
+        width: 46vw;
+        height: 40vw;
+    }
+    
+    .containerHistorias{
+        height: 43vw;
+    }
+}
+
+@media (max-height: 800px) and (max-width: 800px){
+    /* section{
+      min-height: 100vw;
+      margin-bottom: 10pt;
+    } */
+
+    footer{
+        position: absolute;
+        bottom: 0;
+    }
 }

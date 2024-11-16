@@ -1,17 +1,38 @@
 doctype html
 html(lang="pt-br")
   head
-    title home
+    title Crie uma nova historia
     link(rel='stylesheet', href='/stylesheets/paginaHistorias.css')
+    link(rel="website icon", href="/images/3c323745-b83e-4589-b0a6-a5b15a0aa3c4.jpg")
+    meta(http-equiv="Content-Type", content="text/html;charset=UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
   body
-      h1 
-        a(href=`http://localhost:3000/Usuarios/:${id_Usuario}/`) Home 
+    header(class="header")
+      div(class="boxTituloLogo")
+          img( class="logo-nav" src="/images/63b55e87-83ca-4b1e-afe9-c0e899910615.jpg")
+          h1(class="h1-home", translate="no") Dawn Draft
 
-      form(action=`http://localhost:3000/Usuarios/:${id_Usuario}/NovaHistoria/`, method="post") 
+      nav(class="navBar1item")
+        a(href=`/Usuarios/${id_Usuario}/`)
+          img(src="/images/casa.png", alt="Home") 
 
-        input(type="text", name="titulo", placeholder="Titulo Da Histora", maxlength="255")
+    section 
+      form(action=`/Usuarios/:${id_Usuario}/NovaHistoria/`, method="post")
+        div(class="divInpt")
+          label(for="") Titulo&nbspda&nbsphistoria 
+          input(type="text", name="titulo", placeholder="Titulo Da Histora", maxlength="75")
 
-        textarea(name="prologo" placeholder="Prologo Da Histria", maxlength="400")
+        div(class="divResumoPersonagem")
+          label(for="") Prologo&nbspda&nbsphistoria
+          textarea(name="prologo" placeholder="Prologo Da Historia", maxlength="400")
+          script(src="/javascripts/historias.js")
 
-        button(type="submit") salvar
+        div
+          button(type="submit") salvar
+          
+ 
+    footer(class="footer")
+      p &copy; 2024 DawnDraft. Todos os direitos reservados.
+      a(href="/politicaPrivacidade.html" style="color: white; text-decoration: none;") Política de Privacidade
+      a(href="/contato.html" style="color: white; text-decoration: none;") Contato
         

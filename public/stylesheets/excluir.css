@@ -1,0 +1,52 @@
+.spanDeletarHis{
+    background-color: red;
+    color: white;
+    padding: 8pt;
+    border-radius: 10pt;
+    width: 100%;
+    font-size: 12pt;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.divExcluirPersonagem{
+    padding: 10%;
+    width: 40vw;
+    height: auto;
+    left: calc(50vw - 20vw);
+    top: 5% ;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color:  #fcfbee;
+    color: black;
+    position: absolute;
+    border-radius: 20pt;
+    text-align: center;
+}
+
+.botoesDivExcluirPersonagem{
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    padding: 10pt;
+}
+
+#btnCancelar{
+    padding: 5pt;
+    background-color: yellowgreen;
+    border-radius: 10pt;
+    border: 1px solid yellowgreen;
+    cursor: pointer;
+    font-size: 12pt;
+}
+
+.excluir{
+    background-color: red;
+    color: white;
+    font-size: 12pt;
+    padding: 5pt;
+    border-radius: 10pt;
+}

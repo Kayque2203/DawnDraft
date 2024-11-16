@@ -1,19 +1,15 @@
 *{
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  box-sizing: border-box; 
 }
 
 body {
-  padding-top: 50px;
-  padding-left: 350px;
-  padding-right: 350px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color: #EFEEA5;
-
+  width: 100%;
+  margin: 0;
+  font: 1.8vh "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #fcfbee;
   font-family: "Sora", sans-serif;
-  font-optical-sizing: auto;
-  font-style: normal;
 }
 
 a {
@@ -25,29 +21,45 @@ a {
 
 header{
   display: flex;
+  width: 100%;
   justify-content: space-between;
+  background: linear-gradient(to bottom, #ff9101, #f8eb59c2);
+  margin: 0%;
+  padding: 10pt;
+  align-items: center;
+  border-bottom: 2px solid rebeccapurple;
 }
 
 section{
-  margin-top: 50px;
   font-size: 16pt;
+  width: 100%;
+  min-height: 100vh;
 }
 
 .boxsIntro{
-  width: 45%;
+  width: auto;
+  max-width: 60%;
+  text-align: left;
 }
 
 .boxsIntro h2{
-  margin-bottom: 30px;
+  margin-bottom: 15pt;
 }
 
 .linkLogin{
-  padding: 10px;
-  background-color: white;
+  padding: 5pt;
+  background-color: rgba(93, 89, 89, 0.644);
   border-radius: 5px;
   text-decoration: none;
-  width: 20%;
+  width: auto;
+  font-size: 15pt;
   height: min-content;
+  font-weight: bold;
+  color: white
+}
+
+.linkLogin:hover{
+  background-color: rgb(30, 97, 241);
 }
 
 .linkCadastro{
@@ -60,7 +72,7 @@ section{
 }
 
 .img-home{
-  width: 400px;
+  width: 500px;
   height: 300px;
   border-radius: 7px;
 }
@@ -68,25 +80,150 @@ section{
 .section1{
   display: flex;
   justify-content: space-between;
-  gap: 5%;
+  gap: 2%;
   align-items: center;
+  padding: 5%;
 }
 
 .logo-nav{
-  width: 75px;
-  height: 75px;
-  border-radius: 10px;
+  width: 50pt;
+  height: auto;
+  border-radius: 50%;
 }
 
 .navBar{
-  width: 100%;
+  min-width: 25%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 10pt;
 }
 
 .boxTituloLogo{
   display: flex;
   align-items: center;
-  gap: 10px;
+  justify-content: start;
+  gap: 7.5pt;
+  width: 50%;
 }
+
+.btn-sobre{
+  width: auto;
+  height: auto;
+  background: transparent; 
+  border: none; 
+  color: #000; 
+  cursor: pointer;
+  font-size: 15pt;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.btn-sobre:hover{
+  color: white;
+}
+
+.btn-inicio{
+  width: 30%;
+  min-width: 30%;
+  height: auto;
+  background: transparent; 
+  border: none; 
+  color: #000; 
+  cursor: pointer;
+  font-size: 17.5pt;
+  font-weight: bold;
+}
+
+.btn-inicio:hover{
+  color: white;
+}
+
+.footer{
+  background-color: #292727da; 
+  color: white; 
+  text-align: center;
+  text-wrap: wrap; 
+  padding: 20px; 
+  /* position: relative; 
+  bottom: 0;  */
+  width: 100%; 
+}
+
+.btnDropDown{
+  display: none;
+  padding: 10pt;
+}
+
+@media (max-width: 1333px) {
+  .section1{
+    padding: 1%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+  }
+
+  .boxsIntro{
+    max-width: 100%;
+    padding: 10pt;
+    width: 85vw;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .img-home{
+    width: 70vw;
+    height: auto;
+  }
+}
+
+@media (max-width: 1024px) {
+  .navBar{
+    display: none;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10pt;
+  }
+
+  /* <a href="https://www.flaticon.com/br/icones-gratis/cardapio" title="cardápio ícones">Cardápio ícones criados por Catalin Fertu - Flaticon</a> */
+  .btnDropDown{
+    display: block;
+  }
+
+  .linkLogin{
+    width: 180px;
+  }
+
+  .img-home{
+    width: 80vw;
+    height: auto;
+  }
+}
+
+@media (max-width : 1000px ) {
+  .logo-nav{
+    width: 50pt;
+  }
+
+  .boxTituloLogo{
+    width: auto;
+  }
+
+  .h1-home{
+    font-size: 18pt;
+  }
+
+  .nav, .btn-sobre, .btn-inicio{
+    font-size: 18pt;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* @media (min-height: 800px) {
+  section{
+    min-height: 100vw;
+    margin-bottom: 10pt;
+  }
+} */
