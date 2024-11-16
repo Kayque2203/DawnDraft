@@ -45,6 +45,7 @@ input{
   /* margin-bottom: 5pt; */
   font-size: 12.5pt;
   background-color: #F2F0EB;
+  border-radius: 0pt 5pt 5pt 0pt;
 }
 
 select[name="personagem"]{
@@ -54,6 +55,14 @@ select[name="personagem"]{
   border: 1px solid #F2F0EB;
   background-color: #F2F0EB;
   margin-bottom: 10pt;
+}
+
+.borderRadius5ptCima{
+  border-radius: 10pt 10pt 0pt 0pt;;
+}
+
+.borderRadius5ptBaixo{
+  border-radius: 0pt 0pt 10pt 10pt;;
 }
 
 select:focus{
@@ -72,6 +81,7 @@ label{
   background-color: #F2F0EB;
   width: auto;
   text-wrap: nowrap;
+  border-radius: 5pt 0pt 0pt 5pt;
 }
 
 div{
@@ -224,49 +234,6 @@ textarea:focus{
 }
 
 /* <a href="https://www.flaticon.com/br/icones-gratis/casa" title="casa ícones">Casa ícones criados por Dave Gandy - Flaticon</a> */
-
-/* Nav bar */
-header{
-  display: flex;
-  height: 100%;
-  width: 100%;
-  justify-content: space-between;
-  background: linear-gradient(to bottom, #ff9101, #f8eb59c2);
-  margin: 0%;
-  padding: 10px;
-}
-
-.logo-nav{
-  width: 75px;
-  height: 75px;
-  border-radius: 38px;
-}
-
-.boxTituloLogo{
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.btn-inicio{
-  width: 15%;
-  height: 35px;
-  background: transparent; 
-  border: none; 
-  cursor: pointer;
-}
-
-.navBar{
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-a{
-  color:black;
-  text-decoration: none;
-}
 
 
 /* Tabela */

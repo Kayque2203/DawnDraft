@@ -26,7 +26,7 @@ router.post('/:idUsuario/historia/:idHistoria', controllerHistoria.atualizaHisto
 // Rota para exibir a pagina de criação de uma nova história
 router.get('/:idUsuario/NovaHistoria', controllerHistoria.adicionaHistoriaGet);
 
-// Rota para adicionar uma nova história no abanco de dados
+// Rota para adicionar uma nova história no banco de dados
 router.post('/:idUsuario/NovaHistoria', controllerHistoria.adicionaHistoriaPost);
 
 // Rota para deletar uma história

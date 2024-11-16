@@ -262,49 +262,6 @@ textarea:focus{
 
 /* <a href="https://www.flaticon.com/br/icones-gratis/casa" title="casa ícones">Casa ícones criados por Dave Gandy - Flaticon</a> */
 
-/* Nav bar */
-header{
-    display: flex;
-    height: 100%;
-    width: 100%;
-    justify-content: space-between;
-    background: linear-gradient(to bottom, #ff9101, #f8eb59c2);
-    margin: 0%;
-    padding: 10px;
-}
-
-.logo-nav{
-    width: 75px;
-    height: 75px;
-    border-radius: 38px;
-}
-
-.boxTituloLogo{
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.btn-inicio{
-    width: 15%;
-    height: 35px;
-    background: transparent; 
-    border: none; 
-    cursor: pointer;
-}
-
-.navBar{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-a{
-    color:black;
-    text-decoration: none;
-}
-
 /* Medias Query */
 @media (max-width : 600px){
     section, input, button{

@@ -4,6 +4,7 @@ html(lang="pt-br")
     title Home Usuarios
     link(rel='stylesheet', href='/stylesheets/paginaHomeUsuarios.css')
     link(rel='stylesheet', href='/stylesheets/notify.css')
+    link(rel="website icon", href="/images/3c323745-b83e-4589-b0a6-a5b15a0aa3c4.jpg")
     meta(http-equiv="Content-Type", content="text/html;charset=UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
   
@@ -52,7 +53,7 @@ html(lang="pt-br")
           span Adicionar Cenário
       
     if notify.length
-      div(class="containerNotify", id="containerNotify")
+      div(class="containerNotify sucesso", id="containerNotify")
         div(class="boxNotify")
           h3 Sucesso!
           span(id="idNotificacao")= notify

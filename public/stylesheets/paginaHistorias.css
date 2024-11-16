@@ -43,6 +43,7 @@ input{
     /* margin-bottom: 5pt; */
     font-size: 12.5pt;
     background-color: #F2F0EB;
+    border-radius: 0pt 2.5pt 2.5pt 0pt;
 }
 
 label{
@@ -51,6 +52,7 @@ label{
     background-color: #F2F0EB;
     width: auto;
     text-wrap: nowrap;
+    border-radius: 2.5pt 0pt 0pt 2.5pt;
 }
 
 div{
@@ -78,6 +80,15 @@ button[type="submit"]{
     background: linear-gradient(to bottom, #ff9101, #f8eb59c2);
     font-size: 14pt;
     color: black;
+    border: 1.8px solid rebeccapurple;
+    box-shadow: 1px 1px 1px 1px rebeccapurple;
+    transition: 20ms;
+}
+  
+button:hover{
+    border: 1.8px solid rebeccapurple;
+    box-shadow: 6px 5px rebeccapurple;
+    outline: 0;
 }
 
 .divResumoPersonagem{
@@ -197,18 +208,13 @@ textarea:focus{
 /* Nav bar */
 header{
     display: flex;
-    height: 100%;
     width: 100%;
     justify-content: space-between;
     background: linear-gradient(to bottom, #ff9101, #f8eb59c2);
     margin: 0%;
-    padding: 10px;
-}
-
-.logo-nav{
-    width: 75px;
-    height: 75px;
-    border-radius: 38px;
+    padding: 10pt;
+    align-items: center;
+    border-bottom: 2px solid rebeccapurple;
 }
 
 .boxTituloLogo{
@@ -225,16 +231,63 @@ header{
     cursor: pointer;
 }
 
-.navBar{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
 a{
     color:black;
     text-decoration: none;
+}
+
+.logo-nav{
+    width: 50pt;
+    height: auto;
+    border-radius: 50%;
+  }
+  
+.navBar{
+    min-width: 25%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10pt;
+}
+  
+.boxTituloLogo{
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 7.5pt;
+    width: 50%;
+}
+  
+.btn-sobre{
+    width: auto;
+    height: auto;
+    background: transparent; 
+    border: none; 
+    color: #000; 
+    cursor: pointer;
+    font-size: 15pt;
+    font-weight: bold;
+    text-decoration: none;
+}
+  
+  .btn-sobre:hover{
+    color: white;
+}
+
+.btn-inicio{
+    width: 30%;
+    min-width: 30%;
+    height: auto;
+    background: transparent; 
+    border: none; 
+    color: #000; 
+    cursor: pointer;
+    font-size: 17.5pt;
+    font-weight: bold;
+}
+
+.btn-inicio:hover{
+    color: white;
 }
 
 

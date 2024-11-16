@@ -3,6 +3,7 @@ html(lang="pt-br")
   head
     title Crie um novo capítulo
     link(rel='stylesheet', href='/stylesheets/paginaCapitulos.css')
+    link(rel="website icon", href="/images/3c323745-b83e-4589-b0a6-a5b15a0aa3c4.jpg")
     meta(http-equiv="Content-Type", content="text/html;charset=UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
 
@@ -20,7 +21,7 @@ html(lang="pt-br")
       form(action=`/Usuarios/:${id_Usuario}/historia/:${id_Historia}/adicionarCapitulo`, method="post")
         h2 Crie seu novo capítulo 
 
-        div(class="divInpt")
+        div(class="divInpt borderRadius5ptCima")
           label(for="") Titulo 
           input(type="text", name="tituloCapitulo",  placeholder="Crie o titulo do capitulo", maxlength="100")
 
@@ -28,7 +29,7 @@ html(lang="pt-br")
           label(for="") Humor&nbspdo&nbspcapitulo 
           input(type="text", name="humorCapitulo",  placeholder="Informe o humor ou o tom que conterá o capitulo", maxlength="100")
 
-        div(class="divInpt")
+        div(class="divInpt borderRadius5ptBaixo")
           label(for="") Foco&nbspdo&nbspcapitulo 
           input(type="text", name="focoCapitulo",  placeholder="Informe qual será o foco do capitulo", maxlength="100")
 
