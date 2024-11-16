@@ -78,6 +78,12 @@ class PersonagensCapitulo {
 
         return personagemEncontrado;
     }
+
+    static async buscaPersonagemDoCapituloPeloIdPersonagem2(idPersonagem, idCapitulo){
+        let personagemEncontrado = await Conexao.getCollections('PersonagensCapitulo').find({$and: [{Personagem: new ObjectId(idPersonagem)}, {Capitulo : new ObjectId(idCapitulo)}]}).toArray();
+
+        return personagemEncontrado;
+    }
 }
 
 module.exports = PersonagensCapitulo

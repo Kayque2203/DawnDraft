@@ -443,7 +443,10 @@ exports.adicionaPersonagensNoCapitulo = [
     
             let capitulo = await Capitulos.buscaCapitulo(trataParametrosDeRota(req.params.idCapitulo));
 
-            let personagemNoCapitulo = req.body.personagem == "0" ?  null : await PersonagensCapitulo.buscaPersonagemDoCapituloPeloIdPersonagem(req.body.personagem);
+            // Se o conteudo vindo da requesição for igual a zero, significa que o usuario não escolheu um personagem no select, então não precisamos executar a query no banco de dados.
+            let personagemNoCapitulo = req.body.personagem == "0" ?  null : await PersonagensCapitulo.buscaPersonagemDoCapituloPeloIdPersonagem2(req.body.personagem, tratamentoParametroDeRota(req.params.idCapitulo));
+
+            console.log(personagemNoCapitulo);
 
             let todosPersonagensDoCapitulo = [];
 
@@ -474,7 +477,7 @@ exports.adicionaPersonagensNoCapitulo = [
 
                 res.render('capitulos', {notify: "", id_Usuario : tratamentoParametroDeRota(req.params.idUsuario), id_Historia : tratamentoParametroDeRota(req.params.idHistoria), capitulo, personagens, personagensCapitulo : todosPersonagensDoCapitulo, idsDosPersonagensDoCapitulo: idsPorOrdem, notifyErro:"Lembre-se de escolher um personagem!"});
             }
-            else if(personagemNoCapitulo != null)
+            else if(personagemNoCapitulo.length)
             {
                 res.render('paginaERRO', {erro : "Esse personagem ja existe no capitulo e não pode ser adicionado novamente!", link : `/Usuarios/:${tratamentoParametroDeRota(req.params.idUsuario)}/historia/:${tratamentoParametroDeRota(req.params.idHistoria)}/capitulo/:${tratamentoParametroDeRota(req.params.idCapitulo)}`});
             }
