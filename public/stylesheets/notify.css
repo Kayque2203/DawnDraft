@@ -4,8 +4,15 @@
     bottom: 35pt;
     left: 15pt;
     color: white;
-    background-color: green;
     width: 20%;
+}
+
+.sucesso{
+    background-color: green;
+}
+
+.erro{
+    background-color: red;
 }
 
 .boxNotify{

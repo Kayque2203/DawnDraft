@@ -110,7 +110,7 @@ html(lang="pt-br")
         div(class="botoesDivExcluirPersonagem")
           button(class="cancelar", id="btnCancelar") Cancelar 
           a(class="excluir", href=`/Usuarios/:${personagem.Usuario.toString()}/deletarPersonagem/:${personagem._id.toString()}`) Excluir
-        script(src="/javascripts/personagens.js")
+        script(src="/javascripts/excluir.js")
 
     if notify.length
       div(class="containerNotify", id="containerNotify")

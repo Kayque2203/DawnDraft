@@ -27,7 +27,7 @@ class Historias {
 
     async attHistoria(id){
 
-        await Conexao.getCollections('Historias').updateOne(
+        let historiaAtualizada =  await Conexao.getCollections('Historias').updateOne(
             {_id: new ObjectId(id)}, 
             {
                 $set: {
@@ -38,7 +38,7 @@ class Historias {
             }
         );
 
-        // return "Atualizado com sucesso!!!";
+        return historiaAtualizada;
     }
 
     // Metodos estaticos

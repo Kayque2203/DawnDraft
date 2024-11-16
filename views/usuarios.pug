@@ -31,8 +31,6 @@ html(lang="pt-br")
           for historia in historias
             a(href=`/Usuarios/:${historia.Usuario}/historia/:${historia._id.toString()}`, rel="noopener noreferrer", class="boxHistorias")
               h2= historia.Titulo.substring(0, 30) + "..."
-              //- span
-              //-   a(href=`/Usuarios/:${historia.Usuario}/deletarHistoria/:${historia._id.toString()}`, class="spanDeletarHis") Deletar Historia
 
     section
       h1(class="tituloSection") Personagens

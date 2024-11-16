@@ -4,6 +4,7 @@ html(lang="pt-br")
     title= capitulo.TituloCapitulo
     link(rel='stylesheet', href='/stylesheets/paginaCapitulos.css')
     link(rel='stylesheet', href='/stylesheets/notify.css')
+    link(rel='stylesheet', href='/stylesheets/excluir.css')
     meta(http-equiv="Content-Type", content="text/html;charset=UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
 
@@ -67,13 +68,17 @@ html(lang="pt-br")
                                 a(href=`/Usuarios/:${id_Usuario}/historia/:${id_Historia}/capitulo/:${capitulo._id.toString()}/removerPersonagemDoCapitulo/${idsDosPersonagensDoCapitulo[contador]}`) Deletar
                                 - contador++
                 
+                else if personagens.length == 0
+                    p(class="pAviso") Você ainda não criou nenhum personagem, 
+                        a(href=`/Usuarios/${id_Usuario}/adicionarPersonagem`, class="linkCriarPersonagem") Crie um agora mesmo!
+
                 else
-                    p(class="pAviso") Esse capitulo ainda não possui personagens, adicione um agora mesmo!
+                    p(class="pAviso") Você ainda não tem personagens vinculados a esse capitulo!
 
             div(class="boxPersonagensECapitulos")
                 if personagens.length
                     select(name="personagem")
-                        option(value="0") Escolha um personagem
+                        option(value = "0") Escolha um personagem
                         for personagem2 in personagens
                             option(value=`${personagem2._id.toString()}`)= personagem2.Nome
                 else 
@@ -98,14 +103,32 @@ html(lang="pt-br")
 
             button(type="submit", disabled) Adicionar Cenário
 
+    section  
+      span(class="spanDeletarHis") Excluir Capitulo
+
+      div(class="divExcluirPersonagem")
+        p Certeza que deseja excluir a historia #{capitulo.Titulo}
+        div(class="botoesDivExcluirPersonagem")
+          button(class="cancelar", id="btnCancelar") Cancelar 
+          a(class="excluir", href=`/Usuarios/:${capitulo.Usuario.toString()}/historia/:${capitulo.Historia.toString()}/capitulo/:${capitulo._id.toString()}/deletarCapitulo`) Excluir
+        script(src="/javascripts/excluir.js")
+
     
-    //- if notify.length
-    //-   div(class="containerNotify", id="containerNotify")
-    //-     div(class="boxNotify")
-    //-       h3 Sucesso!
-    //-       span(id="idNotificacao")= notify
+    if notify.length
+      div(class="containerNotify sucesso", id="containerNotify")
+        div(class="boxNotify")
+          h3 Sucesso!
+          span(id="idNotificacao")= notify
       
-    //-   script(src="/javascripts/notify.js")
+      script(src="/javascripts/notify.js")
+    
+    if notifyErro.length
+      div(class="containerNotify erro", id="containerNotifyErro")
+        div(class="boxNotify")
+          h3 Erro!
+          span(id="idNotificacaoErro")= notifyErro
+      
+      script(src="/javascripts/notifyErro.js")
     
     footer(class="footer")
           p &copy; 2024 DawnDraft. Todos os direitos reservados.

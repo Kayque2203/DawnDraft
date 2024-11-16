@@ -155,6 +155,9 @@ textarea:focus{
   margin-top: 15pt;
 }
 
+.linkCriarPersonagem{
+  text-decoration: underline;
+}
 
 /* Personagens e Cenarios */
 

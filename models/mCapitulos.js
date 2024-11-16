@@ -39,7 +39,7 @@ class Capitulos {
     }
 
     async atuaizarCapitulo(id){
-        await Conexao.getCollections('Capitulos').updateOne(
+        let capAtualizado = await Conexao.getCollections('Capitulos').updateOne(
             { _id : new ObjectId(id) }, 
             {
                 $set: {
@@ -52,6 +52,8 @@ class Capitulos {
                 $currentDate: { lastModified : true }
             }
         )
+
+        return capAtualizado;
     }
 
     // métodos estaticos

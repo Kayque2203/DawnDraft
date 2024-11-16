@@ -153,10 +153,16 @@ textarea:focus{
 }
 
 .linkCapitulos{
-    width: 90%;
+    width: 100%;
     background-color: #F2F0EB;
     padding: 5pt;
     border-radius: 5pt;
+    box-shadow: 2pt 2pt;
+    transition: 50ms;
+}
+
+.linkCapitulos:hover{
+    box-shadow: 4pt 4pt;
 }
 
 .linkDeletarCap{

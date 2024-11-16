@@ -67,11 +67,17 @@ class PersonagensCapitulo {
         return personagensBuscados;
     }
 
-    static async buscaPersonagemDoCapitulo(idPersonagem){
-        let personagemEncontrado = await Conexao.getCollections('PersonagensCapitulo').findOne({_id: new ObjectId(idPersonagem)});
+    static async buscaPersonagemDoCapitulo(idPersonagemDoCapitulo){
+        let personagemEncontrado = await Conexao.getCollections('PersonagensCapitulo').findOne({_id: new ObjectId(idPersonagemDoCapitulo)});
+
+        return personagemEncontrado;
+    }
+
+    static async buscaPersonagemDoCapituloPeloIdPersonagem(idPersonagem){
+        let personagemEncontrado = await Conexao.getCollections('PersonagensCapitulo').findOne({Personagem: new ObjectId(idPersonagem)});
 
         return personagemEncontrado;
     }
 }
 
-module.exports = PersonagensCapitulo;
+module.exports = PersonagensCapitulo
