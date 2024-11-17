@@ -2,12 +2,14 @@ var express = require('express'); // Importando o módulo express para definirmo
 
 var router = express.Router(); // "Instanciando" o método de roteamento Express
 
-/* Importando os Controllers */
+/* Importando Os Controllers */
 const controllerPaginaHomeUsuarios =  require('../controllers/controllerUsuarios');
 
 const controllerHistoria = require('../controllers/controllerHistorias');
 
 const controllerPersonagens = require('../controllers/controllerPersonagens');
+
+const controllerCenarios = require('../controllers/controllerCenarios');
 
 
 
@@ -82,5 +84,23 @@ router.post('/:idUsuario/atualizarPersonagem/:idPersonagem', controllerPersonage
 
 // Rota Para Deletar As Informações De Um Personagem No Banco De Dados
 router.get('/:idUsuario/deletarPersonagem/:idPersonagem', controllerPersonagens.deletarPersonagem);
+
+
+
+/* Rotas Dos Cenarios */
+// Rota que retorna um template para criar um cenario
+router.get('/:idUsuario/adicionarCenario', controllerCenarios.criarCenarioGet);
+
+// Rota que adiciona um cenario ao banco de dados
+router.post('/:idUsuario/adicionarCenario', controllerCenarios.criarCenarioPost);
+
+// Rota para buscar os cenarios
+router.get('/:idUsuario/cenario/:idCenario', controllerCenarios.buscaCenario);
+
+// Rota para atualizar as informações dos cenarios
+router.post('/:idUsuario/atualizarCenario/:idCenario', controllerCenarios.atualizaCenario);
+
+// Rota para deletar um cenario
+router.get('/:idUsuario/deletarCenario/:idCenario', controllerCenarios.deletaCenario);
 
 module.exports = router;

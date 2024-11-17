@@ -1,0 +1,80 @@
+doctype html
+html(lang="pt-br")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(rel='stylesheet', href='/stylesheets/navbar.css')
+        link(rel="website icon", href="/images/3c323745-b83e-4589-b0a6-a5b15a0aa3c4.jpg")
+        title= cenario.Nome
+
+    body
+        header(class="header")
+            div(class="boxTituloLogo")
+                img( class="logo-nav" src="/images/63b55e87-83ca-4b1e-afe9-c0e899910615.jpg")
+                h1(class="h1-home", translate="no") Dawn&nbspDraft
+
+            nav
+                a(href=`/Usuarios/${UsuarioID}/`)
+                    img(src="/images/casa.png", alt="Home")
+
+        section
+            form(action="", method="post")
+                h2 Crie um novo cenario
+
+                div(class="divInpt")
+                    label(for="") Nome Do Cenario
+                    input(type="text", name="nome", maxlength="75", value = cenario.Nome)
+
+                div(class="divInpt")
+                    label(for="") Ambientação
+                    input(type="text", name="ambientacao", maxlength="100", value = cenario.Ambientacao)
+
+                //- div(class="containerInputRadio")
+                //-     label(for="") o cenario é real ou ficticio?
+                //-     div(class="boxInputRadio")
+                //-         label Real
+                //-         input(type="radio", name="realOuFicticio", value="Real", id="real")
+                    
+                //-     div(class="boxInputRadio")
+                //-         label Ficticio
+                //-         input(type="radio", name="realOuFicticio", value="Ficticio", id="ficiticio")
+                        
+
+                div(class="divInpt")
+                    label(for="") Existem conflitos nesse canario?
+                    input(type="text", name="conflitos", maxlength="100", value = cenario.ExisteConflitos)
+
+                div(class="divInpt")
+                    label(for="") Qual a geografia do cenario?
+                    input(type="text", name="geografia", maxlength="75", value = cenario.GeografiaLocal)
+                
+                div(class="divInpt")
+                    label(for="") Insira aqui informações que você acha importante
+                    textarea(name="informacoesInportantes")= cenario.InformacoesRelevantes
+
+                div(class="")
+                    label Faça um resumo sobre o cenario
+                    textarea(name="resumoDoCenario")= cenario.ResumoDoCenario
+
+                button(type="submit") Criar Cenario
+
+        //- if notify.length
+        //-     div(class="containerNotify sucesso", id="containerNotify")
+        //-         div(class="boxNotify")
+        //-         h3 Sucesso!
+        //-         span(id="idNotificacao")= notify
+            
+        //-     script(src="/javascripts/notify.js")
+
+        //- if notifyErro.length
+        //-     div(class="containerNotify erro", id="containerNotifyErro")
+        //-         div(class="boxNotify")
+        //-         h3 Erro!
+        //-         span(id="idNotificacaoErro")= notifyErro
+            
+        //-     script(src="/javascripts/notifyErro.js")
+
+        footer(class="footer")
+            p &copy; 2024 DawnDraft. Todos os direitos reservados.
+            a(href="/politicaPrivacidade.html" style="color: white; text-decoration: none;") Política de Privacidade
+            a(href="/contato.html" style="color: white; text-decoration: none;") Contato
