@@ -1,8 +1,9 @@
 *{
-    margin : 0px;
-    padding : 0px;
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
+
 
 body {
     width: 100%;
@@ -43,7 +44,34 @@ input{
     /* margin-bottom: 5pt; */
     font-size: 12.5pt;
     background-color: #F2F0EB;
-    border-radius: 0pt 2.5pt 2.5pt 0pt;
+    border-radius: 0pt 5pt 5pt 0pt;
+}
+
+select[name="personagem"]{
+    width: 90%;
+    border-radius: 5pt;
+    box-shadow: 3.5px 4px grey;
+    border: 1px solid #F2F0EB;
+    background-color: #F2F0EB;
+    margin-bottom: 10pt;
+}
+
+.borderRadius5ptCima{
+    border-radius: 10pt 10pt 0pt 0pt;;
+}
+
+.borderRadius5ptBaixo{
+    border-radius: 0pt 0pt 10pt 10pt;;
+}
+
+select:focus{
+    box-shadow: 2px 2px 2px 2px white;
+    border: 1px solid #F2F0EB;
+    outline: 0;
+}
+
+.btnSubmit[type="submit"]{
+    width: 90%;
 }
 
 label{
@@ -52,7 +80,7 @@ label{
     background-color: #F2F0EB;
     width: auto;
     text-wrap: nowrap;
-    border-radius: 2.5pt 0pt 0pt 2.5pt;
+    border-radius: 5pt 0pt 0pt 5pt;
 }
 
 div{
@@ -63,7 +91,6 @@ div{
 .divInpt{
     background-color: #BFBEBA;
     padding: 10pt;
-    border-radius: 5pt;
 }
 
 h2{
@@ -84,7 +111,7 @@ button[type="submit"]{
     box-shadow: 1px 1px 1px 1px rebeccapurple;
     transition: 20ms;
 }
-  
+
 button:hover{
     border: 1.8px solid rebeccapurple;
     box-shadow: 6px 5px rebeccapurple;
@@ -120,99 +147,25 @@ textarea{
     overflow: hidden;
 }
 
-.divResumoPersonagem label{
-    background-color: #F2F0EB;
-    padding: 5pt;
-    border-radius: 5pt 5pt 0pt 0pt;
-    text-wrap: nowrap;
-}
-
-textarea:focus{
-    border: none;
-    box-shadow: 0 0 0 0;
-    outline: 0;
-}
-
-.marginTop15pt{
-    margin-top: 15pt;
-}
-
-/* Section capitulos */
-
-.sectionCapitulos{
-    background-color: #BFBEBA;
-    margin-top: 1.9%;
-    margin-left: 5%;
-    margin-right: 5%;
-    margin-bottom: 50px;
-    border-radius: 10pt;
-}
-
-.boxCapitulos{
+.boxInputRadio{
     display: flex;
-    flex-direction: column;
-}
-
-.paragrafoLinksCapitulos{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    padding: 5%;
-    padding-top: 1%;
-    padding-bottom: 2%;
-}
-
-.linkCapitulos{
-    width: 100%;
-    background-color: #F2F0EB;
+    flex-direction: row-reverse;
     padding: 5pt;
-    border-radius: 5pt;
-    box-shadow: 2pt 2pt;
-    transition: 50ms;
-}
-
-.linkCapitulos:hover{
-    box-shadow: 4pt 4pt;
-}
-
-.linkDeletarCap{
-    background-color: #F2F0EB;
-    padding: 5pt;
-    width: auto;
-    background-color: red;
+    background-color: #f8eb59c2;
     border-radius: 10pt;
-    color: white;
+    cursor: pointer;
 }
 
-.tituloCapitulos{
-    margin-bottom: 12pt;
+input[type="radio"]{
+    background-color: transparent;
+    width: 15pt;
+    height: 15pt;
+    cursor: pointer;
 }
 
-.h2BoxCapitulos{
-    padding: 10pt;
-    background-color: #F2F0EB;
-    border-radius: 10pt;
-    transition: 0.2s;
-    margin-top: 5pt;
-    box-shadow: 4px 3px 4px 0px grey;
+.boxInputRadio label{
+    background-color: transparent;
+    color: #000;
+    cursor: pointer;
 }
-
-.h2BoxCapitulos:hover{
-    background-color: green;
-}
-
-/* <a href="https://www.flaticon.com/br/icones-gratis/casa" title="casa ícones">Casa ícones criados por Dave Gandy - Flaticon</a> */
-/* <a href="https://www.flaticon.com/br/icones-gratis/costas" title="costas ícones">Costas ícones criados por Freepik - Flaticon</a> */
-
-@media (max-height: 800px) and (max-width: 800px){
-    /* section{
-      min-height: 100vw;
-      margin-bottom: 10pt;
-    } */
-
-    footer{
-        position: absolute;
-        bottom: 0;
-    }
-}
+  

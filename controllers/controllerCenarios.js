@@ -79,7 +79,7 @@ exports.criarCenarioPost = [ // Endpoint que salva as informações do personage
                     break;
             
                 default:
-                    res.render('cenarios', { cenario : await novoCenario.buscaCenario1(adicionandoNovoCenario.toString()), capitulosVinculados : "", notify : "", notiftyErro : ""});
+                    res.render('cenarios', { cenario : await novoCenario.buscaCenario1(adicionandoNovoCenario.toString()), capitulosVinculados : "", notify : "", notifyErro : ""});
                     break;
             }
             
@@ -109,7 +109,7 @@ exports.buscaCenario = async (req, res, next) => { // Endpoint que busca as info
         }
         else
         {
-            res.render('cenarios', { cenario, capitulosVinculados : "", notify : "", notiftyErro : ""});
+            res.render('cenarios', { cenario, capitulosVinculados : "", notify : "", notifyErro : ""});
         }
     } 
     catch (error) 
@@ -162,9 +162,9 @@ exports.atualizaCenario = [ // Endpoint que atualiza as informações dos cenari
                     case 0 || "0":
                         res.render('paginaERRO', { erro : "Um erro aconteceu ao atualizar o cenario, volte e tente novamente!", link : `/Usuarios/${req.params.idUsuario}/cenario/${req.params.idCenario}`});
                         break;
-                
+
                     default:
-                        res.render('cenarios', { cenario : await cenarioASerAtualizado.buscaCenario1(TratamentoParametrosDeRotas(req.params.idCenario)), capitulosVinculados : "", notify : "Cenario atualizado com sucesso!", notiftyErro : ""});
+                        res.render('cenarios', { cenario : await cenarioASerAtualizado.buscaCenario1(TratamentoParametrosDeRotas(req.params.idCenario)), capitulosVinculados : "", notify : "Cenario atualizado com sucesso!", notifyErro : ""});
                         break;
                 }
             }

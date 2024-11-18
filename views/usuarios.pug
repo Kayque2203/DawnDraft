@@ -26,7 +26,7 @@ html(lang="pt-br")
       h1(class="tituloSection") Histórias 
       div(class="containerHistorias")
         a(href=`/Usuarios/:${id_Usuario}/NovaHistoria`, class='boxHistorias mais') +
-          span Adicionar Historia
+          span Criar Historia
           
         if historias.length
           for historia in historias
@@ -38,7 +38,7 @@ html(lang="pt-br")
 
       div(class="containerHistorias")
         a(href=`/Usuarios/:${id_Usuario}/adicionarPersonagem`, class='boxHistorias mais') + 
-          span Adicionar Personagem
+          span Criar Personagem
 
         if Personagens.length
           for personagem in Personagens
@@ -50,7 +50,13 @@ html(lang="pt-br")
 
       div(class="containerHistorias")
         a(href=`/Usuarios/:${id_Usuario}/adicionarCenario`, class='boxHistorias mais') +
-          span Adicionar Cenário
+          span Criar Cenário
+
+        if cenarios.length
+          for cenario in cenarios
+            a(href=`/Usuarios/:${cenario.Usuario.toString()}/cenario/:${cenario._id.toString()}`, class="boxHistorias")
+              h2= cenario.Nome
+      
       
     if notify.length
       div(class="containerNotify sucesso", id="containerNotify")

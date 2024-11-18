@@ -3,6 +3,7 @@ html(lang="pt-br")
     head
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(rel='stylesheet', href='/stylesheets/cenarios.css')
         link(rel='stylesheet', href='/stylesheets/navbar.css')
         link(rel="website icon", href="/images/3c323745-b83e-4589-b0a6-a5b15a0aa3c4.jpg")
         title Crie um novo cenario
@@ -15,7 +16,7 @@ html(lang="pt-br")
 
             nav
                 a(href=`/Usuarios/${UsuarioID}/`)
-                    img(src="/images/casa.png", alt="Home")
+                    img(src="/images/casa.png", alt="Home", class="hoverScale")
 
         section
             form(action="", method="post")
@@ -23,7 +24,7 @@ html(lang="pt-br")
 
                 div(class="divInpt")
                     label(for="") Nome Do Cenario
-                    input(type="text", name="nome", maxlength="75")
+                    input(type="text", name="nome", maxlength="75", required)
 
                 div(class="divInpt")
                     label(for="") Ambientação
@@ -48,17 +49,17 @@ html(lang="pt-br")
                     label(for="") Qual a geografia do cenario?
                     input(type="text", name="geografia", maxlength="75")
                 
-                div(class="divInpt")
+                div(class="divResumoPersonagem")
                     label(for="") Insira aqui informações que você acha importante
                     textarea(name="informacoesInportantes")
 
-                div(class="")
+                div(class="divResumoPersonagem")
                     label Faça um resumo sobre o cenario
                     textarea(name="resumoDoCenario")
 
                 button(type="submit") Criar Cenario
 
         footer(class="footer")
-        p &copy; 2024 DawnDraft. Todos os direitos reservados.
-        a(href="/politicaPrivacidade.html" style="color: white; text-decoration: none;") Política de Privacidade
-        a(href="/contato.html" style="color: white; text-decoration: none;") Contato
+            p &copy; 2024 DawnDraft. Todos os direitos reservados.
+            a(href="/politicaPrivacidade.html" style="color: white; text-decoration: none;") Política de Privacidade
+            a(href="/contato.html" style="color: white; text-decoration: none;") Contato

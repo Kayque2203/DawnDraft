@@ -49,11 +49,11 @@ html(lang="pt-br")
                         form(class="form", method="post", action="/LoginECadastro/Login")
                             label(class="label-input" for="")
                                 i(class="fas fa-envelope icon-modify")
-                                input(type="email", placeholder="email", name="login_email")
+                                input(type="email", placeholder="email", name="login_email", required)
 
                             label(class="label-input" for="")
                                 i(class="fas fa-lock icon-modify")
-                                input(type="password", placeholder="senha", name="login_senha")
+                                input(type="password", placeholder="senha", name="login_senha", required)
 
                             a(class="password" href="/LoginECadastro/esqueciMinhaSenha") esqueceu sua senha?                   
                             button(class="btn btn-second" type="submit") Entrar
@@ -77,19 +77,19 @@ html(lang="pt-br")
                         form(class="form", method="post", action="/LoginECadastro/Cadastro")
                             label(class="label-input" for="")
                                 i(class="fas fa-user icon-modify")
-                                input(type="text" placeholder="nome" name="nome")
+                                input(type="text" placeholder="nome" name="nome", required)
 
                             label(class="label-input" for="")
                                 i(class="fas fa-envelope icon-modify")
-                                input(type="email" placeholder="email" name="email")
+                                input(type="email" placeholder="email" name="email", required)
 
                             label(class="label-input" for="")
                                 i(class="fas fa-lock icon-modify")
-                                input(type="password" placeholder="senha" name="senha")
+                                input(type="password" placeholder="senha" name="senha", required)
 
                             label(class="label-input" for="")
                                 i(class="fas fa-lock icon-modify")
-                                input(type="password" placeholder="Confirmar senha" name="confirmarSenha")
+                                input(type="password" placeholder="Confirmar senha" name="confirmarSenha", required)
 
                             button(class="btn btn-second" type="submit") cadastrar-se
 

@@ -14,7 +14,7 @@ html(lang="pt-br")
           h1(class="h1-home" , translate="no") Dawn Draft
       nav(class="navBar1item")   
         a(href=`/Usuarios/${UsuarioID}/`)
-          img(src="/images/casa.png", alt="Home")
+          img(src="/images/casa.png", alt="Home", class="hoverScale")
 
     section
         form(action="", method="post")
@@ -22,7 +22,7 @@ html(lang="pt-br")
           h2 Informações em geral
           div(class="divInpt")
             label(for="nome") Nome:
-            input(type="text", name="nome", placeholder="Insira o nome do(a) personagem", id="nome", maxlength="75") 
+            input(type="text", name="nome", placeholder="Insira o nome do(a) personagem", id="nome", maxlength="75", required) 
 
           div(class="divInpt")
             label(for="") Idade:

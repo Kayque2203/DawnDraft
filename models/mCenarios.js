@@ -52,14 +52,17 @@ class Cenarios {
                 _id : new ObjectId(idCenario)
             },
             {
-                "Nome" : this.NomeDoCenario,
-                "Ambientacao" : this.Ambientacao,
-                "RealOuFicticio" : this.RealOuFicticio,
-                "Regras" : this.Regras,
-                "ExisteConflitos" : this.ExisteConflitos,
-                "GeografiaLocal" : this.GeografiaDoLocal,
-                "InformacoesRelevantes" : this.InformacoesRelevantesAParte,
-                "ResumoDoCenario" : this.ResumoDoCenario
+                $set : {
+                    "Nome" : this.NomeDoCenario,
+                    "Ambientacao" : this.Ambientacao,
+                    "RealOuFicticio" : this.RealOuFicticio,
+                    "Regras" : this.Regras,
+                    "ExisteConflitos" : this.ExisteConflitos,
+                    "GeografiaLocal" : this.GeografiaDoLocal,
+                    "InformacoesRelevantes" : this.InformacoesRelevantesAParte,
+                    "ResumoDoCenario" : this.ResumoDoCenario
+                },
+                $currentDate : {lastModified : true}
             }
         );
 

@@ -4,6 +4,8 @@ html(lang="pt-br")
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         link(rel='stylesheet', href='/stylesheets/navbar.css')
+        link(rel='stylesheet', href='/stylesheets/cenarios.css')
+        link(rel='stylesheet', href='/stylesheets/notify.css')
         link(rel="website icon", href="/images/3c323745-b83e-4589-b0a6-a5b15a0aa3c4.jpg")
         title= cenario.Nome
 
@@ -13,17 +15,21 @@ html(lang="pt-br")
                 img( class="logo-nav" src="/images/63b55e87-83ca-4b1e-afe9-c0e899910615.jpg")
                 h1(class="h1-home", translate="no") Dawn&nbspDraft
 
-            nav
-                a(href=`/Usuarios/${UsuarioID}/`)
-                    img(src="/images/casa.png", alt="Home")
+            nav(class="navBar")
+                a(href=`/Usuarios/${cenario.Usuario.toString()}/adicionarCenario`, class="btn-sobre") Criar cenario
+                a(href=`/Usuarios/${cenario.Usuario.toString()}/adicionarPersonagem`, class="btn-sobre") Criar personagem
+                a(href=`/Usuarios/${cenario.Usuario.toString()}/NovaHistoria`, class="btn-sobre") Criar historia
+                a(href=`/Usuarios/${cenario.Usuario.toString()}/historia/:${id_Historia}`)
+                a(href=`/Usuarios/${cenario.Usuario.toString()}/`)
+                    img(src="/images/casa.png", alt="Home", class="hoverScale")
 
         section
-            form(action="", method="post")
+            form(action=`/Usuarios/:${cenario.Usuario.toString()}/atualizarCenario/:${cenario._id.toString()}`, method="post")
                 h2 Crie um novo cenario
 
                 div(class="divInpt")
                     label(for="") Nome Do Cenario
-                    input(type="text", name="nome", maxlength="75", value = cenario.Nome)
+                    input(type="text", name="nome", maxlength="75", value = cenario.Nome, required)
 
                 div(class="divInpt")
                     label(for="") Ambientação
@@ -41,38 +47,38 @@ html(lang="pt-br")
                         
 
                 div(class="divInpt")
-                    label(for="") Existem conflitos nesse canario?
+                    label(for="") Conflitos nesse canario:
                     input(type="text", name="conflitos", maxlength="100", value = cenario.ExisteConflitos)
 
                 div(class="divInpt")
-                    label(for="") Qual a geografia do cenario?
+                    label(for="") Geografia do cenario:
                     input(type="text", name="geografia", maxlength="75", value = cenario.GeografiaLocal)
                 
-                div(class="divInpt")
-                    label(for="") Insira aqui informações que você acha importante
+                div(class="divResumoPersonagem")
+                    label(for="") Informações importantes
                     textarea(name="informacoesInportantes")= cenario.InformacoesRelevantes
 
-                div(class="")
-                    label Faça um resumo sobre o cenario
+                div(class="divResumoPersonagem")
+                    label Resumo sobre o cenario
                     textarea(name="resumoDoCenario")= cenario.ResumoDoCenario
 
-                button(type="submit") Criar Cenario
+                button(type="submit") Salvar Informações
 
-        //- if notify.length
-        //-     div(class="containerNotify sucesso", id="containerNotify")
-        //-         div(class="boxNotify")
-        //-         h3 Sucesso!
-        //-         span(id="idNotificacao")= notify
+        if notify.length
+            div(class="containerNotify sucesso", id="containerNotify")
+                div(class="boxNotify")
+                    h3 Sucesso!
+                    span(id="idNotificacao")= notify
             
-        //-     script(src="/javascripts/notify.js")
+            script(src="/javascripts/notify.js")
 
-        //- if notifyErro.length
-        //-     div(class="containerNotify erro", id="containerNotifyErro")
-        //-         div(class="boxNotify")
-        //-         h3 Erro!
-        //-         span(id="idNotificacaoErro")= notifyErro
-            
-        //-     script(src="/javascripts/notifyErro.js")
+        if notifyErro.length
+            div(class="containerNotify erro", id="containerNotifyErro")
+                div(class="boxNotify")
+                    h3 Erro!
+                    span(id="idNotificacaoErro")= notifyErro
+                
+            script(src="/javascripts/notifyErro.js")
 
         footer(class="footer")
             p &copy; 2024 DawnDraft. Todos os direitos reservados.

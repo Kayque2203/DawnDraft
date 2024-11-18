@@ -7,6 +7,7 @@ const { validationResult, body } = require('express-validator');
 const PersonagensCapitulo = require('../models/mPersonagensCapitulo');
 const Historias = require('../models/mHistorias');
 const Capitulos = require('../models/mCapitulos');
+const Cenarios = require('../models/mCenarios');
 
 // Endpoint que retorna um template para criar um usuario
 exports.adicionarPersonagemGet = async (req, res, next) => {
@@ -232,8 +233,9 @@ exports.deletarPersonagem = async (req, res, next) => {
                 default:
                     let historias = await Historias.buscaHistorias(TratamentoParamtrosDeRota(req.params.idUsuario));
                     let personagens = await Personagens.buscaPersonagens(TratamentoParamtrosDeRota(req.params.idUsuario));
+                    let cenarios = await Cenarios.buscaCenarios(TratamentoParamtrosDeRota(req.params.idUsuario));
 
-                    res.render('usuarios', {notify: "Personagem Deletado com sucesso!!!", historias, "Personagens" : personagens, id_Usuario : req.params.idUsuario});
+                    res.render('usuarios', {notify: "Personagem Deletado com sucesso!!!", historias, "Personagens" : personagens, id_Usuario : req.params.idUsuario, cenarios});
                     break;
             }
         }

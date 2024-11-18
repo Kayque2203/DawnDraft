@@ -3,6 +3,7 @@ const Usuarios = require('../models/mUsuarios');
 const Historias = require('../models/mHistorias');
 const Personagens = require('../models/mPersonagens');
 const tratamentoParametroRota = require('../assets/tratamentoParametroRota');
+const Cenarios = require('../models/mCenarios');
 
 exports.UsuariosIndex = async (req, res, next) => {
 
@@ -19,8 +20,9 @@ exports.UsuariosIndex = async (req, res, next) => {
         {
             let consultaHistoriasDoUsuario = await Historias.buscaHistorias(tratamentoParametroRota(req.params.idUsuario));
             let consultaPersonagens = await Personagens.buscaPersonagens(tratamentoParametroRota(req.params.idUsuario));
+            let cenarios = await Cenarios.buscaCenarios(tratamentoParametroRota(req.params.idUsuario));
 
-            res.render('usuarios', { historias: consultaHistoriasDoUsuario , id_Usuario: tratamentoParametroRota(req.params.idUsuario), nome_Usuario: consultaUsuario.Nome, Personagens: consultaPersonagens, notify: "" });
+            res.render('usuarios', { historias: consultaHistoriasDoUsuario , id_Usuario: tratamentoParametroRota(req.params.idUsuario), nome_Usuario: consultaUsuario.Nome, Personagens: consultaPersonagens, notify: "", cenarios });
         }
     } catch (error) {
         next(error);

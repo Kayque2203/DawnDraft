@@ -5,6 +5,7 @@ const Capitulos = require('../models/mCapitulos'); // Modelo Cápitulos
 const Personagens = require('../models/mPersonagens'); // Modelo Personagens
 const PersonagensCapitulo = require('../models/mPersonagensCapitulo'); // Modelo personagens da anotação
 const CenariosCapitulo = require('../models/mCenariosCapitulo'); // Modelo cenarios da anotação
+const Cenarios = require('../models/mCenarios');
 
 // Importando a função para tratar os parametros de rota
 const tratamentoParametroDeRota = require('../assets/tratamentoParametroRota');
@@ -186,7 +187,9 @@ exports.deletaHistoria = async (req, res, next) => {
 
             let personagens = await Personagens.buscaPersonagens(tratamentoParametroDeRota(req.params.idUsuario));
 
-            res.render('usuarios', {notify: "Historia deletada com sucesso!", historias, "Personagens" : personagens, id_Usuario : req.params.idUsuario});
+            let cenarios = await Cenarios.buscaCenarios(tratamentoParametroDeRota(req.params.idUsuario));
+
+            res.render('usuarios', {notify: "Historia deletada com sucesso!", historias, "Personagens" : personagens, id_Usuario : req.params.idUsuario, cenarios});
         }
 
     } catch (error) {

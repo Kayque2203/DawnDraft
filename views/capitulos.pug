@@ -17,10 +17,11 @@ html(lang="pt-br")
             h1(class="h1-home", translate="no") Dawn Draft
 
         nav(class="navBar")
+            a(href=`/Usuarios/${id_Usuario}/adicionarCenario`, class="btn-sobre") Criar cenario
             a(href=`/Usuarios/${id_Usuario}/adicionarPersonagem`, class="btn-sobre") Criar personagem
             a(href=`/Usuarios/${id_Usuario}/NovaHistoria`, class="btn-sobre") Criar historia
             a(href=`/Usuarios/${id_Usuario}/historia/:${id_Historia}`)
-                img(src="/images/de-volta.png", alt="voltar")
+                img(src="/images/de-volta.png", alt="voltar", class="hoverScale")
 
 
     section 
@@ -29,7 +30,7 @@ html(lang="pt-br")
             
             div(class="divInpt borderRadius5ptCima")
                 label(for="") Titulo:
-                input(type="text", name="tituloCapitulo",  placeholder="Titulo do capitulo" value=`${capitulo.TituloCapitulo}` maxlength="75")
+                input(type="text", name="tituloCapitulo",  placeholder="Titulo do capitulo" value=`${capitulo.TituloCapitulo}` maxlength="75", required)
 
             div(class="divInpt")
                 label(for="") Humor&nbspdo&nbspcapitulo:

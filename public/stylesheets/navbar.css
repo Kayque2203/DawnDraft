@@ -39,7 +39,7 @@ a{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 10pt;
+    gap: 20pt;
 }
   
 .boxTituloLogo{
@@ -52,18 +52,22 @@ a{
   
 .btn-sobre{
     width: auto;
-    height: auto;
-    background: transparent; 
+    height: auto; 
     border: none; 
-    color: #000; 
+    color: whitesmoke; 
     cursor: pointer;
     font-size: 15pt;
     font-weight: bold;
     text-decoration: none;
+    padding: 5pt;
+    background-color: rgba(93, 89, 89, 0.644);
+    border-radius: 5pt;
+    transition: 0.2s;
 }
   
-  .btn-sobre:hover{
+.btn-sobre:hover{
     color: white;
+    transform: scale(1.1);
 }
 
 .btn-inicio{
@@ -88,4 +92,24 @@ a{
     justify-content: end;
     align-items: center;
     gap: 10pt;
+}
+
+.linkLogin{
+    padding: 5pt;
+    background-color: rgba(93, 89, 89, 0.644);
+    border-radius: 5px;
+    text-decoration: none;
+    width: auto;
+    font-size: 15pt;
+    height: min-content;
+    font-weight: bold;
+    color: white
+  }
+
+.hoverScale{
+    transition: 0.2s;
+}
+
+.hoverScale:hover{
+    transform: scale(1.2);
 }
