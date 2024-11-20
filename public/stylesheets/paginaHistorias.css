@@ -200,6 +200,7 @@ textarea:focus{
 
 .h2BoxCapitulos:hover{
     background-color: green;
+    box-shadow: 8px 6px 8px 0px grey;
 }
 
 /* <a href="https://www.flaticon.com/br/icones-gratis/casa" title="casa ícones">Casa ícones criados por Dave Gandy - Flaticon</a> */

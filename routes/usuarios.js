@@ -67,6 +67,9 @@ router.get('/:idUsuario/historia/:idHistoria/capitulo/:idCapitulo/removerPersona
 // Rota Para Adicionar Um Cenário A Um Capitulo
 router.post('/:idUsuario/historia/:idHistoria/capitulo/:idCapitulo/adicionaCenario', controllerHistoria.adicionarCenarioNoCapitulo);
 
+// Rota Para Desvincular um capitulo do cenario
+router.get('/:idUsuario/historia/:idHistoria/capitulo/:idCapitulo/deletarCenario/:idCenarioDoCapitulo', controllerHistoria.deletarCenarioDoCapitulo)
+
 
 
 /* Rotas Dos Personagens */

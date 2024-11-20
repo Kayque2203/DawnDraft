@@ -8,6 +8,8 @@
     display: flex;
     justify-content: center;
     cursor: pointer;
+    box-shadow: 2pt 2pt black;
+    transition: 0.1s;
 }
 
 .divExcluirPersonagem{
@@ -49,4 +51,8 @@
     font-size: 12pt;
     padding: 5pt;
     border-radius: 10pt;
+}
+
+.spanDeletarHis:hover{
+    box-shadow: 4pt 4pt black;
 }

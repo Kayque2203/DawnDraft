@@ -6,6 +6,7 @@ html(lang="pt-br")
         link(rel='stylesheet', href='/stylesheets/navbar.css')
         link(rel='stylesheet', href='/stylesheets/cenarios.css')
         link(rel='stylesheet', href='/stylesheets/notify.css')
+        link(rel='stylesheet', href='/stylesheets/excluir.css')
         link(rel="website icon", href="/images/3c323745-b83e-4589-b0a6-a5b15a0aa3c4.jpg")
         title= cenario.Nome
 
@@ -63,6 +64,16 @@ html(lang="pt-br")
                     textarea(name="resumoDoCenario")= cenario.ResumoDoCenario
 
                 button(type="submit") Salvar Informações
+        
+        section  
+            span(class="spanDeletarHis") Deletar Personagem
+
+            div(class="divExcluirPersonagem")
+                p Certeza que deseja excluir o cenario #{cenario.Nome}
+                div(class="botoesDivExcluirPersonagem")
+                    button(class="cancelar", id="btnCancelar") Cancelar 
+                    a(class="excluir", href=`/Usuarios/:${cenario.Usuario.toString()}/deletarCenario/:${cenario._id.toString()}`) Excluir
+                script(src="/javascripts/excluir.js")
 
         if notify.length
             div(class="containerNotify sucesso", id="containerNotify")

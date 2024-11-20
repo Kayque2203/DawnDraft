@@ -31,8 +31,8 @@ class PersonagensCapitulo {
     }
 
     // Métodos Staticos
-    static async deletarPersonagemDoCapitulo(idPersonagemAnotacao){
-        let personagemDeletado = Conexao.getCollections('PersonagensCapitulo').deleteOne({_id: new ObjectId(idPersonagemAnotacao) });
+    static async deletarPersonagemDoCapitulo(idPersonagem){
+        let personagemDeletado = Conexao.getCollections('PersonagensCapitulo').deleteOne({ Personagem : new ObjectId(idPersonagem) });
 
         return personagemDeletado;
     }
@@ -68,7 +68,7 @@ class PersonagensCapitulo {
     }
 
     static async buscaPersonagemDoCapitulo(idPersonagemDoCapitulo){
-        let personagemEncontrado = await Conexao.getCollections('PersonagensCapitulo').findOne({_id: new ObjectId(idPersonagemDoCapitulo)});
+        let personagemEncontrado = await Conexao.getCollections('PersonagensCapitulo').findOne({Personagem: new ObjectId(idPersonagemDoCapitulo)});
 
         return personagemEncontrado;
     }

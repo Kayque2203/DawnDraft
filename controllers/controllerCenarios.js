@@ -192,7 +192,7 @@ exports.deletaCenario = async (req, res, next) => { // Endpoint que deleta um ce
 
         if (cenario == null || cenario.Usuario.toString() != usuario._id.toString())
         {
-            res.render("paginaERRO", {erro : "Cenario não encontardo, volte e faça o login novamente!", link : `/${req.params.idUsuario}/`});
+            res.render("paginaERRO", {erro : "Cenario não encontardo, volte e tente novamente login novamente!", link : `/Usuarios/${req.params.idUsuario}/`});
         }
         else
         {

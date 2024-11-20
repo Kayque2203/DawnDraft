@@ -4,6 +4,7 @@ const Criptografia = require('../assets/criptografia.js');
 const Historias = require('../models/mHistorias.js');
 const PersonagensCapitulo = require('../models/mPersonagensCapitulo.js');
 const Personagens = require('../models/mPersonagens.js');
+const CenariosCapitulo = require('./mCenariosCapitulo.js');
 
 const Conexao = new conexao();
 
@@ -113,11 +114,12 @@ class Usuarios {
     }
 
     // Verificar isso aqui dps
-    static async deletarUsuario(id){
-        let personagensDoCapituloDeletados = await PersonagensCapitulo.deletarTodosPersonagensDoCapituloPeloIdUsuario(id);
-        let personagens = await Personagens.deletarTodosPersonagensPeloIdUsuario(id);
-        let historiasDeletadas = await Historias.deleteTodasHistoriasDoUser(id);
-        let usuarioDeletado = await Conexao.getCollections('Usuarios').deleteOne({_id: new ObjectId(id)});
+    static async deletarUsuario(idUsuario){
+        let cenariosDoCapitulo = await CenariosCapitulo.ExcluirTodosOsCenariosDosCapitulosPeloIdUsuario(idUsuario)
+        let personagensDoCapituloDeletados = await PersonagensCapitulo.deletarTodosPersonagensDoCapituloPeloIdUsuario(idUsuario);
+        let personagens = await Personagens.deletarTodosPersonagensPeloIdUsuario(idUsuario);
+        let historiasDeletadas = await Historias.deleteTodasHistoriasDoUser(idUsuario);
+        let usuarioDeletado = await Conexao.getCollections('Usuarios').deleteOne({_id: new ObjectId(idUsuario)});
         return usuarioDeletado
     }
 }

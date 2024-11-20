@@ -35,7 +35,7 @@ class CenariosCapitulo {
 
     /* Busca dos cenarios vinculadoas aos capitulos */
     static async buscaCenarioDoCapitulo (idCenarioDoCapitulo) { // Busca 1 cenario do capitulo
-        let cenarioDoCapituloBuscado = await Conexao.getCollections('CenariosCapitulo').findOne({ _id : new ObjectId(idCenarioDoCapitulo) });
+        let cenarioDoCapituloBuscado = await Conexao.getCollections('CenariosCapitulo').findOne({ Cenario : new ObjectId(idCenarioDoCapitulo) });
 
         return cenarioDoCapituloBuscado;
     }
@@ -54,7 +54,7 @@ class CenariosCapitulo {
 
     /* Deletar/desvincular os(o) cenarios(o) do(s) capitulo(s) */
     static async deletarCenarioDoCapitulo (idCenarioDoCapitulo) { // Desvincula um cenario de um capitulo apagando o registro do cenario do capitulo
-        let cenarioExcluidoDoCapitulo = await Conexao.getCollections('CenariosCapitulo').deleteOne({ _id : new ObjectId(idCenarioDoCapitulo) });
+        let cenarioExcluidoDoCapitulo = await Conexao.getCollections('CenariosCapitulo').deleteOne({ Cenario : new ObjectId(idCenarioDoCapitulo) });
 
         return cenarioExcluidoDoCapitulo;
     }

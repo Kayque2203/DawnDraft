@@ -26,7 +26,7 @@ html(lang="pt-br")
 
     section 
         form(action=``, method="post")
-            h2 Continue escrevendo seu capitulo
+            h2 Continue escrevendo seu capitulo!
             
             div(class="divInpt borderRadius5ptCima")
                 label(for="") Titulo:
@@ -61,23 +61,20 @@ html(lang="pt-br")
             h2(class="tituloPersonagensECenarios") Personagens
 
             div(class="boxPersonagensECapitulos")
-                if personagensCapitulo.length
-                    - contador = 0
-                    for personagem1 in personagensCapitulo
-                        
+                if personagensDoCapitulo.length
+                    for personagem in personagensDoCapitulo
                         p(class="paragrafoLinksPersonagensECapitulos")
-                            a(href=`/Usuarios/:${id_Usuario}/personagem/:${personagem1._id.toString()}`, class="linkPersonagensECapitulos")= personagem1.Nome
+                            a(href=`/Usuarios/:${id_Usuario}/personagem/:${personagem._id.toString()}`, class="linkPersonagensECapitulos")= personagem.Nome
 
                             span(class="linkDeletarPersonagemECapitulo")
-                                a(href=`/Usuarios/:${id_Usuario}/historia/:${id_Historia}/capitulo/:${capitulo._id.toString()}/removerPersonagemDoCapitulo/${idsDosPersonagensDoCapitulo[contador]}`) Deletar
-                                - contador++
+                                a(href=`/Usuarios/:${id_Usuario}/historia/:${id_Historia}/capitulo/:${capitulo._id.toString()}/removerPersonagemDoCapitulo/${personagem._id.toString()}`) Deletar
                 
                 else if personagens.length == 0
                     p(class="pAviso") Você ainda não criou nenhum personagem, 
                         a(href=`/Usuarios/${id_Usuario}/adicionarPersonagem`, class="linkCriarPersonagem") Crie um agora mesmo!
 
                 else
-                    p(class="pAviso") Você ainda não tem personagens vinculados a esse capitulo!
+                    p(class="pAviso") Esse capitulo ainda não possui personagens viculados a ele!
 
             div(class="boxPersonagensECapitulos")
                 if personagens.length
@@ -93,7 +90,7 @@ html(lang="pt-br")
                 if personagens.length
                     button(type="submit", class="btnSubmit") Adicionar Personagem
                 else 
-                    button(type="submit", disabled) Adicionar Personagem
+                    button(type="submit", disabled, class="btnSubmit") Adicionar Personagem
 
     br/
 
@@ -102,16 +99,44 @@ html(lang="pt-br")
 
             h2(class="tituloPersonagensECenarios") Cenários
 
-            select(name="cenario", disabled)
-                option(value="null") Cenario 1  
+            div(class="boxPersonagensECapitulos")
+                if cenariosDoCapitulo.length
+                    for cenario in cenariosDoCapitulo
+                        p(class="paragrafoLinksPersonagensECapitulos")
+                            a(href=`/Usuarios/:${id_Usuario}/cenario/:${cenario._id.toString()}`, class="linkPersonagensECapitulos")= cenario.Nome
+                            span(class="linkDeletarPersonagemECapitulo")
+                                a(href=`/Usuarios/:${id_Usuario}/historia/:${id_Historia}/capitulo/:${capitulo._id.toString()}/deletarCenario/:${cenario._id.toString()}`) Deletar
+                else if cenarios.length == 0
+                    p(class="pAviso") Você ainda não criou nenhum cenario, 
+                        a(href=`/Usuarios/${id_Usuario}/adicionarCenario`, class="linkCriarPersonagem") Crie um agora mesmo!
+                    
+                else
+                    p(class="pAviso") Esse capitulo ainda não possui cenarios vinculados a ele!
 
-            button(type="submit", disabled) Adicionar Cenário
+
+            if cenarios.length
+                div(class="boxPersonagensECapitulos")
+                    select(name="cenario")
+                        option(value="0") Escolha um cenario 
+                        for cenario in cenarios
+                            option(value=cenario._id.toString())= cenario.Nome
+
+                div(class="boxPersonagensECapitulos")
+                    button(type="submit", class="btnSubmit") Adicionar Cenário
+
+            else
+                div(class="boxPersonagensECapitulos")
+                    select(name="cenario", disabled)
+                        option(value="null") Você ainda não criou nenhum cenario 
+
+                div(class="boxPersonagensECapitulos")
+                    button(type="submit", disabled, class="btnSubmit") Adicionar Cenário
 
     section  
       span(class="spanDeletarHis") Excluir Capitulo
 
       div(class="divExcluirPersonagem")
-        p Certeza que deseja excluir a historia #{capitulo.Titulo}
+        p Certeza que deseja excluir o capitulo #{capitulo.Titulo}
         div(class="botoesDivExcluirPersonagem")
           button(class="cancelar", id="btnCancelar") Cancelar 
           a(class="excluir", href=`/Usuarios/:${capitulo.Usuario.toString()}/historia/:${capitulo.Historia.toString()}/capitulo/:${capitulo._id.toString()}/deletarCapitulo`) Excluir
