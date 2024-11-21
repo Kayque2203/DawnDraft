@@ -3,7 +3,7 @@ var express = require('express'); // Importando o módulo express para definirmo
 var router = express.Router(); // "Instanciando" o método de roteamento Express
 
 /* Importando Os Controllers */
-const controllerPaginaHomeUsuarios =  require('../controllers/controllerUsuarios');
+const controllerUsuarios =  require('../controllers/controllerUsuarios');
 
 const controllerHistoria = require('../controllers/controllerHistorias');
 
@@ -14,7 +14,10 @@ const controllerCenarios = require('../controllers/controllerCenarios');
 
 
 // Rota para carregar a pagina home dos usuarios
-router.get('/:idUsuario', controllerPaginaHomeUsuarios.UsuariosIndex);
+router.get('/:idUsuario', controllerUsuarios.UsuariosIndex);
+
+// Rota para caregar a pagina de perfil dos usuarios
+router.get('/:idUsuario/perfilUsuario', controllerUsuarios.PerfilUsuario);
 
 
 

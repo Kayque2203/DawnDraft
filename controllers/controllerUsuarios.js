@@ -2,11 +2,11 @@
 const Usuarios = require('../models/mUsuarios');
 const Historias = require('../models/mHistorias');
 const Personagens = require('../models/mPersonagens');
-const tratamentoParametroRota = require('../assets/tratamentoParametroRota');
 const Cenarios = require('../models/mCenarios');
+const tratamentoParametroRota = require('../assets/tratamentoParametroRota');
+const { body, validationResult } = require('express-validator');
 
 exports.UsuariosIndex = async (req, res, next) => {
-
     try {
         // Faz uma consulta no banco de dados apartir do id inserido como parametro de rota para saber se aquele usuario realmente existe
         let consultaUsuario = await Usuarios.buscaUsuarioPeloId(tratamentoParametroRota(req.params.idUsuario));
@@ -28,3 +28,39 @@ exports.UsuariosIndex = async (req, res, next) => {
         next(error);
     }
 }
+
+exports.PerfilUsuario = async (req, res, next) => {
+    try {
+        let usuario = await Usuarios.buscaUsuarioPeloId(tratamentoParametroRota(req.params.idUsuario));
+
+        if (usuario == null) 
+        {
+            res.render('paginaERRO', { erro : "Usuario não encontrado, vplte e faça o login novamente!", link : `/`});
+        }
+        else
+        {
+            res.render("PerfilUsuarios", {usuario, historias : await Historias.buscaHistorias(usuario._id.toString()), personagens : await Personagens.buscaPersonagens(usuario._id.toString()), cenarios : await Cenarios.buscaCenarios(usuario._id.toString())});
+        }
+
+    } catch (error) {
+        next(error);
+    }
+}
+
+exports.AutualizaUsuario = [
+
+    body('nome').trim().escape().notEmpty(),
+    body('email').trim().escape().notEmpty(),
+    body('senha').trim().escape().notEmpty(),
+
+    async (req, res, next) => {
+        try {
+            let errors = validationResult(req);
+
+            
+        } catch (error) {
+            next(error);
+        }
+    }
+
+];

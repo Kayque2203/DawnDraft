@@ -1,0 +1,76 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; 
+}
+  
+body {
+    font: 1.8vh "Lucida Grande", Helvetica, Arial, sans-serif;
+    background-color: #fcfbee;
+    font-family: "Sora", sans-serif;
+}
+
+section{
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 50pt;
+    margin-top: 50pt;
+    border-radius: 28pt 28pt 28pt 28pt;
+    padding: 1%;
+    background-color: #BFBEBA;
+}
+
+form{
+    background-color: #EEE;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.borderRadius25Cima{
+    border-radius: 25pt 25pt 0pt 0pt;
+    padding-top: 5%;
+}
+
+.borderRadius25Baixo{
+    border-radius: 0pt 0pt 25pt 25pt;
+    padding-bottom: 5%;
+}
+
+label{
+    font-size: 12pt;
+    text-wrap: nowrap;
+    padding: 5pt;
+}
+
+input{
+    width: 100%;
+    padding: 5pt;
+    border: none;
+    border-radius: 2pt;
+    border-bottom: 1px solid black;
+    font-size: 13pt;
+    margin-bottom: 10pt;
+    box-shadow: 0 0 5px gray;
+    background-color: white;
+}
+
+input:focus{
+    border: none;
+    box-shadow: 0 0 8px gray;
+    outline: 0;
+}
+
+.boxInputsForm{
+    display: flex;
+    flex-direction: column;
+}
+
+.footer{
+    background-color: #292727da; 
+    color: white; 
+    text-align: center; 
+    padding: 20px; 
+    position: relative; 
+    bottom: 0; 
+    width: 100%;
+}

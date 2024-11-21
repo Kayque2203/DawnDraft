@@ -30,16 +30,15 @@ html(lang="pt-br")
                     label(for="") Ambientação
                     input(type="text", name="ambientacao", maxlength="100")
 
-                div(class="containerInputRadio")
-                    label(for="") o cenario é real ou ficticio?
-                    div(class="boxInputRadio")
-                        label Real
-                        input(type="radio", name="realOuFicticio", value="Real", id="real")
+                //- div(class="containerInputRadio")
+                //-     label(for="") o cenario é real ou ficticio?
+                //-     div(class="boxInputRadio")
+                //-         label Real
+                //-         input(type="radio", name="realOuFicticio", value="Real", id="real")
                     
-                    div(class="boxInputRadio")
-                        label Ficticio
-                        input(type="radio", name="realOuFicticio", value="Ficticio", id="ficiticio")
-                        
+                //-     div(class="boxInputRadio")
+                //-         label Ficticio
+                //-         input(type="radio", name="realOuFicticio", value="Ficticio", id="ficiticio")
 
                 div(class="divInpt")
                     label(for="") Existem conflitos nesse canario?
@@ -48,7 +47,11 @@ html(lang="pt-br")
                 div(class="divInpt")
                     label(for="") Qual a geografia do cenario?
                     input(type="text", name="geografia", maxlength="75")
-                
+
+                div(class="divResumoPersonagem")
+                    label(for="") Crie as regras para esse cenario:
+                    textarea(name="regras")
+
                 div(class="divResumoPersonagem")
                     label(for="") Insira aqui informações que você acha importante
                     textarea(name="informacoesInportantes")
