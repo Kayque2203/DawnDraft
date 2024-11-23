@@ -12,12 +12,21 @@ const controllerPersonagens = require('../controllers/controllerPersonagens');
 const controllerCenarios = require('../controllers/controllerCenarios');
 
 
-
+/* Rota das informações e da indexpage do usuario */
 // Rota para carregar a pagina home dos usuarios
 router.get('/:idUsuario', controllerUsuarios.UsuariosIndex);
 
 // Rota para caregar a pagina de perfil dos usuarios
 router.get('/:idUsuario/perfilUsuario', controllerUsuarios.PerfilUsuario);
+
+// Rota para atualizar as informações do usuario
+router.post('/:idUsuario/atualizarUsuario', controllerUsuarios.AutualizaUsuario);
+
+// Rota que retorna um template para a verificação do novo email do usuario
+router.get('/:idUsuario/atualizaEmail/:novoEmailUsuario', controllerUsuarios.AtualizaEmailUsuarioGet);
+
+// Rota que valida o código enviado para o novo email do usuario
+router.post('/:idUsuario/atualizaEmail/:novoEmailUsuario', controllerUsuarios.AtualizaEmailUsuarioPost);
 
 
 

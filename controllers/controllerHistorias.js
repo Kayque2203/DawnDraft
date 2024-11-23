@@ -270,7 +270,7 @@ exports.adicionaCapituloPost = [
                         let personagens = await Personagens.buscaPersonagens(tratamentoParametroDeRota(req.params.idUsuario));
                         let cenarios = await Cenarios.buscaCenarios(tratamentoParametroDeRota(req.params.idUsuario));
 
-                        res.render('capitulos', {id_Usuario : tratamentoParametroDeRota(req.params.idUsuario), id_Historia : tratamentoParametroDeRota(req.params.idHistoria), capitulo : capituloBuscado, personagens, personagensCapitulo : "", idsDosPersonagensDoCapitulo: "",  cenarios, cenariosDoCapitulo: "",notify : "Capitulo criado com sucesso!", notifyErro:""});
+                        res.render('capitulos', {id_Usuario : tratamentoParametroDeRota(req.params.idUsuario), id_Historia : tratamentoParametroDeRota(req.params.idHistoria), capitulo : capituloBuscado, personagens, personagensDoCapitulo : "",  cenarios, cenariosDoCapitulo: "",notify : "Capitulo criado com sucesso!", notifyErro:""});
                         break;
                 }
             }

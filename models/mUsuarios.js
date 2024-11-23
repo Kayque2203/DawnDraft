@@ -66,10 +66,25 @@ class Usuarios {
             }
         );
 
-        return usuarioAserAtualizado == null? false : true
+        return usuarioAserAtualizado.modifiedCount == 0? false : true;
     }
 
     // Staticos 
+    static async AtualizaEmailUsuario (idUsuario, novoEmailUsuario) {
+        let usuarioAserAtualizado = await Conexao.getCollections('Usuarios').updateOne(
+            {
+                _id : new ObjectId(idUsuario)
+            },
+            {
+                $set : {
+                    "Email" : novoEmailUsuario
+                }
+            }
+        );
+
+        return usuarioAserAtualizado.modifiedCount == 0? false : true;
+    }
+
     static async buscaUsuariosPeloEmail2(email){
         let usuario =  await Conexao.getCollections('Usuarios').findOne({"Email": email});
 

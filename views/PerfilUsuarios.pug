@@ -29,22 +29,34 @@ html(lang="pt-br")
 
         section
 
-            form(action="", method="post" class="borderRadius25Cima")
-                label(for="imagemPerfil") Sua foto de perfil
-                input(type="file", name="fotoPerfil", placeholder="Escolher Foto De Perfil", accept="image/*")
+            //- form(action=``, method="post" class="borderRadius25Cima")
+            //-     label(for="imagemPerfil") Sua foto de perfil
+            //-     input(type="file", name="fotoPerfil", placeholder="Escolher Foto De Perfil", accept="image/*")
 
-            form(action="", method="post", class="borderRadius25Baixo")
+            form(action=`/Usuarios/:${usuario._id.toString()}/atualizarUsuario`, method="post", class="borderRadius25Cima borderRadius25Baixo")
                 div(class="boxInputsForm")
                     label(for="nome") Nome:
-                    input(type="text", name="nome", id="nome",value=usuario.Nome, required, placeholder="Nome do usuario")
+                    if nome.length
+                        input(type="text", name="nome", id="nome",value=nome, required, placeholder="Nome do usuario")
+                    else
+                        input(type="text", name="nome", id="nome",value=usuario.Nome, required, placeholder="Nome do usuario")
 
                 div(class="boxInputsForm")
                     label(for="email") Email:
-                    input(type="email", name="email", id="email",value=usuario.Email, required, placeholder="Email do usuario")
+                    if email.length
+                        input(type="email", name="email", id="email",value=email, required, placeholder="Email do usuario")
+                    else
+                        input(type="email", name="email", id="email",value=usuario.Email, required, placeholder="Email do usuario")
 
                 div(class="boxInputsForm")
                     label(for="senha") Senha:
-                    input(type="password", name="senha", id="senha",value=usuario.Senha, required, min-length="8", placeholder="Senha")
+                    if senha.length
+                        input(type="password", name="senha", id="senha",value=senha, required, min-length="8", placeholder="Senha")
+                    else
+                        input(type="password", name="senha", id="senha",value=usuario.Senha, required, min-length="8", placeholder="Senha")
+                    span(id="verSenha") Ver Senha
+
+                    script(src="/javascripts/exibirSenha.js") 
 
                 div 
                     button(type="submit") Salvar Alterações
@@ -80,6 +92,22 @@ html(lang="pt-br")
                         a(href=`/Usuarios/:${usuario._id.toString()}/cenario/:${cenario._id.toString()}`)= cenario.Nome
             else
                 p Voce ainda não possui cenarios cadastrados!
+
+        if notify.length
+            div(class="containerNotify sucesso", id="containerNotify")
+                div(class="boxNotify")
+                    h3 Sucesso!
+                    span(id="idNotificacao")= notify
+            
+            script(src="/javascripts/notify.js")
+
+        if notifyErro.length
+            div(class="containerNotify erro", id="containerNotifyErro")
+                div(class="boxNotify")
+                    h3 Erro!
+                    span(id="idNotificacaoErro")= notifyErro
+                
+            script(src="/javascripts/notifyErro.js")
 
         footer(class="footer")
             p &copy; 2024 DawnDraft. Todos os direitos reservados.
