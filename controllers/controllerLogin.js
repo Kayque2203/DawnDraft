@@ -144,13 +144,17 @@ exports.login = [
                 {
                     res.render('loginEcadastro', {notify: `Nenhum usuario cadastrado com esse email`});
                 }
+                else if(Criptografia.descriptografa(usuarioEncontrado.Senha) != req.body.login_senha)
+                {
+                    res.render('loginEcadastro', {notify: `Senha errada`, email: req.body.login_email });
+                }
                 else if(usuarioEncontrado.Verificado == false)
                 {
                     res.redirect(`/LoginECadastro/validacaoDeEmail/:${usuarioEncontrado.Email}`);
                 }
-                else if(Criptografia.descriptografa(usuarioEncontrado.Senha) != req.body.login_senha)
+                else if(usuarioEncontrado.IsAdmin == true)
                 {
-                    res.render('loginEcadastro', {notify: `Senha errada`, email: req.body.login_email });
+                    res.redirect(`/Administrador/:${usuarioEncontrado._id.toString()}`);
                 }
                 else
                 {

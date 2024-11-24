@@ -1,0 +1,20 @@
+doctype html
+html(lang="pt-BR")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Painel Administrador
+    body
+
+        section
+            h1 Funciona
+
+             if usuarios.length
+                for usuario in usuarios 
+                    p 
+                        a(href="")= usuario.Nome
+
+            if mensagens.length
+                for mensagem in mensagens 
+                    p 
+                        a(href="")= mensagem.Assunto

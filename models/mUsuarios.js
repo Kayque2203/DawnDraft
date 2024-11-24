@@ -39,7 +39,8 @@ class Usuarios {
             "Nome" : this.#nome,
             "Email" : this.#email,
             "Senha" : this.#senha,
-            "Verificado" : false
+            "Verificado" : false,
+            "IsAdmin" : false
         })
 
         return novoUser.insertedId;
@@ -136,6 +137,12 @@ class Usuarios {
         let historiasDeletadas = await Historias.deleteTodasHistoriasDoUser(idUsuario);
         let usuarioDeletado = await Conexao.getCollections('Usuarios').deleteOne({_id: new ObjectId(idUsuario)});
         return usuarioDeletado
+    }
+
+    static async buscaTodosUsuarios () {
+        let usuarios = await Conexao.getCollections('Usuarios').find().toArray();
+
+        return usuarios;
     }
 }
 
