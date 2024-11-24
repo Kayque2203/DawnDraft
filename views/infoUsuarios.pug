@@ -1,0 +1,15 @@
+doctype html
+html(lang="pt-BR")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(rel='stylesheet', href='/stylesheets/navbar.css')
+        link(rel="website icon", href="/images/3c323745-b83e-4589-b0a6-a5b15a0aa3c4.jpg")
+        title Usuario #{usuario.Nome}
+    body 
+
+        section 
+             p Nome: #{usuario.Nome}
+             p Email: #{usuario.Email}
+             p Email Verificado: #{usuario.Verificado}
+             p É administrador : #{usuario.IsAdmin}

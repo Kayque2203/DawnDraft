@@ -18,7 +18,7 @@ exports.AdminPage = async (req, res, next) => {
         }
         else 
         {
-            res.render('administrador', { usuarios : await Usuarios.buscaTodosUsuarios(), mensagens : await Mensagens.BuscaTodasAsMensagens() });
+            res.render('administrador', { admin ,usuarios : await Usuarios.buscaTodosUsuarios(), mensagens : await Mensagens.BuscaTodasAsMensagens() });
         }
     } catch (error) {
         next(error);

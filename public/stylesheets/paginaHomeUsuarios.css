@@ -59,7 +59,7 @@ section{
     cursor: pointer;
     transition: 0.2s;
     text-wrap: wrap;
-    background-color:#F2F0EB;
+    background-color: #ede7dc;
 }
 
 p{
@@ -72,9 +72,9 @@ p{
 }
 
 .boxHistorias:hover{
-    background-color: lightslategrey;
+    background-color: antiquewhite;
     transform: scale(1.05);
-    box-shadow: 4px 4px;
+    box-shadow: 4pt 4pt 10pt;
 }
 
 span{

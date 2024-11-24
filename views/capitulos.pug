@@ -34,15 +34,15 @@ html(lang="pt-br")
 
             div(class="divInpt")
                 label(for="") Humor&nbspdo&nbspcapitulo:
-                input(type="text", name="humorCapitulo",  placeholder="Humor Do Capitulo", maxlength="100", value=`${capitulo.HumorDoCapitulo}`)
+                input(type="text", name="humorCapitulo",  placeholder="Humor do capitulo", maxlength="100", value=`${capitulo.HumorDoCapitulo}`)
 
             div(class="divInpt borderRadius5ptBaixo")
                 label(for="") Foco&nbspdo&nbspcapitulo:
-                input(type="text", name="focoCapitulo",  placeholder="Foco Do Capitulo", maxlength="100", value=`${capitulo.FocoDoCapitulo}`)
+                input(type="text", name="focoCapitulo",  placeholder="Foco do capitulo", maxlength="100", value=`${capitulo.FocoDoCapitulo}`)
 
             div(class="divResumoPersonagem")
                 label(for="") Resumo&nbspdo&nbspcapitulo:
-                textarea(name="resumoCapitulo", maxlength="500")= capitulo.ResumoCapitulo
+                textarea(name="resumoCapitulo", maxlength="500", placeholder="Resumo do capitulo")= capitulo.ResumoCapitulo
 
             div(class="divResumoPersonagem")
                 label(for="") Historia&nbspdo&nbspcapitulo:
@@ -162,4 +162,4 @@ html(lang="pt-br")
     footer(class="footer")
           p &copy; 2024 DawnDraft. Todos os direitos reservados.
           a(href="/politicaPrivacidade.html" style="color: white; text-decoration: none;") Política de Privacidade
-          a(href="/contato.html" style="color: white; text-decoration: none;") Contato
+          a(href="/FaleConosco" style="color: white; text-decoration: none;") Contato
