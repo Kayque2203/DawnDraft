@@ -1,3 +1,4 @@
+const { ObjectId } = require('mongodb');
 const ConexaoBD = require('../conexaoBD/conexaoBD');
 
 const Conexao = new ConexaoBD();
@@ -29,6 +30,12 @@ class Mensagens {
         let mensagens = await Conexao.getCollections('Mensagens').find().toArray();
 
         return mensagens;
+    }
+
+    static async BuscarUmaMensagem (idMensagem) {
+        let mensagem = await Conexao.getCollections('Mensagens').findOne({ _id : new ObjectId(idMensagem) });
+
+        return mensagem;
     }
 }
 

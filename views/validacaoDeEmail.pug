@@ -2,15 +2,26 @@ doctype html
 html(lang="pt-br")
     head
         title Validar Email
-        link(rel='stylesheet', href='/stylesheets/paginaValidacaoEmail.css')
+        //- link(rel='stylesheet', href='/stylesheets/paginaValidacaoEmail.css')
         link(rel="website icon", href="/images/3c323745-b83e-4589-b0a6-a5b15a0aa3c4.jpg")
         meta(http-equiv="Content-Type", content="text/html;charset=UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(rel='stylesheet', href='/stylesheets/navbar.css')
+        link(rel='stylesheet', href='/stylesheets/verificacaoEmail.css')
 
     body 
         header
-            h1 Verificação de email 
+            div(class="boxTituloLogo")
+                img( class="logo-nav" src="/images/63b55e87-83ca-4b1e-afe9-c0e899910615.jpg")
+                h1(class="h1-home", translate="no") Dawn&nbspDraft
+  
+            nav(class="navBar1item")
+                a(class="btn-sobre", href = "/sobreNos.html") Sobre&nbspnós
+                a(class="btn-sobre", href = "/FaleConosco" ) Contato
+
         section
+            h1 Verificação de email
+            h3 Enviamos um email com um código de verificação para você, se não recebeu verifique na aba de spam ou de lixo eletronico!
             form(action="", method="post")
-                input(type="number", name="codigoVerificacao", maxlength="6", required)
+                input(type="number", name="codigoVerificacao", max="6", required, placeholder="***-***")
                 button(type="submit") Verificar

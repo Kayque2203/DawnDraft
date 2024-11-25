@@ -22,43 +22,35 @@ html(lang="pt-br")
             form(action="", method="post")
                 h2 Crie um novo cenario
 
-                div(class="divInpt")
-                    label(for="") Nome Do Cenario
+                div(class="divInpt borderRadius5ptCima")
+                    label(for="", class="borderRadiusLabel") Nome do cenario:
                     input(type="text", name="nome", maxlength="75", required)
 
                 div(class="divInpt")
-                    label(for="") Ambientação
+                    label(for="", class="borderRadiusLabel") Ambientação do cenario:
                     input(type="text", name="ambientacao", maxlength="100")
 
-                //- div(class="containerInputRadio")
-                //-     label(for="") o cenario é real ou ficticio?
-                //-     div(class="boxInputRadio")
-                //-         label Real
-                //-         input(type="radio", name="realOuFicticio", value="Real", id="real")
-                    
-                //-     div(class="boxInputRadio")
-                //-         label Ficticio
-                //-         input(type="radio", name="realOuFicticio", value="Ficticio", id="ficiticio")
-
                 div(class="divInpt")
-                    label(for="") Existem conflitos nesse canario?
+                    label(for="", class="borderRadiusLabel") Existem conflitos nesse canario?
                     input(type="text", name="conflitos", maxlength="100")
 
-                div(class="divInpt")
-                    label(for="") Qual a geografia do cenario?
+                div(class="divInpt borderRadius5ptBaixo")
+                    label(for="", class="borderRadiusLabel") Qual a geografia do cenario?
                     input(type="text", name="geografia", maxlength="75")
 
-                div(class="divResumoPersonagem")
-                    label(for="") Crie as regras para esse cenario:
+                div(class="divResumoPersonagem borderRadius5ptCima")
+                    label(for="", class="borderRadiusLabel") Crie as regras para esse cenario
                     textarea(name="regras")
 
-                div(class="divResumoPersonagem")
-                    label(for="") Insira aqui informações que você acha importante
+                div(class="divResumoPersonagem borderRadius5ptCima")
+                    label(for="", class="borderRadius5ptCima") Insira aqui informações que você acha importante
                     textarea(name="informacoesInportantes")
 
                 div(class="divResumoPersonagem")
-                    label Faça um resumo sobre o cenario
+                    label(class="borderRadius5ptCima") Faça um resumo sobre o cenario
                     textarea(name="resumoDoCenario")
+
+                script(src="/javascripts/cenarios.js")
 
                 button(type="submit") Criar Cenario
 

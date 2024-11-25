@@ -30,11 +30,25 @@ section{
     padding-bottom: 10pt;
 }
 
+.coisas{
+    padding-top: 0.5%;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-bottom: 10pt;
+}
+
 input:focus{
     border: none;
     box-shadow: 0 0 0 0;
     outline: 0;
     border-bottom: 1px solid black;
+}
+
+textarea:focus{
+    border: none;
+    box-shadow: 0 0 0 0;
+    outline: 0;
+    border-bottom: none;
 }
 
 input{
@@ -57,11 +71,11 @@ select[name="personagem"]{
 }
 
 .borderRadius5ptCima{
-    border-radius: 10pt 10pt 0pt 0pt;;
+    border-radius: 5pt 5pt 0pt 0pt;;
 }
 
 .borderRadius5ptBaixo{
-    border-radius: 0pt 0pt 10pt 10pt;;
+    border-radius: 0pt 0pt 5pt 5pt;;
 }
 
 select:focus{
@@ -80,6 +94,9 @@ label{
     background-color: #F2F0EB;
     width: auto;
     text-wrap: nowrap;
+}
+
+.borderRadiusLabel{
     border-radius: 5pt 0pt 0pt 5pt;
 }
 
