@@ -3,3 +3,14 @@
     padding: 0;
     box-sizing: border-box; 
 }
+
+body{
+    background-color: #fcfbee;
+}
+
+section{
+    margin-top: 2%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+

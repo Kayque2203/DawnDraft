@@ -25,19 +25,24 @@ html(lang="pt-br")
     section(class="")
       h1(class="tituloSection") Histórias 
       div(class="containerHistorias")
-        a(href=`/Usuarios/:${id_Usuario}/NovaHistoria`, class='boxHistorias mais') +
+        a(href=`/Usuarios/:${id_Usuario}/NovaHistoria`, class='boxHistorias mais')
+          img(src="/images/addHistoria.png", alt="adicionar historia icon", class="imgsIcones rotateMenos5deg")
           span Criar Historia
           
         if historias.length
           for historia in historias
             a(href=`/Usuarios/:${historia.Usuario}/historia/:${historia._id.toString()}`, rel="noopener noreferrer", class="boxHistorias")
-              h2= historia.Titulo.substring(0, 30) + "..."
+              if historia.Titulo.length >= 30
+                h2= historia.Titulo.substring(0, 30) + "..."
+              else
+                h2= historia.Titulo
 
     section
       h1(class="tituloSection") Personagens
 
       div(class="containerHistorias")
-        a(href=`/Usuarios/:${id_Usuario}/adicionarPersonagem`, class='boxHistorias mais') + 
+        a(href=`/Usuarios/:${id_Usuario}/adicionarPersonagem`, class='boxHistorias mais')
+          img(src="/images/addPersonagem.png", alt="adicionar historia icon", class="imgsIcones")
           span Criar Personagem
 
         if Personagens.length
@@ -49,7 +54,8 @@ html(lang="pt-br")
       h1(class="tituloSection") Cenários
 
       div(class="containerHistorias")
-        a(href=`/Usuarios/:${id_Usuario}/adicionarCenario`, class='boxHistorias mais') +
+        a(href=`/Usuarios/:${id_Usuario}/adicionarCenario`, class='boxHistorias mais')
+          img(src="/images/addCenario.png", alt="adicionar historia icon", class="imgsIcones")
           span Criar Cenário
 
         if cenarios.length

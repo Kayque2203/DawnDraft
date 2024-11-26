@@ -27,14 +27,15 @@ form{
 }
 
 .borderRadius25Cima{
-    border-radius: 25pt 25pt 0pt 0pt;
+    border-radius: 25pt 25pt 25pt 25pt;
     padding-top: 5%;
-}
-
-.borderRadius25Baixo{
-    border-radius: 0pt 0pt 25pt 25pt;
     padding-bottom: 5%;
 }
+
+/* .borderRadius25Baixo{
+    border-radius: 0pt 0pt 25pt 25pt;
+    padding-bottom: 5%;
+} */
 
 label{
     font-size: 12pt;
@@ -73,4 +74,27 @@ input:focus{
     position: relative; 
     bottom: 0; 
     width: 100%;
+}
+
+.linksHistoriasPersonagensCenarios{
+    width: 100%;
+    background-color: #F2F0EB;
+    padding: 5pt;
+    border-radius: 5pt;
+    box-shadow: 2pt 2pt;
+    transition: 50ms;
+}
+
+.paragrafoLinks{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 5%;
+    padding-top: 1%;
+    padding-bottom: 2%;
+}
+
+.linksHistoriasPersonagensCenarios:hover{
+    box-shadow: 4pt 4pt;
 }

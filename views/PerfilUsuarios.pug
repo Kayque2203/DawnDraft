@@ -66,8 +66,8 @@ html(lang="pt-br")
 
             if historias.length
                 for historia in historias 
-                    p
-                        a(href=`/Usuarios/:${usuario._id.toString()}/historia/:${historia._id.toString()}`)=  historia.Titulo
+                    p(class="paragrafoLinks")
+                        a(href=`/Usuarios/:${usuario._id.toString()}/historia/:${historia._id.toString()}`, class="linksHistoriasPersonagensCenarios")=  historia.Titulo
             else
                 p Voce ainda não possui historias cadastradas!
 
@@ -77,8 +77,8 @@ html(lang="pt-br")
 
             if personagens.length 
                 for personagem in personagens 
-                    p 
-                        a(href=`/Usuarios/:${usuario._id.toString()}/personagem/:${personagem._id.toString()}`)= personagem.Nome 
+                    p(class="paragrafoLinks")
+                        a(href=`/Usuarios/:${usuario._id.toString()}/personagem/:${personagem._id.toString()}`, class="linksHistoriasPersonagensCenarios")= personagem.Nome 
             else 
                 p Voce ainda não possui personagens cadastrados!
 
@@ -88,8 +88,8 @@ html(lang="pt-br")
 
             if cenarios.length
                 for cenario in cenarios 
-                    p 
-                        a(href=`/Usuarios/:${usuario._id.toString()}/cenario/:${cenario._id.toString()}`)= cenario.Nome
+                    p(class="paragrafoLinks")
+                        a(href=`/Usuarios/:${usuario._id.toString()}/cenario/:${cenario._id.toString()}`, class="linksHistoriasPersonagensCenarios")= cenario.Nome
             else
                 p Voce ainda não possui cenarios cadastrados!
 
