@@ -79,7 +79,7 @@ exports.criarCenarioPost = [ // Endpoint que salva as informações do personage
                     break;
             
                 default:
-                    res.render('cenarios', { cenario : await novoCenario.buscaCenario1(adicionandoNovoCenario.toString()), capitulosVinculados : "", notify : "", notifyErro : ""});
+                    res.render('cenarios', { cenario : await novoCenario.buscaCenario1(adicionandoNovoCenario.toString()), capitulosVinculados : "", notify : "Capitulo criado com sucesso!", notifyErro : ""});
                     break;
             }
             

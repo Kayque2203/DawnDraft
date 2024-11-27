@@ -23,5 +23,5 @@ html(lang="pt-br")
             h1 Verificação de email
             h3 Enviamos um email com um código de verificação para você, se não recebeu verifique na aba de spam ou de lixo eletronico!
             form(action="", method="post")
-                input(type="number", name="codigoVerificacao", max="6", required, placeholder="***-***")
+                input(type="text", name="codigoVerificacao", required, placeholder="***-***", maxlength="6")
                 button(type="submit") Verificar

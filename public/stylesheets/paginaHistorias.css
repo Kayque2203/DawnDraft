@@ -17,8 +17,8 @@ body {
     color: white; 
     text-align: center; 
     padding: 20px; 
-    position: relative; 
-    bottom: 0; 
+    /* position: relative; 
+    bottom: 0;  */
     width: 100%;
 }
 
@@ -206,7 +206,7 @@ textarea:focus{
 /* <a href="https://www.flaticon.com/br/icones-gratis/casa" title="casa ícones">Casa ícones criados por Dave Gandy - Flaticon</a> */
 /* <a href="https://www.flaticon.com/br/icones-gratis/costas" title="costas ícones">Costas ícones criados por Freepik - Flaticon</a> */
 
-@media (max-height: 800px) and (max-width: 800px){
+@media (min-width: 900px){
     /* section{
       min-height: 100vw;
       margin-bottom: 10pt;

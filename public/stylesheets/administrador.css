@@ -72,3 +72,15 @@ section{
     text-align: center;
     font-size: 16pt;
 }
+
+@media (min-width: 900px){
+    /* section{
+      min-height: 100vw;
+      margin-bottom: 10pt;
+    } */
+
+    footer{
+        position: absolute;
+        bottom: 0;
+    }
+}
