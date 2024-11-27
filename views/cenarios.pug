@@ -43,6 +43,10 @@ html(lang="pt-br")
                 div(class="divInpt borderRadius5ptBaixo")
                     label(for="", class="borderRadiusLabel") Geografia do cenario:
                     input(type="text", name="geografia", maxlength="75", value = cenario.GeografiaLocal)
+
+                div(class="divResumoPersonagem borderRadius5ptCima")
+                    label(for="", class="borderRadius5ptCima") Crie as regras para esse cenario
+                    textarea(name="regras",  placeholder="Faça as regras para o cenario")= cenario.Regras
                 
                 div(class="divResumoPersonagem")
                     label(for="" class="borderRadius5ptCima") Informações importantes

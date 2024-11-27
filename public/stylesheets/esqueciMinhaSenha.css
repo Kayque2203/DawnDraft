@@ -1,0 +1,49 @@
+*{
+    font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+*::-webkit-scrollbar {
+    width: 8pt;
+}
+  
+*::-webkit-scrollbar-track {
+    background: transparent;
+}
+  
+*::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, #ff9101, #f8eb59c2);
+    /* background-color: #f8eb59c2; */
+    border: none;
+    border-radius: 2pt;
+}
+
+h1{
+    font-size: 18pt;
+}
+
+h2{
+    font-size: 16pt;
+    text-wrap: wrap;
+}
+
+a{
+    color: black;
+    text-decoration: none;
+}
+
+a::after{
+    color: black;
+}
+
+body{
+    background-color: #fcfbee;
+}
+
+section{
+    margin-top: 2%;
+    margin-left: 5%;
+    margin-right: 5%;
+}

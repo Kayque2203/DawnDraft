@@ -1,20 +1,31 @@
 doctype html
 html(lang="pt-br")
   head
-    link(rel='stylesheet', href='/stylesheets/+esqueciMinhaSenha.css')
-    link(rel="website icon", href="/images/3c323745-b83e-4589-b0a6-a5b15a0aa3c4.jpg")
+    link(rel='stylesheet', href='/stylesheets/esqueciMinhaSenha.css')
+    link(rel='stylesheet', href='/stylesheets/navbar.css')
+    link(rel='stylesheet', href='/stylesheets/verificacaoEmail.css')
     link(rel="website icon", href="/images/3c323745-b83e-4589-b0a6-a5b15a0aa3c4.jpg")
     meta(http-equiv="Content-Type", content="text/html;charset=UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     title Esqueci Minha Senha
   body
-    header 
-        h1 Esqueci Minha senha 
-        h2 Preencha o campo com seu email para que possamos enviar um email com um link para que possa redefinir a sua senha!!!
+    header
+      div(class="boxTituloLogo")
+        img( class="logo-nav" src="/images/63b55e87-83ca-4b1e-afe9-c0e899910615.jpg")
+        h1(class="h1-home", translate="no") Dawn Draft
+
+      nav(class="navBar1item")
+        a(class="btn-sobre", href = "/sobreNos.html") Sobre&nbspnós
+        a(class="btn-sobre", href = "/FaleConosco" ) Contato
+        a(href=`/LoginECadastro`)
+          img(src="/images/de-volta.png", alt="voltar", class="hoverScale")
+
 
     section
-        form(action="", method="post")
-            input(type="email", name="email", required)
-            button(type="submit") Enviar
+      h1 Esqueci Minha senha 
+      h2 Preencha o campo com seu email para que possamos enviar um email com um link para que possa redefinir a sua senha!!!
+      form(action="", method="post")
+        input(type="email", name="email", required)
+        button(type="submit") Enviar
             
         

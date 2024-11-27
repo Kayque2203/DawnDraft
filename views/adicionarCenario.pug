@@ -24,31 +24,31 @@ html(lang="pt-br")
 
                 div(class="divInpt borderRadius5ptCima")
                     label(for="", class="borderRadiusLabel") Nome do cenario:
-                    input(type="text", name="nome", maxlength="75", required)
+                    input(type="text", name="nome", maxlength="75", required, placeholder="De um nome ao cenario")
 
                 div(class="divInpt")
                     label(for="", class="borderRadiusLabel") Ambientação do cenario:
-                    input(type="text", name="ambientacao", maxlength="100")
+                    input(type="text", name="ambientacao", maxlength="100", placeholder="Fale da ambientação do cenario")
 
                 div(class="divInpt")
                     label(for="", class="borderRadiusLabel") Existem conflitos nesse canario?
-                    input(type="text", name="conflitos", maxlength="100")
+                    input(type="text", name="conflitos", maxlength="100", placeholder="Cite conflitos que podem haver no cenário")
 
                 div(class="divInpt borderRadius5ptBaixo")
                     label(for="", class="borderRadiusLabel") Qual a geografia do cenario?
-                    input(type="text", name="geografia", maxlength="75")
+                    input(type="text", name="geografia", maxlength="75", placeholder="Descreva a geografia local do cenario")
 
                 div(class="divResumoPersonagem borderRadius5ptCima")
-                    label(for="", class="borderRadiusLabel") Crie as regras para esse cenario
-                    textarea(name="regras")
+                    label(for="", class="borderRadius5ptCima") Crie as regras para esse cenario
+                    textarea(name="regras",  placeholder="Faça as regras para o cenario")
 
                 div(class="divResumoPersonagem borderRadius5ptCima")
                     label(for="", class="borderRadius5ptCima") Insira aqui informações que você acha importante
-                    textarea(name="informacoesInportantes")
+                    textarea(name="informacoesInportantes", placeholder="Escreva informaçôes a parte que sejam importantes")
 
                 div(class="divResumoPersonagem")
                     label(class="borderRadius5ptCima") Faça um resumo sobre o cenario
-                    textarea(name="resumoDoCenario")
+                    textarea(name="resumoDoCenario", placeholder="Escreva ou crie um breve resumo sobre o cenario")
 
                 script(src="/javascripts/cenarios.js")
 
