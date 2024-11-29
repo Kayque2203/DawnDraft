@@ -29,9 +29,13 @@ html(lang="pt-br")
 
         section
 
-            //- form(action=``, method="post" class="borderRadius25Cima")
-            //-     label(for="imagemPerfil") Sua foto de perfil
-            //-     input(type="file", name="fotoPerfil", placeholder="Escolher Foto De Perfil", accept="image/*")
+            form(action=`/Usuarios/:${usuario._id.toString()}/addFotoPerfil`, method="post" class="borderRadius25Cima", enctype="multipart/form-data")
+                if fotoPerfil.length
+                    img(src=fotoPerfil, alt="FotoPerfil") 
+                label(for="imagemPerfil") Sua foto de perfil
+                input(type="file", name="fotoPerfil", placeholder="Escolher Foto De Perfil", accept="image/*")
+                div 
+                    button(type="submit") Salvar Alterações
 
             form(action=`/Usuarios/:${usuario._id.toString()}/atualizarUsuario`, method="post", class="borderRadius25Cima borderRadius25Baixo")
                 div(class="boxInputsForm")

@@ -10,18 +10,24 @@ html(lang="pt-br")
         link(rel='stylesheet', href='/stylesheets/verificacaoEmail.css')
 
     body 
-        //- header
-        //-     div(class="boxTituloLogo")
-        //-         img( class="logo-nav" src="/images/63b55e87-83ca-4b1e-afe9-c0e899910615.jpg")
-        //-         h1(class="h1-home", translate="no") Dawn&nbspDraft
+        header
+            div(class="boxTituloLogo")
+                img( class="logo-nav" src="/images/63b55e87-83ca-4b1e-afe9-c0e899910615.jpg")
+                h1(class="h1-home", translate="no") Dawn&nbspDraft
 
-        //-     nav(class="navBar1item")
-        //-         a(class="btn-sobre", href = "/sobreNos.html") Sobre&nbspnós
-        //-         a(class="btn-sobre", href = "/FaleConosco" ) Contato
+            nav(class="navBar1item")
+                a(class="btn-sobre", href = "/sobreNos.html") Sobre&nbspnós
+                a(class="btn-sobre", href = "/FaleConosco" ) Contato
            
         section
             h1 Verificação de email
             h3 Enviamos um código de verificação para o seu novo email, se não recebeu verifique na aba de spam ou de lixo eletronico! 
             form(action="", method="post")
-                input(type="number", name="codigo", required)
+                input(type="text", name="codigo", required, maxlength="6")
                 button(type="submit") Verificar
+
+        footer(class="footer")
+            p &copy; 2024 DawnDraft. Todos os direitos reservados.
+            a(href="/politicaPrivacidade.html" style="color: white; text-decoration: none;") Política de Privacidade
+            a(href="/FaleConosco" style="color: white; text-decoration: none;") Contato
+

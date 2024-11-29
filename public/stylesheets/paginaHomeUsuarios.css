@@ -169,6 +169,11 @@ a{
     text-decoration: none;
 }
 
+.tituloSection{
+    border-bottom: 1px solid black;
+    padding-bottom: 1pt;
+}
+
 @media (max-width : 900px) {
     .boxHistorias{
         min-width: 26vw;

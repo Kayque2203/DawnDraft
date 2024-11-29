@@ -29,6 +29,12 @@ router.get('/:idUsuario/atualizaEmail/:novoEmailUsuario', controllerUsuarios.Atu
 router.post('/:idUsuario/atualizaEmail/:novoEmailUsuario', controllerUsuarios.AtualizaEmailUsuarioPost);
 
 
+const multer = require('multer')
+const upload = multer({dest: 'public/uploads/'});
+
+router.post('/:idUsuario/addFotoPerfil', upload.single('fotoPerfil'), controllerUsuarios.addImagemPerfil)
+
+
 
 /* Historias */
 // Rota que carrega a pagina de uma historia

@@ -7,6 +7,7 @@ const { body, validationResult } = require('express-validator');
 const ValidaSenha = require('../assets/validaSenha');
 const ValidaEmail = require('../assets/Emails');
 const Criptografia= require('../assets/criptografia');
+const Imagens = require('../models/mImagens');
 
 exports.UsuariosIndex = async (req, res, next) => {
     try {
@@ -41,7 +42,7 @@ exports.PerfilUsuario = async (req, res, next) => {
         }
         else
         {
-            res.render("PerfilUsuarios", {usuario, historias : await Historias.buscaHistorias(usuario._id.toString()), personagens : await Personagens.buscaPersonagens(usuario._id.toString()), cenarios : await Cenarios.buscaCenarios(usuario._id.toString()), notify: "", notifyErro: "", email : "", senha : Criptografia.descriptografa(usuario.Senha), nome: ""});
+            res.render("PerfilUsuarios", {usuario, historias : await Historias.buscaHistorias(usuario._id.toString()), personagens : await Personagens.buscaPersonagens(usuario._id.toString()), cenarios : await Cenarios.buscaCenarios(usuario._id.toString()), notify: "", notifyErro: "", email : "", senha : Criptografia.descriptografa(usuario.Senha), nome: "", fotoPerfil: await Imagens.BuscaImagem(tratamentoParametroRota(req.params.idUsuario), "FotoPerfil")});
         }
 
     } catch (error) {
@@ -108,11 +109,11 @@ exports.AutualizaUsuario = [
                         case true:
                             usuario = await Usuarios.buscaUsuarioPeloId(tratamentoParametroRota(req.params.idUsuario));
     
-                            res.render('PerfilUsuarios', {usuario, historias : await Historias.buscaHistorias(usuario._id.toString()), personagens : await Personagens.buscaPersonagens(usuario._id.toString()), cenarios : await Cenarios.buscaCenarios(usuario._id.toString()), notify: "Suas informaões forma atualizadas com sucesso!", notifyErro : "", email : "", senha : Criptografia.descriptografa(usuario.Senha), nome: ""});
+                            res.render('PerfilUsuarios', {usuario, historias : await Historias.buscaHistorias(usuario._id.toString()), personagens : await Personagens.buscaPersonagens(usuario._id.toString()), cenarios : await Cenarios.buscaCenarios(usuario._id.toString()), notify: "Suas informaões forma atualizadas com sucesso!", notifyErro : "", email : "", senha : Criptografia.descriptografa(usuario.Senha), nome: "", fotoPerfil: await Imagens.BuscaImagem(tratamentoParametroRota(req.params.idUsuario), "FotoPerfil")});
                             break;
                     
                         default:
-                            res.render('PerfilUsuarios', {usuario, historias : await Historias.buscaHistorias(usuario._id.toString()), personagens : await Personagens.buscaPersonagens(usuario._id.toString()), cenarios : await Cenarios.buscaCenarios(usuario._id.toString()), notify: "", notifyErro : "Um erro ocorreu ao atualizar as suas informações!", email : "", senha : Criptografia.descriptografa(usuario.Senha), nome: ""});
+                            res.render('PerfilUsuarios', {usuario, historias : await Historias.buscaHistorias(usuario._id.toString()), personagens : await Personagens.buscaPersonagens(usuario._id.toString()), cenarios : await Cenarios.buscaCenarios(usuario._id.toString()), notify: "", notifyErro : "Um erro ocorreu ao atualizar as suas informações!", email : "", senha : Criptografia.descriptografa(usuario.Senha), nome: "", fotoPerfil: await Imagens.BuscaImagem(tratamentoParametroRota(req.params.idUsuario), "FotoPerfil")});
                             break;
                     }
                 }
@@ -156,11 +157,7 @@ exports.AtualizaEmailUsuarioGet = async (req, res, next) => {
                     res.render('validacaoDeEmailTrocaEmail');
                     break;
             }
-
-           
         }
-
-        
     } catch (error) {
         next(error);
     }
@@ -195,7 +192,7 @@ exports.AtualizaEmailUsuarioPost = [
                     case true:
                         usuario = await Usuarios.buscaUsuarioPeloId(tratamentoParametroRota(req.params.idUsuario));
 
-                        res.render('PerfilUsuarios', {usuario, historias : await Historias.buscaHistorias(usuario._id.toString()), personagens : await Personagens.buscaPersonagens(usuario._id.toString()), cenarios : await Cenarios.buscaCenarios(usuario._id.toString()), notify: "Email alterado com sucesso!", notifyErro : "", email : "", senha : Criptografia.descriptografa(usuario.Senha), nome: ""});
+                        res.render('PerfilUsuarios', {usuario, historias : await Historias.buscaHistorias(usuario._id.toString()), personagens : await Personagens.buscaPersonagens(usuario._id.toString()), cenarios : await Cenarios.buscaCenarios(usuario._id.toString()), notify: "Email alterado com sucesso!", notifyErro : "", email : "", senha : Criptografia.descriptografa(usuario.Senha), nome: "", fotoPerfil: await Imagens.BuscaImagem(tratamentoParametroRota(req.params.idUsuario), "FotoPerfil")});
                         break;
                 
                     default:
@@ -208,3 +205,25 @@ exports.AtualizaEmailUsuarioPost = [
         }
     }
 ]
+
+exports.addImagemPerfil = async (req, res, next) => {
+    try {
+        let usuario = await Usuarios.buscaUsuarioPeloId(tratamentoParametroRota(req.params.idUsuario));
+
+        let fotoPerfil = new Imagens(req.file.filename, tratamentoParametroRota(req.params.idUsuario), "FotoPerfil");
+
+        console.log(req.file.filename);
+
+        switch (await fotoPerfil.addImagemBancoDeDados()) {
+            case null:
+                res.render('PerfilUsuarios', {usuario, historias : await Historias.buscaHistorias(usuario._id.toString()), personagens : await Personagens.buscaPersonagens(usuario._id.toString()), cenarios : await Cenarios.buscaCenarios(usuario._id.toString()), notify: "Email alterado com sucesso!", notifyErro : "Erro ao adicionar a foto de perfl tente novamente!", email : "", senha : Criptografia.descriptografa(usuario.Senha), nome: "", fotoPerfil: ""});
+                break;
+        
+            default:
+                res.render('PerfilUsuarios', {usuario, historias : await Historias.buscaHistorias(usuario._id.toString()), personagens : await Personagens.buscaPersonagens(usuario._id.toString()), cenarios : await Cenarios.buscaCenarios(usuario._id.toString()), notify: "Foto de perfil adicionada com sucesso!", notifyErro : "", email : "", senha : Criptografia.descriptografa(usuario.Senha), nome: "", fotoPerfil: await Imagens.BuscaImagem(tratamentoParametroRota(req.params.idUsuario), "FotoPerfil")});
+                break;
+        }
+    } catch (error) {
+        next(error);
+    }
+}
