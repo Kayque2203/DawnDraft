@@ -29,12 +29,14 @@ html(lang="pt-br")
 
         section
 
-            form(action=`/Usuarios/:${usuario._id.toString()}/addFotoPerfil`, method="post" class="borderRadius25Cima", enctype="multipart/form-data")
+            form(action=`/Usuarios/:${usuario._id.toString()}/addFotoPerfil`, method="post" class="borderRadius25Cima formFotoPerfil", enctype="multipart/form-data")
                 if fotoPerfil.length
-                    img(src=fotoPerfil, alt="FotoPerfil") 
-                label(for="imagemPerfil") Sua foto de perfil
-                input(type="file", name="fotoPerfil", placeholder="Escolher Foto De Perfil", accept="image/*")
-                div 
+                    img(src=fotoPerfil, alt="FotoPerfil", class="fotoPerfil")
+
+                div
+                    label(for="imagemPerfil") Alterar foto
+                    input(type="file", name="fotoPerfil", placeholder="Escolher Foto De Perfil", accept="image/*", class="iptnFile", id="imagemPerfil")
+
                     button(type="submit") Salvar Alterações
 
             form(action=`/Usuarios/:${usuario._id.toString()}/atualizarUsuario`, method="post", class="borderRadius25Cima borderRadius25Baixo")

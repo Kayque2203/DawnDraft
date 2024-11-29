@@ -98,3 +98,20 @@ input:focus{
 .linksHistoriasPersonagensCenarios:hover{
     box-shadow: 4pt 4pt;
 }
+
+.fotoPerfil{
+    border-radius: 50%;
+    width: 150pt;
+    height: 150pt;
+}
+
+.formFotoPerfil{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.iptnFile{
+    display: none;
+}

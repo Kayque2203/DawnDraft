@@ -70,7 +70,7 @@ exports.AutualizaUsuario = [
 
             if (!errors.isEmpty()) 
             {
-                res.render('PerfilUsuarios', {usuario, historias : await Historias.buscaHistorias(usuario._id.toString()), personagens : await Personagens.buscaPersonagens(usuario._id.toString()), cenarios : await Cenarios.buscaCenarios(usuario._id.toString()), notify: "", notifyErro : "Verifique se os dados inseridos são validos!", email : req.body.email, senha : req.body.senha, nome: req.body.nome});
+                res.render('PerfilUsuarios', {usuario, historias : await Historias.buscaHistorias(usuario._id.toString()), personagens : await Personagens.buscaPersonagens(usuario._id.toString()), cenarios : await Cenarios.buscaCenarios(usuario._id.toString()), notify: "", notifyErro : "Verifique se os dados inseridos são validos!", email : req.body.email, senha : req.body.senha, nome: req.body.nome, fotoPerfil: await Imagens.BuscaImagem(tratamentoParametroRota(req.params.idUsuario), "FotoPerfil")});
             }
 
             let validaSenha = new ValidaSenha(req.body.senha);
@@ -79,7 +79,7 @@ exports.AutualizaUsuario = [
             
             if (!validandoASenha.Valida) 
             {
-                res.render('PerfilUsuarios', {usuario, historias : await Historias.buscaHistorias(usuario._id.toString()), personagens : await Personagens.buscaPersonagens(usuario._id.toString()), cenarios : await Cenarios.buscaCenarios(usuario._id.toString()), notify: "", notifyErro : validandoASenha.Erro, email : req.body.email, senha : req.body.senha, nome: req.body.nome});
+                res.render('PerfilUsuarios', {usuario, historias : await Historias.buscaHistorias(usuario._id.toString()), personagens : await Personagens.buscaPersonagens(usuario._id.toString()), cenarios : await Cenarios.buscaCenarios(usuario._id.toString()), notify: "", notifyErro : validandoASenha.Erro, email : req.body.email, senha : req.body.senha, nome: req.body.nome, fotoPerfil: await Imagens.BuscaImagem(tratamentoParametroRota(req.params.idUsuario), "FotoPerfil")});
             }
             else 
             {
@@ -91,7 +91,7 @@ exports.AutualizaUsuario = [
 
                     switch (atualizandoUsuario) {
                         case null:
-                            res.render('PerfilUsuarios', {usuario, historias : await Historias.buscaHistorias(usuario._id.toString()), personagens : await Personagens.buscaPersonagens(usuario._id.toString()), cenarios : await Cenarios.buscaCenarios(usuario._id.toString()), notify: "", notifyErro : "Um erro ocorreu ao atualizar as suas informações!", email : "", senha : Criptografia.descriptografa(usuario.Senha), nome: ""});
+                            res.render('PerfilUsuarios', {usuario, historias : await Historias.buscaHistorias(usuario._id.toString()), personagens : await Personagens.buscaPersonagens(usuario._id.toString()), cenarios : await Cenarios.buscaCenarios(usuario._id.toString()), notify: "", notifyErro : "Um erro ocorreu ao atualizar as suas informações!", email : "", senha : Criptografia.descriptografa(usuario.Senha), nome: "", fotoPerfil: await Imagens.BuscaImagem(tratamentoParametroRota(req.params.idUsuario), "FotoPerfil")});
                             break;
                     
                         default:
@@ -216,7 +216,7 @@ exports.addImagemPerfil = async (req, res, next) => {
 
         switch (await fotoPerfil.addImagemBancoDeDados()) {
             case null:
-                res.render('PerfilUsuarios', {usuario, historias : await Historias.buscaHistorias(usuario._id.toString()), personagens : await Personagens.buscaPersonagens(usuario._id.toString()), cenarios : await Cenarios.buscaCenarios(usuario._id.toString()), notify: "Email alterado com sucesso!", notifyErro : "Erro ao adicionar a foto de perfl tente novamente!", email : "", senha : Criptografia.descriptografa(usuario.Senha), nome: "", fotoPerfil: ""});
+                res.render('PerfilUsuarios', {usuario, historias : await Historias.buscaHistorias(usuario._id.toString()), personagens : await Personagens.buscaPersonagens(usuario._id.toString()), cenarios : await Cenarios.buscaCenarios(usuario._id.toString()), notify: "", notifyErro : "Erro ao adicionar a foto de perfl tente novamente!", email : "", senha : Criptografia.descriptografa(usuario.Senha), nome: "", fotoPerfil: ""});
                 break;
         
             default:

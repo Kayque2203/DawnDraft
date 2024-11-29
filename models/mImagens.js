@@ -8,7 +8,7 @@ class Imagens {
     Usuario;
 
     constructor (fileName, user,aondeUsa) {
-        this.UrlImagem = `/public/uploads/${fileName}`;
+        this.UrlImagem = `/uploads/${fileName}`;
         this.Usuario = new ObjectId(user);
         this.OndeSeraUsada = aondeUsa;
     }
@@ -22,13 +22,19 @@ class Imagens {
     }
 
     static async BuscaImagem (idUsuario, ondeSeraUsada) {
-        let teste = await Conexao.getCollections('Imagens').findOne({
+        let imagem = await Conexao.getCollections('Imagens').findOne({
             $and : [
                 { "Usuario" : new ObjectId(idUsuario) },
                 { "OndeSeraUsada" : ondeSeraUsada }
             ]
         });
-        return teste.UrlImagem;
+        
+        if (imagem == null) 
+        {
+            return "";
+        }
+
+        return imagem.UrlImagem;
     }
 }
 
