@@ -33,13 +33,18 @@ html(lang="pt-br")
                 if fotoPerfil.length
                     img(src=fotoPerfil, alt="FotoPerfil", class="fotoPerfil")
 
-                div
-                    label(for="imagemPerfil") Alterar foto
-                    input(type="file", name="fotoPerfil", placeholder="Escolher Foto De Perfil", accept="image/*", class="iptnFile", id="imagemPerfil")
+                else
+                    div(id="fotoPerfil")
+                        img(src="/images/userIcon.png", alt="FotoPerfil", class="fotoPerfil")
+                    div(class="boxBtnFoto")
+                        label(for="imagemPerfil", class="BotoesFoto", id="labelFotoPerfil") Adicionar foto ao perfil
+                        input(type="file", name="fotoPerfil", placeholder="Escolher Foto De Perfil", accept="image/*", class="iptnFile", id="imagemPerfil")
 
-                    button(type="submit") Salvar Alterações
+                        button(type="submit", class="BotoesFoto btnSalvarFoto", id="btnSalvarFotoPerfil") Salvar Foto
 
-            form(action=`/Usuarios/:${usuario._id.toString()}/atualizarUsuario`, method="post", class="borderRadius25Cima borderRadius25Baixo")
+                script(src="/javascripts/perfilUsuario.js") 
+
+            form(action=`/Usuarios/:${usuario._id.toString()}/atualizarUsuario`, method="post", class="borderRadius25Baixo")
                 div(class="boxInputsForm")
                     label(for="nome") Nome:
                     if nome.length
@@ -63,6 +68,10 @@ html(lang="pt-br")
                     span(id="verSenha") Ver Senha
 
                     script(src="/javascripts/exibirSenha.js") 
+
+                div(class="boxInputsForm")
+                    label(for="Biografia") Sua biografia 
+                    textarea(name="Biografia")
 
                 div 
                     button(type="submit") Salvar Alterações

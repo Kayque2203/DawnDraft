@@ -207,13 +207,13 @@ textarea:focus{
 /* <a href="https://www.flaticon.com/br/icones-gratis/costas" title="costas ícones">Costas ícones criados por Freepik - Flaticon</a> */
 
 @media (min-width: 900px){
-    /* section{
-      min-height: 100vw;
+     /* section{
+      min-height: 40vw;
       margin-bottom: 10pt;
-    } */
+    }  */
 
-    footer{
+    /* footer{
         position: absolute;
         bottom: 0;
-    }
+    } */
 }

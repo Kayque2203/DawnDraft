@@ -27,15 +27,13 @@ form{
 }
 
 .borderRadius25Cima{
-    border-radius: 25pt 25pt 25pt 25pt;
-    padding-top: 5%;
-    padding-bottom: 5%;
+    border-radius: 25pt 25pt 0pt 0pt;
 }
 
-/* .borderRadius25Baixo{
+.borderRadius25Baixo{
     border-radius: 0pt 0pt 25pt 25pt;
     padding-bottom: 5%;
-} */
+}
 
 label{
     font-size: 12pt;
@@ -103,6 +101,7 @@ input:focus{
     border-radius: 50%;
     width: 150pt;
     height: 150pt;
+    margin-bottom: 20pt;
 }
 
 .formFotoPerfil{
@@ -110,8 +109,46 @@ input:focus{
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    padding-top: 5%;
 }
 
 .iptnFile{
+    display: none;
+}
+
+button{
+    border: none;
+}
+
+button:focus{
+    border: none;
+    box-shadow: 0 0 0 0;
+    outline: 0;
+    border-bottom: none;
+}
+
+.boxBtnFoto{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10pt
+}
+
+.BotoesFoto{
+    padding: 5pt;
+    border-radius: 10pt;
+    background: linear-gradient(to bottom, #ff9101, #f8eb59c2);
+    color: black;
+    box-shadow: 0px 0px 6px;
+    transition: 0.05s;
+    cursor: pointer;
+}
+
+.BotoesFoto:hover{
+    box-shadow: 0px 0px 10px;
+    scale: 1.05;
+}
+
+.btnSalvarFoto{
     display: none;
 }
