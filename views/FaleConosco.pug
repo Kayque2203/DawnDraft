@@ -22,17 +22,17 @@ html(lang="pt-br")
 
         section
             form(action="", method="post")
-                div 
+                div(class="divInpt borderRadius5ptCima")
                     label(for="") Titulo da mensagem 
-                    input(type="text", name="assunto", maxlength="50", required)
+                    input(type="text", name="assunto", maxlength="50", required, placeholder="Informe o assunto da mensagem!")
 
-                div 
+                div(class="divInpt borderRadius5ptBaixo")
                     label(for="") Email
-                    input(type="text", name="email", maxlength="100", required)
+                    input(type="text", name="email", maxlength="100", required, placeholder="Informe seu email!")
 
-                div 
+                div(class="divResumoPersonagem")
                     label(for="") Mensagem
-                    textarea(name="mensagem",  maxlength="350", required) 
+                    textarea(name="mensagem",  maxlength="350", required, placeholder="Escreva a sua mensagem!") 
 
                 div 
                     button(type="submit") Enviar

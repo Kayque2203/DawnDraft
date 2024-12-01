@@ -4,15 +4,29 @@ html(lang="pt-BR")
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         link(rel="stylesheet", href="/stylesheets/scrollBar.css")
+        link(rel="stylesheet", href="/stylesheets/navbar.css")
+        link(rel="stylesheet", href="/stylesheets/todosUsuarios.css")
         title Usuarios
     body 
 
-        header 
+        header(class="header")
+            div(class="boxTituloLogo")
+                img( class="logo-nav" src="/images/63b55e87-83ca-4b1e-afe9-c0e899910615.jpg")
+                h1(class="h1-home") Dawn Draft
+        
+            nav(class="navBar1item")
+                a(href="/Usuarios/:${admin._id.toString()}/perfilUsuario", class="linkLogin hoverScale") Perfil
+
+                a(href="/", class="linkLogin hoverScale") Voltar 
+
+                a(href="/", class="linkLogin hoverScale") Sair
 
         section 
+            h2(class="tituloSection") Usuarios
+
             if usuarios.length
                 for usuario in usuarios 
-                    h2 
-                        a(href=`/Administrador/:${admin}/usuario/:${usuario._id.toString()}`)= usuario.Nome 
+                    p(class="paragrafoLinksUsuarios")
+                        a(href=`/Administrador/:${admin}/usuario/:${usuario._id.toString()}`, class="linkUsuarios")= usuario.Nome 
             else 
                 p Não existe usuarios cadastrados no sistema! 

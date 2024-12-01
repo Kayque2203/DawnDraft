@@ -14,3 +14,119 @@ section{
     margin-right: 5%;
 }
 
+.divResumoPersonagem{
+    flex-direction: column;
+    width: 100%;
+    background-color: #BFBEBA;
+    height: 55%;
+    margin-top: 8pt;
+    margin-bottom: 5pt;
+    padding: 8pt;
+    border-radius: 10pt;
+}
+  
+.divResumoPersonagem label{
+    width: 100%;
+    text-align: center;
+    text-wrap: nowrap;
+}
+
+button[type="submit"]{
+    width: 100%;
+    padding: 5pt;
+    border-radius: 5pt;
+    border: none;
+    cursor: pointer;
+    margin-top: 5pt;
+    background: linear-gradient(to bottom, #ff9101, #f8eb59c2);
+    font-size: 14pt;
+    color: black;
+    border: 1.8px solid rebeccapurple;
+    box-shadow: 1px 1px 1px 1px rebeccapurple;
+    transition: 0.1s;
+    margin-bottom: 70pt;
+}
+  
+button:hover{
+    border: 1.8px solid rebeccapurple;
+    box-shadow: 6px 5px rebeccapurple;
+    outline: 0;
+}
+
+textarea{
+    width: 100%;
+    height: max-content;
+    font-size: 12.5pt;
+    padding: 5pt;
+    height: 15vw;
+    border: none;
+    background-color: #F2F0EB;
+    border-radius: 0pt 0pt 5pt 5pt;
+    overflow: hidden;
+}
+  
+.divResumoPersonagem label{
+    background-color: #F2F0EB;
+    padding: 5pt;
+    border-radius: 5pt 5pt 0pt 0pt;
+    text-wrap: nowrap;
+}
+  
+textarea:focus{
+    border: none;
+    box-shadow: 0 0 0 0;
+    outline: 0;
+}
+  
+.marginTop15pt{
+    margin-top: 15pt;
+}
+
+input:focus{
+    border: none;
+    box-shadow: 0 0 0 0;
+    outline: 0;
+    border-bottom: 1px solid black;
+}
+  
+input{
+    border: none;
+    width: 100%;
+    padding: 5pt;
+    /* margin-bottom: 5pt; */
+    font-size: 12.5pt;
+    background-color: #F2F0EB;
+    border-radius: 0pt 5pt 5pt 0pt;
+}
+
+label{
+    padding: 5pt;
+    /* margin-bottom: 5pt; */
+    background-color: #F2F0EB;
+    width: auto;
+    text-wrap: nowrap;
+    border-radius: 5pt 0pt 0pt 5pt;
+}
+  
+div{
+    display: flex;
+    align-items: center;
+}
+  
+.divInpt{
+    background-color: #BFBEBA;
+    padding: 10pt;
+}
+  
+h2{
+    margin-bottom: 3pt;
+}
+
+.borderRadius5ptCima{
+    border-radius: 10pt 10pt 0pt 0pt;;
+}
+  
+.borderRadius5ptBaixo{
+    border-radius: 0pt 0pt 10pt 10pt;;
+}
+  

@@ -1,0 +1,52 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    margin: 0;
+    font: 12.5pt "Lucida Grande", Helvetica, Arial, sans-serif;
+    background-color: #fcfbee;
+    font-family: "Sora", sans-serif;
+}
+
+section{
+    margin-left: 1%;
+    margin-right: 1%;
+    margin-top: 1.5%;
+    margin-bottom: 1.5%;
+    background-color: #BFBEBA;
+    padding: 1%;
+    border-radius: 10pt;
+}
+
+.tituloSection{
+    margin-bottom: 10pt;
+    color: whitesmoke;
+}
+
+.linkMensagem{
+    width: 90vw;
+    background-color: #F2F0EB;
+    width: 100%;
+    padding: 5pt;
+    border-radius: 5pt;
+    box-shadow: 2pt 2pt;
+    transition: 50ms;
+}
+
+.paragrafoLinksMensagens{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 5%;
+    padding-top: 1%;
+    padding-bottom: 2%;
+}
+
+.linkMensagem:hover{
+    box-shadow: 4pt 4pt;
+}

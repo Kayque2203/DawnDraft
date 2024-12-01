@@ -43,7 +43,7 @@ body {
     color: #fff;
 }
 .title-second {
-    color: #58af9b;
+    color: black;
 }
 .description {
     font-size: 14px;
@@ -75,14 +75,15 @@ body {
     transition: background-color .5s;
 }
 .btn-second {
-    background-color: #58af9b;
-    border: 1px solid #58af9b;
+    background-color: transparent;
+    border: 1px solid black;
     transition: background-color .5s;
+    color: black;
 }
 .btn-second:hover {
-    background-color: #fff;
-    border: 1px solid #58af9b;
-    color: #58af9b;
+    background-color: black;
+    border: 1px solid black;
+    color: white;
 }
 .btn-primary:hover {
     background-color: #fff;
