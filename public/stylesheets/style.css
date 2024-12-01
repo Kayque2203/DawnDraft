@@ -200,6 +200,15 @@ section{
   padding: 10pt;
 }
 
+.hiden{
+  opacity: 0;
+  transition: opacity 0.5s linear;
+}
+
+.hidenOff{
+  opacity: 1;
+}
+
 @media (max-width: 1333px) {
   .section1, .section2, .containerSection1, .containerSection2{
     padding: 1%;

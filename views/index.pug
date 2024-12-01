@@ -27,14 +27,14 @@ html(lang="pt-br")
       
     script(src="/javascripts/indexPage.js")
 
-    section(class="section1")
+    section(class="section1 hiden", id="section1")
       div(class="boxsIntro")
         h2 ORGANIZE SUAS HISTÓRIAS DE FORMA SIMPLES E EFICAZ
         p O DawnDraft é a ferramenta ideal para escritores que querem levar suas criações ao próximo nível. Organize personagens, cenários e tramas em um só lugar, de forma intuitiva e prática. Perfeito para quem busca transformar ideias em histórias bem estruturadas, seja para livros, roteiros ou contos. Crie seu universo literário com facilidade.
       div
         img(class="img-home" src="/images/HomeImagemjpeg-SemFundo.png")
 
-    section(class="section2")
+    section(class="hiden section2", id="section2")
       div(class="containerSection2")
         div(class="boxsTextos")
           h2 Crie suas historias!
@@ -42,7 +42,7 @@ html(lang="pt-br")
         div
           img(src="/images/Historia.gif", alt="", class="gifs")
 
-    section(class="section1")
+    section(class="section1 hiden", id="section3")
       div(class="containerSection1")
         div(class="boxsTextos")
           h2 Organize suas historias por capitulos!
@@ -50,7 +50,7 @@ html(lang="pt-br")
         div 
           img(src="/images/Capitulo.gif", alt="", class="gifs")
 
-    section(class="section2")
+    section(class="section2 hiden", id="section4")
       div(class="containerSection2")
         div(class="boxsTextos")
           h2 Crie seus personagens! 
@@ -58,13 +58,15 @@ html(lang="pt-br")
         div 
           img(src="/images/Personagem.gif", alt="", class="gifs")
 
-    section(class="section1")
+    section(class="section1 hiden", id="section5")
       div(class="containerSection1")
         div(class="boxsTextos")
           h2 Crie seus cenários
           p Deixe suas ideias fluirem e crie cenarios, que podem ser atribuidos aos capitulos das suas historias!
         div 
           img(src="/images/Cenario.gif", alt="", class="gifs")
+
+    script(src="/javascripts/loadSections.js") 
 
     footer(class="footer")
       p &copy; 2024 DawnDraft. Todos os direitos reservados.
