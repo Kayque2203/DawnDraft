@@ -6,6 +6,7 @@ html(lang="pt-br")
     link(rel='stylesheet', href='/stylesheets/notify.css')
     link(rel='stylesheet', href='/stylesheets/excluir.css')
     link(rel='stylesheet', href='/stylesheets/navbar.css')
+    link(rel="stylesheet", href="/stylesheets/scrollBar.css")
     link(rel="website icon", href="/images/3c323745-b83e-4589-b0a6-a5b15a0aa3c4.jpg")
     meta(http-equiv="Content-Type", content="text/html;charset=UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
@@ -22,6 +23,10 @@ html(lang="pt-br")
             a(href=`/Usuarios/${id_Usuario}/NovaHistoria`, class="btn-sobre") Criar historia
             a(href=`/Usuarios/${id_Usuario}/historia/:${id_Historia}`)
                 img(src="/images/de-volta.png", alt="voltar", class="hoverScale")
+
+        img(src="/images/botao-de-menu.png", alt="Menu", class="btnDropDown")
+      
+        script(src="/javascripts/indexPage.js")
 
 
     section 

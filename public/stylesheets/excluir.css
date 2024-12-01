@@ -13,11 +13,11 @@
 }
 
 .divExcluirPersonagem{
-    padding: 0.5%;
+    padding: 0.9%;
     min-width: 40vw;
-    height: 10vw;
-    left: calc(50vw - 20vw);
-    top: 35% ;
+    width: auto;
+    min-height: 10vw;
+  
     display: none;
     align-items: start;
     justify-content: center;
@@ -28,6 +28,10 @@
     border-radius: 10pt;
     text-align: left;
     font-size: 16pt;
+
+    top: 50% ;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .botoesDivExcluirPersonagem{
@@ -57,4 +61,16 @@
 
 .spanDeletarHis:hover{
     box-shadow: 4pt 4pt black;
+}
+
+@media (max-width: 867px) {
+    .divExcluirPersonagem{
+        min-width: 80vw;
+    }
+}
+
+@media (min-width: 535px) {
+    .divExcluirPersonagem{
+        text-align: center;
+    }
 }

@@ -22,8 +22,12 @@ html(lang="pt-br")
         a(href=`/Usuarios/${personagem.Usuario.toString()}/NovaHistoria`, class="btn-sobre") Criar historia
         a(href=`/Usuarios/${personagem.Usuario.toString()}/`, class="aImgNav")
           img(src="/images/casa.png", alt="Home", class="hoverScale")
+      
+      img(src="/images/botao-de-menu.png", alt="Menu", class="btnDropDown")
+      
+      script(src="/javascripts/indexPage.js")
 
-    section
+    section(id="sectionConteudo")
       form(action=`/Usuarios/:${personagem.Usuario.toString()}/atualizarPersonagem/:${personagem._id.toString()}`, method="post")
 
         h2 Informações em geral
@@ -94,7 +98,7 @@ html(lang="pt-br")
         div
           button(type="submit") Salvar Alterações
 
-    section
+    section(id="sectionConteudo2")
       div(class="ContainerHistoriasPersonagem")
         h2 Historias e capítulos vinculados ao personagem
 
@@ -112,6 +116,7 @@ html(lang="pt-br")
       span(class="spanDeletarHis") Deletar Personagem
 
       div(class="divExcluirPersonagem")
+        h2 Excluir
         p Certeza que deseja excluir o(a) personagem #{personagem.Nome}
         div(class="botoesDivExcluirPersonagem")
           button(class="cancelar", id="btnCancelar") Cancelar 

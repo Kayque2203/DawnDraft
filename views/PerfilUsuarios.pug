@@ -4,6 +4,7 @@ html(lang="pt-br")
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         link(rel="website icon", href="/images/3c323745-b83e-4589-b0a6-a5b15a0aa3c4.jpg")
+        link(rel="stylesheet", href="/stylesheets/scrollBar.css")
         link(rel="stylesheet", href="/stylesheets/perfilUsuarios.css")
         link(rel='stylesheet', href='/stylesheets/notify.css')
         link(rel='stylesheet', href='/stylesheets/navbar.css')  
@@ -16,14 +17,18 @@ html(lang="pt-br")
                 h1(class="h1-home") Dawn Draft
         
             nav(class="navBar")
-                a(href="", class="btn-sobre") Criar cenario
+                a(href=`/Usuarios/${usuario._id.toString()}/adicionarCenario`, class="btn-sobre") Criar cenario
                 a(href=`/Usuarios/${usuario._id.toString()}/adicionarPersonagem`, class="btn-sobre") Criar personagem
                 a(href=`/Usuarios/${usuario._id.toString()}/NovaHistoria`, class="btn-sobre") Criar historia
                 a(href=`/Usuarios/:${usuario._id.toString()}/`)
-                    img(src="/images/casa.png", alt="Perfil Do Usuario")
+                    img(src="/images/casa.png", alt="Inicio", class="hoverScale")
 
                 a(href="/")
-                    img(src="/images/logout.png", alt="") 
+                    img(src="/images/logout.png", alt="", class="hoverScale")
+
+            img(src="/images/botao-de-menu.png", alt="Menu", class="btnDropDown")
+      
+            script(src="/javascripts/indexPage.js")
 
 
 

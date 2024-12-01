@@ -6,6 +6,8 @@ html(lang="pt-br")
     link(rel='stylesheet', href='/stylesheets/notify.css')
     link(rel='stylesheet', href='/stylesheets/excluir.css')
     link(rel='stylesheet', href='/stylesheets/navbar.css')
+    link(rel='stylesheet', href='/stylesheets/footer.css')
+    link(rel="stylesheet", href="/stylesheets/scrollBar.css")
     link(rel="website icon", href="/images/3c323745-b83e-4589-b0a6-a5b15a0aa3c4.jpg")
     meta(http-equiv="Content-Type", content="text/html;charset=UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
@@ -22,7 +24,11 @@ html(lang="pt-br")
         a(href=`/Usuarios/${historia.Usuario}/`)
           img(src="/images/casa.png", alt="Home", class="hoverScale")
 
-    section
+      img(src="/images/botao-de-menu.png", alt="Menu", class="btnDropDown")
+      
+      script(src="/javascripts/indexPage.js")
+    
+    section(id="sectionConteudo")
         form(action=`/Usuarios/:${historia.Usuario}/historia/:${historia._id.toString()}`, method="post") 
 
           div(class="divInpt")
@@ -37,7 +43,7 @@ html(lang="pt-br")
           div
             button(type="submit") Salvar Alterações
       
-    section(class="sectionCapitulos")
+    section(class="sectionCapitulos", id="sectionConteudo2")
       h1(class="tituloCapitulos") Capítulos
 
       div(class="boxCapitulos")
@@ -57,6 +63,7 @@ html(lang="pt-br")
       span(class="spanDeletarHis") Excluir historia
 
       div(class="divExcluirPersonagem")
+        h2 Excluir
         p Certeza que deseja excluir a historia #{historia.Titulo}
         div(class="botoesDivExcluirPersonagem")
           button(class="cancelar", id="btnCancelar") Cancelar 

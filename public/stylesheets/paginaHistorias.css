@@ -12,16 +12,6 @@ body {
     font-family: "Sora", sans-serif;
 }
 
-.footer{
-    background-color: #292727da; 
-    color: white; 
-    text-align: center; 
-    padding: 20px; 
-    /* position: relative; 
-    bottom: 0;  */
-    width: 100%;
-}
-
 section{
     padding-top: 1.9%;
     padding-left: 5%;
@@ -205,15 +195,3 @@ textarea:focus{
 
 /* <a href="https://www.flaticon.com/br/icones-gratis/casa" title="casa ícones">Casa ícones criados por Dave Gandy - Flaticon</a> */
 /* <a href="https://www.flaticon.com/br/icones-gratis/costas" title="costas ícones">Costas ícones criados por Freepik - Flaticon</a> */
-
-@media (min-width: 900px){
-     /* section{
-      min-height: 40vw;
-      margin-bottom: 10pt;
-    }  */
-
-    /* footer{
-        position: absolute;
-        bottom: 0;
-    } */
-}

@@ -109,6 +109,7 @@ p{
 
 span{
     font-size: 10pt;
+    text-align: center;
 }
 
 .footer{
@@ -118,6 +119,13 @@ span{
     text-wrap: wrap; 
     padding: 20px; 
     width: 100%; 
+}
+
+.fotoPerfil{
+    width: 60px;
+    height: auto;
+    background-color: whitesmoke;
+    border-radius: 20px;
 }
 
 /* <a href="https://www.flaticon.com/free-icons/user" title="user icons"> User icons created by Freepik - Flaticon </a> */
@@ -174,64 +182,44 @@ a{
     padding-bottom: 1pt;
 }
 
-@media (max-width : 900px) {
-    .boxHistorias{
-        min-width: 26vw;
-        width: 26vw;
-        height: 20vw;
-    }
-    
+@media (max-width: 1046px) {
     .containerHistorias{
-        height: 23vw;
+        height: 21vw;
     }
 
+    
     nav a img{
         width: 20pt;
         height: auto;
     }
 }
 
-@media (max-width : 720px) {
-    .boxHistorias{
-        min-width: 36vw;
-        width: 36vw;
-        height: 30vw;
-    }
-    
+@media (max-width: 888px) {
     .containerHistorias{
-        height: 33vw;
-    }
-
-    .boxHistorias:hover{
-        background-color: auto;
-        transform: none;
-        box-shadow: none;
-        .spanDeletarHis{
-            display: none;
-        }
+        height: 22vw;
     }
 }
 
-@media (max-width : 425px) {
-    .boxHistorias{
-        min-width: 46vw;
-        width: 46vw;
-        height: 40vw;
-    }
-    
+@media (max-width: 760px) {
     .containerHistorias{
-        height: 43vw;
+        min-height: 27vw;
+        height: auto;
+    }
+
+    .boxHistorias{
+        min-width: 20vw;
+        width: 20vw;
+        height: 20vw;
+        padding: 2%;
     }
 }
 
-@media (max-height: 800px) and (max-width: 800px){
-    /* section{
-      min-height: 100vw;
-      margin-bottom: 10pt;
-    } */
-
-    footer{
-        position: absolute;
-        bottom: 0;
+@media (max-width: 540px) {
+    .boxHistorias{
+        min-width: 25vw;
+        width: 25vw;
+        min-height: 25vw;
+        height: auto;
+        padding: 2%;
     }
 }

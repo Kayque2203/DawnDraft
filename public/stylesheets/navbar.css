@@ -9,6 +9,10 @@ header{
     border-bottom: 2px solid rebeccapurple;
 }
 
+h1{
+    text-wrap: nowrap;
+}
+
 .boxTituloLogo{
     display: flex;
     align-items: center;
@@ -112,4 +116,27 @@ a{
 
 .hoverScale:hover{
     transform: scale(1.2);
+}
+
+.btnDropDown{
+    display: none;
+    padding: 10pt;
+}
+
+@media (max-width: 1024px) {
+    .navBar{
+      display: none;
+      align-items: center;
+      justify-content: center;
+      margin-top: 10pt;
+    }
+  
+    /* <a href="https://www.flaticon.com/br/icones-gratis/cardapio" title="cardápio ícones">Cardápio ícones criados por Catalin Fertu - Flaticon</a> */
+    .btnDropDown{
+      display: block;
+    }
+  
+    .linkLogin{
+      width: 180px;
+    }
 }

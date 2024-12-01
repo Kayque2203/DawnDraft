@@ -4,6 +4,7 @@ html(lang="pt-br")
     title Home Usuarios
     link(rel='stylesheet', href='/stylesheets/paginaHomeUsuarios.css')
     link(rel='stylesheet', href='/stylesheets/notify.css')
+    link(rel="stylesheet", href="/stylesheets/navbar.css")
     link(rel="website icon", href="/images/3c323745-b83e-4589-b0a6-a5b15a0aa3c4.jpg")
     meta(http-equiv="Content-Type", content="text/html;charset=UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
@@ -14,12 +15,12 @@ html(lang="pt-br")
           img( class="logo-nav" src="/images/63b55e87-83ca-4b1e-afe9-c0e899910615.jpg")
           h1(class="h1-home") Dawn Draft
   
-      nav(class="navBar")
+      nav(class="navBar1item")
         a(href=`/Usuarios/:${id_Usuario}/perfilUsuario`)
-          img(src="/images/user.png", alt="Perfil Do Usuario")
+          img(src="/images/userIcon.png", alt="Perfil Do Usuario", class="fotoPerfil hoverScale")
 
         a(href="/")
-          img(src="/images/logout.png", alt="") 
+          img(src="/images/logout.png", alt="", class="hoverScale") 
 
     
     section(class="")
@@ -48,7 +49,10 @@ html(lang="pt-br")
         if Personagens.length
           for personagem in Personagens
             a(href=`/Usuarios/:${personagem.Usuario.toString()}/personagem/:${personagem._id.toString()}`, class="boxHistorias")
-              h2= personagem.Nome
+              if personagem.Nome.length >= 30
+                h2= personagem.Nome.substring(0, 30) + "..."
+              else 
+                h2= personagem.Nome
 
     section 
       h1(class="tituloSection") Cenários
@@ -61,8 +65,10 @@ html(lang="pt-br")
         if cenarios.length
           for cenario in cenarios
             a(href=`/Usuarios/:${cenario.Usuario.toString()}/cenario/:${cenario._id.toString()}`, class="boxHistorias")
-              h2= cenario.Nome
-      
+              if cenario.Nome.length >= 30
+                h2= cenario.Nome.substring(0, 30) + "..."
+              else 
+                h2= cenario.Nome
       
     if notify.length
       div(class="containerNotify sucesso", id="containerNotify")
