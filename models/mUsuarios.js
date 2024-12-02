@@ -12,11 +12,13 @@ class Usuarios {
     #nome;
     #email;
     #senha;
+    #biografia;
 
-    constructor( nomeUsuario = '', emailUsuario = '', senhaUsuario = '' ) {
+    constructor( nomeUsuario = '', emailUsuario = '', senhaUsuario = '', bio = '' ) {
         this.setUsuario(nomeUsuario);
         this.setEmail(emailUsuario);
         this.setSenha(senhaUsuario);
+        this.#biografia = bio
     }
 
     // Setters
@@ -39,6 +41,7 @@ class Usuarios {
             "Nome" : this.#nome,
             "Email" : this.#email,
             "Senha" : this.#senha,
+            "Biografia" : this.#biografia,
             "Verificado" : false,
             "IsAdmin" : false
         })
@@ -62,7 +65,8 @@ class Usuarios {
             {
                 $set : {
                     "Nome" : this.#nome,
-                    "Senha" : this.#senha
+                    "Senha" : this.#senha,
+                    "Biografia" : this.#biografia
                 }
             }
         );

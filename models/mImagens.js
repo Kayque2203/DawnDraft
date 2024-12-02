@@ -8,7 +8,7 @@ class Imagens {
     Usuario;
 
     constructor (fileName, user,aondeUsa) {
-        this.UrlImagem = `/uploads/${fileName}`;
+        this.UrlImagem = `${fileName}`;
         this.Usuario = new ObjectId(user);
         this.OndeSeraUsada = aondeUsa;
     }
@@ -21,7 +21,22 @@ class Imagens {
         });
     }
 
-    static async BuscaImagem (idUsuario, ondeSeraUsada) {
+    async atualizaImagemPerfil (idUsuario) {
+        let atualizando = await Conexao.getCollections('Imagens').updateOne(
+            {
+                Usuario : new ObjectId(idUsuario)
+            },
+            {
+                $set:{
+                    "UrlImagem" : this.UrlImagem
+                },
+            }
+        );
+
+        return atualizando
+    }
+
+    static async BuscaImagem (idUsuario, ondeSeraUsada = "FotoPerfil") {
         let imagem = await Conexao.getCollections('Imagens').findOne({
             $and : [
                 { "Usuario" : new ObjectId(idUsuario) },
@@ -35,6 +50,12 @@ class Imagens {
         }
 
         return imagem.UrlImagem;
+    }
+
+    static async DeletarFotoPerfil (idUsuario) {
+        let deletandoFotoPerfil = await Conexao.getCollections('Imagens').deleteOne({Usuario : new ObjectId(idUsuario)});
+
+        return deletandoFotoPerfil.deletedCount == 0? false : true; 
     }
 }
 

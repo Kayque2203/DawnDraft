@@ -202,7 +202,7 @@ exports.deletaCenario = async (req, res, next) => { // Endpoint que deleta um ce
 
             if (excluindoCenario) 
             {
-                res.render('usuarios', {notify: "Cenario Deletado com sucesso!", historias: await Historias.buscaHistorias(TratamentoParametrosDeRotas(req.params.idUsuario)), "Personagens" : await Personagens.buscaPersonagens(TratamentoParametrosDeRotas(req.params.idUsuario)), cenarios: await Cenarios.buscaCenarios(TratamentoParametrosDeRotas(req.params.idUsuario)) ,id_Usuario : req.params.idUsuario});
+                res.render('usuarios', {notify: "Cenario Deletado com sucesso!", historias: await Historias.buscaHistorias(TratamentoParametrosDeRotas(req.params.idUsuario)), "Personagens" : await Personagens.buscaPersonagens(TratamentoParametrosDeRotas(req.params.idUsuario)), cenarios: await Cenarios.buscaCenarios(TratamentoParametrosDeRotas(req.params.idUsuario)) ,id_Usuario : req.params.idUsuario, fotoPerfil : await Imagens.BuscaImagem(TratamentoParamtrosDeRota(req.params.idUsuario), "FotoPerfil")});
             }
 
             res.render('paginaERRO', {erro : "Um erro aconteceu ao excluir o cenario, volte e tente novamente!", link : `/Usuarios/${req.params.idUsuario}/cenario/${req.params.idCenario}`});

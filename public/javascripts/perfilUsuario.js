@@ -4,14 +4,23 @@ const labelFotoPerfil = document.getElementById('labelFotoPerfil');
 
 const btnSalvarFotoPerfil = document.getElementById('btnSalvarFotoPerfil');
 
-const imagemPerfil = document.getElementById('fotoPerfil')
+const imagemPerfil = document.getElementById('fotoPerfil');
+
+const linkRemoverFoto = document.getElementById('linkRemoverFoto');
 
 var arquivo = inputFile.files;
 
 inputFile.addEventListener('input', () => {
-    console.log(inputFile.value)
     labelFotoPerfil.innerText = "Escolher Outra";
     btnSalvarFotoPerfil.style.display = "block";
-    imagemPerfil.innerHTML = "";
-    imagemPerfil.innerHTML = `<img class="fotoPerfil" src="${inputFile.value}" alt="FotoPerfil" id="fotoPerfil">`;
+    linkRemoverFoto.style.display = "none"
+
+    const reader = new FileReader();
+
+    reader.onload = (e) => {
+        const fotoPerfil = document.getElementsByClassName('fotoPerfil')[0];
+        fotoPerfil.src= e.target.result;
+    }
+
+    reader.readAsDataURL(event.target.files[0]);
 });

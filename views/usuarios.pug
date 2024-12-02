@@ -17,7 +17,10 @@ html(lang="pt-br")
   
       nav(class="navBar1item")
         a(href=`/Usuarios/:${id_Usuario}/perfilUsuario`)
-          img(src="/images/userIcon.png", alt="Perfil Do Usuario", class="fotoPerfil hoverScale")
+          if fotoPerfil.length == 0
+            img(src="/images/userIcon.png", alt="Perfil Do Usuario", class="fotoPerfil hoverScale")
+          else 
+            img(src=`/uploads/${fotoPerfil}`, alt="Perfil Do Usuario", class="fotoPerfil hoverScale")
 
         a(href="/")
           img(src="/images/logout.png", alt="", class="hoverScale") 

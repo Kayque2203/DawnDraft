@@ -33,12 +33,22 @@ html(lang="pt-br")
 
 
         section
+            if fotoPerfil.length
+                form(action=`/Usuarios/:${usuario._id.toString()}/atualizaFotoPerfil`, method="post",  class="borderRadius25Cima formFotoPerfil", enctype="multipart/form-data") 
+                    img(src=`/uploads/${fotoPerfil}`, alt="FotoPerfil", class="fotoPerfil")
 
-            form(action=`/Usuarios/:${usuario._id.toString()}/addFotoPerfil`, method="post" class="borderRadius25Cima formFotoPerfil", enctype="multipart/form-data")
-                if fotoPerfil.length
-                    img(src=fotoPerfil, alt="FotoPerfil", class="fotoPerfil")
+                    div(class="boxBtnFoto")
+                        label(for="imagemPerfil", class="BotoesFoto", id="labelFotoPerfil") alterar foto de perfil
 
-                else
+                        a(href=`/Usuarios/:${usuario._id.toString()}/deletarFotoPerfil`, class="BotoesFoto", id="linkRemoverFoto") Remover Foto
+
+                        input(type="file", name="fotoPerfil", placeholder="Escolher Foto De Perfil", accept="image/*", class="iptnFile", id="imagemPerfil")
+
+                        button(type="submit", class="BotoesFoto btnSalvarFoto", id="btnSalvarFotoPerfil") Salvar Foto
+
+                    script(src="/javascripts/perfilUsuario.js") 
+            else 
+                form(action=`/Usuarios/:${usuario._id.toString()}/addFotoPerfil`, method="post", class="borderRadius25Cima formFotoPerfil", enctype="multipart/form-data")    
                     div(id="fotoPerfil")
                         img(src="/images/userIcon.png", alt="FotoPerfil", class="fotoPerfil")
                     div(class="boxBtnFoto")
@@ -47,7 +57,7 @@ html(lang="pt-br")
 
                         button(type="submit", class="BotoesFoto btnSalvarFoto", id="btnSalvarFotoPerfil") Salvar Foto
 
-                script(src="/javascripts/perfilUsuario.js") 
+                    script(src="/javascripts/perfilUsuario.js") 
 
             form(action=`/Usuarios/:${usuario._id.toString()}/atualizarUsuario`, method="post", class="borderRadius25Baixo")
                 div(class="boxInputsForm")
@@ -74,9 +84,9 @@ html(lang="pt-br")
 
                     script(src="/javascripts/exibirSenha.js") 
 
-                div(class="boxInputsForm")
-                    label(for="Biografia") Sua biografia 
-                    textarea(name="Biografia")
+                div(class="boxTxtAreaBio")
+                    label(for="biografia", class="borderRadius5ptCima") Sua biografia 
+                    textarea(name="biografia", class="borderRadius5ptBaixo", placeholder="Escreva sua biografia!")= usuario.Biografia
 
                 div 
                     button(type="submit") Salvar Alterações

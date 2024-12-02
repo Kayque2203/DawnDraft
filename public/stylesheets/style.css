@@ -33,7 +33,7 @@ header{
 section{
   font-size: 16pt;
   width: 100%;
-  min-height: 80vh;
+  min-height: 75vh;
 }
 
 .boxsIntro{
@@ -111,13 +111,15 @@ section{
 .containerSection2{
   display: flex;
   justify-content: space-between;
-  gap: 2%;
   align-items: center;
   flex-direction: row-reverse;
   text-align: justify;
-  background-color: rgba(245, 245, 245, 0.9);
+
+  gap: 2%;
   padding: 15pt;
   border-radius: 10pt;
+
+  background-color: rgba(245, 245, 245, 0.9);
 }
 
 .gifs{
@@ -202,7 +204,7 @@ section{
 
 .hiden{
   opacity: 0;
-  transition: opacity 0.5s linear;
+  transition: opacity 0.9s linear;
 }
 
 .hidenOff{

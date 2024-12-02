@@ -191,7 +191,9 @@ exports.deletaHistoria = async (req, res, next) => {
 
             let cenarios = await Cenarios.buscaCenarios(tratamentoParametroDeRota(req.params.idUsuario));
 
-            res.render('usuarios', {notify: "Historia deletada com sucesso!", historias, "Personagens" : personagens, id_Usuario : req.params.idUsuario, cenarios});
+            let fotoPerfil = await Imagens.BuscaImagem(TratamentoParamtrosDeRota(req.params.idUsuario), "FotoPerfil");
+
+            res.render('usuarios', {notify: "Historia deletada com sucesso!", historias, "Personagens" : personagens, id_Usuario : req.params.idUsuario, cenarios, fotoPerfil});
         }
 
     } catch (error) {

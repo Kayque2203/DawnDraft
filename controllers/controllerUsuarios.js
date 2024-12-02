@@ -2,12 +2,17 @@ const Usuarios = require('../models/mUsuarios');
 const Historias = require('../models/mHistorias');
 const Personagens = require('../models/mPersonagens');
 const Cenarios = require('../models/mCenarios');
-const tratamentoParametroRota = require('../assets/tratamentoParametroRota');
-const { body, validationResult } = require('express-validator');
 const ValidaSenha = require('../assets/validaSenha');
 const ValidaEmail = require('../assets/Emails');
 const Criptografia= require('../assets/criptografia');
 const Imagens = require('../models/mImagens');
+
+const path = require('path');
+const fs = require('fs');
+
+const tratamentoParametroRota = require('../assets/tratamentoParametroRota');
+const { body, validationResult } = require('express-validator');
+
 
 exports.UsuariosIndex = async (req, res, next) => {
     try {
@@ -24,8 +29,9 @@ exports.UsuariosIndex = async (req, res, next) => {
             let consultaHistoriasDoUsuario = await Historias.buscaHistorias(tratamentoParametroRota(req.params.idUsuario));
             let consultaPersonagens = await Personagens.buscaPersonagens(tratamentoParametroRota(req.params.idUsuario));
             let cenarios = await Cenarios.buscaCenarios(tratamentoParametroRota(req.params.idUsuario));
+            let fotoPerfil = await Imagens.BuscaImagem(tratamentoParametroRota(req.params.idUsuario), "FotoPerfil");
 
-            res.render('usuarios', { historias: consultaHistoriasDoUsuario , id_Usuario: tratamentoParametroRota(req.params.idUsuario), nome_Usuario: consultaUsuario.Nome, Personagens: consultaPersonagens, notify: "", cenarios });
+            res.render('usuarios', { historias: consultaHistoriasDoUsuario , id_Usuario: tratamentoParametroRota(req.params.idUsuario), nome_Usuario: consultaUsuario.Nome, Personagens: consultaPersonagens, notify: "", cenarios, fotoPerfil });
         }
     } catch (error) {
         next(error);
@@ -55,6 +61,7 @@ exports.AutualizaUsuario = [
     body('nome').trim().escape().notEmpty(),
     body('email').trim().escape().notEmpty(),
     body('senha').trim().escape().notEmpty(),
+    body('biografia').trim().escape(),
 
     async (req, res, next) => {
         try {
@@ -83,7 +90,7 @@ exports.AutualizaUsuario = [
             }
             else 
             {
-                let atualizarUsuario = new Usuarios(req.body.nome, "", req.body.senha)
+                let atualizarUsuario = new Usuarios(req.body.nome, "", req.body.senha, req.body.biografia);
 
                 if (req.body.email != usuario.Email)
                 {
@@ -97,9 +104,7 @@ exports.AutualizaUsuario = [
                         default:
                             res.render("avisos", { aviso: "Você esta mudando o seu email, antes de realmente executar essa mundaça presisamos verificar seu email para saber se é valido!", txtLink : "Ir para a verificação", link : `/Usuarios/:${usuario._id.toString()}/atualizaEmail/:${req.body.email}`});
                             break;
-                            
                     }
-                    
                 }
                 else 
                 {
@@ -210,18 +215,94 @@ exports.addImagemPerfil = async (req, res, next) => {
     try {
         let usuario = await Usuarios.buscaUsuarioPeloId(tratamentoParametroRota(req.params.idUsuario));
 
+        if (usuario != null) 
+        {
+            let fotoPerfil = new Imagens(req.file.filename, tratamentoParametroRota(req.params.idUsuario), "FotoPerfil");
+
+            switch (await fotoPerfil.addImagemBancoDeDados()) {
+                case null:
+                    res.render('PerfilUsuarios', {usuario, historias : await Historias.buscaHistorias(usuario._id.toString()), personagens : await Personagens.buscaPersonagens(usuario._id.toString()), cenarios : await Cenarios.buscaCenarios(usuario._id.toString()), notify: "", notifyErro : "Erro ao adicionar a foto de perfil tente novamente!", email : "", senha : Criptografia.descriptografa(usuario.Senha), nome: "", fotoPerfil: ""});
+                    break;
+            
+                default:
+                    res.render('PerfilUsuarios', {usuario, historias : await Historias.buscaHistorias(usuario._id.toString()), personagens : await Personagens.buscaPersonagens(usuario._id.toString()), cenarios : await Cenarios.buscaCenarios(usuario._id.toString()), notify: "Foto de perfil adicionada com sucesso!", notifyErro : "", email : "", senha : Criptografia.descriptografa(usuario.Senha), nome: "", fotoPerfil: await Imagens.BuscaImagem(tratamentoParametroRota(req.params.idUsuario), "FotoPerfil")});
+                    break;
+            }
+        }
+        else
+        {
+            res.render('paginaERRO', {erro : "Usuario não encontrado!", link : "/"});
+        }
+    } catch (error) {
+        next(error);
+    }
+}
+
+exports.atualizaFotoPerfil = async (req, res, next) => {
+    try {
+        let usuario = await Usuarios.buscaUsuarioPeloId(tratamentoParametroRota(req.params.idUsuario));
+
+        let fotoAntiga = await Imagens.BuscaImagem(tratamentoParametroRota(req.params.idUsuario), "FotoPerfil");
+
         let fotoPerfil = new Imagens(req.file.filename, tratamentoParametroRota(req.params.idUsuario), "FotoPerfil");
 
-        console.log(req.file.filename);
+        let caminhoDoArquivo =  path.join("public/uploads/", fotoAntiga);
 
-        switch (await fotoPerfil.addImagemBancoDeDados()) {
-            case null:
-                res.render('PerfilUsuarios', {usuario, historias : await Historias.buscaHistorias(usuario._id.toString()), personagens : await Personagens.buscaPersonagens(usuario._id.toString()), cenarios : await Cenarios.buscaCenarios(usuario._id.toString()), notify: "", notifyErro : "Erro ao adicionar a foto de perfl tente novamente!", email : "", senha : Criptografia.descriptografa(usuario.Senha), nome: "", fotoPerfil: ""});
+        fs.unlink(caminhoDoArquivo, (err) => {
+            if (err) 
+            {
+                console.log("erro ao ao deletar imagem!");
+                return
+            }
+            console.log("Excluido com sucesso!");
+        })
+
+        switch ((await fotoPerfil.atualizaImagemPerfil(tratamentoParametroRota(req.params.idUsuario))).modifiedCount) {
+            case 0:
+                res.render('PerfilUsuarios', {usuario, historias : await Historias.buscaHistorias(usuario._id.toString()), personagens : await Personagens.buscaPersonagens(usuario._id.toString()), cenarios : await Cenarios.buscaCenarios(usuario._id.toString()), notify: "", notifyErro : "Erro ao atualizar a foto de perfil tente novamente!", email : "", senha : Criptografia.descriptografa(usuario.Senha), nome: "", fotoPerfil: ""});
                 break;
         
             default:
-                res.render('PerfilUsuarios', {usuario, historias : await Historias.buscaHistorias(usuario._id.toString()), personagens : await Personagens.buscaPersonagens(usuario._id.toString()), cenarios : await Cenarios.buscaCenarios(usuario._id.toString()), notify: "Foto de perfil adicionada com sucesso!", notifyErro : "", email : "", senha : Criptografia.descriptografa(usuario.Senha), nome: "", fotoPerfil: await Imagens.BuscaImagem(tratamentoParametroRota(req.params.idUsuario), "FotoPerfil")});
+                res.render('PerfilUsuarios', {usuario, historias : await Historias.buscaHistorias(usuario._id.toString()), personagens : await Personagens.buscaPersonagens(usuario._id.toString()), cenarios : await Cenarios.buscaCenarios(usuario._id.toString()), notify: "Foto de perfil atualizada com sucesso!", notifyErro : "", email : "", senha : Criptografia.descriptografa(usuario.Senha), nome: "", fotoPerfil: await Imagens.BuscaImagem(tratamentoParametroRota(req.params.idUsuario), "FotoPerfil")});
                 break;
+        }
+    } catch (error) {
+        next(error);
+    }
+}
+
+exports.deletarImagemPerfil = async (req, res, next) => {
+    try {
+        let usuario = await Usuarios.buscaUsuarioPeloId(tratamentoParametroRota(req.params.idUsuario));
+
+        if(usuario != null)
+        {
+            let fotoAntiga = await Imagens.BuscaImagem(tratamentoParametroRota(req.params.idUsuario), "FotoPerfil");
+            let caminhoDoArquivo =  path.join("public/uploads/", fotoAntiga);
+            fs.unlink(caminhoDoArquivo, (err) => {
+                if (err) 
+                {
+                    console.log("erro ao ao deletar imagem!");
+                    return
+                }
+                console.log("Excluido com sucesso!");
+            })
+
+            let deletandoFotoPerfil = await Imagens.DeletarFotoPerfil(tratamentoParametroRota(req.params.idUsuario));
+
+            switch (deletandoFotoPerfil) {
+                case true:
+                    res.render('PerfilUsuarios', {usuario, historias : await Historias.buscaHistorias(usuario._id.toString()), personagens : await Personagens.buscaPersonagens(usuario._id.toString()), cenarios : await Cenarios.buscaCenarios(usuario._id.toString()), notify: "Foto de perfil excluida com sucesso!", notifyErro : "", email : "", senha : Criptografia.descriptografa(usuario.Senha), nome: "", fotoPerfil: ""});
+                    break;
+            
+                default:
+                    res.render('PerfilUsuarios', {usuario, historias : await Historias.buscaHistorias(usuario._id.toString()), personagens : await Personagens.buscaPersonagens(usuario._id.toString()), cenarios : await Cenarios.buscaCenarios(usuario._id.toString()), notify: "", notifyErro : "Erro ao deletar a foto de perfil tente novamente!", email : "", senha : Criptografia.descriptografa(usuario.Senha), nome: "", fotoPerfil: await Imagens.BuscaImagem(tratamentoParametroRota(req.params.idUsuario), "FotoPerfil") });
+                    break;
+            }
+        }
+        else
+        {
+            res.render('paginaERRO', {erro : "Usuario não encontrado!", link : "/"});
         }
     } catch (error) {
         next(error);

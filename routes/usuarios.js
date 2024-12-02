@@ -2,6 +2,9 @@ var express = require('express'); // Importando o módulo express para definirmo
 
 var router = express.Router(); // "Instanciando" o método de roteamento Express
 
+const multer = require('multer'); // Importando a biblioteca multer para conseguirmos salvar as imagens dos usuarios
+const upload = multer({dest: 'public/uploads/'}); // Setando a pasta que será a de destino para as imagens
+
 /* Importando Os Controllers */
 const controllerUsuarios =  require('../controllers/controllerUsuarios');
 
@@ -28,11 +31,14 @@ router.get('/:idUsuario/atualizaEmail/:novoEmailUsuario', controllerUsuarios.Atu
 // Rota que valida o código enviado para o novo email do usuario
 router.post('/:idUsuario/atualizaEmail/:novoEmailUsuario', controllerUsuarios.AtualizaEmailUsuarioPost);
 
+// Rota para adicionar foto ao perfil do usuario
+router.post('/:idUsuario/addFotoPerfil', upload.single('fotoPerfil'), controllerUsuarios.addImagemPerfil);
 
-const multer = require('multer')
-const upload = multer({dest: 'public/uploads/'});
+// Rota para atualizar as fotos de perfil dos usuarios
+router.post('/:idUsuario/atualizaFotoPerfil', upload.single('fotoPerfil'), controllerUsuarios.atualizaFotoPerfil);
 
-router.post('/:idUsuario/addFotoPerfil', upload.single('fotoPerfil'), controllerUsuarios.addImagemPerfil)
+// Rota para deletar foto de perfil dos usuarios
+router.get('/:idUsuario/deletarFotoPerfil', controllerUsuarios.deletarImagemPerfil);
 
 
 
