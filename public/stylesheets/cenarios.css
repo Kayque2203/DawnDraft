@@ -186,3 +186,83 @@ input[type="radio"]{
     cursor: pointer;
 }
   
+
+.sectionCapitulos{
+    background-color: #BFBEBA;
+    margin-top: 1.9%;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 50px;
+    border-radius: 10pt;
+}
+
+.boxCapitulos{
+    display: flex;
+    flex-direction: column;
+}
+
+.paragrafoLinksCapitulos{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 5%;
+    padding-top: 1%;
+    padding-bottom: 2%;
+}
+
+.linkCapitulos{
+    width: 90%;
+    background-color: #F2F0EB;
+    padding: 5pt;
+    border-radius: 5pt;
+}
+
+/* .linkDeletarCap{
+    background-color: #F2F0EB;
+    padding: 5pt;
+    width: auto;
+    background-color: red;
+    border-radius: 10pt;
+    color: white;
+} */
+
+.tituloCapitulos{
+    margin-bottom: 12pt;
+}
+
+.h2BoxCapitulos{
+    padding: 15pt;
+    background-color: #F2F0EB;
+    border-radius: 10pt;
+    transition: 0.5s;
+}
+
+.h2BoxCapitulos:hover{
+    background-color: green;
+}
+
+
+.ContainerHistoriasPersonagem{
+    background-color: #BFBEBA;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    padding: 10pt;
+    border-radius: 10pt;
+}
+
+.ContainerHistoriasPersonagem p{
+    background-color: #F2F0EB;
+    width: 100%;
+    padding: 5pt;
+}
+
+.spanCap{
+    margin-left: 20pt;
+}
+
+.spanCap a, .ContainerHistoriasPersonagem p a{
+    text-decoration: underline;
+}

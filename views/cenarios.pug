@@ -8,6 +8,7 @@ html(lang="pt-br")
         link(rel='stylesheet', href='/stylesheets/notify.css')
         link(rel='stylesheet', href='/stylesheets/excluir.css')
         link(rel="stylesheet", href="/stylesheets/scrollBar.css")
+        //- link(rel="stylesheet", href="/stylesheets/paginaPersonagens.css")
         link(rel="website icon", href="/images/3c323745-b83e-4589-b0a6-a5b15a0aa3c4.jpg")
         title= cenario.Nome
 
@@ -64,6 +65,20 @@ html(lang="pt-br")
                 script(src="/javascripts/cenarios.js")
 
                 button(type="submit") Salvar Informações
+
+        
+        section(id="sectionConteudo2 sectionCapitulos")
+            div(class="ContainerHistoriasPersonagem")
+                h2 Historias e capítulos vinculados ao personagem
+                if CapitulosVinculados.length != 0
+                    for historia in CapitulosVinculados
+                        p Historia:&nbsp
+                            a(href=`/Usuarios/:${cenario.Usuario.toString()}/historia/:${historia[0]._id.toString()}`)= historia[0].Titulo
+                            span(class="spanCap") Capitulo:&nbsp 
+                                a(href=`/Usuarios/:${cenario.Usuario.toString()}/historia/:${historia[0]._id.toString()}/capitulo/:${historia[1]._id.toString()}`)= historia[1].TituloCapitulo
+             
+                else 
+                    p O personagem não esta vinculado a nenhum capitulo de uma historia
         
         section(class="coisas")
             span(class="spanDeletarHis") Deletar Cenario
@@ -89,8 +104,8 @@ html(lang="pt-br")
                 div(class="boxNotify")
                     h3 Erro!
                     span(id="idNotificacaoErro")= notifyErro
-                
-            script(src="/javascripts/notifyErro.js")
+            
+        script(src="/javascripts/notifyErro.js")
 
         footer(class="footer")
             p &copy; 2024 DawnDraft. Todos os direitos reservados.

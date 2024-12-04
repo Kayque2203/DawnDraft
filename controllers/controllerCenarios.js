@@ -19,8 +19,11 @@ const Imagens = require('../models/mImagens');
 // Importando a função de tratamento dos parametros de rotas
 const TratamentoParametrosDeRotas = require('../assets/tratamentoParametroRota');
 
+const Capitulos = require('../models/mCapitulos')
+
 // Importando a biblioteca para validar e sanitizar dados vindos da requesição http post
 const { validationResult, body } = require('express-validator');
+const CenariosCapitulo = require('../models/mCenariosCapitulo');
 
 exports.criarCenarioGet = async (req, res, next) => { // Endpoint que retorna um template para criação de um novo cenario
     try 
@@ -82,7 +85,7 @@ exports.criarCenarioPost = [ // Endpoint que salva as informações do personage
                     break;
             
                 default:
-                    res.render('cenarios', { cenario : await novoCenario.buscaCenario1(adicionandoNovoCenario.toString()), capitulosVinculados : "", notify : "Capitulo criado com sucesso!", notifyErro : ""});
+                    res.render('cenarios', { cenario : await novoCenario.buscaCenario1(adicionandoNovoCenario.toString()), notify : "Capitulo criado com sucesso!", notifyErro : "", CapitulosVinculados : ""});
                     break;
             }
             
@@ -112,7 +115,23 @@ exports.buscaCenario = async (req, res, next) => { // Endpoint que busca as info
         }
         else
         {
-            res.render('cenarios', { cenario, capitulosVinculados : "", notify : "", notifyErro : ""});
+            let capitulosVinculados = await CenariosCapitulo.buscaTodosOsCapituloVinculadosAUmCenario(cenario._id.toString());
+
+            let matrizHistoriasDoCenario = [];
+
+            if (capitulosVinculados.length != 0) {
+                for (const element of capitulosVinculados) {
+                    let arrayApoio = [];
+
+                    arrayApoio.push(await Historias.buscaHistoria(element.Historia.toString()));
+
+                    arrayApoio.push(await Capitulos.buscaCapitulo(element.Capitulo.toString()));
+
+                    matrizHistoriasDoCenario.push(arrayApoio);
+                }
+            }
+
+            res.render('cenarios', { cenario, CapitulosVinculados : matrizHistoriasDoCenario, notify : "", notifyErro : ""});
         }
     } 
     catch (error) 
@@ -167,7 +186,23 @@ exports.atualizaCenario = [ // Endpoint que atualiza as informações dos cenari
                         break;
 
                     default:
-                        res.render('cenarios', { cenario : await cenarioASerAtualizado.buscaCenario1(TratamentoParametrosDeRotas(req.params.idCenario)), capitulosVinculados : "", notify : "Cenario atualizado com sucesso!", notifyErro : ""});
+                        let capitulosVinculados = await CenariosCapitulo.buscaTodosOsCapituloVinculadosAUmCenario(cenario._id.toString());
+
+                        let matrizHistoriasDoCenario = [];
+            
+                        if (capitulosVinculados.length != 0) {
+                            for (const element of capitulosVinculados) {
+                                let arrayApoio = [];
+            
+                                arrayApoio.push(await Historias.buscaHistoria(element.Historia.toString()));
+            
+                                arrayApoio.push(await Capitulos.buscaCapitulo(element.Capitulo.toString()));
+            
+                                matrizHistoriasDoCenario.push(arrayApoio);
+                            }
+                        }
+
+                        res.render('cenarios', { cenario : await cenarioASerAtualizado.buscaCenario1(TratamentoParametrosDeRotas(req.params.idCenario)), capitulosVinculados : "", notify : "Cenario atualizado com sucesso!", notifyErro : "", CapitulosVinculados : matrizHistoriasDoCenario});
                         break;
                 }
             }
