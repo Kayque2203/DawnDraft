@@ -8,16 +8,13 @@ html(lang="pt-br")
         link(rel='stylesheet', href='/stylesheets/navbar.css')
         link(rel="stylesheet", href="/stylesheets/scrollBar.css")
         link(rel='stylesheet', href='/stylesheets/verificacaoEmail.css')
+        link(rel='stylesheet', href='/stylesheets/footer.css')
 
     body 
-        header
+        header(class="semNav")
             div(class="boxTituloLogo")
                 img( class="logo-nav" src="/images/63b55e87-83ca-4b1e-afe9-c0e899910615.jpg")
                 h1(class="h1-home", translate="no") Dawn&nbspDraft
-  
-            nav(class="navBar1item")
-                a(class="btn-sobre", href = "/sobreNos.html") Sobre&nbspnós
-                a(class="btn-sobre", href = "/FaleConosco" ) Contato
 
         section
             h1 Verificação de email
@@ -26,7 +23,7 @@ html(lang="pt-br")
                 input(type="text", name="codigoVerificacao", required, placeholder="***-***", maxlength="6")
                 button(type="submit") Verificar
 
-        footer(class="footer")
+        footer(class="Fixado")
             p &copy; 2024 DawnDraft. Todos os direitos reservados.
             a(href="/politicaPrivacidade.html" style="color: white; text-decoration: none;") Política de Privacidade
             a(href="/FaleConosco" style="color: white; text-decoration: none;") Contato

@@ -58,15 +58,11 @@ class Email {
                         width: 100%;
                         margin: 0;
                         font: 12.5pt "Lucida Grande", Helvetica, Arial, sans-serif;
-                        background-color: #fcfbee;
                         font-family: "Sora", sans-serif;
                     }
 
                     section{
-                        padding-top: 1.9%;
-                        padding-left: 5%;
-                        padding-right: 5%;
-                        padding-bottom: 10pt;
+                        padding: 50px;
 
                         display: flex;
                         flex-direction: column;
@@ -83,7 +79,6 @@ class Email {
                         margin: 0%;
                         padding: 10pt;
                         align-items: center;
-                        border-bottom: 2px solid rebeccapurple;
                     }
 
                     h1{
@@ -110,12 +105,12 @@ class Email {
             <body>
                 <header class="header">
                     <div class="boxTituloLogo">
-                        <img class="logo-nav" src="../public/images/63b55e87-83ca-4b1e-afe9-c0e899910615.jpg">
                         <h1 class="h1-home" translate="no">Dawn Draft</h1>
                     </div>
                 </header>
                 <section>
                     <h2>Verificação de email!</h2>
+                    <br/>
                     <h3>Código de verificação: <span> ${this.#CodigoVerificacaoEmail} </span></h3>
                 </section>
             </body>

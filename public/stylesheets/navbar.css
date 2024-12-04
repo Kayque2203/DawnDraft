@@ -9,6 +9,17 @@ header{
     border-bottom: 2px solid rebeccapurple;
 }
 
+.semNav{
+    justify-content: center;
+}
+
+.semNav .boxTituloLogo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
 h1{
     text-wrap: nowrap;
 }

@@ -4,21 +4,34 @@ html(lang="pt-BR")
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         link(rel="stylesheet", href="/stylesheets/scrollBar.css")
+        link(rel="stylesheet", href="/stylesheets/navbar.css")
+        link(rel="stylesheet", href="/stylesheets/footer.css")
+        link(rel="stylesheet", href="/stylesheets/mensagens.css")
         title Mensagem
     body
-
         header 
+            div(class="boxTituloLogo")
+                img( class="logo-nav" src="/images/63b55e87-83ca-4b1e-afe9-c0e899910615.jpg")
+                h1(class="h1-home") Dawn Draft
+        
+            nav(class="navBar1item")
+                a(href="javascript:history.back()", class="linkLogin hoverScale") Voltar 
+
+                a(href="/", class="linkLogin hoverScale") Sair
 
         section
-            div 
-                p Assunto: 
-                p= mensagem.Assunto 
+            div
+                p(class="borderRadiusEsq") Assunto: 
+                p(class="borderRadiusDire")= mensagem.Assunto 
 
             div 
-                p Email de resposta 
-                p= mensagem.EmailDeResposta 
+                p(class="borderRadiusEsq") Email de resposta:
+                p(class="borderRadiusDire")= mensagem.EmailDeREsposta 
 
-            div 
-                p Mensagem 
-                p= mensagem.Mensagem 
+            div(class="mensagem")
+                p(class="borderRadiusCima") Mensagem
+                p(class="borderRadiusBaixo")= mensagem.Mensagem 
+
+        footer(class="Fixado")
+            p &copy; 2024 DawnDraft. Todos os direitos reservados.
 

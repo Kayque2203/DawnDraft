@@ -25,6 +25,26 @@
     padding: 5pt;
 }
 
+.notificacao{
+    padding: 2pt;
+    width: 60%;
+    background-color: red;
+    border-radius: 5pt;
+    position: absolute;
+    top: 90pt;
+    left: 50%;
+    transform: translate(-50%, -30%);
+}
+
+.notificacao h1{
+    background-color: white;
+    padding: 5pt;
+    border-radius: 2.5pt;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 @keyframes esmaecerNotify {
     0%{
       opacity: 1;

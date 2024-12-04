@@ -11,7 +11,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 70vh;
     background-color: #fcfbee;
 }
 .content {
@@ -362,7 +362,10 @@ input:-webkit-autofill {
 }
 
 .formularioLogin{
-    animation: girando 1s linear;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .formularioCadastro{
@@ -370,8 +373,6 @@ input:-webkit-autofill {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
-    animation: girandoDeVolta 1s linear;
 }
 
 span{
@@ -398,6 +399,15 @@ span:hover{
     color: black;
 
     scale: 1.01;
+}
+
+.verSenha{
+    width: auto;
+    text-decoration: underline;
+    background-color: transparent;
+    color: black;
+    padding: 2pt;
+    border: none;
 }
 
 .btn{
@@ -465,12 +475,15 @@ span:hover{
     25%{
         transform: rotate3d(0, 1, 0, -90deg);
     }
+
     50%{
         transform: rotate3d(0, 1, 0, -180deg);
     }
+
     75%{
         transform: rotate3d(0, 1, 0, -270deg);
     }
+
     100%{
         transform: rotate3d(0, 1, 0, -360deg);
     }

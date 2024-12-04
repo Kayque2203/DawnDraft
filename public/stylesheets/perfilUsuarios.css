@@ -205,3 +205,24 @@ label{
 .borderRadius5ptBaixo{
     border-radius: 0pt 0pt 5pt 5pt;;
 }
+
+button[type="submit"]{
+    width: 100%;
+    padding: 5pt;
+    border-radius: 5pt;
+    border: none;
+    cursor: pointer;
+    margin-top: 5pt;
+    background: linear-gradient(to bottom, #ff9101, #f8eb59c2);
+    font-size: 14pt;
+    color: black;
+    border: 1.8px solid rebeccapurple;
+    box-shadow: 1px 1px 1px 1px rebeccapurple;
+    transition: 0.1s;
+}
+
+button[type="submit"]:hover{
+    border: 1.8px solid rebeccapurple;
+    box-shadow: 6px 5px rebeccapurple;
+    outline: 0;
+}

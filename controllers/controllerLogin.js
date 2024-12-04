@@ -93,7 +93,7 @@ exports.validaEmailGet = async (req, res, next) => {
             let emailEnviado = await verificacaoEmail.enviarEmailDeVerificacao();
 
             cod = verificacaoEmail.getCodigoVerificacaoEmail;
-            console.log(emailEnviado)
+    
             if (emailEnviado == null) 
             {
                 await Usuarios.deletarUsuario(buscaEmail._id.toString());
@@ -155,8 +155,6 @@ exports.login = [
             else
             {
                 let usuarioEncontrado = await Usuarios.buscaUsuariosPeloEmail2(req.body.login_email);
-
-                console.log(usuarioEncontrado)
 
                 if(usuarioEncontrado == null)
                 {

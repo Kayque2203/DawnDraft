@@ -5,6 +5,7 @@ html(lang="pt-BR")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         link(rel="stylesheet", href="/stylesheets/scrollBar.css")
         link(rel="stylesheet", href="/stylesheets/navbar.css")
+        link(rel="stylesheet", href="/stylesheets/footer.css")
         link(rel="stylesheet", href="/stylesheets/todosUsuarios.css")
         title Usuarios
     body 
@@ -15,9 +16,7 @@ html(lang="pt-BR")
                 h1(class="h1-home") Dawn Draft
         
             nav(class="navBar1item")
-                a(href="/Usuarios/:${admin._id.toString()}/perfilUsuario", class="linkLogin hoverScale") Perfil
-
-                a(href="/", class="linkLogin hoverScale") Voltar 
+                a(href="javascript:history.back()", class="linkLogin hoverScale") Voltar 
 
                 a(href="/", class="linkLogin hoverScale") Sair
 
@@ -30,3 +29,7 @@ html(lang="pt-BR")
                         a(href=`/Administrador/:${admin}/usuario/:${usuario._id.toString()}`, class="linkUsuarios")= usuario.Nome 
             else 
                 p Não existe usuarios cadastrados no sistema! 
+
+        
+        footer(class="Fixado")
+            p &copy; 2024 DawnDraft. Todos os direitos reservados.

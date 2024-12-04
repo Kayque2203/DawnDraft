@@ -74,13 +74,13 @@ html(lang="pt-br")
                     else
                         input(type="email", name="email", id="email",value=usuario.Email, required, placeholder="Email do usuario")
 
-                div(class="boxInputsForm")
-                    label(for="senha") Senha:
-                    if senha.length
-                        input(type="password", name="senha", id="senha",value=senha, required, min-length="8", placeholder="Senha")
-                    else
-                        input(type="password", name="senha", id="senha",value=usuario.Senha, required, min-length="8", placeholder="Senha")
-                    span(id="verSenha") Ver Senha
+                //- div(class="boxInputsForm")
+                //-     label(for="senha") Senha:
+                //-     if senha.length
+                //-         input(type="password", name="senha", id="senha",value=senha, required, min-length="8", placeholder="Senha")
+                //-     else
+                //-         input(type="password", name="senha", id="senha",value=usuario.Senha, required, min-length="8", placeholder="Senha")
+                //-     span(id="verSenha") Ver Senha
 
                     script(src="/javascripts/exibirSenha.js") 
 

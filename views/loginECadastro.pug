@@ -4,6 +4,7 @@ html(lang="pt-br")
         title Login
         link(rel="website icon" href="/images/63b55e87-83ca-4b1e-afe9-c0e899910615.jpg")
         link(rel="stylesheet" href="/stylesheets/style.css")
+        link(rel="stylesheet" href="/stylesheets/notify.css")
         link(rel="stylesheet" href="/stylesheets/style-login-cadastro.css")
         link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css")
         link(rel="stylesheet", href="/stylesheets/scrollBar.css")
@@ -27,11 +28,11 @@ html(lang="pt-br")
             script(src="/javascripts/indexPage.js")
 
         if notify.length
-            h1=notify
+            div(class="notificacao")
+                h1=notify
 
         section(class="section1") 
             div(class="container")
-            
                 div(class="content first-content")
                     div(class="first-column")
                         h2(class="title title-primary") Não Possui Uma Conta?
@@ -51,7 +52,11 @@ html(lang="pt-br")
 
                             label(class="label-input" for="")
                                 i(class="fas fa-lock icon-modify")
-                                input(type="password", placeholder="senha", name="login_senha", required)
+                                input(type="password", placeholder="senha", name="login_senha", required, id="senha")
+                            
+                            span(class="verSenha", id="verSenha") Ver Senha
+
+                            script(src="/javascripts/exibirSenha.js") 
 
                             a(class="password" href="/LoginECadastro/esqueciMinhaSenha") esqueceu sua senha?                   
                             button(class="btn btn-second" type="submit") Entrar
@@ -97,9 +102,9 @@ html(lang="pt-br")
             script(src="/javascripts/js-login-cadastro.js")
 
         section(class="section2")
-            div(class="formularioLogin formularios")
-                h2(class="title title-second", id="titulo") Entrar
+            div(class="formularios")
                 form(class="form", method="post", action="/LoginECadastro/Login", id="formularioLogin")
+                    h2(class="title title-second", id="titulo") Entrar
                     label(class="label-input" for="")
                         i(class="fas fa-envelope icon-modify")
                         if email_login.length
@@ -109,44 +114,51 @@ html(lang="pt-br")
 
                     label(class="label-input" for="")
                         i(class="fas fa-lock icon-modify")
-                        input(type="password", placeholder="senha", name="login_senha", required)
+                        input(type="password", placeholder="senha", name="login_senha", required, id="Senha")
+                    span(class="verSenha", id="VerSenha") Ver Senha
+
+                    script(src="/javascripts/exibirSenha2.js") 
 
                     a(class="password" href="/LoginECadastro/esqueciMinhaSenha") esqueceu sua senha?                   
                     button(class="btn btn-second" type="submit") Entrar
 
-                    span Não possui uma conta? cadastre-se 
+                    span(id="spnaCadastrese") Não possui uma conta? cadastre-se 
 
             
-                div(class="formularioCadastro")
+
+                form(class="form", method="post", action="/LoginECadastro/Cadastro", id="formularioCadastro", class="formularioCadastro")
                     h2(class="title title-second") Cadastre-se
-                        form(class="form", method="post", action="/LoginECadastro/Cadastro", id="formularioCadastro")
-                            label(class="label-input" for="")
-                                i(class="fas fa-user icon-modify")
-                                if nome.length
-                                    input(type="text" placeholder="nome" name="nome", required, value = nome)
-                                else
-                                    input(type="text" placeholder="nome" name="nome", required)
+                    label(class="label-input" for="")
+                        i(class="fas fa-user icon-modify")
+                        if nome.length
+                            input(type="text" placeholder="nome" name="nome", required, value = nome)
+                        else
+                            input(type="text" placeholder="nome" name="nome", required)
 
-                            label(class="label-input" for="")
-                                i(class="fas fa-envelope icon-modify")
-                                if email.length
-                                    input(type="email" placeholder="email" name="email", required, value = email)
-                                else
-                                    input(type="email" placeholder="email" name="email", required)
+                    label(class="label-input" for="")
+                        i(class="fas fa-envelope icon-modify")
+                        if email.length
+                            input(type="email" placeholder="email" name="email", required, value = email)
+                        else
+                            input(type="email" placeholder="email" name="email", required)
 
-                            label(class="label-input" for="")
-                                i(class="fas fa-lock icon-modify")
-                                if senha.length
-                                    input(type="password" placeholder="senha" name="senha", required, value = senha)
-                                else
-                                    input(type="password" placeholder="senha" name="senha", required)
+                    label(class="label-input" for="")
+                        i(class="fas fa-lock icon-modify")
+                        if senha.length
+                            input(type="password", placeholder="senha", name="senha", required, value = senha,  id="inputSenhaCad")
+                        else
+                            input(type="password", placeholder="senha", name="senha", required,  id="inputSenhaCad")
 
-                            label(class="label-input" for="")
-                                i(class="fas fa-lock icon-modify")
-                                input(type="password" placeholder="Confirmar senha" name="confirmarSenha", required)
+                    label(class="label-input" for="")
+                        i(class="fas fa-lock icon-modify")
+                        input(type="password", placeholder="Confirmar senha", name="confirmarSenha", required, id='inputConfirmarSenhaCad')
 
-                            button(class="btn btn-second" type="submit") cadastrar-se
+                    span(class="verSenha", id="VerSenhaCadastro") Ver Senha
 
-                            span Ja possui uma conta? Entrar
+                    script(src="/javascripts/exibirSenhaCadastro.js")
+
+                    button(class="btn btn-second" type="submit") cadastrar-se
+
+                    span(id="spanEntrar") Ja possui uma conta? Entrar
 
             script(src="/javascripts/animacaoLogin.js")  
