@@ -6,7 +6,7 @@ const Personagens = require('../models/mPersonagens'); // Modelo Personagens
 const PersonagensCapitulo = require('../models/mPersonagensCapitulo'); // Modelo personagens da anotação
 const Cenarios = require('../models/mCenarios'); // Modelo cenarios
 const CenariosCapitulo = require('../models/mCenariosCapitulo'); // Modelo cenarios da anotação
-
+const Imagens = require('../models/mImagens'); // Modelo das imagens
 // Importando a função para tratar os parametros de rota
 const tratamentoParametroDeRota = require('../assets/tratamentoParametroRota');
 const trataParametrosDeRota = require('../assets/tratamentoParametroRota');
@@ -191,7 +191,7 @@ exports.deletaHistoria = async (req, res, next) => {
 
             let cenarios = await Cenarios.buscaCenarios(tratamentoParametroDeRota(req.params.idUsuario));
 
-            let fotoPerfil = await Imagens.BuscaImagem(TratamentoParamtrosDeRota(req.params.idUsuario), "FotoPerfil");
+            let fotoPerfil = await Imagens.BuscaImagem(tratamentoParametroDeRota(req.params.idUsuario), "FotoPerfil");
 
             res.render('usuarios', {notify: "Historia deletada com sucesso!", historias, "Personagens" : personagens, id_Usuario : req.params.idUsuario, cenarios, fotoPerfil});
         }
@@ -626,6 +626,9 @@ exports.adicionarCenarioNoCapitulo = [
 
             let capitulo = await Capitulos.buscaCapitulo(trataParametrosDeRota(req.params.idCapitulo));
 
+            // Se o conteudo vindo da requesição for igual a zero, significa que o usuario não escolheu um personagem no select, então não precisamos executar a query no banco de dados.
+            let cenarioNoCapitulo = req.body.cenario == "0" ?  null : await CenariosCapitulo.buscaCenarioDoCapitulo2(req.body.cenario, capitulo._id.toString());
+
             if(!errors.isEmpty())
             {
                 res.render('paginaERRO', {erro: "Um erro na inserção dos dados aconteceu, verifique se todos os dados foram inseridos corretamente!!!", link: `/Usuario/:${trataParametrosDeRota(req.params.idUsuario)}/historia/:${trataParametrosDeRota(req.params.idHistoria)}/capitulo/:${tratamentoParametroDeRota(req.params.idCapitulo)}`});
@@ -641,6 +644,47 @@ exports.adicionarCenarioNoCapitulo = [
             else if(capitulo.Historia.toString() != tratamentoParametroDeRota(req.params.idHistoria))
             {
                 res.render('paginaERRO', {erro: "Capitulo não encontrado, volte e tente novamente!!!", link: `/Usuarios/:${trataParametrosDeRota(req.params.idUsuario)}/`});
+            }
+            else if (req.body.cenario == "0") 
+            {
+                let personagens = await Personagens.buscaPersonagens(tratamentoParametroDeRota(req.params.idUsuario));
+
+                let cenarios = await Cenarios.buscaCenarios(tratamentoParametroDeRota(req.params.idUsuario));
+
+                let cenariosDoCapitulo = [];
+
+                let personagensDoCapitulo = [];
+
+                for (const cenario of await CenariosCapitulo.buscaCenariosVinculadosAoCapitulo(trataParametrosDeRota(req.params.idCapitulo))) {
+                    cenariosDoCapitulo.push(await Cenarios.buscaCenario(cenario.Cenario.toString()));
+                }
+
+                for (const element of await PersonagensCapitulo.buscaPersonagensDoCapitulo(trataParametrosDeRota(req.params.idCapitulo))) { 
+                    personagensDoCapitulo.push(await Personagens.buscaPersonagem(element.Personagem.toString()));
+                }
+
+                res.render('capitulos', {id_Usuario : tratamentoParametroDeRota(req.params.idUsuario), id_Historia : tratamentoParametroDeRota(req.params.idHistoria), capitulo, personagens, personagensDoCapitulo, cenarios, cenariosDoCapitulo, notify : "", notifyErro : "Lembre-se de escolher um cenario!"});
+            }
+            else if(cenarioNoCapitulo != null) 
+            {
+                let personagens = await Personagens.buscaPersonagens(tratamentoParametroDeRota(req.params.idUsuario));
+
+                let cenarios = await Cenarios.buscaCenarios(tratamentoParametroDeRota(req.params.idUsuario));
+
+                let cenariosDoCapitulo = [];
+
+                let personagensDoCapitulo = [];
+
+                for (const cenario of await CenariosCapitulo.buscaCenariosVinculadosAoCapitulo(trataParametrosDeRota(req.params.idCapitulo))) {
+                    cenariosDoCapitulo.push(await Cenarios.buscaCenario(cenario.Cenario.toString()));
+                }
+
+                for (const element of await PersonagensCapitulo.buscaPersonagensDoCapitulo(trataParametrosDeRota(req.params.idCapitulo))) { 
+                    personagensDoCapitulo.push(await Personagens.buscaPersonagem(element.Personagem.toString()));
+                }
+
+                res.render('capitulos', {id_Usuario : tratamentoParametroDeRota(req.params.idUsuario), id_Historia : tratamentoParametroDeRota(req.params.idHistoria), capitulo, personagens, personagensDoCapitulo, cenarios, cenariosDoCapitulo, notify : "", notifyErro : "Esse cenario ja existe no capitulo!"});
+                
             }
             else
             {

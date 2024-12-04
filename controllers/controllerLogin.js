@@ -5,9 +5,11 @@ const Emails = require('../assets/Emails');
 
 const Usuarios = require('../models/mUsuarios');
 
+const ValidaSenha = require('../assets/validaSenha')
+
 exports.CadastroGet = (req,res,next) => {
     try {
-        res.render('loginEcadastro', {notify: ''});
+        res.render('loginEcadastro', {notify: '', nome : '', email : '', senha: '', email_login:""});
     } catch (error) {
         next(error);
     }
@@ -20,6 +22,7 @@ exports.CadastroPost = [
     body('nome').trim().escape().notEmpty(),
     body('email').trim().escape().notEmpty(),
     body('senha').trim().escape().notEmpty(),
+    body('confirmarSenha').trim().escape().notEmpty(),
 
     async (req, res, next) => {
         try {
@@ -27,15 +30,28 @@ exports.CadastroPost = [
 
             if (!errors.isEmpty())
             {
-                res.render('loginEcadastro', {notify: `Um erro inesperado aconteceu cheque se todas as informações estão corretas erro: ${errors}`}); // DA UMA ATENÇÃO AQUI!!!
+                res.render('loginEcadastro', {notify: `Um erro inesperado aconteceu cheque se todas as informações estão corretas erro: ${errors}`, nome : req.body.nome, email : req.body.email, senha: req.body.senha, email_login:"" }); // DA UMA ATENÇÃO AQUI!!!
             }
             else
             {
                 var novoUsuario = new Usuarios(req.body.nome, req.body.email, req.body.senha);
 
+                var validandoSenha = new ValidaSenha(req.body.senha);
+
+                let resultadoValidacao = validandoSenha.ValidacaoDaSenha();
+
+
                 if (await novoUsuario.buscaUsuarioPeloEmail(req.body.email) != null)
                 {
-                    res.render('loginEcadastro', {notify: `Um usuario com esse mesmo email ja esta cadastrado eum nosso sistema tente novamente com um novo email!`}) 
+                    res.render('loginEcadastro', {notify: `Um usuario com esse mesmo email ja esta cadastrado em nosso sistema, tente novamente com um novo email!`, nome : req.body.nome, email : req.body.email, senha: req.body.senha, email_login:""}) 
+                }
+                else if (!resultadoValidacao.Valida) 
+                {
+                    res.render('loginEcadastro', {notify: `${resultadoValidacao.Erro}`, nome : req.body.nome, email : req.body.email, senha: req.body.senha, email_login:""});
+                }
+                else if (req.body.senha != req.body.confirmarSenha)
+                {
+                    res.render('loginEcadastro', {notify: `As senhas não são iguais, tente novamente!`, nome : req.body.nome, email : req.body.email, senha: req.body.senha, email_login:""});
                 }
                 else
                 {
@@ -44,7 +60,7 @@ exports.CadastroPost = [
 
                     switch (usuarioCadastrado) {
                         case null:
-                            res.render('paginaERRO', {erro: "Um erro aconteceu ao efetuar o cadastro, volte e tente novamente!!!", link : "/LoginECadastro"});
+                            res.render('paginaERRO', {erro: "Um erro aconteceu ao efetuar o cadastro, volte e tente novamente!", link : "/LoginECadastro"});
                             break;
                     
                         default:
@@ -140,13 +156,15 @@ exports.login = [
             {
                 let usuarioEncontrado = await Usuarios.buscaUsuariosPeloEmail2(req.body.login_email);
 
+                console.log(usuarioEncontrado)
+
                 if(usuarioEncontrado == null)
                 {
-                    res.render('loginEcadastro', {notify: `Nenhum usuario cadastrado com esse email`});
+                    res.render('loginEcadastro', {notify: `Nenhum usuario cadastrado com esse email!`, nome : '', email : '', senha: '', email_login: req.body.login_email });
                 }
                 else if(Criptografia.descriptografa(usuarioEncontrado.Senha) != req.body.login_senha)
                 {
-                    res.render('loginEcadastro', {notify: `Senha errada`, email: req.body.login_email });
+                    res.render('loginEcadastro', { notify: `Senha errada`, nome : '', email : '', senha: '', email_login: req.body.login_email });
                 }
                 else if(usuarioEncontrado.Verificado == false)
                 {

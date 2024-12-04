@@ -40,6 +40,23 @@ class CenariosCapitulo {
         return cenarioDoCapituloBuscado;
     }
 
+    static async buscaCenarioDoCapitulo2 (idCenario, idCapitulo) { // Busca 1 cenario do capitulo
+        let cenarioDoCapituloBuscado = await Conexao.getCollections('CenariosCapitulo').findOne(
+            { 
+                $and: [
+                    {
+                        Cenario : new ObjectId(idCenario)
+                    },
+                    {
+                        Capitulo : new ObjectId(idCapitulo)
+                    }
+                ] 
+            }
+        );
+
+        return cenarioDoCapituloBuscado;
+    }
+
     static async buscaCenariosVinculadosAoCapitulo (idCapitulo) { // Esse método busca no banco de dados e retorna todos os cenarios vinculados a um capitulo
         let cenariosDoCapitulo = await Conexao.getCollections('CenariosCapitulo').find({Capitulo : new ObjectId(idCapitulo)}).toArray();
 

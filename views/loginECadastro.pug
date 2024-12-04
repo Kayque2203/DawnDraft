@@ -28,29 +28,26 @@ html(lang="pt-br")
 
         if notify.length
             h1=notify
-        div(class="container")
-            div(class="content first-content")
-                div(class="first-column")
-                    h2(class="title title-primary") Não Possui Uma Conta?
-                    button(id="signin" class="btn btn-primary") Cadastre-se 
 
-                div(class="second-column")
+        section 
+            div(class="container")
+            
+                div(class="content first-content")
+                    div(class="first-column")
+                        h2(class="title title-primary") Não Possui Uma Conta?
+                        button(id="signin" class="btn btn-primary") Cadastre-se 
 
-                    h2(class="title title-second") Entrar
+                    div(class="second-column")
 
-                    div(class="social-media") <!-- social media -->
-
-                        //- ul(class="list-social-media")                                                   
-                        //-     a(class="link-social-media" href="#")
-                        //-         li(class="item-social-media")
-                        //-             i(class="fab fa-google-plus-g")
-
-                        //- p(class="description description-second") ou use seu e-mail:
+                        h2(class="title title-second") Entrar
 
                         form(class="form", method="post", action="/LoginECadastro/Login")
                             label(class="label-input" for="")
                                 i(class="fas fa-envelope icon-modify")
-                                input(type="email", placeholder="email", name="login_email", required)
+                                if email_login.length
+                                    input(type="email", placeholder="email", name="login_email", required, value = email_login)
+                                else
+                                    input(type="email", placeholder="email", name="login_email", required)
 
                             label(class="label-input" for="")
                                 i(class="fas fa-lock icon-modify")
@@ -60,33 +57,35 @@ html(lang="pt-br")
                             button(class="btn btn-second" type="submit") Entrar
 
 
-            div(class="content second-content")
-                div(class="first-column")
-                    h2(class="title title-primary") Ja possui uma conta?
-                    button(id="signup" class="btn btn-primary") Entrar
+                div(class="content second-content")
+                    div(class="first-column")
+                        h2(class="title title-primary") Ja possui uma conta?
+                        button(id="signup" class="btn btn-primary") Entrar
 
-                div(class="second-column")
-                    h2(class="title title-second") Cadastre-se
-                    div(class="social-media")
-                        //- ul(class="list-social-media")
-                        //-     a(class="link-social-media" href="#")
-                        //-         li(class="item-social-media")
-                        //-             i(class="fab fa-google-plus-g")
-
-                        //- p(class="description description-second") ou use sua conta de email para cadastro:
+                    div(class="second-column")
+                        h2(class="title title-second") Cadastre-se
 
                         form(class="form", method="post", action="/LoginECadastro/Cadastro")
                             label(class="label-input" for="")
                                 i(class="fas fa-user icon-modify")
-                                input(type="text" placeholder="nome" name="nome", required)
+                                if nome.length
+                                    input(type="text" placeholder="nome" name="nome", required, value = nome)
+                                else
+                                    input(type="text" placeholder="nome" name="nome", required)
 
                             label(class="label-input" for="")
                                 i(class="fas fa-envelope icon-modify")
-                                input(type="email" placeholder="email" name="email", required)
+                                if email.length
+                                    input(type="email" placeholder="email" name="email", required, value = email)
+                                else
+                                    input(type="email" placeholder="email" name="email", required)
 
                             label(class="label-input" for="")
                                 i(class="fas fa-lock icon-modify")
-                                input(type="password" placeholder="senha" name="senha", required)
+                                if senha.length
+                                    input(type="password" placeholder="senha" name="senha", required, value = senha)
+                                else
+                                    input(type="password" placeholder="senha" name="senha", required)
 
                             label(class="label-input" for="")
                                 i(class="fas fa-lock icon-modify")
@@ -95,4 +94,4 @@ html(lang="pt-br")
                             button(class="btn btn-second" type="submit") cadastrar-se
 
 
-        script(src="/javascripts/js-login-cadastro.js")
+            script(src="/javascripts/js-login-cadastro.js")
