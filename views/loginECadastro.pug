@@ -29,7 +29,7 @@ html(lang="pt-br")
         if notify.length
             h1=notify
 
-        section 
+        section(class="section1") 
             div(class="container")
             
                 div(class="content first-content")
@@ -95,3 +95,58 @@ html(lang="pt-br")
 
 
             script(src="/javascripts/js-login-cadastro.js")
+
+        section(class="section2")
+            div(class="formularioLogin formularios")
+                h2(class="title title-second", id="titulo") Entrar
+                form(class="form", method="post", action="/LoginECadastro/Login", id="formularioLogin")
+                    label(class="label-input" for="")
+                        i(class="fas fa-envelope icon-modify")
+                        if email_login.length
+                            input(type="email", placeholder="email", name="login_email", required, value = email_login)
+                        else
+                            input(type="email", placeholder="email", name="login_email", required)
+
+                    label(class="label-input" for="")
+                        i(class="fas fa-lock icon-modify")
+                        input(type="password", placeholder="senha", name="login_senha", required)
+
+                    a(class="password" href="/LoginECadastro/esqueciMinhaSenha") esqueceu sua senha?                   
+                    button(class="btn btn-second" type="submit") Entrar
+
+                    span Não possui uma conta? cadastre-se 
+
+            
+                div(class="formularioCadastro")
+                    h2(class="title title-second") Cadastre-se
+                        form(class="form", method="post", action="/LoginECadastro/Cadastro", id="formularioCadastro")
+                            label(class="label-input" for="")
+                                i(class="fas fa-user icon-modify")
+                                if nome.length
+                                    input(type="text" placeholder="nome" name="nome", required, value = nome)
+                                else
+                                    input(type="text" placeholder="nome" name="nome", required)
+
+                            label(class="label-input" for="")
+                                i(class="fas fa-envelope icon-modify")
+                                if email.length
+                                    input(type="email" placeholder="email" name="email", required, value = email)
+                                else
+                                    input(type="email" placeholder="email" name="email", required)
+
+                            label(class="label-input" for="")
+                                i(class="fas fa-lock icon-modify")
+                                if senha.length
+                                    input(type="password" placeholder="senha" name="senha", required, value = senha)
+                                else
+                                    input(type="password" placeholder="senha" name="senha", required)
+
+                            label(class="label-input" for="")
+                                i(class="fas fa-lock icon-modify")
+                                input(type="password" placeholder="Confirmar senha" name="confirmarSenha", required)
+
+                            button(class="btn btn-second" type="submit") cadastrar-se
+
+                            span Ja possui uma conta? Entrar
+
+            script(src="/javascripts/animacaoLogin.js")  

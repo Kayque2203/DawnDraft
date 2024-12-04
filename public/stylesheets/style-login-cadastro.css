@@ -64,7 +64,7 @@ body {
     padding: 10px 50px;
     cursor: pointer;
     font-weight: bold;
-    width: 200px;
+    width: 50%;
     align-self: center;
     border-width: 0;
     margin-top: 1rem;
@@ -97,6 +97,10 @@ body {
 }
 .first-column {
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     width: 40%;
     z-index: 10;
 }
@@ -327,4 +331,147 @@ input:-webkit-autofill {
 
 .btn-primary {
     border-color: black;
+}
+
+.section1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.section2{
+    display: none;
+    justify-content: center;
+}
+
+.formularios{
+    width: 60%;
+    padding: 5%;
+    margin-top: 5%;
+    
+    border-radius: 10pt;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    /* margin: 0 auto; */
+
+    background-color: #ffff;
+}
+
+.formularioLogin{
+    animation: girando 1s linear;
+}
+
+.formularioCadastro{
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    animation: girandoDeVolta 1s linear;
+}
+
+span{
+    border-radius: 15px;
+    text-transform: uppercase;
+    color:  #fff;
+    font-size: 10px;
+    padding: 8pt 20pt;
+    cursor: pointer;
+    font-weight: bold;
+
+    width: 70%;
+
+    border: 1px solid black;
+    background-color: black;
+
+    margin-top: 10pt;
+
+    text-align: center;
+}
+
+span:hover{
+    background-color: white;
+    color: black;
+
+    scale: 1.01;
+}
+
+.btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    align-self: center;
+
+    text-align: center;
+}
+
+@media (max-width: 1100px) {
+    .section1{
+        display: none;
+    }
+
+    .section2{
+        display: flex;
+    }
+}
+
+@media (max-width: 830px) {
+    .formularios{
+        width: 60%;
+    }
+}
+
+@media (max-width: 800px) {
+    .formularios{
+        width: 70%;
+    }
+}
+
+@media (max-width: 530px) {
+    .formularios{
+        width: 80%;
+    }
+}
+
+@media (max-width: 500px) {
+    .formularios{
+        width: 90%;
+    }
+}
+
+
+@keyframes girando {
+    25%{
+        transform: rotate3d(0, 1, 0, 90deg);
+    }
+    50%{
+        transform: rotate3d(0, 1, 0, 180deg);
+    }
+    75%{
+        transform: rotate3d(0, 1, 0, 270deg);
+    }
+    100%{
+        transform: rotate3d(0, 1, 0, 360deg);
+    }
+}
+
+@keyframes girandoDeVolta {
+    25%{
+        transform: rotate3d(0, 1, 0, -90deg);
+    }
+    50%{
+        transform: rotate3d(0, 1, 0, -180deg);
+    }
+    75%{
+        transform: rotate3d(0, 1, 0, -270deg);
+    }
+    100%{
+        transform: rotate3d(0, 1, 0, -360deg);
+    }
 }
