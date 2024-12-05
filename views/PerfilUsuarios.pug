@@ -1,0 +1,146 @@
+doctype html
+html(lang="pt-br")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(rel="website icon", href="/images/3c323745-b83e-4589-b0a6-a5b15a0aa3c4.jpg")
+        link(rel="stylesheet", href="/stylesheets/scrollBar.css")
+        link(rel="stylesheet", href="/stylesheets/perfilUsuarios.css")
+        link(rel='stylesheet', href='/stylesheets/notify.css')
+        link(rel='stylesheet', href='/stylesheets/navbar.css')  
+        title= usuario.Nome
+    body
+
+        header(class="header")
+            div(class="boxTituloLogo")
+                img( class="logo-nav" src="/images/63b55e87-83ca-4b1e-afe9-c0e899910615.jpg")
+                h1(class="h1-home") Dawn Draft
+        
+            nav(class="navBar")
+                a(href=`/Usuarios/${usuario._id.toString()}/adicionarCenario`, class="btn-sobre") Criar cenario
+                a(href=`/Usuarios/${usuario._id.toString()}/adicionarPersonagem`, class="btn-sobre") Criar personagem
+                a(href=`/Usuarios/${usuario._id.toString()}/NovaHistoria`, class="btn-sobre") Criar historia
+                a(href=`/Usuarios/:${usuario._id.toString()}/`)
+                    img(src="/images/casa.png", alt="Inicio", class="hoverScale")
+
+                a(href="/")
+                    img(src="/images/logout.png", alt="", class="hoverScale")
+
+            img(src="/images/botao-de-menu.png", alt="Menu", class="btnDropDown")
+      
+            script(src="/javascripts/indexPage.js")
+
+
+
+        section
+            if fotoPerfil.length
+                form(action=`/Usuarios/:${usuario._id.toString()}/atualizaFotoPerfil`, method="post",  class="borderRadius25Cima formFotoPerfil", enctype="multipart/form-data") 
+                    img(src=`/uploads/${fotoPerfil}`, alt="FotoPerfil", class="fotoPerfil")
+
+                    div(class="boxBtnFoto")
+                        label(for="imagemPerfil", class="BotoesFoto", id="labelFotoPerfil") alterar foto de perfil
+
+                        a(href=`/Usuarios/:${usuario._id.toString()}/deletarFotoPerfil`, class="BotoesFoto", id="linkRemoverFoto") Remover Foto
+
+                        input(type="file", name="fotoPerfil", placeholder="Escolher Foto De Perfil", accept="image/*", class="iptnFile", id="imagemPerfil")
+
+                        button(type="submit", class="BotoesFoto btnSalvarFoto", id="btnSalvarFotoPerfil") Salvar Foto
+
+                    script(src="/javascripts/perfilUsuario.js") 
+            else 
+                form(action=`/Usuarios/:${usuario._id.toString()}/addFotoPerfil`, method="post", class="borderRadius25Cima formFotoPerfil", enctype="multipart/form-data")    
+                    div(id="fotoPerfil")
+                        img(src="/images/userIcon.png", alt="FotoPerfil", class="fotoPerfil")
+                    div(class="boxBtnFoto")
+                        label(for="imagemPerfil", class="BotoesFoto", id="labelFotoPerfil") Adicionar foto ao perfil
+                        input(type="file", name="fotoPerfil", placeholder="Escolher Foto De Perfil", accept="image/*", class="iptnFile", id="imagemPerfil")
+
+                        button(type="submit", class="BotoesFoto btnSalvarFoto", id="btnSalvarFotoPerfil") Salvar Foto
+
+                    script(src="/javascripts/perfilUsuario.js") 
+
+            form(action=`/Usuarios/:${usuario._id.toString()}/atualizarUsuario`, method="post", class="borderRadius25Baixo")
+                div(class="boxInputsForm")
+                    label(for="nome") Nome:
+                    if nome.length
+                        input(type="text", name="nome", id="nome",value=nome, required, placeholder="Nome do usuario")
+                    else
+                        input(type="text", name="nome", id="nome",value=usuario.Nome, required, placeholder="Nome do usuario")
+
+                div(class="boxInputsForm")
+                    label(for="email") Email:
+                    if email.length
+                        input(type="email", name="email", id="email",value=email, required, placeholder="Email do usuario")
+                    else
+                        input(type="email", name="email", id="email",value=usuario.Email, required, placeholder="Email do usuario")
+
+                //- div(class="boxInputsForm")
+                //-     label(for="senha") Senha:
+                //-     if senha.length
+                //-         input(type="password", name="senha", id="senha",value=senha, required, min-length="8", placeholder="Senha")
+                //-     else
+                //-         input(type="password", name="senha", id="senha",value=usuario.Senha, required, min-length="8", placeholder="Senha")
+                //-     span(id="verSenha") Ver Senha
+
+                    script(src="/javascripts/exibirSenha.js") 
+
+                div(class="boxTxtAreaBio")
+                    label(for="biografia", class="borderRadius5ptCima") Sua biografia 
+                    textarea(name="biografia", class="borderRadius5ptBaixo", placeholder="Escreva sua biografia!")= usuario.Biografia
+
+                div 
+                    button(type="submit") Salvar Alterações
+
+        section
+            h2 Suas Historias
+
+            if historias.length
+                for historia in historias 
+                    p(class="paragrafoLinks")
+                        a(href=`/Usuarios/:${usuario._id.toString()}/historia/:${historia._id.toString()}`, class="linksHistoriasPersonagensCenarios")=  historia.Titulo
+            else
+                p Voce ainda não possui historias cadastradas!
+
+
+        section
+            h2 Seus Personagens
+
+            if personagens.length 
+                for personagem in personagens 
+                    p(class="paragrafoLinks")
+                        a(href=`/Usuarios/:${usuario._id.toString()}/personagem/:${personagem._id.toString()}`, class="linksHistoriasPersonagensCenarios")= personagem.Nome 
+            else 
+                p Voce ainda não possui personagens cadastrados!
+
+
+        section 
+            h2 Seus Cenarios
+
+            if cenarios.length
+                for cenario in cenarios 
+                    p(class="paragrafoLinks")
+                        a(href=`/Usuarios/:${usuario._id.toString()}/cenario/:${cenario._id.toString()}`, class="linksHistoriasPersonagensCenarios")= cenario.Nome
+            else
+                p Voce ainda não possui cenarios cadastrados!
+
+        if notify.length
+            div(class="containerNotify sucesso", id="containerNotify")
+                div(class="boxNotify")
+                    h3 Sucesso!
+                    span(id="idNotificacao")= notify
+            
+            script(src="/javascripts/notify.js")
+
+        if notifyErro.length
+            div(class="containerNotify erro", id="containerNotifyErro")
+                div(class="boxNotify")
+                    h3 Erro!
+                    span(id="idNotificacaoErro")= notifyErro
+                
+            script(src="/javascripts/notifyErro.js")
+
+        footer(class="footer")
+            p &copy; 2024 DawnDraft. Todos os direitos reservados.
+            a(href="/politicaPrivacidade.html" style="color: white; text-decoration: none;") Política de Privacidade
+            a(href="/FaleConosco" style="color: white; text-decoration: none;") Contato
+

@@ -3,6 +3,7 @@ html(lang="pt-br")
   head
     link(rel='stylesheet', href='/stylesheets/paginaPersonagens.css')
     link(rel='stylesheet', href='/stylesheets/navbar.css')
+    link(rel="stylesheet", href="/stylesheets/scrollBar.css")
     link(rel="website icon", href="/images/3c323745-b83e-4589-b0a6-a5b15a0aa3c4.jpg")
     meta(http-equiv="Content-Type", content="text/html;charset=UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
@@ -14,7 +15,7 @@ html(lang="pt-br")
           h1(class="h1-home" , translate="no") Dawn Draft
       nav(class="navBar1item")   
         a(href=`/Usuarios/${UsuarioID}/`)
-          img(src="/images/casa.png", alt="Home")
+          img(src="/images/casa.png", alt="Home", class="hoverScale")
 
     section
         form(action="", method="post")
@@ -22,7 +23,7 @@ html(lang="pt-br")
           h2 Informações em geral
           div(class="divInpt")
             label(for="nome") Nome:
-            input(type="text", name="nome", placeholder="Insira o nome do(a) personagem", id="nome", maxlength="75") 
+            input(type="text", name="nome", placeholder="Insira o nome do(a) personagem", id="nome", maxlength="75", required) 
 
           div(class="divInpt")
             label(for="") Idade:
@@ -89,4 +90,4 @@ html(lang="pt-br")
     footer(class="footer")
       p &copy; 2024 DawnDraft. Todos os direitos reservados.
       a(href="/politicaPrivacidade.html" style="color: white; text-decoration: none;") Política de Privacidade
-      a(href="/contato.html" style="color: white; text-decoration: none;") Contato
+      a(href="/FaleConosco" style="color: white; text-decoration: none;") Contato

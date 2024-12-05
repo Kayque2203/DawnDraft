@@ -2,15 +2,28 @@ doctype html
 html(lang="pt-br")
     head
         title Validar Email
-        link(rel='stylesheet', href='/stylesheets/paginaValidacaoEmail.css')
         link(rel="website icon", href="/images/3c323745-b83e-4589-b0a6-a5b15a0aa3c4.jpg")
         meta(http-equiv="Content-Type", content="text/html;charset=UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(rel='stylesheet', href='/stylesheets/navbar.css')
+        link(rel="stylesheet", href="/stylesheets/scrollBar.css")
+        link(rel='stylesheet', href='/stylesheets/verificacaoEmail.css')
+        link(rel='stylesheet', href='/stylesheets/footer.css')
 
     body 
-        header
-            h1 Verificação de email 
+        header(class="semNav")
+            div(class="boxTituloLogo")
+                img( class="logo-nav" src="/images/63b55e87-83ca-4b1e-afe9-c0e899910615.jpg")
+                h1(class="h1-home", translate="no") Dawn&nbspDraft
+
         section
+            h1 Verificação de email
+            h3 Enviamos um email com um código de verificação para você, se não recebeu verifique na aba de spam ou de lixo eletronico!
             form(action="", method="post")
-                input(type="number", name="codigoVerificacao", maxlength="6")
+                input(type="text", name="codigoVerificacao", required, placeholder="***-***", maxlength="6")
                 button(type="submit") Verificar
+
+        footer(class="Fixado")
+            p &copy; 2024 DawnDraft. Todos os direitos reservados.
+            a(href="/politicaPrivacidade.html" style="color: white; text-decoration: none;") Política de Privacidade
+            a(href="/FaleConosco" style="color: white; text-decoration: none;") Contato

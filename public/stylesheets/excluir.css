@@ -8,36 +8,44 @@
     display: flex;
     justify-content: center;
     cursor: pointer;
+    box-shadow: 2pt 2pt black;
+    transition: 0.1s;
 }
 
 .divExcluirPersonagem{
-    padding: 10%;
-    width: 40vw;
-    height: auto;
-    left: calc(50vw - 20vw);
-    top: 5% ;
+    padding: 0.9%;
+    min-width: 40vw;
+    width: auto;
+    min-height: 10vw;
+  
     display: none;
-    align-items: center;
+    align-items: start;
     justify-content: center;
     flex-direction: column;
     background-color:  #fcfbee;
     color: black;
     position: absolute;
-    border-radius: 20pt;
-    text-align: center;
+    border-radius: 10pt;
+    text-align: left;
+    font-size: 16pt;
+
+    top: 50% ;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .botoesDivExcluirPersonagem{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: end;
     width: 100%;
     padding: 10pt;
+    gap: 5pt;
 }
 
 #btnCancelar{
     padding: 5pt;
     background-color: yellowgreen;
-    border-radius: 10pt;
+    border-radius: 5pt;
     border: 1px solid yellowgreen;
     cursor: pointer;
     font-size: 12pt;
@@ -48,5 +56,21 @@
     color: white;
     font-size: 12pt;
     padding: 5pt;
-    border-radius: 10pt;
+    border-radius: 5pt;
+}
+
+.spanDeletarHis:hover{
+    box-shadow: 4pt 4pt black;
+}
+
+@media (max-width: 867px) {
+    .divExcluirPersonagem{
+        min-width: 80vw;
+    }
+}
+
+@media (min-width: 535px) {
+    .divExcluirPersonagem{
+        text-align: center;
+    }
 }

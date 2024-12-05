@@ -3,6 +3,8 @@ html(lang="pt-br")
   head
     title Crie uma nova historia
     link(rel='stylesheet', href='/stylesheets/paginaHistorias.css')
+    link(rel='stylesheet', href='/stylesheets/navbar.css')
+    link(rel="stylesheet", href="/stylesheets/scrollBar.css")
     link(rel="website icon", href="/images/3c323745-b83e-4589-b0a6-a5b15a0aa3c4.jpg")
     meta(http-equiv="Content-Type", content="text/html;charset=UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
@@ -14,25 +16,25 @@ html(lang="pt-br")
 
       nav(class="navBar1item")
         a(href=`/Usuarios/${id_Usuario}/`)
-          img(src="/images/casa.png", alt="Home") 
+          img(src="/images/casa.png", alt="Home", class="hoverScale") 
 
     section 
       form(action=`/Usuarios/:${id_Usuario}/NovaHistoria/`, method="post")
         div(class="divInpt")
           label(for="") Titulo&nbspda&nbsphistoria 
-          input(type="text", name="titulo", placeholder="Titulo Da Histora", maxlength="75")
+          input(type="text", name="titulo", placeholder="Escreva aqui o titulo da historia", maxlength="75", required)
 
         div(class="divResumoPersonagem")
           label(for="") Prologo&nbspda&nbsphistoria
-          textarea(name="prologo" placeholder="Prologo Da Historia", maxlength="400")
+          textarea(name="prologo" placeholder="Escreva aqui prologo da historia", maxlength="400")
           script(src="/javascripts/historias.js")
 
         div
           button(type="submit") salvar
           
  
-    footer(class="footer")
-      p &copy; 2024 DawnDraft. Todos os direitos reservados.
-      a(href="/politicaPrivacidade.html" style="color: white; text-decoration: none;") Política de Privacidade
-      a(href="/contato.html" style="color: white; text-decoration: none;") Contato
+    //- footer(class="footer")
+    //-   p &copy; 2024 DawnDraft. Todos os direitos reservados.
+    //-   a(href="/politicaPrivacidade.html" style="color: white; text-decoration: none;") Política de Privacidade
+    //-   a(href="/FaleConosco" style="color: white; text-decoration: none;") Contato
         

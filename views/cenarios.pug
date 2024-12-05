@@ -1,0 +1,113 @@
+doctype html
+html(lang="pt-br")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(rel='stylesheet', href='/stylesheets/navbar.css')
+        link(rel='stylesheet', href='/stylesheets/cenarios.css')
+        link(rel='stylesheet', href='/stylesheets/notify.css')
+        link(rel='stylesheet', href='/stylesheets/excluir.css')
+        link(rel="stylesheet", href="/stylesheets/scrollBar.css")
+        //- link(rel="stylesheet", href="/stylesheets/paginaPersonagens.css")
+        link(rel="website icon", href="/images/3c323745-b83e-4589-b0a6-a5b15a0aa3c4.jpg")
+        title= cenario.Nome
+
+    body
+        header(class="header")
+            div(class="boxTituloLogo")
+                img( class="logo-nav" src="/images/63b55e87-83ca-4b1e-afe9-c0e899910615.jpg")
+                h1(class="h1-home", translate="no") Dawn&nbspDraft
+
+            nav(class="navBar")
+                a(href=`/Usuarios/${cenario.Usuario.toString()}/adicionarCenario`, class="btn-sobre") Criar cenario
+                a(href=`/Usuarios/${cenario.Usuario.toString()}/adicionarPersonagem`, class="btn-sobre") Criar personagem
+                a(href=`/Usuarios/${cenario.Usuario.toString()}/NovaHistoria`, class="btn-sobre") Criar historia
+                a(href=`/Usuarios/${cenario.Usuario.toString()}/historia/:${id_Historia}`)
+                a(href=`/Usuarios/${cenario.Usuario.toString()}/`)
+                    img(src="/images/casa.png", alt="Home", class="hoverScale")
+
+            img(src="/images/botao-de-menu.png", alt="Menu", class="btnDropDown")
+      
+            script(src="/javascripts/indexPage.js")
+
+        section(id="sectionConteudo")
+            form(action=`/Usuarios/:${cenario.Usuario.toString()}/atualizarCenario/:${cenario._id.toString()}`, method="post")
+                h2 Crie um novo cenario
+
+                div(class="divInpt borderRadius5ptCima")
+                    label(for="", class="borderRadiusLabel") Nome Do Cenario:
+                    input(type="text", name="nome", maxlength="75", value = cenario.Nome, required, placeholder="De um nome ao cenario")
+
+                div(class="divInpt")
+                    label(for="", class="borderRadiusLabel") Ambientação:
+                    input(type="text", name="ambientacao", maxlength="100", value = cenario.Ambientacao, placeholder="Fale da ambientação do cenario")
+
+                div(class="divInpt")
+                    label(for="", class="borderRadiusLabel") Conflitos nesse canario:
+                    input(type="text", name="conflitos", maxlength="100", value = cenario.ExisteConflitos, placeholder="Cite conflitos que podem haver no cenário")
+
+                div(class="divInpt borderRadius5ptBaixo")
+                    label(for="", class="borderRadiusLabel") Geografia do cenario:
+                    input(type="text", name="geografia", maxlength="75", value = cenario.GeografiaLocal, placeholder="Descreva a geografia local do cenario")
+
+                div(class="divResumoPersonagem borderRadius5ptCima")
+                    label(for="", class="borderRadius5ptCima") Crie as regras para esse cenario
+                    textarea(name="regras",  placeholder="Faça as regras para o cenario")= cenario.Regras
+                
+                div(class="divResumoPersonagem")
+                    label(for="" class="borderRadius5ptCima") Informações importantes
+                    textarea(name="informacoesInportantes", placeholder="Escreva informaçôes a parte que sejam importantes")= cenario.InformacoesRelevantes
+
+                div(class="divResumoPersonagem" class="borderRadius5ptCima")
+                    label(class="borderRadius5ptCima") Resumo sobre o cenario
+                    textarea(name="resumoDoCenario", placeholder="Escreva ou crie um breve resumo sobre o cenario")= cenario.ResumoDoCenario
+
+                script(src="/javascripts/cenarios.js")
+
+                button(type="submit") Salvar Informações
+
+        
+        section(id="sectionConteudo2 sectionCapitulos")
+            div(class="ContainerHistoriasPersonagem")
+                h2 Historias e capítulos vinculados ao personagem
+                if CapitulosVinculados.length != 0
+                    for historia in CapitulosVinculados
+                        p Historia:&nbsp
+                            a(href=`/Usuarios/:${cenario.Usuario.toString()}/historia/:${historia[0]._id.toString()}`)= historia[0].Titulo
+                            span(class="spanCap") Capitulo:&nbsp 
+                                a(href=`/Usuarios/:${cenario.Usuario.toString()}/historia/:${historia[0]._id.toString()}/capitulo/:${historia[1]._id.toString()}`)= historia[1].TituloCapitulo
+             
+                else 
+                    p O personagem não esta vinculado a nenhum capitulo de uma historia
+        
+        section(class="coisas")
+            span(class="spanDeletarHis") Deletar Cenario
+
+            div(class="divExcluirPersonagem")
+                h2 Excluir
+                p Certeza que deseja excluir permanentemente o cenario: #{cenario.Nome}
+                div(class="botoesDivExcluirPersonagem")
+                    button(class="cancelar", id="btnCancelar") Cancelar 
+                    a(class="excluir", href=`/Usuarios/:${cenario.Usuario.toString()}/deletarCenario/:${cenario._id.toString()}`) Excluir
+                script(src="/javascripts/excluir.js")
+
+        if notify.length
+            div(class="containerNotify sucesso", id="containerNotify")
+                div(class="boxNotify")
+                    h3 Sucesso!
+                    span(id="idNotificacao")= notify
+            
+            script(src="/javascripts/notify.js")
+
+        if notifyErro.length
+            div(class="containerNotify erro", id="containerNotifyErro")
+                div(class="boxNotify")
+                    h3 Erro!
+                    span(id="idNotificacaoErro")= notifyErro
+            
+        script(src="/javascripts/notifyErro.js")
+
+        footer(class="footer")
+            p &copy; 2024 DawnDraft. Todos os direitos reservados.
+            a(href="/politicaPrivacidade.html" style="color: white; text-decoration: none;") Política de Privacidade
+            a(href="/FaleConosco" style="color: white; text-decoration: none;") Contato

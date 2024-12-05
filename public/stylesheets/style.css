@@ -33,7 +33,7 @@ header{
 section{
   font-size: 16pt;
   width: 100%;
-  min-height: 100vh;
+  min-height: 75vh;
 }
 
 .boxsIntro{
@@ -83,6 +83,53 @@ section{
   gap: 2%;
   align-items: center;
   padding: 5%;
+}
+
+.section2{
+  display: flex;
+  justify-content: space-between;
+  gap: 2%;
+  align-items: center;
+  flex-direction: row-reverse;
+  padding: 5%;
+  text-align: justify;
+}
+
+.containerSection1{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: justify;
+
+  gap: 2%;
+  padding: 15pt;
+  border-radius: 10pt;
+
+  background-color: rgba(245, 245, 245, 0.9);
+}
+
+.containerSection2{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row-reverse;
+  text-align: justify;
+
+  gap: 2%;
+  padding: 15pt;
+  border-radius: 10pt;
+
+  background-color: rgba(245, 245, 245, 0.9);
+}
+
+.gifs{
+  width: 500px;
+  height: auto;
+}
+
+.boxsTextos{
+  width: auto;
+  max-width: 60%;
 }
 
 .logo-nav{
@@ -155,15 +202,24 @@ section{
   padding: 10pt;
 }
 
+.hiden{
+  opacity: 0;
+  transition: opacity 0.9s linear;
+}
+
+.hidenOff{
+  opacity: 1;
+}
+
 @media (max-width: 1333px) {
-  .section1{
+  .section1, .section2, .containerSection1, .containerSection2{
     padding: 1%;
     flex-direction: column;
     align-items: center;
     justify-content: start;
   }
 
-  .boxsIntro{
+  .boxsIntro, .boxsTextos{
     max-width: 100%;
     padding: 10pt;
     width: 85vw;
@@ -171,7 +227,7 @@ section{
     text-align: center;
   }
 
-  .img-home{
+  .img-home, .gifs{
     width: 70vw;
     height: auto;
   }
@@ -219,11 +275,9 @@ section{
     align-items: center;
     justify-content: center;
   }
-}
 
-/* @media (min-height: 800px) {
   section{
-    min-height: 100vw;
-    margin-bottom: 10pt;
+    min-height: auto;
+    margin-bottom: 50pt;
   }
-} */
+}

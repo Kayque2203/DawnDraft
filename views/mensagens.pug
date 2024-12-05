@@ -1,0 +1,34 @@
+doctype html
+html(lang="pt-BR")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(rel="stylesheet", href="/stylesheets/scrollBar.css")
+        link(rel="stylesheet", href="/stylesheets/navbar.css")
+        link(rel="stylesheet", href="/stylesheets/footer.css")
+        link(rel="stylesheet", href="/stylesheets/mensagens.css")
+        title Mensagens
+    body
+
+        header(class="header")
+            div(class="boxTituloLogo")
+                img( class="logo-nav" src="/images/63b55e87-83ca-4b1e-afe9-c0e899910615.jpg")
+                h1(class="h1-home") Dawn Draft
+        
+            nav(class="navBar1item")
+                a(href="javascript:history.back()", class="linkLogin hoverScale") Voltar 
+
+                a(href="/", class="linkLogin hoverScale") Sair
+
+        
+        section
+            h2(class="tituloSection") Mensagens
+            if mensagens.length
+                for mensagem in mensagens
+                    p(class="paragrafoLinksMensagens")
+                        a(href=`/Administrador/:${admin}/mensagem/:${mensagem._id.toString()}`, class="linkMensagem")= mensagem.Assunto
+            else 
+                p Não existe nenhuma mensagem no sistema!
+
+        footer(class="Fixado")
+            p &copy; 2024 DawnDraft. Todos os direitos reservados.

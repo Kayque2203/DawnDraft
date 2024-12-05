@@ -7,6 +7,8 @@ const { validationResult, body } = require('express-validator');
 const PersonagensCapitulo = require('../models/mPersonagensCapitulo');
 const Historias = require('../models/mHistorias');
 const Capitulos = require('../models/mCapitulos');
+const Cenarios = require('../models/mCenarios');
+const Imagens = require('../models/mImagens');
 
 // Endpoint que retorna um template para criar um usuario
 exports.adicionarPersonagemGet = async (req, res, next) => {
@@ -166,8 +168,6 @@ exports.atualizarPersonagemPost = [
             {
                 let personagemASerAtualizado = new Personagens(req.body.nome, req.body.idade, req.body.personalidade, req.body.hobies, req.body.sonhos, req.body.traumas, req.body.objetivo, req.body.informacoes, TratamentoParamtrosDeRota(req.params.idUsuario), req.body.corPele, req.body.olhos, req.body.cabelo, req.body.altura, req.body.peso, req.body.roupas, req.body.resumoPersonagem);
 
-                console.log(req.body.nome, req.body.idade, req.body.personalidade, req.body.hobies, req.body.sonhos, req.body.traumas, req.body.objetivo, req.body.informacoes, TratamentoParamtrosDeRota(req.params.idUsuario), req.body.corPele, req.body.olhos, req.body.cabelo, req.body.altura, req.body.peso, req.body.roupas, req.body.resumoPersonagem)
-
                 let personagemAtualizado = await personagemASerAtualizado.atualizaPersonagem(TratamentoParamtrosDeRota(req.params.idPersonagem));
 
                 switch (personagemAtualizado.modifiedCount) {
@@ -232,8 +232,10 @@ exports.deletarPersonagem = async (req, res, next) => {
                 default:
                     let historias = await Historias.buscaHistorias(TratamentoParamtrosDeRota(req.params.idUsuario));
                     let personagens = await Personagens.buscaPersonagens(TratamentoParamtrosDeRota(req.params.idUsuario));
+                    let cenarios = await Cenarios.buscaCenarios(TratamentoParamtrosDeRota(req.params.idUsuario));
+                    let fotoPerfil = await Imagens.BuscaImagem(TratamentoParamtrosDeRota(req.params.idUsuario), "FotoPerfil");
 
-                    res.render('usuarios', {notify: "Personagem Deletado com sucesso!!!", historias, "Personagens" : personagens, id_Usuario : req.params.idUsuario});
+                    res.render('usuarios', {notify: "Personagem Deletado com sucesso!!!", historias, "Personagens" : personagens, id_Usuario : req.params.idUsuario, cenarios, fotoPerfil});
                     break;
             }
         }

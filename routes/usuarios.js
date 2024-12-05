@@ -2,17 +2,43 @@ var express = require('express'); // Importando o módulo express para definirmo
 
 var router = express.Router(); // "Instanciando" o método de roteamento Express
 
-/* Importando os Controllers */
-const controllerPaginaHomeUsuarios =  require('../controllers/controllerUsuarios');
+const multer = require('multer'); // Importando a biblioteca multer para conseguirmos salvar as imagens dos usuarios
+const upload = multer({dest: 'public/uploads/'}); // Setando a pasta que será a de destino para as imagens
+
+/* Importando Os Controllers */
+const controllerUsuarios =  require('../controllers/controllerUsuarios');
 
 const controllerHistoria = require('../controllers/controllerHistorias');
 
 const controllerPersonagens = require('../controllers/controllerPersonagens');
 
+const controllerCenarios = require('../controllers/controllerCenarios');
 
 
+/* Rota das informações e da indexpage do usuario */
 // Rota para carregar a pagina home dos usuarios
-router.get('/:idUsuario', controllerPaginaHomeUsuarios.UsuariosIndex);
+router.get('/:idUsuario', controllerUsuarios.UsuariosIndex);
+
+// Rota para caregar a pagina de perfil dos usuarios
+router.get('/:idUsuario/perfilUsuario', controllerUsuarios.PerfilUsuario);
+
+// Rota para atualizar as informações do usuario
+router.post('/:idUsuario/atualizarUsuario', controllerUsuarios.AutualizaUsuario);
+
+// Rota que retorna um template para a verificação do novo email do usuario
+router.get('/:idUsuario/atualizaEmail/:novoEmailUsuario', controllerUsuarios.AtualizaEmailUsuarioGet);
+
+// Rota que valida o código enviado para o novo email do usuario
+router.post('/:idUsuario/atualizaEmail/:novoEmailUsuario', controllerUsuarios.AtualizaEmailUsuarioPost);
+
+// Rota para adicionar foto ao perfil do usuario
+router.post('/:idUsuario/addFotoPerfil', upload.single('fotoPerfil'), controllerUsuarios.addImagemPerfil);
+
+// Rota para atualizar as fotos de perfil dos usuarios
+router.post('/:idUsuario/atualizaFotoPerfil', upload.single('fotoPerfil'), controllerUsuarios.atualizaFotoPerfil);
+
+// Rota para deletar foto de perfil dos usuarios
+router.get('/:idUsuario/deletarFotoPerfil', controllerUsuarios.deletarImagemPerfil);
 
 
 
@@ -65,6 +91,9 @@ router.get('/:idUsuario/historia/:idHistoria/capitulo/:idCapitulo/removerPersona
 // Rota Para Adicionar Um Cenário A Um Capitulo
 router.post('/:idUsuario/historia/:idHistoria/capitulo/:idCapitulo/adicionaCenario', controllerHistoria.adicionarCenarioNoCapitulo);
 
+// Rota Para Desvincular um capitulo do cenario
+router.get('/:idUsuario/historia/:idHistoria/capitulo/:idCapitulo/deletarCenario/:idCenarioDoCapitulo', controllerHistoria.deletarCenarioDoCapitulo)
+
 
 
 /* Rotas Dos Personagens */
@@ -82,5 +111,23 @@ router.post('/:idUsuario/atualizarPersonagem/:idPersonagem', controllerPersonage
 
 // Rota Para Deletar As Informações De Um Personagem No Banco De Dados
 router.get('/:idUsuario/deletarPersonagem/:idPersonagem', controllerPersonagens.deletarPersonagem);
+
+
+
+/* Rotas Dos Cenarios */
+// Rota que retorna um template para criar um cenario
+router.get('/:idUsuario/adicionarCenario', controllerCenarios.criarCenarioGet);
+
+// Rota que adiciona um cenario ao banco de dados
+router.post('/:idUsuario/adicionarCenario', controllerCenarios.criarCenarioPost);
+
+// Rota para buscar os cenarios
+router.get('/:idUsuario/cenario/:idCenario', controllerCenarios.buscaCenario);
+
+// Rota para atualizar as informações dos cenarios
+router.post('/:idUsuario/atualizarCenario/:idCenario', controllerCenarios.atualizaCenario);
+
+// Rota para deletar um cenario
+router.get('/:idUsuario/deletarCenario/:idCenario', controllerCenarios.deletaCenario);
 
 module.exports = router;

@@ -5,6 +5,9 @@ html(lang="pt-br")
     link(rel='stylesheet', href='/stylesheets/paginaHistorias.css')
     link(rel='stylesheet', href='/stylesheets/notify.css')
     link(rel='stylesheet', href='/stylesheets/excluir.css')
+    link(rel='stylesheet', href='/stylesheets/navbar.css')
+    link(rel='stylesheet', href='/stylesheets/footer.css')
+    link(rel="stylesheet", href="/stylesheets/scrollBar.css")
     link(rel="website icon", href="/images/3c323745-b83e-4589-b0a6-a5b15a0aa3c4.jpg")
     meta(http-equiv="Content-Type", content="text/html;charset=UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
@@ -15,17 +18,22 @@ html(lang="pt-br")
           h1(class="h1-home", translate="no") Dawn Draft
   
       nav(class="navBar")
+        a(href=`/Usuarios/${historia.Usuario}/adicionarCenario`, class="btn-sobre") Criar cenario
         a(href=`/Usuarios/${historia.Usuario}/adicionarPersonagem`, class="btn-sobre") Criar personagem
         a(href=`/Usuarios/${historia.Usuario}/NovaHistoria`, class="btn-sobre") Criar historia
         a(href=`/Usuarios/${historia.Usuario}/`)
-          img(src="/images/casa.png", alt="Home")
+          img(src="/images/casa.png", alt="Home", class="hoverScale")
 
-    section
+      img(src="/images/botao-de-menu.png", alt="Menu", class="btnDropDown")
+      
+      script(src="/javascripts/indexPage.js")
+    
+    section(id="sectionConteudo")
         form(action=`/Usuarios/:${historia.Usuario}/historia/:${historia._id.toString()}`, method="post") 
 
           div(class="divInpt")
             label(for="") Titulo:
-            input(type="text", name="titulo", value=`${historia.Titulo}`, maxlength="100")
+            input(type="text", name="titulo", value=`${historia.Titulo}`, maxlength="100", required)
 
           div(class="divResumoPersonagem")
             label(for="") Prologo
@@ -35,7 +43,7 @@ html(lang="pt-br")
           div
             button(type="submit") Salvar Alterações
       
-    section(class="sectionCapitulos")
+    section(class="sectionCapitulos", id="sectionConteudo2")
       h1(class="tituloCapitulos") Capítulos
 
       div(class="boxCapitulos")
@@ -55,6 +63,7 @@ html(lang="pt-br")
       span(class="spanDeletarHis") Excluir historia
 
       div(class="divExcluirPersonagem")
+        h2 Excluir
         p Certeza que deseja excluir a historia #{historia.Titulo}
         div(class="botoesDivExcluirPersonagem")
           button(class="cancelar", id="btnCancelar") Cancelar 
@@ -62,7 +71,7 @@ html(lang="pt-br")
         script(src="/javascripts/excluir.js")
 
     if notify.length
-      div(class="containerNotify", id="containerNotify")
+      div(class="containerNotify sucesso", id="containerNotify")
         div(class="boxNotify")
           h3 Sucesso!
           span(id="idNotificacao")= notify
@@ -71,4 +80,4 @@ html(lang="pt-br")
     footer(class="footer")
       p &copy; 2024 DawnDraft. Todos os direitos reservados.
       a(href="/politicaPrivacidade.html" style="color: white; text-decoration: none;") Política de Privacidade
-      a(href="/contato.html" style="color: white; text-decoration: none;") Contato
+      a(href="/FaleConosco" style="color: white; text-decoration: none;") Contato

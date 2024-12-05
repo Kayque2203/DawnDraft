@@ -4,6 +4,7 @@ const Criptografia = require('../assets/criptografia.js');
 const Historias = require('../models/mHistorias.js');
 const PersonagensCapitulo = require('../models/mPersonagensCapitulo.js');
 const Personagens = require('../models/mPersonagens.js');
+const CenariosCapitulo = require('./mCenariosCapitulo.js');
 
 const Conexao = new conexao();
 
@@ -11,11 +12,13 @@ class Usuarios {
     #nome;
     #email;
     #senha;
+    #biografia;
 
-    constructor( nomeUsuario = '', emailUsuario = '', senhaUsuario = '' ) {
+    constructor( nomeUsuario = '', emailUsuario = '', senhaUsuario = '', bio = '' ) {
         this.setUsuario(nomeUsuario);
         this.setEmail(emailUsuario);
         this.setSenha(senhaUsuario);
+        this.#biografia = bio
     }
 
     // Setters
@@ -38,7 +41,9 @@ class Usuarios {
             "Nome" : this.#nome,
             "Email" : this.#email,
             "Senha" : this.#senha,
-            "Verificado" : false
+            "Biografia" : this.#biografia,
+            "Verificado" : false,
+            "IsAdmin" : false
         })
 
         return novoUser.insertedId;
@@ -60,15 +65,31 @@ class Usuarios {
             {
                 $set : {
                     "Nome" : this.#nome,
-                    "Senha" : this.#senha
+                    "Senha" : this.#senha,
+                    "Biografia" : this.#biografia
                 }
             }
         );
 
-        return usuarioAserAtualizado == null? false : true
+        return usuarioAserAtualizado.modifiedCount == 0? false : true;
     }
 
     // Staticos 
+    static async AtualizaEmailUsuario (idUsuario, novoEmailUsuario) {
+        let usuarioAserAtualizado = await Conexao.getCollections('Usuarios').updateOne(
+            {
+                _id : new ObjectId(idUsuario)
+            },
+            {
+                $set : {
+                    "Email" : novoEmailUsuario
+                }
+            }
+        );
+
+        return usuarioAserAtualizado.modifiedCount == 0? false : true;
+    }
+
     static async buscaUsuariosPeloEmail2(email){
         let usuario =  await Conexao.getCollections('Usuarios').findOne({"Email": email});
 
@@ -113,12 +134,19 @@ class Usuarios {
     }
 
     // Verificar isso aqui dps
-    static async deletarUsuario(id){
-        let personagensDoCapituloDeletados = await PersonagensCapitulo.deletarTodosPersonagensDoCapituloPeloIdUsuario(id);
-        let personagens = await Personagens.deletarTodosPersonagensPeloIdUsuario(id);
-        let historiasDeletadas = await Historias.deleteTodasHistoriasDoUser(id);
-        let usuarioDeletado = await Conexao.getCollections('Usuarios').deleteOne({_id: new ObjectId(id)});
+    static async deletarUsuario(idUsuario){
+        let cenariosDoCapitulo = await CenariosCapitulo.ExcluirTodosOsCenariosDosCapitulosPeloIdUsuario(idUsuario)
+        let personagensDoCapituloDeletados = await PersonagensCapitulo.deletarTodosPersonagensDoCapituloPeloIdUsuario(idUsuario);
+        let personagens = await Personagens.deletarTodosPersonagensPeloIdUsuario(idUsuario);
+        let historiasDeletadas = await Historias.deleteTodasHistoriasDoUser(idUsuario);
+        let usuarioDeletado = await Conexao.getCollections('Usuarios').deleteOne({_id: new ObjectId(idUsuario)});
         return usuarioDeletado
+    }
+
+    static async buscaTodosUsuarios () {
+        let usuarios = await Conexao.getCollections('Usuarios').find().toArray();
+
+        return usuarios;
     }
 }
 

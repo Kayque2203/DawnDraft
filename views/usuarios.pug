@@ -4,6 +4,7 @@ html(lang="pt-br")
     title Home Usuarios
     link(rel='stylesheet', href='/stylesheets/paginaHomeUsuarios.css')
     link(rel='stylesheet', href='/stylesheets/notify.css')
+    link(rel="stylesheet", href="/stylesheets/navbar.css")
     link(rel="website icon", href="/images/3c323745-b83e-4589-b0a6-a5b15a0aa3c4.jpg")
     meta(http-equiv="Content-Type", content="text/html;charset=UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
@@ -14,43 +15,63 @@ html(lang="pt-br")
           img( class="logo-nav" src="/images/63b55e87-83ca-4b1e-afe9-c0e899910615.jpg")
           h1(class="h1-home") Dawn Draft
   
-      nav(class="navBar")
-        a(href=`/Usuarios/:${id_Usuario}/PerfilUsuario`)
-          img(src="/images/user.png", alt="Perfil Do Usuario")
+      nav(class="navBar1item")
+        a(href=`/Usuarios/:${id_Usuario}/perfilUsuario`)
+          if fotoPerfil.length == 0
+            img(src="/images/userIcon.png", alt="Perfil Do Usuario", class="fotoPerfil hoverScale")
+          else 
+            img(src=`/uploads/${fotoPerfil}`, alt="Perfil Do Usuario", class="fotoPerfil hoverScale")
 
         a(href="/")
-          img(src="/images/logout.png", alt="") 
+          img(src="/images/logout.png", alt="", class="hoverScale") 
 
     
     section(class="")
       h1(class="tituloSection") Histórias 
       div(class="containerHistorias")
-        a(href=`/Usuarios/:${id_Usuario}/NovaHistoria`, class='boxHistorias mais') +
-          span Adicionar Historia
+        a(href=`/Usuarios/:${id_Usuario}/NovaHistoria`, class='boxHistorias mais')
+          img(src="/images/addHistoria.png", alt="adicionar historia icon", class="imgsIcones rotateMenos5deg")
+          span Criar Historia
           
         if historias.length
           for historia in historias
             a(href=`/Usuarios/:${historia.Usuario}/historia/:${historia._id.toString()}`, rel="noopener noreferrer", class="boxHistorias")
-              h2= historia.Titulo.substring(0, 30) + "..."
+              if historia.Titulo.length >= 30
+                h2= historia.Titulo.substring(0, 30) + "..."
+              else
+                h2= historia.Titulo
 
     section
       h1(class="tituloSection") Personagens
 
       div(class="containerHistorias")
-        a(href=`/Usuarios/:${id_Usuario}/adicionarPersonagem`, class='boxHistorias mais') + 
-          span Adicionar Personagem
+        a(href=`/Usuarios/:${id_Usuario}/adicionarPersonagem`, class='boxHistorias mais')
+          img(src="/images/addPersonagem.png", alt="adicionar historia icon", class="imgsIcones")
+          span Criar Personagem
 
         if Personagens.length
           for personagem in Personagens
             a(href=`/Usuarios/:${personagem.Usuario.toString()}/personagem/:${personagem._id.toString()}`, class="boxHistorias")
-              h2= personagem.Nome
+              if personagem.Nome.length >= 30
+                h2= personagem.Nome.substring(0, 30) + "..."
+              else 
+                h2= personagem.Nome
 
     section 
       h1(class="tituloSection") Cenários
 
       div(class="containerHistorias")
-        a(href='#', class='boxHistorias mais') +
-          span Adicionar Cenário
+        a(href=`/Usuarios/:${id_Usuario}/adicionarCenario`, class='boxHistorias mais')
+          img(src="/images/addCenario.png", alt="adicionar historia icon", class="imgsIcones")
+          span Criar Cenário
+
+        if cenarios.length
+          for cenario in cenarios
+            a(href=`/Usuarios/:${cenario.Usuario.toString()}/cenario/:${cenario._id.toString()}`, class="boxHistorias")
+              if cenario.Nome.length >= 30
+                h2= cenario.Nome.substring(0, 30) + "..."
+              else 
+                h2= cenario.Nome
       
     if notify.length
       div(class="containerNotify sucesso", id="containerNotify")
@@ -63,4 +84,4 @@ html(lang="pt-br")
     footer(class="footer")
       p &copy; 2024 DawnDraft. Todos os direitos reservados.
       a(href="/politicaPrivacidade.html" style="color: white; text-decoration: none;") Política de Privacidade
-      a(href="/contato.html" style="color: white; text-decoration: none;") Contato
+      a(href="/FaleConosco" style="color: white; text-decoration: none;") Contato

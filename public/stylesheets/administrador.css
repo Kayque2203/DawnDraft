@@ -1,0 +1,86 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    margin: 0;
+    font: 12.5pt "Lucida Grande", Helvetica, Arial, sans-serif;
+    background-color: #fcfbee;
+    font-family: "Sora", sans-serif;
+}
+
+section{
+    display: flex;
+    justify-content: space-between;
+    padding-left: 1%;
+    padding-right: 1%;
+    padding-top: 1.5%;
+    padding-bottom: 1.5%;
+}
+
+.boxSection{
+    width: 49%;
+    background-color: #ede7dc;
+    height: 35vw;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    border-radius: 5pt;
+    box-shadow: 0pt 0pt 10pt;
+    transition: 0.1s linear;
+    cursor: pointer;
+}
+
+.boxSection:hover{
+    box-shadow: 0pt 0pt 20pt;
+    background-color: antiquewhite;
+}
+
+.imagemEnvelope{
+    /* <a href="https://www.flaticon.com/br/icones-gratis/envelope" title="envelope ícones">Envelope ícones criados por Muhammad_Usman - Flaticon</a> */
+    width: 50%;
+    height: auto;
+    transition: 0.1s linear;
+}
+
+.imagemEnvelope:hover{
+    scale: 1.09;
+    transform: rotate3d(1, 2.0, 300.0, 10deg);
+}
+
+.userIcon{
+    width: 50%;
+    height: auto;
+    transition: 0.1s linear;
+}
+
+.userIcon:hover{
+    transform: scale(1.09);
+    translate: 1px -2%;
+}
+
+.spanTituloBox{
+    width: 75%;
+    border-top: 1px solid black;
+    padding-top: 5pt;
+    text-align: center;
+    font-size: 16pt;
+}
+
+@media (min-width: 900px){
+    /* section{
+      min-height: 100vw;
+      margin-bottom: 10pt;
+    } */
+
+    footer{
+        position: absolute;
+        bottom: 0;
+    }
+}

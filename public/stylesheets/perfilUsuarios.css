@@ -1,0 +1,228 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; 
+}
+  
+body {
+    font: 1.8vh "Lucida Grande", Helvetica, Arial, sans-serif;
+    background-color: #fcfbee;
+    font-family: "Sora", sans-serif;
+}
+
+section{
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 50pt;
+    margin-top: 50pt;
+    border-radius: 28pt 28pt 28pt 28pt;
+    padding: 1%;
+    background-color: #BFBEBA;
+}
+
+form{
+    background-color: #EEE;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.borderRadius25Cima{
+    border-radius: 25pt 25pt 0pt 0pt;
+}
+
+.borderRadius25Baixo{
+    border-radius: 0pt 0pt 25pt 25pt;
+    padding-bottom: 5%;
+}
+
+label{
+    font-size: 12pt;
+    text-wrap: nowrap;
+    padding: 5pt;
+}
+
+input{
+    width: 100%;
+    padding: 5pt;
+    border: none;
+    border-radius: 2pt;
+    border-bottom: 1px solid black;
+    font-size: 13pt;
+    margin-bottom: 10pt;
+    box-shadow: 0 0 5px gray;
+    background-color: white;
+}
+
+input:focus{
+    border: none;
+    box-shadow: 0 0 8px gray;
+    outline: 0;
+}
+
+.boxInputsForm{
+    display: flex;
+    flex-direction: column;
+}
+
+.footer{
+    background-color: #292727da; 
+    color: white; 
+    text-align: center; 
+    padding: 20px; 
+    position: relative; 
+    bottom: 0; 
+    width: 100%;
+}
+
+.linksHistoriasPersonagensCenarios{
+    width: 100%;
+    background-color: #F2F0EB;
+    padding: 5pt;
+    border-radius: 5pt;
+    box-shadow: 2pt 2pt;
+    transition: 50ms;
+}
+
+.paragrafoLinks{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 5%;
+    padding-top: 1%;
+    padding-bottom: 2%;
+}
+
+.linksHistoriasPersonagensCenarios:hover{
+    box-shadow: 4pt 4pt;
+}
+
+.fotoPerfil{
+    border-radius: 50%;
+    width: 150pt;
+    height: 150pt;
+    margin-bottom: 20pt;
+}
+
+.formFotoPerfil{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 5%;
+}
+
+.iptnFile{
+    display: none;
+}
+
+button{
+    border: none;
+}
+
+button:focus{
+    border: none;
+    box-shadow: 0 0 0 0;
+    outline: 0;
+    border-bottom: none;
+}
+
+.boxBtnFoto{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10pt
+}
+
+.BotoesFoto{
+    padding: 5pt;
+    border-radius: 10pt;
+    background: linear-gradient(to bottom, #ff9101, #f8eb59c2);
+    color: black;
+    box-shadow: 0px 0px 6px;
+    transition: 0.05s;
+    cursor: pointer;
+}
+
+.BotoesFoto:hover{
+    box-shadow: 0px 0px 10px;
+    scale: 1.05;
+}
+
+.btnSalvarFoto{
+    display: none;
+}
+
+.boxTxtAreaBio{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: #BFBEBA;
+    height: 55%;
+    margin-top: 8pt;
+    margin-bottom: 5pt;
+    padding: 8pt;
+    border-radius: 10pt;
+}
+
+.boxTxtAreaBio label{
+    width: 100%;
+    text-align: center;
+    text-wrap: nowrap;
+    background-color: white;
+}
+
+textarea:focus{
+    border: none;
+    box-shadow: 0 0 0 0;
+    outline: 0;
+    border-bottom: none;
+}
+
+textarea{
+    width: 100%;
+    height: max-content;
+    font-size: 12.5pt;
+    padding: 5pt;
+    height: 55%;
+    border: none;
+    background-color: white;
+    border-radius: 0pt 0pt 5pt 5pt;
+    overflow: hidden;
+}
+
+label{
+    padding: 5pt;
+    /* margin-bottom: 5pt; */
+    width: auto;
+    text-wrap: nowrap;
+}
+
+.borderRadius5ptCima{
+    border-radius: 5pt 5pt 0pt 0pt;;
+}
+
+.borderRadius5ptBaixo{
+    border-radius: 0pt 0pt 5pt 5pt;;
+}
+
+button[type="submit"]{
+    width: 100%;
+    padding: 5pt;
+    border-radius: 5pt;
+    border: none;
+    cursor: pointer;
+    margin-top: 5pt;
+    background: linear-gradient(to bottom, #ff9101, #f8eb59c2);
+    font-size: 14pt;
+    color: black;
+    border: 1.8px solid rebeccapurple;
+    box-shadow: 1px 1px 1px 1px rebeccapurple;
+    transition: 0.1s;
+}
+
+button[type="submit"]:hover{
+    border: 1.8px solid rebeccapurple;
+    box-shadow: 6px 5px rebeccapurple;
+    outline: 0;
+}

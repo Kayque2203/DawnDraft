@@ -1,0 +1,68 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; 
+}
+  
+body {
+    width: 100%;
+    margin: 0;
+    font: 1.8vh "Lucida Grande", Helvetica, Arial, sans-serif;
+    background-color: #fcfbee;
+    font-family: "Sora", sans-serif;
+}
+  
+a {
+    color: black;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+  
+section{
+    font-size: 16pt;
+    width: 100%;
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.containerSection{
+    background-color: #BFBEBA;
+    padding: 1%;
+    border-radius: 10pt;
+}
+
+.boxSection{
+    padding: 5%;
+    background-color: #F2F0EB;
+    border-radius: 5pt;
+    display: flex;
+    flex-direction: column;
+}
+section{
+    padding: 5%;
+    text-align: justify;
+}
+
+p{
+    font-size: 16pt;
+}
+
+figure{
+    margin-top: 50pt;
+    padding-top: 25pt;
+    padding-bottom: 25pt;
+    background-color: #4B3621;
+    display: flex;
+    width: 50%;
+    align-items: center;
+    justify-content: center;
+
+    align-self: center;
+}
+
+.imgEquipe{
+    width: 90%;
+    height: auto;
+}

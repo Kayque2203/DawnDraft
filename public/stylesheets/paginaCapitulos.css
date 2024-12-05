@@ -51,7 +51,16 @@ input{
 select[name="personagem"]{
   width: 90%;
   border-radius: 5pt;
-  box-shadow: 3.5px 4px grey;
+  box-shadow: 3.5px 4px black;
+  border: 1px solid #F2F0EB;
+  background-color: #F2F0EB;
+  margin-bottom: 10pt;
+}
+
+select[name="cenario"]{
+  width: 90%;
+  border-radius: 5pt;
+  box-shadow: 3.5px 4px black;
   border: 1px solid #F2F0EB;
   background-color: #F2F0EB;
   margin-bottom: 10pt;
@@ -110,7 +119,7 @@ button[type="submit"]{
   color: black;
   border: 1.8px solid rebeccapurple;
   box-shadow: 1px 1px 1px 1px rebeccapurple;
-  transition: 20ms;
+  transition: 0.1s;
 }
 
 button:hover{
@@ -200,6 +209,12 @@ textarea:focus{
   background-color: #F2F0EB;
   padding: 5pt;
   border-radius: 5pt;
+  box-shadow: 2pt 2pt black;
+  transition: 0.1s;
+}
+
+.linkPersonagensECapitulos:hover{
+  box-shadow: 4pt 4pt black;
 }
 
 .linkDeletarPersonagemECapitulo{
@@ -209,6 +224,12 @@ textarea:focus{
   background-color: red;
   border-radius: 10pt;
   color: white;
+  box-shadow: 2pt 2pt black;
+  transition: 0.1s;
+}
+
+.linkDeletarPersonagemECapitulo:hover{
+  box-shadow: 4pt 4pt  black;
 }
 
 .tituloPersonagensECenarios{
@@ -226,7 +247,7 @@ textarea:focus{
   border-radius: 10pt;
   transition: 0.5s;
   margin-top: 5pt;
-  box-shadow: 4px 3px 4px 0px grey;
+  box-shadow: 4px 3px 4px 0px black;
 }
 
 .h2BoxCapitulos:hover{
@@ -277,6 +298,7 @@ select{
   width: 100%;
   padding: 5pt;
   text-align: center;
+  cursor: pointer;
 }
   
 .iptnTable:focus{

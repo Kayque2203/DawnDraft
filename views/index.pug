@@ -9,6 +9,7 @@ html(lang="pt-br")
     link(rel="website icon", href="/images/3c323745-b83e-4589-b0a6-a5b15a0aa3c4.jpg")
     meta(http-equiv="Content-Type", content="text/html;charset=UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet", href="/stylesheets/scrollBar.css")
 
   body
 
@@ -19,21 +20,55 @@ html(lang="pt-br")
   
       nav(class="navBar")
         a(class="btn-sobre", href = "/sobreNos.html") Sobre&nbspnós
-        a(class="btn-sobre", href = "/contato.html" ) Contato
+        a(class="btn-sobre", href = "/FaleConosco" ) Contato
         a(href="/LoginECadastro" class="linkLogin") Entrar
 
-      img(src="/images/botao-de-menu.png", alt="Menu", class="btnDropDown")
+      img(src="/images/botao-de-menu.png", alt="Menu", class="btnDropDown", defer)
       
-    script(src="/javascripts/indexPage.js")
+      script(src="/javascripts/indexPage.js")
 
     section(class="section1")
       div(class="boxsIntro")
         h2 ORGANIZE SUAS HISTÓRIAS DE FORMA SIMPLES E EFICAZ
         p O DawnDraft é a ferramenta ideal para escritores que querem levar suas criações ao próximo nível. Organize personagens, cenários e tramas em um só lugar, de forma intuitiva e prática. Perfeito para quem busca transformar ideias em histórias bem estruturadas, seja para livros, roteiros ou contos. Crie seu universo literário com facilidade.
       div
-        img(class="img-home" src="/images/ilustracao-vetorial-de-desenho-animado-moderno-de-uma-mulher-de-negocios-escrevendo-com-caneta_1316704-20479.avif")
+        img(class="img-home" src="/images/HomeImagemjpeg-SemFundo.png")
+
+    section(class="section2")
+      div(class="hiden containerSection2")
+        div(class="boxsTextos")
+          h2 Crie suas historias!
+          p Solte sua criatividade e aproveite a nossa funcionalidade de criar historias!
+        div
+          img(src="/images/Historia.gif", alt="", class="gifs")
+
+    section(class="hiden section1")
+      div(class="containerSection1")
+        div(class="boxsTextos")
+          h2 Organize suas historias por capitulos!
+          p Organize melhor suas histórias com nossa funcionalidade de adicionar capitulos a elas!
+        div 
+          img(src="/images/Capitulo.gif", alt="", class="gifs")
+
+    section(class="hiden section2", id="section4")
+      div(class="containerSection2")
+        div(class="boxsTextos")
+          h2 Crie seus personagens! 
+          p Tire aquele personagem do papel, ultilize nossa funcionalidade de criar personagens!
+        div 
+          img(src="/images/Personagem.gif", alt="", class="gifs")
+
+    section(class="hiden section1", id="section5")
+      div(class="containerSection1")
+        div(class="boxsTextos")
+          h2 Crie seus cenários
+          p Deixe suas ideias fluirem e crie cenarios, que podem ser atribuidos aos capitulos das suas historias!
+        div 
+          img(src="/images/Cenario.gif", alt="", class="gifs")
+
+    script(src="/javascripts/loadSections.js", defer) 
 
     footer(class="footer")
       p &copy; 2024 DawnDraft. Todos os direitos reservados.
       a(href="/politicaPrivacidade.html" style="color: white; text-decoration: none;") Política de Privacidade
-      a(href="/contato.html" style="color: white; text-decoration: none;") Contato
+      a(href="/FaleConosco" style="color: white; text-decoration: none;") Contato

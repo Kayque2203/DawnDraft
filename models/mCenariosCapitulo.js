@@ -5,36 +5,99 @@ const Conexao = new conexao();
 
 class CenariosCapitulo {
     cenario;
-    anotacao;
+    capitulo;
+    historia;
+    usuario;
     colecaoCenariosCapitulo;
 
-    constructor( idCenario, idAnotacao ){
+    constructor( idCenario, idCap, idHis, idUser ){
         this.cenario = new ObjectId(idCenario);
-        this.anotacao = new ObjectId(idAnotacao);
+        this.capitulo = new ObjectId(idCap);
+        this.historia = new ObjectId(idHis);
+        this.usuario = new ObjectId(idUser);
+
         this.colecaoCenariosCapitulo = Conexao.getCollections('CenariosCapitulo');
     }
 
     // Métodos
-    async adicionarCenarioNoCapitulo(){
+    async adicionarCenarioNoCapitulo () { // Esse método vincula um capitulo a um cenario
         let novoCenarioNoCapitulo = await this.colecaoCenariosCapitulo.insertOne({
             "Cenario" : this.cenario,
-            "Anotacao" : this.anotacao
+            "Capitulo" : this.capitulo,
+            "Historia" : this.historia,
+            "Usuario" : this.usuario
         });
 
         return novoCenarioNoCapitulo.insertedId.toString();
     }
 
     // Métodos Estaticos 
-    static async deletarCenarioDoCapitulo(idCenarioDoCapitulo){
-        let cenarioExcluidoDoCapitulo = await Conexao.getCollections('CenariosCapitulo').deleteOne({ _id : new ObjectId(idCenarioDoCapitulo) });
+
+    /* Busca dos cenarios vinculadoas aos capitulos */
+    static async buscaCenarioDoCapitulo (idCenarioDoCapitulo) { // Busca 1 cenario do capitulo
+        let cenarioDoCapituloBuscado = await Conexao.getCollections('CenariosCapitulo').findOne({ Cenario : new ObjectId(idCenarioDoCapitulo) });
+
+        return cenarioDoCapituloBuscado;
+    }
+
+    static async buscaCenarioDoCapitulo2 (idCenario, idCapitulo) { // Busca 1 cenario do capitulo
+        let cenarioDoCapituloBuscado = await Conexao.getCollections('CenariosCapitulo').findOne(
+            { 
+                $and: [
+                    {
+                        Cenario : new ObjectId(idCenario)
+                    },
+                    {
+                        Capitulo : new ObjectId(idCapitulo)
+                    }
+                ] 
+            }
+        );
+
+        return cenarioDoCapituloBuscado;
+    }
+
+    static async buscaCenariosVinculadosAoCapitulo (idCapitulo) { // Esse método busca no banco de dados e retorna todos os cenarios vinculados a um capitulo
+        let cenariosDoCapitulo = await Conexao.getCollections('CenariosCapitulo').find({Capitulo : new ObjectId(idCapitulo)}).toArray();
+
+        return cenariosDoCapitulo;
+    }
+
+    static async buscaTodosOsCapituloVinculadosAUmCenario (idCenario) { // Retorna Todos os capitulos vinculados a um cenario
+        let capitulosDosCenarios = await Conexao.getCollections('CenariosCapitulo').find({Cenario : new ObjectId(idCenario)}).toArray();
+
+        return capitulosDosCenarios;
+    }
+
+    /* Deletar/desvincular os(o) cenarios(o) do(s) capitulo(s) */
+    static async deletarCenarioDoCapitulo (idCenarioDoCapitulo) { // Desvincula um cenario de um capitulo apagando o registro do cenario do capitulo
+        let cenarioExcluidoDoCapitulo = await Conexao.getCollections('CenariosCapitulo').deleteOne({ Cenario : new ObjectId(idCenarioDoCapitulo) });
 
         return cenarioExcluidoDoCapitulo;
     }
 
-    static async buscaCenarioDoCapitulo(idCenarioDoCapitulo){
-        let cenarioDoCapituloBuscado = await Coexao.getCollections('CenariosCapitulo').findOne({ _id : new ObejctId(idCenarioDoCapitulo) });
+    static async desvincularTodosOsCapitulosDoCenario (idCenario) { // Desvincula todos os capitulos de um cenario
+        let desvinculando = await Conexao.getCollections('CenariosCapitulo').deleteMany({Cenario : new ObjectId(idCenario)})
 
-        return cenarioDoCapituloBuscado;
+        return desvinculando;
+    }
+
+    static async ExcluirTodosOsCenariosDosCapitulosPeloIdHistoria (idHistoria) { // Deleta Todos os Cenarios Dos Capitulos Pelo Id da Historia
+        let deletando = await Conexao.getCollections('CenariosCapitulo').deleteMany({Historia : new ObjectId(idHistoria)});
+
+        return deletando;
+    }
+
+    static async ExcluirTodosOsCenariosDosCapitulosPeloIdCapitulo (idCapitulo) { // Deleta Todos os Cenarios Dos Capitulos Pelo Id do Capitulo
+        let deletando = await Conexao.getCollections('CenariosCapitulo').deleteMany({Capitulo : new ObjectId(idCapitulo)});
+
+        return deletando;
+    }
+
+    static async ExcluirTodosOsCenariosDosCapitulosPeloIdUsuario (idUsuario) { // Deleta Todos os Cenarios Dos Capitulos Pelo Id do Usuario
+        let deletando = await Conexao.getCollections('CenariosCapitulo').deleteMany({Usuario : new ObjectId(idUsuario)});
+
+        return deletando;
     }
 }
 
